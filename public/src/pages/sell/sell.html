@@ -1,0 +1,19 @@
+<!--
+  Generated template for the Sell page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>sell</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <nested-com [title]="title"  (notify)='onNotify($event)'></nested-com>    
+    <nested-content content="content"  (notify)='onNotify($event)'></nested-content>
+</ion-content>

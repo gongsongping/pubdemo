@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title text-center>Home</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+  {{testService.message}}
+  <nested-content content="content" (notify)='onNotify($event)'></nested-content>
+  <div id="allmap" style="width:100px;height: 100px;"></div>
+  <div style="padding:0px 8px;">
+    <ion-item *ngFor="let h of houses" (click)="goDetail(h)" style="padding-left:0px;">
+      <ion-thumbnail item-left>
+        <img src="{{(h.images | ImgPipe)[0]}}">
+      </ion-thumbnail>
+      <h2>{{h.name}}</h2>
+      <p>{{h.description}}</p>
+      <p>ll</p>
+      <p>ll</p>
+      <!--<button ion-button clear item-right>View</button>-->
+    </ion-item>
+  </div>
+  <ion-fab bottom right #fab>
+    <button ion-fab>精准购房</button>
+    <ion-fab-list side="top">
+      <button ion-fab (click)="goPrecise()">precise</button>
+      <button ion-fab>Twitter</button>
+    </ion-fab-list>
+  </ion-fab>
+  <!--enabled="dataLength > 0" threshold='20%'-->
+  <ion-infinite-scroll (ionInfinite)="loadMore($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

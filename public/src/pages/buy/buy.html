@@ -1,0 +1,41 @@
+<!--
+  Generated template for the Buy page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+<ion-header no-border>
+  <ion-toolbar>
+     <ion-buttons left>
+      <button ion-button icon-only>
+        <ion-icon name="contact"></ion-icon>
+      </button>
+    </ion-buttons>
+   
+    <div style="width:100%;padding:0px 5px;">
+      <input type="text" style="border:1px solid lightgrey;border-radius:5px;width:100%;height:30px;padding:0px 5px;" >
+    </div>
+    <ion-buttons right>
+      <button ion-button icon-only >
+        <ion-icon name="options"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-tabs tabbarPlacement="top" #myTabs>
+    <ion-tab>区域</ion-tab>
+    <ion-tab>价格</ion-tab>
+    <ion-tab>房型</ion-tab>
+  </ion-tabs>
+  <ion-fab bottom right #fab>
+    <button ion-fab><p>精准</p><p>购房</p></button>
+    <ion-fab-list side="top">
+      <button ion-fab (click)="goPrecise()">navPush precise</button>
+      <button ion-fab>Twitter</button>
+    </ion-fab-list>
+  </ion-fab>
+</ion-content>

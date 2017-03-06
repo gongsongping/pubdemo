@@ -1,0 +1,163 @@
+// http://ionicframework.com/docs/v2/theming/
+// App Global Sass
+// --------------------------------------------------
+// Put style rules here that you want to apply globally. These
+// styles are for the entire app and not just one component.
+// Additionally, this file can be also used as an entry point
+// to import other Sass files to be included in the output CSS.
+//
+// Shared Sass variables, which can be used to adjust Ionic's
+// default Sass variables, belong in "theme/variables.scss".
+//
+// To declare rules for a specific mode, create a child rule
+// for the .md, .ios, or .wp mode classes. The mode class is
+// automatically applied to the <body> element in the app.
+.flex-column {
+    display: -webkit-flex;
+    /* Safari */
+    display: flex;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+}
+
+.flex-row {
+    display: -webkit-flex;
+    display: flex;
+}
+
+.flex-x-center {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: center;
+    justify-content: center;
+}
+
+.flex-y-center {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    -webkit-justify-content: center;
+    justify-content: center;
+}
+
+.flex-center-center {
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+
+//tabs red
+.tab-img-size {
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
+    height: 22px !important;
+    // width: 23px !important;
+    // margin: 4px !important;
+    // height: 32px;
+    // padding: 6px 4px 2px;
+    opacity: 0.9;
+}
+//home
+.ion-ios-homebhhf-outline {
+    background-image: url('../assets/img/sprite-h-23/home-off.png');
+    @extend .tab-img-size
+}
+
+.ion-ios-homebhhf {
+    background-image: url('../assets/img/sprite-h-23/home-on.png');
+    @extend .tab-img-size
+}
+
+.ion-md-homebhhf {
+    background-image: url('../assets/img/sprite-h-23/home-off.png');
+    @extend .tab-img-size
+}
+
+.tabs-md .tab-button[aria-selected=true] {
+    .ion-md-homebhhf {
+        background-image: url('../assets/img/sprite-h-23/home-on.png');
+    }
+}
+//buy
+.ion-ios-buybhhf-outline {
+    background-image: url('../assets/img/sprite-h-23/buy-off.png');
+    @extend .tab-img-size
+}
+
+.ion-ios-buybhhf {
+    background-image: url('../assets/img/sprite-h-23/buy-on.png');
+    @extend .tab-img-size
+}
+
+.ion-md-buybhhf {
+    background-image: url('../assets/img/sprite-h-23/buy-off.png');
+    @extend .tab-img-size
+}
+
+.tabs-md .tab-button[aria-selected=true] {
+    .ion-md-buybhhf {
+        background-image: url('../assets/img/sprite-h-23/buy-on.png');
+    }
+}
+//sell
+.ion-ios-sellbhhf-outline {
+    background-image: url('../assets/img/sprite-h-23/sell-off.png');
+    @extend .tab-img-size
+}
+
+.ion-ios-sellbhhf {
+    background-image: url('../assets/img/sprite-h-23/sell-on.png');
+    @extend .tab-img-size
+}
+
+.ion-md-sellbhhf {
+    background-image: url('../assets/img/sprite-h-23/sell-off.png');
+    @extend .tab-img-size
+}
+
+.tabs-md .tab-button[aria-selected=true] {
+    .ion-md-sellbhhf {
+        background-image: url('../assets/img/sprite-h-23/sell-on.png');
+    }
+}
+//mine
+.ion-ios-minebhhf-outline {
+    background-image: url('../assets/img/sprite-h-23/mine-off.png');
+    @extend .tab-img-size
+}
+
+.ion-ios-minebhhf {
+    background-image: url('../assets/img/sprite-h-23/mine-on.png');
+    @extend .tab-img-size
+}
+
+.ion-md-minebhhf {
+    background-image: url('../assets/img/sprite-h-23/mine-off.png');
+    @extend .tab-img-size
+}
+
+.tabs-md .tab-button[aria-selected=true] {
+    .ion-md-minebhhf {
+        background-image: url('../assets/img/sprite-h-23/mine-on.png');
+    }
+}
+
+// .ion-ios-homebhhf,
+// .ion-md-homebhhf {
+//   content: url(../assets/img/home_pre_home.svg);
+//   width: 24px;
+//   height: 32px;
+//   padding: 6px 4px 2px;
+//   opacity: 0.9;
+// }
+// .ion-ios-homebhhf-outline,
+// .ion-md-homebhhf-outline {
+//   content: url(../assets/img/home_home.svg);
+//   width: 24px;
+//   height: 32px;
+//   padding: 6px 4px 2px;
+//   opacity: 0.9;
+// }
