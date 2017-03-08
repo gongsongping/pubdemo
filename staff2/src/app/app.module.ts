@@ -22,6 +22,7 @@ import { About } from '../pages/about/about';
     Changepw,
     Resetpw,
     About,
+    Role,
     ModalResetpw
   ],
   imports: [
@@ -37,6 +38,7 @@ import { About } from '../pages/about/about';
     Changepw,
     Resetpw,
     About,
+    Role,
     ModalResetpw
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]

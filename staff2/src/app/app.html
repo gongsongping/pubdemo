@@ -1,4 +1,4 @@
-<ion-menu [content]="content" (ionOpen)="menuOpened()" (ionDrag)="menuOpened()">
+<ion-menu [content]="content" (ionClose)="menuOpened()" (ionOpen)="menuOpened()" (ionDrag)="menuOpened()">
   <ion-header>
     <ion-toolbar>
       <ion-title>Menu</ion-title>
@@ -7,17 +7,20 @@
 
   <ion-content>
     <ion-list>
-      <button menuClose ion-item (click)="goTo(home)">
+      <button menuClose ion-item (click)="goTo(role)">
         首页
       </button>
-      <button menuClose ion-item (click)="goTo(changepw)">
+      <button *ngIf='tokens' menuClose ion-item (click)="pushTo(changepw)">
         修改密码
       </button>
-      <button menuClose ion-item (click)="goTo(resetpw)">
+      <button *ngIf='!tokens' menuClose ion-item (click)="pushTo(resetpw)">
         忘记密码
       </button>
-      <button menuClose ion-item (click)="goTo(about)">
+      <button menuClose ion-item (click)="pushTo(about)">
         关于壁虎
+      </button>
+      <button  *ngIf='tokens' menuClose ion-item (click)="logout()">
+        退出
       </button>
       <!--<button menuClose ion-item (click)="resetpwModal()">
         重置密码
