@@ -11,6 +11,7 @@ import { Role } from '../pages/role/role';
 import axios from 'axios';
 
 
+
 @Component({
   templateUrl: 'app.html'
 })
@@ -38,7 +39,7 @@ export class MyApp {
     });
 
   } 
-  //red this hooks won't fire
+
   ionViewWillEnter() {
       console.log('-----app root------ will enter baseUrl', localStorage.getItem('baseUrl'));
   }
