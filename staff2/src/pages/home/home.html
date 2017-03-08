@@ -10,12 +10,87 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>首页</ion-title>
+    <ion-title>壁虎工作台</ion-title>
+    <!--<button ion-button side="right">
+      <img src="../../assets/img/icon/_0023_message.png" width="26">
+    </button>-->
   </ion-navbar>
-
 </ion-header>
 
 
-<ion-content padding>
-首页
+<ion-content>
+  <div class="home-list">
+    <ion-list>
+      <ion-list-header>您收到一条“房源实勘”任务</ion-list-header>
+      <ion-item>
+        <p><span>订单编号：</span>2018025236999</p>
+        <p><span>业主姓名：</span>黄忠</p>
+        <p><span>房源地址：</span>成都市一环路西八段80号</p>
+        <div class="see">
+          <img src="../../assets/img/icon/_0013_seeright.png" width="16">
+          <span>查看详情 </span>
+        </div>
+      </ion-item>
+    </ion-list>
+  </div>
+  <div class="home-list">
+    <ion-list>
+      <ion-list-header>您收到一条“房源实勘”任务</ion-list-header>
+      <ion-item>
+        <p><span>订单编号：</span>2018025236999</p>
+        <p><span>业主姓名：</span>黄忠</p>
+        <p><span>房源地址：</span>成都市一环路西八段80号</p>
+        <div class="see">
+          <img src="../../assets/img/icon/_0013_seeright.png" width="16">
+          <span>查看详情 </span>
+        </div>
+      </ion-item>
+    </ion-list>
+  </div>
 </ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <div class="footer">
+      <div (click)="tabColor($event)">
+        <i>1</i>
+        <img src="../../assets/img/icon/_0021_todo.png" width="25" />
+        <h5>待办事项</h5>
+      </div>
+      <div (click)="tabColor($event)">
+        <img src="../../assets/img/icon/_0019_new.png" width="28" />
+        <h5>新建任务</h5>
+      </div>
+      <div (click)="tabColor($event)">
+        <img src="../../assets/img/icon/_0017_datas.png" width="29" />
+        <h5>数据管理</h5>
+      </div>
+      <div (click)="tabColor($event)">
+        <img src="../../assets/img/icon/_0015_house.png" width="25" />
+        <h5 [ngClass]="{'state': true, 'positive': false}">房源管理</h5>
+      </div>
+    </div>
+    <!--<button ion-button>
+        <ion-icon name="star" icon-top></ion-icon>
+        待办事项
+        <ion-badge item-right>260</ion-badge>
+    </button>
+    <button ion-button icon-right>
+        新建任务
+        <ion-icon name="star"></ion-icon>
+    </button>
+    <button ion-button icon-right>
+        数据管理
+        <ion-icon name="star"></ion-icon>
+    </button>
+    <button ion-button icon-right>
+        房源管理
+        <ion-icon name="star"></ion-icon>
+    </button>-->
+    <!--<ion-tabs>
+      <ion-tab  tabIcon="call" show="true" [root]="tabOne" tabBadge="3" tabBadgeStyle="danger" tabTitle="待办事项"></ion-tab>
+      <ion-tab tabIcon="chatbubbles" [root]="tabTwo" tabTitle="新建任务"></ion-tab>
+      <ion-tab tabIcon="musical-notes" [root]="tabThree" tabTitle="数据管理"></ion-tab>
+      <ion-tab tabIcon="musical-notes" [root]="tabFour" tabTitle="房源管理"></ion-tab>
+    </ion-tabs>-->
+  </ion-toolbar>
+</ion-footer>

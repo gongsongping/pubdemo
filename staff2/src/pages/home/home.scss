@@ -1,3 +1,65 @@
 page-home {
-
+     .home-list{
+         margin:10px;
+         border:1px solid #265fdf;
+         .list-ios{
+             margin:0;
+         }
+         ion-list-header{
+             background-color: #4780ff;
+             padding-left:10px;
+             min-height: 3rem;
+             border-bottom:1px solid #265fdf;
+             color:#fff;
+             font-size: 1em;
+         }
+         ion-item{
+             padding-left: 10px;
+             p{
+                 color:#4780ff;
+                 margin-top: 5px;
+                 span{
+                     color:black;
+                 }
+             }
+             .label-ios{
+                 margin: 7px 0;
+             }
+             .see{
+                 color:#4780ff;
+                 font-size: .8em;
+                 letter-spacing: 0.1rem;
+                 img,span{
+                     float:right;
+                     margin-left: 3px;
+                 }
+             }
+         }
+     }
+     .footer{
+         display: flex;
+         justify-content:space-around;
+         background-color: #d9d9d9;
+         padding:2px;
+         div{
+             overflow: hidden;
+             i{
+                 display:block;
+                 position: absolute;
+             }
+             img{
+                 display:block;
+                 margin: 0 auto;
+             }
+             h5{
+                 font-size:.6em;
+                 margin-top: 5px;
+                 margin-bottom: 0;
+                 color:#666;
+             }
+         }
+     }
+     .toolbar-ios{
+         padding:0;
+     }
 }

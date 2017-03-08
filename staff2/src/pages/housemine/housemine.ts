@@ -2,27 +2,21 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
 /*
-  Generated class for the Home page.
+  Generated class for the Housemine page.
 
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
-*/ 
+*/
 @Component({
-  selector: 'page-home',
-  templateUrl: 'home.html'
+  selector: 'page-housemine',
+  templateUrl: 'housemine.html'
 })
-export class Home {
-  // tabOne = Page1;
-  // tabTwo = Page2;
-  // tabThree = Page3;
-  // tabFour = Page4;
+export class HouseminePage {
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {}
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad HomePage');
-  }
-  tabColor(index){
-    console.log(index.isTrusted)
+    console.log('ionViewDidLoad HouseminePage');
   }
 
 }
