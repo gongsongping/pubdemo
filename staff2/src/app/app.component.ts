@@ -2,11 +2,11 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform, ModalController } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 
-import { Page1 } from '../pages/page1/page1';
-import { Page2 } from '../pages/page2/page2';
 import { Home } from '../pages/home/home';
-import { LoginModal } from '../providers/services';
-
+import { ModalResetpw } from '../providers/services';
+import { Changepw } from '../pages/changepw/changepw';
+import { Resetpw } from '../pages/resetpw/resetpw';
+import { About } from '../pages/about/about';
 
 
 @Component({
@@ -16,9 +16,11 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
   
   rootPage: any = Home;
-
-  pages: Array<{title: string, component: any}>;
   home:any = Home
+  changepw:any = Changepw
+  resetpw:any = Resetpw
+  about:any = About
+
   constructor(public platform: Platform, public modalCtrl: ModalController) {
     // this.initializeApp();
     platform.ready().then(() => {
@@ -29,37 +31,24 @@ export class MyApp {
       console.log('---ready---');
     });
 
-    // used for an example of ngFor and navigation
-    this.pages = [
-      { title: 'Page One', component: Page1 },
-      { title: 'Page Two', component: Page2 }
-    ];
-
   } 
   menuOpened (){
     console.log('----menuopend----');
   }
   // initializeApp() {}
-  goHome(p){
-    // this.nav.setRoot(p);
-    this.nav.push(p)
-  }
-  openPage(page) {
-    // Reset the content nav to have just this page
-    // we wouldn't want the back button to show in this scenario
-    this.nav.setRoot(page.component);
+  goTo(p){
+    this.nav.setRoot(p);
+    // this.nav.push(p)
   }
   ionViewWillEnter() {
      console.log('----root app---- Page will enter',this.nav.parent);
   }
   ngOnInit(){
      console.log('----root app---- Page oninit');
-    //  this.loginModal()
   }
-  loginModal (){
+  resetpwModal (){
     console.log('--menu click test--');
-    let log = this.modalCtrl.create(LoginModal);
+    let log = this.modalCtrl.create(ModalResetpw,{});
     log.present();
-    // window.location.reload()
   }
 }

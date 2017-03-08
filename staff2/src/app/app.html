@@ -7,17 +7,21 @@
 
   <ion-content>
     <ion-list>
-      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-        {{p.title}}
-      </button>
-      <button menuClose ion-item (click)="goHome(home)">
+      <button menuClose ion-item (click)="goTo(home)">
         首页
       </button>
-      <button menuClose ion-item (click)="loginModal()">
-        登录
+      <button menuClose ion-item (click)="goTo(changepw)">
+        修改密码
       </button>
-      <button ion-button secondary [navPush]='home'>go home</button>
-
+      <button menuClose ion-item (click)="goTo(resetpw)">
+        忘记密码
+      </button>
+      <button menuClose ion-item (click)="goTo(about)">
+        关于壁虎
+      </button>
+      <!--<button menuClose ion-item (click)="resetpwModal()">
+        重置密码
+      </button>-->
     </ion-list>
   </ion-content>
 
