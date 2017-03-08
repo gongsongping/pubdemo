@@ -1,4 +1,22 @@
 page-home {
+    ion-header{
+        .toolbar-background-ios{
+            background-color: #265fdf;
+        }
+        ion-title{
+            .toolbar-title{
+                color:#fff;
+            }
+        }
+        ion-badge{
+            position: absolute;
+            top: 0;
+            right: -1px;
+            font-size:.1em;
+            font-weight:100;
+            padding:2px 5px;
+        }
+    }
      .home-list{
          margin:10px;
          border:1px solid #265fdf;
@@ -36,27 +54,84 @@ page-home {
              }
          }
      }
+     .home-add{
+         ion-list{
+             ion-item{
+                border-bottom:0 !important;
+                .item-inner{
+                   border-bottom:0 !important;
+                }
+             }
+         }
+         ion-icon,h5{
+             position: absolute;
+             color:#fff;
+         }
+         ion-icon{
+             top:50%;
+             left:50%;
+             font-size: 6em;
+             margin-left: -25.5px;
+             margin-top: -51px;
+         }
+         h5{
+             bottom: 22px;
+             right: 25px;
+             font-size: 1em;
+             font-weight: 800;
+         }
+     }
+     .home-info{
+         .col-50{
+             width:50%;
+             padding: 5%;
+             div{
+                background-color: #265fdf;
+                padding: 5px 15px;
+                img{
+                    display: block;
+                    margin: 0 auto;
+                }
+                h5{
+                    color:#fff;
+                    text-align: center;
+                    margin:5px 0;
+                }
+             }
+         }
+     }
      .footer{
-         display: flex;
-         justify-content:space-around;
-         background-color: #d9d9d9;
-         padding:2px;
-         div{
-             overflow: hidden;
-             i{
-                 display:block;
-                 position: absolute;
-             }
-             img{
-                 display:block;
-                 margin: 0 auto;
-             }
-             h5{
-                 font-size:.6em;
-                 margin-top: 5px;
-                 margin-bottom: 0;
-                 color:#666;
-             }
+         .footer-content{
+            display: flex;
+            justify-content:space-around;
+            background-color: #d9d9d9;
+            .col1{
+                div{
+                    position: relative;
+                    padding:5px 0;
+                    float:left;
+                    ion-badge{
+                        position: absolute;
+                        top:0;
+                        right:0;
+                        padding:3px 6px;
+                        font-weight:100;
+                    }
+                    img{
+                        display:block;
+                        margin: 0 auto;
+                    }
+                    h5{
+                        font-size:.6em;
+                        margin-top: 5px;
+                        margin-bottom: 0;
+                        color:#666;
+                    }
+                    .colblue{
+                        color:#265fdf;
+                    }
+                }
+            }
          }
      }
      .toolbar-ios{

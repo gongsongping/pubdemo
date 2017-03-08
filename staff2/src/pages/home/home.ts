@@ -21,8 +21,10 @@ export class Home {
   ionViewDidLoad() {
     console.log('ionViewDidLoad HomePage');
   }
+  tabIndex = 1;
   tabColor(index){
-    console.log(index.isTrusted)
+    let num = this;
+    num.tabIndex = index;
   }
 
 }
