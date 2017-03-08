@@ -4,6 +4,7 @@ import { MyApp } from './app.component';
 import { Page1 } from '../pages/page1/page1';
 import { Page2 } from '../pages/page2/page2';
 import { Home } from '../pages/home/home';
+import { LoginModal, NestedContent } from '../providers/services';
 
 
 @NgModule({
@@ -11,7 +12,9 @@ import { Home } from '../pages/home/home';
     MyApp,
     Home,
     Page1,
-    Page2
+    Page2,
+    LoginModal,
+    NestedContent
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -21,7 +24,9 @@ import { Home } from '../pages/home/home';
     MyApp,
     Home,
     Page1,
-    Page2
+    Page2,
+    LoginModal,
+    NestedContent
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })

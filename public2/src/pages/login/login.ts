@@ -19,10 +19,10 @@ export class Login {
     constructor(public navCtrl: NavController) { }
 
     ionViewWillEnter() {
-        console.log('Hello LoginPage Page will enter');
+        console.log('---- LoginPage Page will enter-----',this.navCtrl.parent);
     }
     ngOnInit(){
-        console.log('Hello LoginPage Page oninit');
+        console.log('----- LoginPage Page oninit------');
     }
     getVericode() {
         if (!(/^1(3|4|5|7|8)\d{9}$/.test(this.mobile))) {

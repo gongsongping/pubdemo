@@ -13,7 +13,7 @@ import { HouseDetail } from '../pages/house-detail/house-detail';
 import { Precise } from '../pages/precise/precise';
 import { NestedCom,NestedContent } from '../providers/nested-com';
 
- 
+
 @NgModule({
   declarations: [
     MyApp,

@@ -22,7 +22,7 @@ export class Mine {
     // ionViewDidLoad() {
     // }
     ionViewWillEnter() {
-
+        console.log('-----mine page will enter----',this.navCtrl.parent);
         if (localStorage.getItem('userInfo')) {
             let vm = this;
             this.userInfo = JSON.parse(localStorage.getItem('userInfo'))

@@ -1,4 +1,4 @@
-<ion-menu [content]="content">
+<ion-menu [content]="content" (ionOpen)="menuOpened()" (ionDrag)="menuOpened()">
   <ion-header>
     <ion-toolbar>
       <ion-title>Menu</ion-title>
@@ -13,9 +13,14 @@
       <button menuClose ion-item (click)="goHome(home)">
         首页
       </button>
+      <button menuClose ion-item (click)="loginModal()">
+        登录
+      </button>
+      <button ion-button secondary [navPush]='home'>go home</button>
+
     </ion-list>
   </ion-content>
- 
+
 </ion-menu>
 
 <!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->

@@ -28,6 +28,9 @@ export class Page2 {
       });
     }
   }
+  ngOnInit(){
+    console.log('----page2---- Page oninit');
+  }
 
   itemTapped(event, item) {
     // That's right, we're pushing to ourselves!
