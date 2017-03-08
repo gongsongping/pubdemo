@@ -1,3 +1,15 @@
 page-buy {
-
+    .item-input {
+        padding-left:0px;
+        input {
+            margin:0px;
+        }
+    }
+    .item-inner {
+        padding:0px;
+        height:30px !important;
+        .input-wrapper {
+            height:30px;
+        }
+    }
 }

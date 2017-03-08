@@ -21,10 +21,16 @@ export class Home {
   ionViewDidLoad() {
     console.log('ionViewDidLoad HomePage');
   }
+<<<<<<< HEAD
   tabIndex = 1;
   tabColor(index){
     let num = this;
     num.tabIndex = index;
   }
 
+=======
+  ngOnInit(){
+    console.log('----home---- Page oninit');
+  }
+>>>>>>> 7f43978c00f3c17ce0409c89e5384252c61f013b
 }

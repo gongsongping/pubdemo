@@ -8,7 +8,7 @@ import axios from 'axios';
 
  
 
-
+ 
 @Component({
     // templateUrl: 'tabs.html'
     template: `
@@ -37,6 +37,9 @@ export class Tabs {
             console.log(tokens)
             axios.defaults.headers.common['Authorization'] = "Bearer " + tokens.access_token
         }
-        console.log('tab root will enter baseUrl', localStorage.getItem('baseUrl'));
+        console.log('-----tabs------ will enter baseUrl', localStorage.getItem('baseUrl'));
+    }
+    ngOnInit(){
+        console.log('------tabs----- Page oninit');
     }
 }
