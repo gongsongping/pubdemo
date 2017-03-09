@@ -28,7 +28,9 @@ import { About } from '../pages/about/about';
     ModalResetpw
   ],
   imports: [
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp, {
+      backButtonText: ''
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [

@@ -31,7 +31,8 @@ import { NestedCom,NestedContent } from '../providers/nested-com';
   ],
   imports: [
     IonicModule.forRoot(MyApp,{
-      tabsHideOnSubPages:true
+      tabsHideOnSubPages:true,
+      backButtonText: ''
     })
   ],
   bootstrap: [IonicApp],
