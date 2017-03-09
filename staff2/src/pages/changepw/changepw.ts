@@ -51,8 +51,10 @@ export class Changepw {
             vm.loginErr = ''
             vm.navCtrl.pop()
         })
-        .catch( function(res) {
-            vm.loginErr = res.data.errorMessage
+        .catch( function(error) {
+            console.log(error);
+            alert('密码不正确')
+            // vm.loginErr = error.errorMessage
         })
   }
 }

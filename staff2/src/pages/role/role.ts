@@ -63,7 +63,6 @@ export class Role {
             localStorage.setItem('userInfo', JSON.stringify(res.data))
             vm.userInfo = res.data        
             vm.events.publish('user:created', 'user', 'time');
-            // vm.navCtrl.pop()
             // vm.navCtrl.popToRoot()
           })
           .catch(function (error) {
@@ -73,7 +72,7 @@ export class Role {
 
       })
       .catch(function (error) {
-        alert('服务器错误');
+        alert('帐号或密码错误');
         console.log(error);
       });
   }

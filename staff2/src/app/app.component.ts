@@ -39,47 +39,39 @@ export class MyApp {
     });
 
   } 
-
+  //willenter not workign
   ionViewWillEnter() {
       console.log('-----app root------ will enter baseUrl', localStorage.getItem('baseUrl'));
   }
   ngOnInit(){
+      console.log('----root app---- Page will init',this.nav.parent);
+      localStorage.setItem('baseUrl', 'http://60.205.169.195:7060')
+      axios.defaults.baseURL = 'http://60.205.169.195:7060';
       this.events.subscribe('user:created', (user, time) => {
         // user and time are the same arguments passed in `events.publish(user, time)`
         console.log('----events Welcome', user, 'at', time);
-        this.menuOpened()
+        // this.menuOpened()
+        if (localStorage.getItem('tokens')) {
+            this.tokens = JSON.parse(localStorage.getItem('tokens'))
+            this.userInfo = JSON.parse(localStorage.getItem('userInfo'))
+            console.log(this.tokens,'-----',this.userInfo)
+            axios.defaults.headers.common['Authorization'] = "Bearer " + this.tokens.access_token
+         } else {
+            this.tokens = ''
+            this.userInfo = '' 
+         }
       });
-      console.log('----root app---- Page will enter',this.nav.parent);
-      localStorage.setItem('baseUrl', 'http://60.205.169.195:7060')
-      axios.defaults.baseURL = 'http://60.205.169.195:7060';
-      if (localStorage.getItem('tokens')) {
-          this.tokens = JSON.parse(localStorage.getItem('tokens'))
-          this.userInfo = JSON.parse(localStorage.getItem('userInfo'))
-          console.log(this.tokens,'-----',this.userInfo)
-          axios.defaults.headers.common['Authorization'] = "Bearer " + this.tokens.access_token
-      }
-      console.log('----root app---- Page oninit');
+      this.events.publish('user:created', 'user', 'time');
   }
   logout() {
       localStorage.setItem('tokens', '')
       localStorage.setItem('userInfo', '')
       this.userInfo = ''
       this.userInfo = ''
+      this.events.publish('user:created', 'user', 'time');      
       this.nav.setRoot(Role)
-      // this.nav.parent.select(0);
   }
-  menuOpened() {
-      console.log('----menuopend----');
-      if (localStorage.getItem('tokens')) {
-          this.tokens = JSON.parse(localStorage.getItem('tokens'))
-          this.userInfo = JSON.parse(localStorage.getItem('userInfo'))
-          // axios.defaults.headers.common['Authorization'] = "Bearer " + this.tokens.access_token
-      } else {
-          this.tokens = ''
-          this.userInfo = '' 
-      }
-  }
-
+  
   goTo(p){
     this.nav.setRoot(p);
   }
