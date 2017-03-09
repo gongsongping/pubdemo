@@ -1,3 +1,14 @@
 page-about {
-
+  .about {
+    color: grey;
+    line-height: 24px;
+    padding: 30px 15px;
+    p {
+      letter-spacing: 1px;
+      text-indent: 2em;
+    }
+  }
+  .scroll-content {
+    padding: 0 15px;
+  }
 }
