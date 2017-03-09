@@ -56,7 +56,7 @@ export class Mine {
             }
 
         }
-        console.log('mine Page will enter userInfo', this.userInfo);
+        console.log('----mine Page will enter userInfo-----', this.userInfo);
     }
     ionViewDidEnter() {
 
