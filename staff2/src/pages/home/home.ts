@@ -3,6 +3,7 @@ import { NavController, NavParams} from 'ionic-angular';
 
 import { Housemine } from '../housemine/housemine';
 import { Housesearch } from '../housesearch/housesearch';
+import { Message } from '../message/message';
 /*
   Generated class for the Home page.
 
@@ -17,6 +18,7 @@ export class Home {
 
   housemine: any = Housemine
   housesearch: any = Housesearch
+  message: any = Message
   // tabOne = Page1;
   // tabTwo = Page2;
   // tabThree = Page3;

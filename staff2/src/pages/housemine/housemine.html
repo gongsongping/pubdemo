@@ -8,9 +8,9 @@
 
 
 <ion-content>
-    <div class="housemine">
-        <div class='item'>
-            <!--<img src="{{(h.images | parseImgUrls)[0]}}" width='70' height='70' style="float: left;" />-->
+    <div class="housemine" *ngFor="let h of houses">
+        <house [h]='h'></house>
+        <!--<div class='item'>
             <img src="assets/img/img_null.png" width='70' height='70' style="float: left;" />
             <a style="width:75%;">
                 <div class="flex-row">
@@ -41,14 +41,11 @@
             <a><img src="assets/img/staff/phone_line_btn.png" width="20" /></a>
             <p>
                 推荐人<span style="font-size:.8em;color:#999;">(业主)</span>：
-                <!--<span *ngIf="h.referrerId">
-							{{h.referrerName.name}}
-						</span>-->
                 <span style="color:#265fdf;">
 							皇帝强
 						</span>
             </p>
             <p>123456789</p>
-        </div>
+        </div>-->
     </div>
 </ion-content>

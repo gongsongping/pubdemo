@@ -13,6 +13,7 @@ import { Resetpw } from '../pages/resetpw/resetpw';
 import { About } from '../pages/about/about';
 import { Housemine } from '../pages/housemine/housemine';
 import { Housesearch } from '../pages/housesearch/housesearch';
+import { Message } from '../pages/message/message';
 
 
 
@@ -30,7 +31,8 @@ import { Housesearch } from '../pages/housesearch/housesearch';
     ModalResetpw,
     House,
     Housemine,
-    Housesearch
+    Housesearch,
+    Message
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -48,7 +50,8 @@ import { Housesearch } from '../pages/housesearch/housesearch';
     Role,
     ModalResetpw,
     Housemine,
-    Housesearch
+    Housesearch,
+    Message
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })

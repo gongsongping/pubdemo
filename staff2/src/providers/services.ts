@@ -65,31 +65,6 @@ export class ModalResetpw {
                 </div>
             </a>
         </ion-item>
-        <div class="handle">
-            <div>
-                <a *ngIf="h.hkId != 0" href="tel:{{h.hkName.mobile}}"><img src="assets/img/staff/phone_line_btn.png" width="20" /></a>
-                <p>
-                    房管家：
-                    <span *ngIf="h.hkId != 0">
-						{{h.hkName.name}}
-					</span>
-                    <span *ngIf="h.hkId == 0" style="color:#265fdf;">无</span>
-                </p>
-                <p>{{h.hkName.mobile}}</p>
-            </div>
-            <span class="spacing"></span>
-            <div>
-                <a *ngIf="h.referrerId" href="tel:{{h.referrerName.mobile}}"><img src="assets/img/staff/phone_line_btn.png" width="20" /></a>
-                <p>
-                    推荐人<span style="font-size:.8em;color:#999;" *ngIf="h.referrerId > 5000000">(业主)</span>：
-                    <span *ngIf="h.referrerId">
-						{{h.referrerName.name}}
-					</span>
-                    <span *ngIf="!h.referrerId" style="color:#265fdf;">无</span>
-                </p>
-                <p>{{h.referrerName.mobile}}</p>
-            </div>
-        </div>
         `
 })
 export class House {
@@ -103,57 +78,83 @@ export class House {
   }
   ngOnInit() {
     console.log('house content init');
-    let vm = this
-    let url = '/api/housing/subdistricts/' + vm.h.subdistrict.id
-    axios
-      .get(url)
-      .then(function (res) {
-        vm.he = res.data.hkId;
-        console.log(vm.he)
-      })
-      .catch(function (error) {
-        alert('服务器错误');
-        console.log(error);
-      });
-    let url1 = '/api/account/employees/' + vm.h.hkId
-    axios
-      .get(url1)
-      .then(function (res) {
-        vm.hkName = res.data.hkId;
-        console.log(vm.he)
-      })
-      .catch(function (error) {
-        alert('服务器错误');
-        console.log(error);
-      });
-    if (vm.h.referrerId < 5000000) {
-      let url2 = '/api/account/employees/' + vm.h.referrerId
-      axios
-        .get(url2)
-        .then(function (res) {
-          vm.referrerName = vm.referrerName.concat(res.data);
-          console.log(vm.he)
-        })
-        .catch(function (error) {
-          alert('服务器错误');
-          console.log(error);
-        });
-    }
-    if (vm.h.referrerId > 5000000) {
-      let url3 = '/api/account/users/' + vm.h.referrerId
-      axios
-        .get(url3)
-        .then(function (res) {
-          vm.referrerName = vm.referrerName.concat(res.data);
-          console.log(vm.he)
-        })
-        .catch(function (error) {
-          alert('服务器错误');
-          console.log(error);
-        });
-    }
+    // let vm = this
+    // let url = '/api/housing/subdistricts/' + vm.h.subdistrict.id
+    // axios
+    //   .get(url)
+    //   .then(function (res) {
+    //     vm.he = res.data.hkId;
+    //     console.log(vm.he)
+    //   })
+    //   .catch(function (error) {
+    //     alert('服务器错误');
+    //     console.log(error);
+    //   });
+    // let url1 = '/api/account/employees/' + vm.h.hkId
+    // axios
+    //   .get(url1)
+    //   .then(function (res) {
+    //     vm.hkName = res.data.hkId;
+    //     console.log(vm.he)
+    //   })
+    //   .catch(function (error) {
+    //     alert('服务器错误');
+    //     console.log(error);
+    //   });
+    // if (vm.h.referrerId < 5000000) {
+    //   let url2 = '/api/account/employees/' + vm.h.referrerId
+    //   axios
+    //     .get(url2)
+    //     .then(function (res) {
+    //       vm.referrerName = vm.referrerName.concat(res.data);
+    //       console.log(vm.he)
+    //     })
+    //     .catch(function (error) {
+    //       alert('服务器错误');
+    //       console.log(error);
+    //     });
+    // }
+    // if (vm.h.referrerId > 5000000) {
+    //   let url3 = '/api/account/users/' + vm.h.referrerId
+    //   axios
+    //     .get(url3)
+    //     .then(function (res) {
+    //       vm.referrerName = vm.referrerName.concat(res.data);
+    //       console.log(vm.he)
+    //     })
+    //     .catch(function (error) {
+    //       alert('服务器错误');
+    //       console.log(error);
+    //     });
+    // }
   }
   onClick() {
     this.notify.emit('Click from nested content');
   }
 }
+
+        // <div class="handle">
+        //     <div>
+        //         <a *ngIf="h.hkId != 0" href="tel:{{h.hkName.mobile}}"><img src="assets/img/staff/phone_line_btn.png" width="20" /></a>
+        //         <p>
+        //             房管家：
+        //             <span *ngIf="h.hkId != 0">
+				// 		{{h.hkName.name}}
+				// 	</span>
+        //             <span *ngIf="h.hkId == 0" style="color:#265fdf;">无</span>
+        //         </p>
+        //         <p>{{h.hkName.mobile}}</p>
+        //     </div>
+        //     <span class="spacing"></span>
+        //     <div>
+        //         <a *ngIf="h.referrerId" href="tel:{{h.referrerName.mobile}}"><img src="assets/img/staff/phone_line_btn.png" width="20" /></a>
+        //         <p>
+        //             推荐人<span style="font-size:.8em;color:#999;" *ngIf="h.referrerId > 5000000">(业主)</span>：
+        //             <span *ngIf="h.referrerId">
+				// 		{{h.referrerName.name}}
+				// 	</span>
+        //             <span *ngIf="!h.referrerId" style="color:#265fdf;">无</span>
+        //         </p>
+        //         <p>{{h.referrerName.mobile}}</p>
+        //     </div>
+        // </div>

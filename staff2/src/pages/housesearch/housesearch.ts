@@ -52,8 +52,6 @@ export class Housesearch {
   }
 
   houseSearch() {
-    // let house = {};
-    // let h = this;
     let vm = this
     let url = '/api/housing/houses'
         axios
