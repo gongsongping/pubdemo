@@ -14,9 +14,10 @@ import { Contact } from '../pages/contact/contact';
 
 
 @Component({
-  templateUrl: 'app.html'
+    templateUrl: 'app.html'
 })
 export class MyApp {
+
   @ViewChild(Nav) nav: Nav;
   
   rootPage: any = Role
@@ -30,17 +31,20 @@ export class MyApp {
   tokens:any
   userInfo:any
 
-  constructor(public platform: Platform, public modalCtrl: ModalController, public events: Events) {
-    // this.initializeApp();
-    platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
-      StatusBar.styleDefault();
-      Splashscreen.hide();
-      console.log('---ready---');
-    });
 
-  } 
+  constructor(public platform: Platform, public modalCtrl: ModalController, public events: Events) {
+        // this.initializeApp();
+        platform.ready().then(() => {
+            // Okay, so the platform is ready and our plugins are available.
+            // Here you can do any higher level native things you might need.
+            StatusBar.styleDefault();
+            Splashscreen.hide();
+            console.log('---ready---');
+        });
+
+    }
+
+ 
   //willenter not workign
   ionViewWillEnter() {
       console.log('-----app root------ will enter baseUrl', localStorage.getItem('baseUrl'));
@@ -85,4 +89,5 @@ export class MyApp {
     let log = this.modalCtrl.create(ModalResetpw,{});
     log.present();
   }
+
 }
