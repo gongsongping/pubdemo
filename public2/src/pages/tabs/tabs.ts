@@ -4,7 +4,6 @@ import { Home } from '../home/home';
 import { Buy } from '../buy/buy';
 import { Sell } from '../sell/sell';
 import { Mine } from '../mine/mine';
-import axios from 'axios';
 
  
 
@@ -29,14 +28,8 @@ export class Tabs {
     mine: any = Mine;
 
     constructor() { }
+    //not working
     ionViewWillEnter() {
-        localStorage.setItem('baseUrl', 'http://60.205.169.195:7060')
-        axios.defaults.baseURL = 'http://60.205.169.195:7060';
-        if (localStorage.getItem('tokens')) {
-            let tokens = JSON.parse(localStorage.getItem('tokens'))
-            console.log(tokens)
-            axios.defaults.headers.common['Authorization'] = "Bearer " + tokens.access_token
-        }
         console.log('-----tabs------ will enter baseUrl', localStorage.getItem('baseUrl'));
     }
     ngOnInit(){
