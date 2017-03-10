@@ -1,3 +1,43 @@
 page-role {
-    
+    ion-header{
+        .toolbar-background-ios{
+            background-color: #265fdf;
+        }
+        ion-title{
+            .toolbar-title{
+                color:#fff;
+            }
+        }
+        ion-badge{
+            position: absolute;
+            top: 0;
+            right: -1px;
+            font-size:.1em;
+            font-weight:100;
+            padding:2px 5px;
+        }
+    }
+     .home-info{
+         .col-50{
+             width:50%;
+             padding: 5%;
+             div{
+                background-color: #265fdf;
+                padding: 36px 15px;
+                text-align: center;
+                color: #fff;
+                font-size: 1.4em;
+                border-radius: 8px;
+                img{
+                    display: block;
+                    margin: 0 auto;
+                }
+                h5{
+                    color:#fff;
+                    text-align: center;
+                    margin:5px 0;
+                }
+             }
+         }
+     }
 }

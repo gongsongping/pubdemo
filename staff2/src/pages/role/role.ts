@@ -3,6 +3,8 @@ import {NavController, NavParams, Events} from 'ionic-angular';
 import axios from 'axios';
 import { JwtHelper } from 'angular2-jwt';
 import { Resetpw } from '../resetpw/resetpw';
+import { Home } from '../home/home';
+import { Message } from '../message/message';
 
 /*
   Generated class for the Role page.
@@ -19,6 +21,8 @@ export class Role {
   userInfo:any = localStorage.getItem('userInfo')
   jwtHelper: JwtHelper = new JwtHelper();
   resetpw:any = Resetpw
+  message: any = Message
+  home: any = Home
 
   constructor(public navCtrl : NavController, public navParams : NavParams, public events: Events) {}
   
@@ -102,5 +106,10 @@ export class Role {
         // this.loginErr = error.data.errorMessage
       });
 
+  }
+  
+  pushHome(i,r){
+    this.navCtrl.push(i);
+    console.log(r)
   }
 }

@@ -6,44 +6,71 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>壁虎工作台</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <button ion-button menuToggle>
+            <ion-icon name="menu" color="light"></ion-icon>
+        </button>
+        <ion-title>壁虎工作台</ion-title>
+        <ion-buttons end>
+            <button ion-button icon-only color="light" style="right:10px;" (click)="pushHome(message)">
+				<img src="assets/img/icon/_0023_message.png" width="26">
+			</button>
+            <ion-badge item-right color="danger">1</ion-badge>
+        </ion-buttons>
+    </ion-navbar>
 
 </ion-header>
 
 <ion-content>
-  <div *ngIf='!tokens' class="login-bg-img">
-    <div class='top'>
-      <h1>壁虎好房</h1>
-      <h5>开启互联网买房卖房新篇章</h5>
-    </div>
-    <div class='bottom' style="padding-top:20px;">
+    <div *ngIf='!tokens' class="login-bg-img">
+        <div class='top'>
+            <h1>壁虎好房</h1>
+            <h5>开启互联网买房卖房新篇章</h5>
+        </div>
+        <div class='bottom' style="padding-top:20px;">
 
-      <div style="margin:10px 10vw;width:80vw;position:relative;border-radius: 6px;">
-        <p *ngIf='loginErr' style="text-align: center;color:tomato;">{{loginErr}}</p>
-      </div>
-      <div ion-item style="margin:10px 10vw;padding-left:3px;width:80vw;border-radius: 6px;border:none;">
-        <h2 item-left style="color:black;margin-left:3px;">工号</h2>
-        <input type="text" placeholder="输入工号" [(ngModel)]="mobile" style="width:100%;border:none;border-radius: 5px;">
-      </div>
-      <ion-item style="margin:10px 10vw;padding-left:3px;width:80vw;border-radius: 6px;border:none;">
-        <h2 item-left style="color:black;margin-left:3px;">密码</h2>
-        <input type="password" placeholder="输入密码" [(ngModel)]="validateCode" style="width:100%;border:none;border-radius: 5px;">
-      </ion-item>
-      <div [navPush]="resetpw" style="margin:10px 10vw;color:#265fdf;">忘记密码</div>
-      <div style="margin:30px 10vw;width:80vw;">
-        <button (click)="login()" ion-button full round color="primary">登录</button>
-      </div>
+            <div style="margin:10px 10vw;width:80vw;position:relative;border-radius: 6px;">
+                <p *ngIf='loginErr' style="text-align: center;color:tomato;">{{loginErr}}</p>
+            </div>
+            <div ion-item style="margin:10px 10vw;padding-left:3px;width:80vw;border-radius: 6px;border:none;">
+                <h2 item-left style="color:black;margin-left:3px;">工号</h2>
+                <input type="text" placeholder="输入工号" [(ngModel)]="mobile" style="width:100%;border:none;border-radius: 5px;">
+            </div>
+            <ion-item style="margin:10px 10vw;padding-left:3px;width:80vw;border-radius: 6px;border:none;">
+                <h2 item-left style="color:black;margin-left:3px;">密码</h2>
+                <input type="password" placeholder="输入密码" [(ngModel)]="validateCode" style="width:100%;border:none;border-radius: 5px;">
+            </ion-item>
+            <div [navPush]="resetpw" style="margin:10px 10vw;color:#265fdf;">忘记密码</div>
+            <div style="margin:30px 10vw;width:80vw;">
+                <button (click)="login()" ion-button full round color="primary">登录</button>
+            </div>
+        </div>
     </div>
-  </div>
-  <div *ngIf='tokens'>
-    <div>role</div>
-    <div>role</div>
-    <div>role</div>
-  </div>
+    <div *ngIf='tokens'>
+        <div class="home-info">
+            <div class="row">
+                <div class="col-50" (click)="pushHome(home,1)">
+                    <div>
+                        房管家
+                    </div>
+                </div>
+                <div class="col-50" (click)="pushHome(home,2)">
+                    <div>
+                        置业顾问
+                    </div>
+                </div>
+                <div class="col-50" (click)="pushHome(home,3)">
+                    <div>
+                        租赁专员
+                    </div>
+                </div>
+                <div class="col-50" (click)="pushHome(home,4)">
+                    <div>
+                        小区开发
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </ion-content>
