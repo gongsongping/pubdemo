@@ -1,30 +1,21 @@
-<!--
-  Generated template for the Home page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-
 	<ion-navbar>
 		<button ion-button menuToggle color="light">
 		     <ion-icon name="menu"></ion-icon>
 		</button>
 		<ion-title>壁虎工作台</ion-title>
 		<ion-buttons end>
-			<button ion-button icon-only color="light" style="right:10px;">
+			<button ion-button icon-only color="light" style="right:10px;" (click)="pushHousemine(message)">
 				<!--<ion-icon name="person-add"></ion-icon>-->
-				<img src="../../assets/img/icon/_0023_message.png" width="26">
+				<img src="assets/img/icon/_0023_message.png" width="26">
 			</button>
 			<ion-badge item-right color="danger">1</ion-badge>
 		</ion-buttons>
 		<!--<button ion-button side="right">
-      <img src="../../assets/img/icon/_0023_message.png" width="26">
+      <img src="assets/img/icon/_0023_message.png" width="26">
     </button>-->
 	</ion-navbar>
 </ion-header>
-
-
 <ion-content>
 	<div class="home-list" *ngIf="tabIndex == 1">
 		<ion-list>
@@ -34,7 +25,7 @@
 				<p><span>业主姓名：</span>黄忠</p>
 				<p><span>房源地址：</span>成都市一环路西八段80号</p>
 				<div class="see">
-					<img src="../../assets/img/icon/_0013_seeright.png" width="16">
+					<img src="assets/img/icon/_0013_seeright.png" width="16">
 					<span>查看详情 </span>
 				</div>
 			</ion-item>
@@ -43,12 +34,12 @@
 	<div class="home-add" *ngIf="tabIndex == 2">
 		<ion-list>
 			<ion-item>
-				<img src="../../assets/img/icon/_0011_recommend.png" />
+				<img src="assets/img/icon/_0011_recommend.png" />
 				<ion-icon name="ios-add"></ion-icon>
 				<h5>推荐房源</h5>
 			</ion-item>
 			<ion-item>
-				<img src="../../assets/img/icon/_0012_recommend.png" />
+				<img src="assets/img/icon/_0012_recommend.png" />
 				<ion-icon name="ios-add"></ion-icon>
 				<h5>推荐客户</h5>
 			</ion-item>
@@ -58,13 +49,13 @@
 		<div class="row">
 			<div class="col-50">
 				<div>
-					<img src="../../assets/img/icon/_0008_list.png" width="65" />
+					<img src="assets/img/icon/_0008_list.png" width="65" />
 					<h5>订单管理</h5>
 				</div>
 			</div>
 			<div class="col-50">
 				<div>
-					<img src="../../assets/img/icon/_0009_heads.png" width="65" />
+					<img src="assets/img/icon/_0009_heads.png" width="65" />
 					<h5>客户管理</h5>
 				</div>
 			</div>
@@ -72,7 +63,7 @@
 		<div class="row">
 			<div class="col-50">
 				<div>
-					<img src="../../assets/img/icon/info.png" width="65" />
+					<img src="assets/img/icon/info.png" width="65" />
 					<h5>统计数据</h5>
 				</div>
 			</div>
@@ -80,21 +71,21 @@
 	</div>
 	<div class="home-info" *ngIf="tabIndex == 4">
 		<div class="row">
-			<div class="col-50">
+			<div class="col-50" (click)="pushHousemine(housemine)">
 				<div>
-					<img src="../../assets/img/icon/_0007_myhome.png" width="65" />
+					<img src="assets/img/icon/_0007_myhome.png" width="65" />
 					<h5>我的房源</h5>
 				</div>
 			</div>
 			<!--<div class="col-50">
 				<div>
-					<img src="../../assets/img/icon/_0007_myhome.png" width="65" />
+					<img src="assets/img/icon/_0007_myhome.png" width="65" />
 					<h5>房源管理</h5>
 				</div>
 			</div>-->
-			<div class="col-50">
+			<div class="col-50" (click)="pushHousemine(housesearch)">
 				<div>
-					<img src="../../assets/img/icon/_0006_search.png" width="65" />
+					<img src="assets/img/icon/_0006_search.png" width="65" />
 					<h5>房源搜索</h5>
 				</div>
 			</div>
@@ -108,31 +99,31 @@
 				<div class="col1" (click)="tabColor(1)">
 					<div>
 						<ion-badge item-right color="danger">10</ion-badge>
-						<img src="../../assets/img/icon/{{tabIndex == 1 ? '_0020_todo.png' : '_0021_todo.png'}}" width="25" />
+						<img src="assets/img/icon/{{tabIndex == 1 ? '_0020_todo.png' : '_0021_todo.png'}}" width="25" />
 						<h5 [ngClass]="{'colblue': tabIndex == 1}">待办事项</h5>
 					</div>
 				</div>
 				<div class="col1" (click)="tabColor(2)">
 					<div>
-						<img src="../../assets/img/icon/{{tabIndex == 2 ? '_0018_new.png' : '_0019_new.png'}}" width="28" />
+						<img src="assets/img/icon/{{tabIndex == 2 ? '_0018_new.png' : '_0019_new.png'}}" width="28" />
 						<h5 [ngClass]="{'colblue': tabIndex == 2}">新建任务</h5>
 					</div>
 				</div>
 				<div class="col1" (click)="tabColor(3)">
 					<div>
-						<img src="../../assets/img/icon/{{tabIndex == 3 ? '_0016_datas.png' : '_0017_datas.png'}}" width="29" />
+						<img src="assets/img/icon/{{tabIndex == 3 ? '_0016_datas.png' : '_0017_datas.png'}}" width="29" />
 						<h5 [ngClass]="{'colblue': tabIndex == 3}">数据管理</h5>
 					</div>
 				</div>
 				<div class="col1" (click)="tabColor(4)">
 					<div>
-						<img src="../../assets/img/icon/{{tabIndex == 4 ? '_0014_house.png' : '_0015_house.png'}}" width="25" />
+						<img src="assets/img/icon/{{tabIndex == 4 ? '_0014_house.png' : '_0015_house.png'}}" width="25" />
 						<h5 [ngClass]="{'colblue': tabIndex == 4}">房源管理</h5>
 					</div>
 				</div>
 				<!--<div class="col1" (click)="tabColor(5)">
 					<div>
-						<img src="../../assets/img/icon/{{tabIndex == 5 ? '_0020_todo.png' : '_0021_todo.png'}}" width="25" />
+						<img src="assets/img/icon/{{tabIndex == 5 ? '_0020_todo.png' : '_0021_todo.png'}}" width="25" />
 						<h5 [ngClass]="{'colblue': tabIndex == 5}">电子账单</h5>
 					</div>
 				</div>-->

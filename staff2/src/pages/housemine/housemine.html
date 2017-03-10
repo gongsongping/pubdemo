@@ -1,18 +1,51 @@
-<!--
-  Generated template for the Housemine page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>housemine</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>我的房源</ion-title>
+    </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
-
+<ion-content>
+    <div class="housemine" *ngFor="let h of houses">
+        <house [h]='h'></house>
+        <!--<div class='item'>
+            <img src="assets/img/img_null.png" width='70' height='70' style="float: left;" />
+            <a style="width:75%;">
+                <div class="flex-row">
+                    <p>
+                        <span style="font-weight:700;">就哈接收到后</span>
+                    </p>
+                    <p>
+                        阿斯达克接收到后
+                        <span>西</span>
+                    </p>
+                </div>
+                <div>
+                    <span class="text">34m<sup>2</sup></span>
+                    <span class="interval"></span>
+                    <span class="text">45万元</span>
+                    <span class="interval"></span>
+                    <span class="text">毛坯</span>
+                    <span class="interval"></span>
+                    <span class="text">254</span>
+                </div>
+                <div>
+                    <span class="positive">初始状态</span>
+                    <p class="price">555</p>
+                </div>
+            </a>
+        </div>
+        <div class="handle" style="padding:10px 20px;">
+            <a><img src="assets/img/staff/phone_line_btn.png" width="20" /></a>
+            <p>
+                推荐人<span style="font-size:.8em;color:#999;">(业主)</span>：
+                <span style="color:#265fdf;">
+							皇帝强
+						</span>
+            </p>
+            <p>123456789</p>
+        </div>-->
+    </div>
 </ion-content>

@@ -7,10 +7,13 @@ import { Task } from '../pages/task/task';
 import { Todo } from '../pages/todo/todo';
 import { Tododetails } from '../pages/tododetails/tododetails';
 import { Role } from '../pages/role/role';
-import { ModalResetpw, Contactpop } from '../providers/services';
+import { ModalResetpw, House, Contactpop } from '../providers/services';
 import { Changepw } from '../pages/changepw/changepw';
 import { Resetpw } from '../pages/resetpw/resetpw';
 import { About } from '../pages/about/about';
+import { Housemine } from '../pages/housemine/housemine';
+import { Housesearch } from '../pages/housesearch/housesearch';
+import { Message } from '../pages/message/message';
 import { Contact } from '../pages/contact/contact';
 import { Contactdetails } from '../pages/contactdetails/contactdetails';
 
@@ -28,6 +31,10 @@ import { Contactdetails } from '../pages/contactdetails/contactdetails';
     About,
     Role,
     ModalResetpw,
+    House,
+    Housemine,
+    Housesearch,
+    Message,
     Contact,
     Contactdetails,
     Contactpop
@@ -49,6 +56,9 @@ import { Contactdetails } from '../pages/contactdetails/contactdetails';
     About,
     Role,
     ModalResetpw,
+    Housemine,
+    Housesearch,
+    Message,
     Contact,
     Contactdetails,
     Contactpop
