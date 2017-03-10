@@ -4,7 +4,11 @@
     </ion-navbar>
 
     <ion-toolbar class="searchs">
-        <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+        <ion-item>
+            <!--<ion-label color="primary" floating>请输入区域、商圈或小区名搜索</ion-label>-->
+            <ion-input type="search" placeholder="请输入区域、商圈或小区名搜索" clearInput></ion-input>
+        </ion-item>
+        <!--<ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>-->
         <ion-buttons end>
             <button ion-button icon-only color="dark">搜索
 			</button>
