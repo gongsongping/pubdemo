@@ -16,18 +16,15 @@
       <button *ngIf='tokens' menuClose ion-item (click)="pushTo(changepw)">
         修改密码
       </button>
-      <!--<button menuClose ion-item (click)="pushTo(resetpw)">
-        忘记密码
-      </button>-->
+      <button menuClose ion-item (click)="goTo(contact)">
+        通讯录
+      </button>
       <button menuClose ion-item (click)="pushTo(about)">
         关于壁虎
       </button>
-      <button  *ngIf='tokens' menuClose ion-item (click)="logout()">
+      <button *ngIf='tokens' menuClose ion-item (click)="logout()">
         退出
       </button>
-      <!--<button menuClose ion-item (click)="resetpwModal()">
-        重置密码
-      </button>-->
     </ion-list>
   </ion-content>
 

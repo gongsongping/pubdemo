@@ -7,10 +7,12 @@ import { Task } from '../pages/task/task';
 import { Todo } from '../pages/todo/todo';
 import { Tododetails } from '../pages/tododetails/tododetails';
 import { Role } from '../pages/role/role';
-import { ModalResetpw } from '../providers/services';
+import { ModalResetpw, Contactpop } from '../providers/services';
 import { Changepw } from '../pages/changepw/changepw';
 import { Resetpw } from '../pages/resetpw/resetpw';
 import { About } from '../pages/about/about';
+import { Contact } from '../pages/contact/contact';
+import { Contactdetails } from '../pages/contactdetails/contactdetails';
 
 
 
@@ -25,7 +27,10 @@ import { About } from '../pages/about/about';
     Resetpw,
     About,
     Role,
-    ModalResetpw
+    ModalResetpw,
+    Contact,
+    Contactdetails,
+    Contactpop
   ],
   imports: [
     IonicModule.forRoot(MyApp, {
@@ -43,7 +48,10 @@ import { About } from '../pages/about/about';
     Resetpw,
     About,
     Role,
-    ModalResetpw
+    ModalResetpw,
+    Contact,
+    Contactdetails,
+    Contactpop
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })

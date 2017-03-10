@@ -9,6 +9,7 @@ import { Resetpw } from '../pages/resetpw/resetpw';
 import { About } from '../pages/about/about';
 import { Role } from '../pages/role/role';
 import axios from 'axios';
+import { Contact } from '../pages/contact/contact';
 
 
 
@@ -24,6 +25,7 @@ export class MyApp {
   resetpw:any = Resetpw
   about:any = About
   role:any = Role
+  contact:any = Contact
   
   tokens:any
   userInfo:any

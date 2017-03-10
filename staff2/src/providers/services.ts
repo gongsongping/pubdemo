@@ -46,3 +46,20 @@ export class NestedContent {
     this.notify.emit('Click from nested content');
   }
 }
+
+@Component({
+  selector: 'contact-pop',
+  template:`
+    <div>contact-pop</div>
+  `
+})
+export class Contactpop {
+
+  constructor() {
+    console.log('contact pop ');
+  }
+  ngOnInit(){
+    console.log('contact pop');
+  }
+
+}
