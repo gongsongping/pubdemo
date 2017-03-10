@@ -16,6 +16,32 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
+  <div class="login-bg-img">
+    <div class='top'>
+      <h1>壁虎好房</h1>
+      <h5>开启互联网买房卖房新篇章</h5>
+    </div>
+    <div class='bottom' style="padding-top:20px;">
 
+      <div style="margin:10px 10vw;width:80vw;position:relative;border-radius: 6px;">
+        <p *ngIf='loginErr' style="text-align: center;color:tomato;">{{loginErr}}</p>
+      </div>
+      <ion-item style="margin:10px 10vw;padding-left:3px;width:80vw;border-radius: 6px;border:none;">
+        <h3 item-left style="color:black;margin-left:5px;">当前密码</h3>
+        <input type="password" placeholder="输入当前密码" [(ngModel)]="oldpw" style="width:100%;border:none;border-radius: 5px;">
+      </ion-item>
+      <ion-item style="margin:10px 10vw;padding-left:3px;width:80vw;border-radius: 6px;border:none;">
+        <h3 item-left style="color:black;margin-left:5px;">新密码</h3>
+        <input type="password" placeholder="6-10位数字+字母(区分大小写)" [(ngModel)]="newpw1" style="width:100%;border:none;border-radius: 5px;">
+      </ion-item>
+      <ion-item style="margin:10px 10vw;padding-left:3px;width:80vw;border-radius: 6px;border:none;">
+        <h3 item-left style="color:black;margin-left:5px;">再次输入新密码</h3>
+        <input type="password" placeholder="新密码" [(ngModel)]="newpw2" style="width:100%;border:none;border-radius: 5px;">
+      </ion-item>
+      <div style="margin:40px 10vw;width:80vw;">
+        <button (click)="changePw()" ion-button full round color="primary">提交</button>
+      </div>
+    </div>
+  </div>
 </ion-content>

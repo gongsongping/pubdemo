@@ -26,17 +26,16 @@
       <div style="margin:10px 10vw;width:80vw;position:relative;border-radius: 6px;">
         <p *ngIf='loginErr' style="text-align: center;color:tomato;">{{loginErr}}</p>
       </div>
+      <div ion-item style="margin:10px 10vw;padding-left:3px;width:80vw;border-radius: 6px;border:none;">
+        <h2 item-left style="color:black;margin-left:3px;">工号</h2>
+        <input type="text" placeholder="输入工号" [(ngModel)]="mobile" style="width:100%;border:none;border-radius: 5px;">
+      </div>
       <ion-item style="margin:10px 10vw;padding-left:3px;width:80vw;border-radius: 6px;border:none;">
-        <ion-icon item-left name="search" style="margin-right:0px;"></ion-icon>
-        <input type="text" placeholder="输入手机号" [(ngModel)]="mobile" style="width:100%;border:none;border-radius: 5px;">
-        <button (click)="getVericode()" ion-button small round item-right style="padding-left:2px;padding-right:2px;margin-right:0px;">发送验证码</button>
+        <h2 item-left style="color:black;margin-left:3px;">密码</h2>
+        <input type="password" placeholder="输入密码" [(ngModel)]="validateCode" style="width:100%;border:none;border-radius: 5px;">
       </ion-item>
-      <ion-item style="margin:10px 10vw;padding-left:3px;width:80vw;border-radius: 6px;border:none;">
-        <ion-icon item-left name="search" style="margin-right:0px;"></ion-icon>
-        <input type="text" placeholder="输入验证码" [(ngModel)]="validateCode" style="width:100%;border:none;border-radius: 5px;">
-      </ion-item>
-
-      <div style="margin:20px 10vw;width:80vw;">
+      <div [navPush]="resetpw" style="margin:10px 10vw;color:#265fdf;">忘记密码</div>
+      <div style="margin:30px 10vw;width:80vw;">
         <button (click)="login()" ion-button full round color="primary">登录</button>
       </div>
     </div>
@@ -48,4 +47,3 @@
   </div>
 
 </ion-content>
-

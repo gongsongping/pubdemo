@@ -24,16 +24,16 @@
       <p *ngIf='loginErr' style="text-align: center;color:tomato;">{{loginErr}}</p>
     </div>
     <ion-item style="margin:10px 10vw;padding-left:3px;width:80vw;border-radius: 6px;border:none;">
-      <ion-icon item-left name="search" style="margin-right:0px;"></ion-icon>
+      <img item-left src="assets/img/sprite/tellphone_icon_home.png" style='height:25px;width:15px;margin-left:5px;' alt="">
       <input type="text" placeholder="输入手机号" [(ngModel)]="mobile" style="width:100%;border:none;border-radius: 5px;">
-      <button (click)="getVericode()" ion-button small round item-right style="padding-left:2px;padding-right:2px;margin-right:0px;">发送验证码</button>
+      <button (click)="getVericode()" ion-button small round item-right style="padding-left:2px;padding-right:2px;margin-right:0px;font-size:0.7em;">发送验证码</button>
     </ion-item>
     <ion-item style="margin:10px 10vw;padding-left:3px;width:80vw;border-radius: 6px;border:none;">
-      <ion-icon item-left name="search" style="margin-right:0px;"></ion-icon>
+      <img item-left src="assets/img/sprite/password_icon_home.png" style='height:25px;width:15px;margin-left:5px;' alt="">
       <input type="text" placeholder="输入验证码" [(ngModel)]="validateCode" style="width:100%;border:none;border-radius: 5px;">
     </ion-item>
 
-    <div style="margin:20px 10vw;width:80vw;">
+    <div style="margin:40px 10vw;width:80vw;">
       <button (click)="login()" ion-button full round color="primary">登录</button>
     </div>
 

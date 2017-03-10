@@ -158,3 +158,19 @@ export class House {
         //         <p>{{h.referrerName.mobile}}</p>
         //     </div>
         // </div>
+@Component({
+  selector: 'contact-pop',
+  template:`
+    <div>contact-pop</div>
+  `
+})
+export class Contactpop {
+
+  constructor() {
+    console.log('contact pop ');
+  }
+  ngOnInit(){
+    console.log('contact pop');
+  }
+
+}

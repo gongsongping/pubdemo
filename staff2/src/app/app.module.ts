@@ -7,13 +7,15 @@ import { Task } from '../pages/task/task';
 import { Todo } from '../pages/todo/todo';
 import { Tododetails } from '../pages/tododetails/tododetails';
 import { Role } from '../pages/role/role';
-import { ModalResetpw, House } from '../providers/services';
+import { ModalResetpw, House, Contactpop } from '../providers/services';
 import { Changepw } from '../pages/changepw/changepw';
 import { Resetpw } from '../pages/resetpw/resetpw';
 import { About } from '../pages/about/about';
 import { Housemine } from '../pages/housemine/housemine';
 import { Housesearch } from '../pages/housesearch/housesearch';
 import { Message } from '../pages/message/message';
+import { Contact } from '../pages/contact/contact';
+import { Contactdetails } from '../pages/contactdetails/contactdetails';
 
 
 
@@ -32,10 +34,15 @@ import { Message } from '../pages/message/message';
     House,
     Housemine,
     Housesearch,
-    Message
+    Message,
+    Contact,
+    Contactdetails,
+    Contactpop
   ],
   imports: [
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp, {
+      backButtonText: ''
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -51,7 +58,10 @@ import { Message } from '../pages/message/message';
     ModalResetpw,
     Housemine,
     Housesearch,
-    Message
+    Message,
+    Contact,
+    Contactdetails,
+    Contactpop
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })

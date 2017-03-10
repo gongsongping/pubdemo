@@ -1,6 +1,8 @@
 import {Component} from '@angular/core';
 import {NavController, NavParams, Events} from 'ionic-angular';
 import axios from 'axios';
+import { JwtHelper } from 'angular2-jwt';
+import { Resetpw } from '../resetpw/resetpw';
 
 /*
   Generated class for the Role page.
@@ -15,6 +17,9 @@ export class Role {
   loginErr : any;
   tokens:any = localStorage.getItem('tokens')
   userInfo:any = localStorage.getItem('userInfo')
+  jwtHelper: JwtHelper = new JwtHelper();
+  resetpw:any = Resetpw
+
   constructor(public navCtrl : NavController, public navParams : NavParams, public events: Events) {}
   
   ionViewDidLoad() {
@@ -28,6 +33,50 @@ export class Role {
   ngOnInit() {
     console.log('----- role Page oninit------');
   }
+
+  //'/api/account/oauth/token' / '/api/account/employees/' + jwtHelper.decodeToken(res.data.access_token).user_id
+  login() {
+    let vm = this
+    let url = '/api/account/oauth/token'
+    let config = {
+      headers: {
+        'Authorization': 'Basic YnJvd3Nlcjo=',
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
+    };
+    let data = new FormData()
+    data.append('username', vm.mobile.toUpperCase());
+    data.append('password', vm.validateCode);
+    data.append('scope', 'ui');
+    data.append('grant_type', 'password');
+    axios
+      .post(url, data, config)
+      .then(function (res) {
+        vm.loginErr = ''
+        localStorage.setItem('tokens', JSON.stringify(res.data))
+        vm.tokens = res.data
+        axios.defaults.headers.common['Authorization'] = "Bearer " + res.data.access_token
+        //get access_token
+        axios
+          .get('/api/account/employees/' + vm.jwtHelper.decodeToken(res.data.access_token).user_id)
+          .then(function (res) {
+            localStorage.setItem('userInfo', JSON.stringify(res.data))
+            vm.userInfo = res.data        
+            vm.events.publish('user:created', 'user', 'time');
+            // vm.navCtrl.popToRoot()
+          })
+          .catch(function (error) {
+            alert('服务器错误');
+            console.log(error);
+          });
+
+      })
+      .catch(function (error) {
+        alert('帐号或密码错误');
+        console.log(error);
+      });
+  }
+
   getVericode() {
     if (!(/^1(3|4|5|7|8)\d{9}$/.test(this.mobile))) {
       this.loginErr = '手机号码有误'
@@ -54,62 +103,4 @@ export class Role {
       });
 
   }
-  login() {
-    let vm = this
-    if (!(/^1(3|4|5|7|8)\d{9}$/.test(this.mobile))) {
-      this.loginErr = '手机号码有误'
-      return
-    }
-    let url = '/api/account/users'
-    let config = {
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      }
-    };
-    // console.log('this is ', vm)
-    let data = new FormData()
-    data.append('mobile', vm.mobile);
-    data.append('validateCode', vm.validateCode);
-    axios
-      .post(url, data, config)
-      .then(function (res) {
-        console.log(res)
-        // if (res.status > 300) {alert('服务器错误');return}
-        localStorage.setItem('userInfo', JSON.stringify(res.data))
-        vm.userInfo = JSON.stringify(res.data)
-        //get access_token
-        let url2 = '/api/account/oauth/token'
-        let config2 = {
-          headers: {
-            'Authorization': 'Basic YnJvd3Nlcjo=',
-            'Content-Type': 'application/x-www-form-urlencoded'
-          }
-        };
-        let data2 = new FormData()
-        data2.append('username', vm.mobile);
-        data2.append('password', vm.validateCode);
-        data2.append('scope', 'ui');
-        data2.append('grant_type', 'password');
-        axios
-          .post(url2, data2, config2)
-          .then(function (res) {
-            localStorage.setItem('tokens', JSON.stringify(res.data))
-            vm.tokens = JSON.stringify(res.data)            
-            axios.defaults.headers.common['Authorization'] = "Bearer " + res.data.access_token
-            vm.events.publish('user:created', 'user', 'time');
-            // vm.navCtrl.pop()
-            // vm.navCtrl.popToRoot()
-          })
-          .catch(function (error) {
-            alert('服务器错误');
-            console.log(error);
-          });
-
-      })
-      .catch(function (error) {
-        alert('服务器错误');
-        console.log(error);
-      });
-  }
-
 }
