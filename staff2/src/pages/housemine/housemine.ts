@@ -11,7 +11,7 @@ import { NavController, NavParams } from 'ionic-angular';
   selector: 'page-housemine',
   templateUrl: 'housemine.html'
 })
-export class HouseminePage {
+export class Housemine {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {}
 

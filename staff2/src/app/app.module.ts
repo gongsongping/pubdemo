@@ -7,10 +7,12 @@ import { Task } from '../pages/task/task';
 import { Todo } from '../pages/todo/todo';
 import { Tododetails } from '../pages/tododetails/tododetails';
 import { Role } from '../pages/role/role';
-import { ModalResetpw } from '../providers/services';
+import { ModalResetpw, House } from '../providers/services';
 import { Changepw } from '../pages/changepw/changepw';
 import { Resetpw } from '../pages/resetpw/resetpw';
 import { About } from '../pages/about/about';
+import { Housemine } from '../pages/housemine/housemine';
+import { Housesearch } from '../pages/housesearch/housesearch';
 
 
 
@@ -25,7 +27,10 @@ import { About } from '../pages/about/about';
     Resetpw,
     About,
     Role,
-    ModalResetpw
+    ModalResetpw,
+    House,
+    Housemine,
+    Housesearch
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -41,7 +46,9 @@ import { About } from '../pages/about/about';
     Resetpw,
     About,
     Role,
-    ModalResetpw
+    ModalResetpw,
+    Housemine,
+    Housesearch
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })
