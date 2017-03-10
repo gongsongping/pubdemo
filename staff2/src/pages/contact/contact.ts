@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { Contactdetails } from '../contactdetails/contactdetails';
 
+var someArray = [ "a", "b", "c" ];
+
 
 /*
   Generated class for the Contact page.

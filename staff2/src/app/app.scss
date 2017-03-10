@@ -32,4 +32,31 @@
 }
 .back-button {
     color: grey;
+} 
+.menu-header{
+    padding:66px 20px 0 50px;
+    h4{
+       color:#47557A;
+    }
+    span{
+       font-size:.8em;
+       color:#ADB4BD;
+    }
+    p{
+       color:#6C727E;
+    }
+}
+.menu-list{
+    .item{
+        min-height: 3.5rem;
+    }
+    .label{
+        width:100%;
+        display: flex;
+        span{
+            line-height:29px;
+            margin-left: 5px;
+        }
+    }
+>>>>>>> e42807500580f601ce51a87c08a8a0de67cd9667
 }
