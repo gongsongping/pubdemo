@@ -10,15 +10,15 @@ import axios from 'axios';
 
  
 @Component({
-    // templateUrl: 'tabs.html'
-    template: `
-    <ion-tabs>
-      <ion-tab [root]="home" tabTitle="首页" tabIcon="homebhhf"></ion-tab>
-      <ion-tab [root]="buy" tabTitle="买房" tabIcon="buybhhf"></ion-tab>
-      <ion-tab [root]="sell" tabTitle="卖房" tabIcon="sellbhhf"></ion-tab>
-      <ion-tab [root]="mine" tabTitle="我的" tabIcon="minebhhf"></ion-tab>
-    </ion-tabs>
-`
+    templateUrl: 'tabs.html'
+//     template: `
+//     <ion-tabs>
+//       <ion-tab [root]="home" tabTitle="首页" tabIcon="homebhhf"></ion-tab>
+//       <ion-tab [root]="buy" tabTitle="买房" tabIcon="buybhhf"></ion-tab>
+//       <ion-tab [root]="sell" tabTitle="卖房" tabIcon="sellbhhf"></ion-tab>
+//       <ion-tab [root]="mine" tabTitle="我的" tabIcon="minebhhf"></ion-tab>
+//     </ion-tabs>
+// `
 })
 export class Tabs {
     // this tells the tabs component which Pages

@@ -10,10 +10,11 @@
     </ion-refresher-content>
   </ion-refresher>
   {{testService.message}}
-  <nested-content content="content" (notify)='onNotify($event)'></nested-content>
+
   <div id="allmap" style="width:100px;height: 100px;"></div>
   <div style="padding:0px 8px;">
-    <ion-item *ngFor="let h of houses" (click)="goDetail(h)" style="padding-left:0px;">
+    <house *ngFor="let h of houses" (click)="goDetail(h)" [h]='h'></house>
+    <!--<ion-item *ngFor="let h of houses" (click)="goDetail(h)" style="padding-left:0px;">
       <ion-thumbnail item-left>
         <img src="{{(h.images | ImgPipe)[0]}}">
       </ion-thumbnail>
@@ -21,8 +22,7 @@
       <p>{{h.description}}</p>
       <p>ll</p>
       <p>ll</p>
-      <!--<button ion-button clear item-right>View</button>-->
-    </ion-item>
+    </ion-item>-->
   </div>
   <ion-fab bottom right #fab>
     <button ion-fab>精准购房</button>

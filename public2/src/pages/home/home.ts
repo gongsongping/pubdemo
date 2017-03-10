@@ -5,7 +5,8 @@ import axios from 'axios';
 import { HouseDetail } from '../house-detail/house-detail';
 import { Precise } from '../precise/precise';
 import { Login } from '../login/login';
-import { TestService } from '../../providers/test-service';
+
+import { TestService } from '../../providers/services';
 
 declare var BMap: any;
 // declare var BMAP_ANIMATION_BOUNCE: any;
