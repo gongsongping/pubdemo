@@ -1,3 +1,108 @@
 page-contact {
-
+  .contact {
+    background: #f4f5f9;
+    .choosedtab {
+      border: none !important;
+    }
+    .search {
+      display: flex;
+      justify-content: space-around;
+      margin: 11px 5%;
+      .ion-search {
+        font-size: 18px;
+        color: #aaa;
+        min-height: auto;
+      }
+      .item {
+        width: 75%;
+        background: #fff;
+        padding: 0 7px;
+        border: none;
+        border-radius: 5px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+      }
+    }
+    .contact-action {
+      padding-bottom: 5px;
+      .num {
+        margin-left: 29px;
+        font-size: 12px;
+        color: #BCC2CC;
+      }
+    }
+    .contact-name {
+      background: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 0;
+      border-bottom: solid 1px #E2E2E2;
+      .yellow {
+        background: #EDC50B;
+      }
+      .darkyellow {
+        background: #FBAB0C;
+      }
+      .lightblue {
+        background: #5CCCCD;
+      }
+      .bule {
+        background: #577FDE;
+      }
+      .item {
+        padding: 0;
+        padding-left: 15px;
+        display: flex;
+        align-items: center;
+        border: none;
+        margin-top: 1px;
+        .username {
+          width: 50px;
+          height: 50px;
+          line-height: 50px;
+          text-align: center;
+          font-size: 20px;
+          color: #fff;
+          //background: #edc50b;
+          border-radius: 50%;
+        }
+        .contact-info {
+          margin-left: 8px;
+          width: 60vw;
+        }
+        h2 {
+          color: #75787D;
+          font-size: 16px;
+          span {
+            color: #B6BDC7;
+            font-size: 12px;
+          }
+        }
+        p {
+          margin-top: 5px;
+          span {
+            font-size: 12px;
+            color: #265fdf;
+            border: 1px solid #265fdf;
+            padding: 1px 6px;
+            border-radius: 35px;
+          }
+          span:first-child {
+            margin-left: 0;
+          }
+        }
+        img {
+          max-width: 8%;
+        }
+      }
+    }
+    .contact-name:first-child {
+      margin-top: 13px;
+    }
+    .popover-wrapper {
+      height: 100%;
+    }
+  }
 }

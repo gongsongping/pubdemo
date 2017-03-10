@@ -7,16 +7,56 @@
 <ion-header>
 
   <ion-navbar>
-    <button ion-button menuToggle color="light">
-		     <ion-icon name="menu"></ion-icon>
-		</button>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
     <ion-title>通讯录</ion-title>
   </ion-navbar>
 
 </ion-header>
 
-
-<ion-content padding>
-  通讯录
-  <button [navPush]='contactdetails' ion-button color="primary">contactdetails	</button>
+<ion-content padding class="contact">
+  <div class="contact">
+    <div class='search flex-1'>
+      <a class="item item-input">
+        <ion-icon name="search" class="ion-search"></ion-icon>
+        <ion-input type="text" placeholder=" 搜索联系人"></ion-input>
+        <!--<input ng-change="searchDis()" ng-model="SearchInput.val" type="search" placeholder=" 搜索联系人"/>-->
+      </a>
+      <div style="line-height: 31px" ng-click="openPopover($event)">
+        筛选
+        <ion-icon ios="ios-arrow-dropdown" md="md-arrow-dropdown"></ion-icon>
+      </div>
+    </div>
+    <div class="contact-action">
+      <p class="num">
+        共 {{allPerson || 0}} 人
+      </p>
+    </div>
+  </div>
+  <div class="contact-name"  *ngFor="let t of items">
+    <!--<a class="item" href="#/app/contact/{{t.id}}">-->
+      <!--<div class="username"-->
+           <!--ng-class="{bule: $index%4 == 0,'yellow': $index%4 == 1,'darkyellow': $index%4 == 2,'lightblue': $index%4 ==3}">-->
+        <!--{{t.name | limitTo:1 }}-->
+      <!--</div>-->
+      <!--<div class="contact-info">-->
+        <!--<h2>-->
+          <!--{{t.name}}-->
+          <!--<span>[ {{t.position.name}}&nbsp&nbsp{{t.username}} ]</span>-->
+        <!--</h2>-->
+        <!--<p>-->
+          <!--<span ng-if="t.department">{{t.department.name}}</span>-->
+        <!--</p>-->
+      <!--</div>-->
+    <!--</a>-->
+    <!--<a href="tel:{{t.mobile}}" class="icon ion-ios-telephone-outline"-->
+       <!--style="color: #265fdf;font-size: 40px;margin-right: 15px;margin-left: 11px">-->
+    <!--</a>-->
+  </div>
+  <!--<div ng-if="personLength == 0" style="padding:10px;">-->
+  <!--<h5 style="text-align: center;color: #666">没有了!</h5>-->
+  <!--</div>-->
+  <!--<ion-infinite-scroll ng-if="personLength != 0 " on-infinite="loadMore()" distance="1%"></ion-infinite-scroll>-->
+  <button [navPush]='contactdetails' ion-button color="primary">contactdetails</button>
 </ion-content>
