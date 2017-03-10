@@ -41,7 +41,8 @@ import { Contactdetails } from '../pages/contactdetails/contactdetails';
   ],
   imports: [
     IonicModule.forRoot(MyApp, {
-      backButtonText: ''
+      backButtonText: '',
+      mode:'ios'
     })
   ],
   bootstrap: [IonicApp],
