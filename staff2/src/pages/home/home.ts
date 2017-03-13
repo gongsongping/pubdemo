@@ -23,12 +23,19 @@ export class Home {
   // tabTwo = Page2;
   // tabThree = Page3;
   // tabFour = Page4;
+  tasksTotal:any
+  messagesTotal:any
   constructor(public navCtrl: NavController, public navParams: NavParams) { }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad HomePage');
   }
-
+  ionViewWillEnter() {
+    console.log('---- role Page will enter-----', this.navCtrl.parent);
+    this.tasksTotal =  localStorage.getItem('tasksTotal') 
+    this.messagesTotal = localStorage.getItem('messagesTotal')
+    console.log('----role page taskstotal----',this.tasksTotal,'---messagesTotal---',this.messagesTotal);
+  }
   tabIndex = 1;
   tabColor(index) {
     let num = this;

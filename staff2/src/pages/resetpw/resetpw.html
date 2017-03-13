@@ -30,7 +30,8 @@
       <ion-item style="margin:10px 10vw;padding-left:3px;width:80vw;border-radius: 6px;border:none;">
         <img  item-left src="assets/img/sprite/tellphone_icon_home.png" style='height:25px;width:15px;margin-left:5px;' alt="">
         <input type="text" placeholder="输入手机号" [(ngModel)]="mobile" style="width:100%;border:none;border-radius: 5px;">
-        <button (click)="getVericode()" ion-button small round item-right style="padding-left:2px;padding-right:2px;margin-right:0px;font-size:0.7em;">发送验证码</button>
+        <button *ngIf="!veriCountDown" (click)="getVericode()" ion-button small round item-right style="padding-left:2px;padding-right:2px;margin-right:0px;font-size:0.7em;">发送验证码</button>
+        <button *ngIf="veriCountDown"  ion-button small round item-right style="padding-left:2px;padding-right:2px;margin-right:0px;font-size:0.7em;">{{veriCountDown}}秒后可重发</button>
       </ion-item>
       <ion-item style="margin:10px 10vw;padding-left:3px;width:80vw;border-radius: 6px;border:none;">
         <img  item-left src="assets/img/sprite/password_icon_home.png" style='height:25px;width:15px;margin-left:5px;' alt="">

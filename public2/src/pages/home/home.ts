@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { NavController } from 'ionic-angular';
+import { NavController, Events } from 'ionic-angular';
 import axios from 'axios';
 import { HouseDetail } from '../house-detail/house-detail';
 import { Precise } from '../precise/precise';
@@ -21,9 +21,9 @@ export class Home {
     start = 0;
     dataLength = 10;
     housesTotal: any;
-    constructor(public navCtrl: NavController, private testService: TestService) { }
+    
+    constructor(public navCtrl: NavController, private testService: TestService, public events: Events) { }
     loadMore(infiniteScroll) {
-        axios.defaults.baseURL = 'http://60.205.169.195:7060';
         let vm = this;
         let params = {
             params: {
@@ -40,11 +40,10 @@ export class Home {
                     infiniteScroll.complete();
                 }
             })
-            .catch(function (error) {
-                console.log(error);
-            });
     }
     ionViewWillEnter() {
+        //refresh token
+        this.events.publish('tokens:refresh', 'user', 'time');// red refresh token
         var map = new BMap.Map("allmap");
         var point = new BMap.Point(116.404, 39.915);
         map.centerAndZoom(point, 15);

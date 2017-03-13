@@ -16,6 +16,7 @@ export class Login {
     mobile: any;
     validateCode: any;
     loginErr: any;
+    veriCountDown = 0
     constructor(public navCtrl: NavController) { }
 
     ionViewWillEnter() {
@@ -25,6 +26,7 @@ export class Login {
         console.log('----- LoginPage Page oninit------');
     }
     getVericode() {
+        let vm = this
         if (!(/^1(3|4|5|7|8)\d{9}$/.test(this.mobile))) {
             this.loginErr = '手机号码有误'
             return
@@ -41,7 +43,15 @@ export class Login {
         data.append('type', 1);
         axios.post(url, data, config)
             .then(function (res) {
-                console.log(res);
+                vm.loginErr = ''
+                vm.veriCountDown = 30
+                var t1 = setInterval(function () {
+                    vm.veriCountDown = vm.veriCountDown - 1
+                    if (vm.veriCountDown < 0) {
+                        vm.veriCountDown = 0
+                        clearInterval(t1);
+                    }
+                }, 1000);
             })
             .catch(function (error) {
                 console.log(error);
@@ -67,7 +77,6 @@ export class Login {
         data.append('validateCode', vm.validateCode);
         axios.post(url, data, config)
             .then(function (res) {
-                console.log(res)
                 // if (res.status > 300) {alert('服务器错误');return}
                 localStorage.setItem('userInfo', JSON.stringify(res.data))
                 //get access_token

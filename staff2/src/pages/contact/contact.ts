@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { Contactdetails } from '../contactdetails/contactdetails';
 
-var someArray = [ "a", "b", "c" ];
+// var someArray = [ "a", "b", "c" ];
 
 
 /*

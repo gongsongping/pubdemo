@@ -9,7 +9,7 @@
 				<!--<ion-icon name="person-add"></ion-icon>-->
 				<img src="assets/img/icon/_0023_message.png" width="26">
 			</button>
-			<ion-badge item-right color="danger">1</ion-badge>
+		    <ion-badge *ngIf='messagesTotal>0' item-right color="danger">{{messagesTotal}}</ion-badge>
 		</ion-buttons>
 		<!--<button ion-button side="right">
       <img src="assets/img/icon/_0023_message.png" width="26">
@@ -96,7 +96,7 @@
 			<div class="footer-content">
 				<div class="col1" (click)="tabColor(1)">
 					<div>
-						<ion-badge item-right color="danger">10</ion-badge>
+						<ion-badge *ngIf='tasksTotal>0' item-right color="danger">{{tasksTotal}}</ion-badge>
 						<img src="assets/img/icon/{{tabIndex == 1 ? '_0020_todo.png' : '_0021_todo.png'}}" width="25" />
 						<h5 [ngClass]="{'colblue': tabIndex == 1}">待办事项</h5>
 					</div>

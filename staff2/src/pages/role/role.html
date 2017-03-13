@@ -15,7 +15,7 @@
             <button ion-button icon-only color="light" style="right:10px;" (click)="pushHome(message)">
 				<img src="assets/img/icon/_0023_message.png" width="26">
 			</button>
-            <ion-badge item-right color="danger">1</ion-badge>
+            <ion-badge *ngIf='messagesTotal>0' item-right color="danger">{{messagesTotal}}</ion-badge>
         </ion-buttons>
     </ion-navbar>
 

@@ -1,4 +1,4 @@
-<ion-menu [content]="content" >
+<ion-menu [content]="content" (ionOpen)="refreshToken()">
   <!--<ion-header>
     <ion-toolbar>
       <ion-title>Menu</ion-title>
@@ -22,11 +22,11 @@
         <i><img src="assets/img/icon/_0000_home.png" width="25"/></i>
         <span>回到首页</span>
       </button>
-      <button menuClose ion-item detail-none="">
+      <button *ngIf='tokens' menuClose ion-item (click)="goTo(role)" detail-none="">
         <i><img src="assets/img/icon/_0010_change_role.png" width="25" style="margin-top: 6px;"/></i>
         <span>切换角色</span>
       </button>
-      <button menuClose ion-item (click)="goTo(contact)" detail-none="">
+      <button *ngIf='tokens' menuClose ion-item (click)="goTo(contact)" detail-none="">
         <i><img src="assets/img/icon/_0002_contacts.png" width="25"/></i>
         <span>通 讯 录</span>
       </button>
