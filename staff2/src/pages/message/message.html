@@ -1,16 +1,57 @@
-<!--
-  Generated template for the Message page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-navbar>
     <ion-title>通知消息</ion-title>
   </ion-navbar>
-
+  <ion-toolbar class="message-title">
+    <div class="record-select">
+      <p [ngClass]="selectTab==m.read ? 'tabP' : ''" *ngFor="let m of messageHead" (click)="selectStatus(m.read)">{{m.name}} ({{m.status}})</p>
+      <span class="spacing"></span>
+    </div>
+  </ion-toolbar>
 </ion-header>
 <ion-content>
+  <!--<ion-list class="message-content">
+    <ion-list-header>
+      Action
+    </ion-list-header>
+    <ion-item *ngFor="let age of messages" (click)="messagesClickEnter(age)" class="item-remove-animate" [ngClass]='{"text": age.id==isActive}'
+      style="border-color:#fff;">
+      <span *ngIf="!age.isRead" class="b"><img src="img/staff/weidu.png"></span>
+      <div class="title-1">{{age.createdDate}}</div>
+      <p class="text-auto">{{age.content}}</p>
+      <i class="icon" *ngIf="age.id!==isActive"><img src="img/staff/bottom.png" width="20" height="6"></i>
+    </ion-item>
+  </ion-list>-->
+  <!--<ion-list *ngFor="let age of messages" class="message-content">
+    <ion-list-header>
+      {{age.createdDate}}
+    </ion-list-header>
+    <ion-item>{{age.content}}</ion-item>
+  </ion-list>-->
+  <div class="message-content">
+    <div class="message-list" *ngFor="let age of messages" (click)="messagesClickEnter(age)" [ngClass]='{"text": age.id==isActive}'>
+      <!--<div>-->
+        <span *ngIf="!age.isRead" class="b"><img src="assets/img/staff/weidu.png"></span>
+        <div class="title-1">{{age.createdDate | date: 'yyyy-MM-dd hh:mm:ss'}}</div>
+        <p class="text-auto">{{age.content}}</p>
+        <i class="icon" *ngIf="age.id!==isActive"><img src="assets/img/staff/bottom.png" width="20" height="6"></i>
+      <!--</div>-->
+    </div>
+  </div>
+  <!--<ion-list>
+  <ion-item-sliding #item>
+    <ion-item>
+      Item
+    </ion-item>
+    <ion-item-options side="left">
+      <button ion-button (click)="favorite(item)">Favorite</button>
+      <button ion-button color="danger" (click)="share(item)">Share</button>
+    </ion-item-options>
 
+    <ion-item-options side="right">
+      <button ion-button (click)="unread(item)">Unread</button>
+    </ion-item-options>
+  </ion-item-sliding>
+</ion-list>-->
 </ion-content>
