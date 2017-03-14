@@ -92,7 +92,7 @@ export class Message {
     let vm = this
     vm.messagesId.push[m.id];
     vm.isActive = m.id;
-    let url = '/api/message/notices'
+    let url = '/api/message/notices';
     let config = {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded' 
