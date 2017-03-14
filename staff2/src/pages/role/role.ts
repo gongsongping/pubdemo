@@ -23,7 +23,8 @@ export class Role {
   resetpw:any = Resetpw
   message: any = Message
   home: any = Home
-
+  tasksTotal:any
+  messagesTotal:any
   constructor(public navCtrl : NavController, public navParams : NavParams, public events: Events) {}
   
   ionViewDidLoad() {
@@ -32,7 +33,9 @@ export class Role {
 
   ionViewWillEnter() {
     console.log('---- role Page will enter-----', this.navCtrl.parent);
-    // this.events.publish('user:created', 'user', 'time');
+    this.tasksTotal =  localStorage.getItem('tasksTotal') 
+    this.messagesTotal = localStorage.getItem('messagesTotal')
+    console.log('----role page taskstotal----',this.tasksTotal,'---messagesTotal---',this.messagesTotal);
   }
   ngOnInit() {
     console.log('----- role Page oninit------');
@@ -67,7 +70,8 @@ export class Role {
             localStorage.setItem('userInfo', JSON.stringify(res.data))
             vm.userInfo = res.data        
             vm.events.publish('user:created', 'user', 'time');
-            // vm.navCtrl.popToRoot()
+            vm.ionViewWillEnter()
+            // vm.navCtrl.setRoot()
           })
           .catch(function (error) {
             alert('服务器错误');

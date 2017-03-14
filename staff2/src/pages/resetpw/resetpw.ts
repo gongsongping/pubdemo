@@ -16,6 +16,7 @@ export class Resetpw {
   mobile : any;
   validateCode : any;
   loginErr : any;
+  veriCountDown = 0
   constructor(public navCtrl: NavController, public navParams: NavParams) {}
 
   ionViewDidLoad() {
@@ -56,6 +57,7 @@ export class Resetpw {
   }
 
   getVericode() {
+    let vm = this
     if (!(/^1(3|4|5|7|8)\d{9}$/.test(this.mobile))) {
       this.loginErr = '手机号码有误'
       return
@@ -74,6 +76,15 @@ export class Resetpw {
       .post(url, data, config)
       .then(function (res) {
         console.log(res);
+        vm.loginErr = ''
+        vm.veriCountDown = 20
+        var t1 = setInterval(function () {
+            vm.veriCountDown = vm.veriCountDown - 1
+            if (vm.veriCountDown < 0) {
+                vm.veriCountDown = 0
+                clearInterval(t1);
+            }
+        }, 1000);
       })
       .catch(function (error) {
         console.log(error);

@@ -5,7 +5,6 @@ import axios from 'axios';
 
 
 
-
 /*
   Generated class for the Contact page.
 

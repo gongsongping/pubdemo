@@ -13,15 +13,15 @@
 
   <div id="allmap" style="width:100px;height: 100px;"></div>
   <div style="padding:0px 8px;">
-    <house *ngFor="let h of houses" (click)="goDetail(h)" [h]='h'></house>
-    <!--<ion-item *ngFor="let h of houses" (click)="goDetail(h)" style="padding-left:0px;">
+    <house *ngFor="let h of houses ; let i = index" (click)="goDetail(h)" [h]='h'>{{i}}</house>
+    <!--<ion-item *ngFor="let h of houses; let i = index" (click)="goDetail(h)" style="padding-left:0px;">
       <ion-thumbnail item-left>
         <img src="{{(h.images | ImgPipe)[0]}}">
       </ion-thumbnail>
       <h2>{{h.name}}</h2>
       <p>{{h.description}}</p>
       <p>ll</p>
-      <p>ll</p>
+      <p>{{i}}</p>
     </ion-item>-->
   </div>
   <ion-fab bottom right #fab>
@@ -32,7 +32,7 @@
     </ion-fab-list>
   </ion-fab>
   <!--enabled="dataLength > 0" threshold='20%'-->
-  <ion-infinite-scroll (ionInfinite)="loadMore($event)">
+  <ion-infinite-scroll (ionInfinite)="loadMore($event)" threshold='70%'>
     <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>
