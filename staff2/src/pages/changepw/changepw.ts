@@ -33,9 +33,8 @@ export class Changepw {
         vm.loginErr = '两次输入的新密码不相等'
         return
     }
-    let data = new FormData()
-    data.append('curPwd', vm.oldpw)
-    data.append('newPwd', vm.newpw1)
+    
+    let data = `curPwd=${vm.oldpw}&newPwd=${vm.newpw1}`                
     let url = '/api/account/employees/change_password'
     let config = {
       headers: {

@@ -30,10 +30,12 @@ export class Home {
   ionViewDidLoad() {
     console.log('ionViewDidLoad HomePage');
   }
-  ionViewWillEnter() {
+  ionViewDidEnter() {
     console.log('---- role Page will enter-----', this.navCtrl.parent);
-    this.tasksTotal =  localStorage.getItem('tasksTotal') 
-    this.messagesTotal = localStorage.getItem('messagesTotal')
+    setTimeout(()=> {
+      this.messagesTotal = localStorage.getItem('messagesTotal')
+      this.tasksTotal =  localStorage.getItem('tasksTotal')  
+    }, 1000);
     console.log('----role page taskstotal----',this.tasksTotal,'---messagesTotal---',this.messagesTotal);
   }
   tabIndex = 1;

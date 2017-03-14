@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, Events } from 'ionic-angular';
 import axios from 'axios';
 
 /*
@@ -17,7 +17,7 @@ export class Login {
     validateCode: any;
     loginErr: any;
     veriCountDown = 0
-    constructor(public navCtrl: NavController) { }
+    constructor(public navCtrl: NavController, public events:Events) { }
 
     ionViewWillEnter() {
         console.log('---- LoginPage Page will enter-----',this.navCtrl.parent);
@@ -38,9 +38,8 @@ export class Login {
                 'Content-Type': 'application/x-www-form-urlencoded'
             }
         };
-        let data = new FormData()
-        data.append('mobile', this.mobile);
-        data.append('type', 1);
+     
+        let data = `mobile=${vm.mobile}&type=1`        
         axios.post(url, data, config)
             .then(function (res) {
                 vm.loginErr = ''
@@ -71,13 +70,10 @@ export class Login {
                 'Content-Type': 'application/x-www-form-urlencoded'
             }
         };
-        // console.log('this is ', vm)
-        let data = new FormData()
-        data.append('mobile', vm.mobile);
-        data.append('validateCode', vm.validateCode);
+       
+        let data = `mobile=${vm.mobile}&validateCode=${vm.validateCode}`
         axios.post(url, data, config)
             .then(function (res) {
-                // if (res.status > 300) {alert('服务器错误');return}
                 localStorage.setItem('userInfo', JSON.stringify(res.data))
                 //get access_token
                 let url2 = '/api/account/oauth/token'
@@ -87,26 +83,24 @@ export class Login {
                         'Content-Type': 'application/x-www-form-urlencoded'
                     }
                 };
-                let data2 = new FormData()
-                data2.append('username', vm.mobile);
-                data2.append('password', vm.validateCode);
-                data2.append('scope', 'ui');
-                data2.append('grant_type', 'password');
+                
+                let data2 = `username=${vm.mobile}&password=${vm.validateCode}&scope=ui&grant_type=password`                
                 axios.post(url2, data2, config2)
                     .then(function (res) {
                         localStorage.setItem('tokens', JSON.stringify(res.data))
                         axios.defaults.headers.common['Authorization'] = "Bearer " + res.data.access_token
+                        vm.events.publish('messages:update')
                         vm.navCtrl.pop()
                         // vm.navCtrl.popToRoot()
                     })
                     .catch(function (error) {
-                        alert('服务器错误');                        
+                        alert('手机号或验证码错误');                        
                         console.log(error);
                     });
 
             })
             .catch(function (error) {
-                alert('服务器错误');
+                alert('手机号或验证码错误');
                 console.log(error);
             });
     }

@@ -37,9 +37,7 @@ export class Resetpw {
       }
     }; 
     // console.log('this is ', vm)
-    let data = new FormData()
-    data.append('mobile', vm.mobile);
-    data.append('validateCode', vm.validateCode);
+    let data = `mobile=${vm.mobile}&validateCode=${vm.validateCode}`                
     axios
       .post(url, data, config)
       .then(function (res) {
@@ -69,9 +67,8 @@ export class Resetpw {
         'Content-Type': 'application/x-www-form-urlencoded'
       }
     };
-    let data = new FormData()
-    data.append('mobile', this.mobile);
-    data.append('type', 1);
+    
+    let data = `mobile=${vm.mobile}&type=1`                
     axios
       .post(url, data, config)
       .then(function (res) {

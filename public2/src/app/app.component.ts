@@ -62,9 +62,8 @@ export class MyApp {
                         }
                     };
                     //refresh_token: $window.localStorage.refresh_token, grant_type: 'refresh_token'
-                    let data = new FormData()
-                    data.append('refresh_token', refresh_token);
-                    data.append('grant_type', 'refresh_token');
+                    
+                    let data = `refresh_token=${refresh_token}&grant_type=refresh_token`                
                     axios.post(url, data, config)
                         .then(function (res) {
                             localStorage.setItem('tokens', JSON.stringify(res.data))
@@ -80,6 +79,7 @@ export class MyApp {
       });
       this.events.publish('tokens:refresh', 'user', 'time');
   }
+  
   // $rootScope.prepareProcesses = function () {
   //       var bs64 = window.btoa($rootScope.userInfo.mobile + ':' + $rootScope.access_token)
   //       $http({

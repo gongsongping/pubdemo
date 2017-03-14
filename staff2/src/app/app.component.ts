@@ -77,6 +77,7 @@ export class MyApp {
       localStorage.setItem('tasksTotal','')                  
       this.userInfo = ''
       this.userInfo = ''
+      delete axios.defaults.headers.common["Authorization"]
       this.events.publish('user:created', 'user', 'time');      
       this.nav.setRoot(Role)
   }
@@ -101,9 +102,7 @@ export class MyApp {
                     }
                 };
                 //refresh_token: $window.localStorage.refresh_token, grant_type: 'refresh_token'
-                let data = new FormData()
-                data.append('refresh_token', refresh_token);
-                data.append('grant_type', 'refresh_token');
+                let data = `refresh_token=${refresh_token}&grant_type=refresh_token`                
                 axios.post(url, data, config)
                     .then(function (res) {
                         localStorage.setItem('tokens', JSON.stringify(res.data))
@@ -128,18 +127,18 @@ export class MyApp {
               // this.messagesTotal = res.data.total
           })
 
-      let bs64 = window.btoa(userInfo.username + ':' + tokens.access_token)
-      axios({
-        method:'get',
-        url:'/api/activiti/runtime/tasks?size=500&sort=createTime&order=desc&assignee=' + userInfo.id,
-        headers:{
-          "Authorization": "Basic " + bs64
-        }
-      }).then(function(res) {
-            localStorage.setItem('tasksTotal',res.data.total) 
-            console.log('----tasksTotal----',res.data.total);                       
-            // this.tasksTotal = res.data.total
-          })
+      // let bs64 = window.btoa(userInfo.username + ':' + tokens.access_token)
+      // axios({
+      //   method:'get',
+      //   url:'/api/activiti/runtime/tasks?size=500&sort=createTime&order=desc&assignee=' + userInfo.id,
+      //   headers:{
+      //     "Authorization": "Basic " + bs64
+      //   }
+      // }).then(function(res) {
+      //       localStorage.setItem('tasksTotal',res.data.total) 
+      //       console.log('----tasksTotal----',res.data.total);                       
+      //       // this.tasksTotal = res.data.total
+      //     })
   }
   
   goTo(p){

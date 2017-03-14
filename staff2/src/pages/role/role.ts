@@ -31,10 +31,12 @@ export class Role {
     console.log('ionViewDidLoad RolePage');
   }
 
-  ionViewWillEnter() {
+  ionViewDidEnter() {
     console.log('---- role Page will enter-----', this.navCtrl.parent);
-    this.tasksTotal =  localStorage.getItem('tasksTotal') 
-    this.messagesTotal = localStorage.getItem('messagesTotal')
+    setTimeout(()=> {
+      this.messagesTotal = localStorage.getItem('messagesTotal')
+      this.tasksTotal =  localStorage.getItem('tasksTotal')  
+    }, 1000);
     console.log('----role page taskstotal----',this.tasksTotal,'---messagesTotal---',this.messagesTotal);
   }
   ngOnInit() {
@@ -51,11 +53,8 @@ export class Role {
         'Content-Type': 'application/x-www-form-urlencoded'
       }
     };
-    let data = new FormData()
-    data.append('username', vm.mobile.toUpperCase());
-    data.append('password', vm.validateCode);
-    data.append('scope', 'ui');
-    data.append('grant_type', 'password');
+
+    let data = `username=${vm.mobile.toUpperCase()}&password=${vm.validateCode}&scope=ui&grant_type=password`                
     axios
       .post(url, data, config)
       .then(function (res) {
@@ -70,7 +69,7 @@ export class Role {
             localStorage.setItem('userInfo', JSON.stringify(res.data))
             vm.userInfo = res.data        
             vm.events.publish('user:created', 'user', 'time');
-            vm.ionViewWillEnter()
+            vm.ionViewDidEnter()
             // vm.navCtrl.setRoot()
           })
           .catch(function (error) {
