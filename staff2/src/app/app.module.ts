@@ -16,6 +16,8 @@ import { Housesearch } from '../pages/housesearch/housesearch';
 import { Message } from '../pages/message/message';
 import { Contact } from '../pages/contact/contact';
 import { Contactdetails } from '../pages/contactdetails/contactdetails';
+import { Housevisitapply } from '../pages/housevisitapply/housevisitapply';
+import { Houseclue } from '../pages/houseclue/houseclue';
 
 
 
@@ -37,7 +39,9 @@ import { Contactdetails } from '../pages/contactdetails/contactdetails';
     Message,
     Contact,
     Contactdetails,
-    Contactpop
+    Contactpop,
+    Housevisitapply,
+    Houseclue
   ],
   imports: [
     IonicModule.forRoot(MyApp, {
@@ -62,7 +66,9 @@ import { Contactdetails } from '../pages/contactdetails/contactdetails';
     Message,
     Contact,
     Contactdetails,
-    Contactpop
+    Contactpop,
+    Housevisitapply,
+    Houseclue
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })

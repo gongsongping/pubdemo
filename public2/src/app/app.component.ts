@@ -39,13 +39,12 @@ export class MyApp {
 
         if (localStorage.getItem('tokens')) {
             this.tokens = JSON.parse(localStorage.getItem('tokens'))
-            // this.userInfo = JSON.parse(localStorage.getItem('userInfo'))
+            this.userInfo = JSON.parse(localStorage.getItem('userInfo'))
             console.log('------',this.tokens,'-----')
             axios.defaults.headers.common['Authorization'] = "Bearer " + this.tokens.access_token
-            let vm = this;
-            // this.userInfo = JSON.parse(localStorage.getItem('userInfo'))
-            let access_token = JSON.parse(localStorage.getItem('tokens')).access_token
-            let refresh_token = JSON.parse(localStorage.getItem('tokens')).refresh_token
+
+            let access_token = this.tokens.access_token
+            let refresh_token = this.tokens.refresh_token
             console.log('---accesstoken expired----', this.jwtHelper.isTokenExpired(access_token), '---refreshtoken expired----', this.jwtHelper.isTokenExpired(refresh_token));
             if (this.jwtHelper.isTokenExpired(refresh_token)) {
                 // vm.logout()
@@ -71,9 +70,6 @@ export class MyApp {
                             localStorage.setItem('tokens', JSON.stringify(res.data))
                             axios.defaults.headers.common['Authorization'] = "Bearer " + res.data.access_token
                         })
-                        .catch(function (error) {
-                            console.log(error);
-                        });
                 }
             }
          } else {

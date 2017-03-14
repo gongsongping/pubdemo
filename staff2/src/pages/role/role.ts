@@ -116,4 +116,7 @@ export class Role {
     this.navCtrl.push(i);
     console.log(r)
   }
+  goTo(p){
+    this.navCtrl.setRoot(p)
+  }
 }
