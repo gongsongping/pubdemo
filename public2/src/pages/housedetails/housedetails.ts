@@ -8,10 +8,10 @@ import { NavController, NavParams } from 'ionic-angular';
   Ionic pages and navigation.
 */
 @Component({
-  selector: 'page-house-detail',
-  templateUrl: 'house-detail.html'
+  selector: 'page-housedetails',
+  templateUrl: 'housedetails.html'
 })
-export class HouseDetail {
+export class Housedetails {
   house:any;
   constructor(public navCtrl: NavController,public params: NavParams) {
        this.house = params.get('house')
@@ -22,3 +22,4 @@ export class HouseDetail {
   }
 
 }
+

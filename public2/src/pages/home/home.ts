@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 import { NavController, Events } from 'ionic-angular';
 import axios from 'axios';
-import { HouseDetail } from '../house-detail/house-detail';
+import { Housedetails } from '../housedetails/housedetails';
 import { Precise } from '../precise/precise';
 import { Login } from '../login/login';
 
@@ -61,7 +61,7 @@ export class Home {
         this.loadMore(false)
     }
     goDetail(h) {
-        this.navCtrl.push(HouseDetail, { house: h })
+        this.navCtrl.push(Housedetails, { house: h })
     }
     goPrecise() {
         if (window.localStorage.getItem('tokens')) {

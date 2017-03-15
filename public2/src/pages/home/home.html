@@ -25,11 +25,11 @@
     </ion-item>-->
   </div>
   <ion-fab bottom right #fab>
-    <button ion-fab>精准购房</button>
-    <ion-fab-list side="top">
+    <button ion-fab (click)="goPrecise()"><p style='font-size: 0.8em;'>为您</p><p style='font-size: 0.8em;'>找房</p></button>
+    <!--<ion-fab-list side="top">
       <button ion-fab (click)="goPrecise()">precise</button>
       <button ion-fab>Twitter</button>
-    </ion-fab-list>
+    </ion-fab-list>-->
   </ion-fab>
   <!--enabled="dataLength > 0" threshold='20%'-->
   <ion-infinite-scroll (ionInfinite)="loadMore($event)" threshold='70%'>

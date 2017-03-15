@@ -7,7 +7,7 @@ import { Buy } from '../pages/buy/buy';
 import { Sell } from '../pages/sell/sell';
 import { Mine } from '../pages/mine/mine';
 import { Login } from '../pages/login/login';
-import { HouseDetail } from '../pages/house-detail/house-detail';
+import { Housedetails } from '../pages/housedetails/housedetails';
 import { Precise } from '../pages/precise/precise';
 
 import { NestedCom, House, TestService, ImgPipe } from '../providers/services';
@@ -21,7 +21,7 @@ import { NestedCom, House, TestService, ImgPipe } from '../providers/services';
     Sell,
     Mine,
     Login,
-    HouseDetail,
+    Housedetails,
     Precise,
     Tabs,
     ImgPipe,
@@ -43,7 +43,7 @@ import { NestedCom, House, TestService, ImgPipe } from '../providers/services';
     Sell,
     Mine,
     Login,
-    HouseDetail,
+    Housedetails,
     Precise,
     Tabs
   ],
