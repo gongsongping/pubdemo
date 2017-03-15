@@ -2,6 +2,17 @@
 
   <ion-navbar>
     <ion-title>通知消息</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only color="dark" style="right:10px;" (click)="messageEdit()">
+				{{text}}
+			</button>
+    </ion-buttons>
+    <!--<ion-buttons end="" class="bar-buttons bar-buttons-ios">
+      <button ion-button="" class="disable-hover bar-button bar-button-ios bar-button-default bar-button-default-ios" tappable="">
+        <span class="button-inner">编辑</span>
+        <div class="button-effect"></div>
+        </button>
+    </ion-buttons>-->
   </ion-navbar>
   <ion-toolbar class="message-title">
     <div class="record-select">
@@ -11,47 +22,29 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <!--<ion-list class="message-content">
-    <ion-list-header>
-      Action
-    </ion-list-header>
-    <ion-item *ngFor="let age of messages" (click)="messagesClickEnter(age)" class="item-remove-animate" [ngClass]='{"text": age.id==isActive}'
-      style="border-color:#fff;">
-      <span *ngIf="!age.isRead" class="b"><img src="img/staff/weidu.png"></span>
-      <div class="title-1">{{age.createdDate}}</div>
-      <p class="text-auto">{{age.content}}</p>
-      <i class="icon" *ngIf="age.id!==isActive"><img src="img/staff/bottom.png" width="20" height="6"></i>
-    </ion-item>
-  </ion-list>-->
-  <!--<ion-list *ngFor="let age of messages" class="message-content">
-    <ion-list-header>
-      {{age.createdDate}}
-    </ion-list-header>
-    <ion-item>{{age.content}}</ion-item>
-  </ion-list>-->
-  <div class="message-content">
+  <!--<div class="message-content">
     <div class="message-list" *ngFor="let age of messages" (click)="messagesClickEnter(age)" [ngClass]='{"text": age.id==isActive}'>
-      <!--<div>-->
         <span *ngIf="!age.isRead" class="b"><img src="assets/img/staff/weidu.png"></span>
         <div class="title-1">{{age.createdDate | date: 'yyyy-MM-dd hh:mm:ss'}}</div>
         <p class="text-auto">{{age.content}}</p>
         <i class="icon" *ngIf="age.id!==isActive"><img src="assets/img/staff/bottom.png" width="20" height="6"></i>
-      <!--</div>-->
     </div>
+  </div>-->
+  <ion-list class="message-content">
+    <ion-item-sliding *ngFor="let item of messages">
+      <ion-item class="message-list" (click)="messagesClickEnter(item)" [ngClass]='{"text": item.id==isActive}'>
+        <span *ngIf="!item.isRead" class="b"><img src="assets/img/staff/weidu.png"></span>
+        <div class="title-1">{{item.createdDate | date: 'yyyy-MM-dd hh:mm:ss'}}</div>
+        <p class="text-auto">{{item.content}}</p>
+        <i class="icon" *ngIf="item.id!==isActive"><img src="assets/img/staff/bottom.png" width="20" height="6"></i>
+      </ion-item>
+      <ion-item-options side="right">
+        <button ion-button (click)="delMessage(item)"><ion-icon name="remove-circle"></ion-icon></button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+  <div ng-if="total == 0" class="prompt">
+    <div class="icon ion-ios-list-outline"></div>
+    <p>您还没有记录</p>
   </div>
-  <!--<ion-list>
-  <ion-item-sliding #item>
-    <ion-item>
-      Item
-    </ion-item>
-    <ion-item-options side="left">
-      <button ion-button (click)="favorite(item)">Favorite</button>
-      <button ion-button color="danger" (click)="share(item)">Share</button>
-    </ion-item-options>
-
-    <ion-item-options side="right">
-      <button ion-button (click)="unread(item)">Unread</button>
-    </ion-item-options>
-  </ion-item-sliding>
-</ion-list>-->
 </ion-content>

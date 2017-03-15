@@ -46,15 +46,15 @@
             </div>
         </div>
     </div>
-    <div *ngIf='tokens'>
+    <div *ngIf='userInfo'>
         <div class="home-info">
             <div class="row">
-                <div class="col-50" (click)="goTo(home)">
+                <div class="col-50" *ngFor="let role of userInfo.roles" (click)="goTo(home,role.id)">
                     <div>
-                        房管家
+                        {{role.role}}
                     </div>
                 </div>
-                <div class="col-50" (click)="goTo(home)">
+                <!--<div class="col-50" (click)="goTo(home)">
                     <div>
                         置业顾问
                     </div>
@@ -68,7 +68,7 @@
                     <div>
                         小区开发
                     </div>
-                </div>
+                </div>-->
             </div>
         </div>
     </div>

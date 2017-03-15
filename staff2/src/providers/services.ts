@@ -114,3 +114,22 @@ export class Contactpop {
   }
 
 }
+
+@Component({
+  selector: 'modaldistrict',
+  // templateUrl: '_modaldistrict.html'
+  template:`
+    <div>modaldistrict</div>
+  `
+})
+export class Modaldistrict {
+
+  constructor() {
+    console.log('contact pop ');
+  }
+  ngOnInit() {
+    console.log('contact pop');
+  }
+
+}
+

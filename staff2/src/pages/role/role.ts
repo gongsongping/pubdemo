@@ -17,25 +17,32 @@ export class Role {
   mobile : any;
   validateCode : any;
   loginErr : any;
-  tokens:any = localStorage.getItem('tokens')
-  userInfo:any = localStorage.getItem('userInfo')
+  tokens:any; 
+  userInfo:any;
   jwtHelper: JwtHelper = new JwtHelper();
-  resetpw:any = Resetpw
-  message: any = Message
-  home: any = Home
-  tasksTotal:any
-  messagesTotal:any
-  constructor(public navCtrl : NavController, public navParams : NavParams, public events: Events) {}
+  resetpw:any = Resetpw;
+  message: any = Message;
+  home: any = Home;
+  tasksTotal:any;
+  messagesTotal:any;
+  constructor(public navCtrl : NavController, public navParams : NavParams, public events: Events) {
+   
+  }
   
   ionViewDidLoad() {
     console.log('ionViewDidLoad RolePage');
+  }
+  ionViewWillEnter() {
+    this.tokens = JSON.parse(localStorage.getItem('tokens'));
+    this.userInfo = JSON.parse(localStorage.getItem('userInfo'));
+  
   }
 
   ionViewDidEnter() {
     console.log('---- role Page will enter-----', this.navCtrl.parent);
     setTimeout(()=> {
-      this.messagesTotal = localStorage.getItem('messagesTotal')
-      this.tasksTotal =  localStorage.getItem('tasksTotal')  
+      this.messagesTotal = localStorage.getItem('messagesTotal');
+      this.tasksTotal =  localStorage.getItem('tasksTotal');  
     }, 1000);
     console.log('----role page taskstotal----',this.tasksTotal,'---messagesTotal---',this.messagesTotal);
   }
@@ -112,7 +119,9 @@ export class Role {
   }
   
   pushHome(i,r){
-    this.navCtrl.push(i);
+    this.navCtrl.push(i,{
+        id:r
+    });
     console.log(r)
   }
   goTo(p){

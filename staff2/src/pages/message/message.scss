@@ -46,17 +46,25 @@ page-message {
             overflow: hidden;
             position: relative;
             margin-top: 10px;
+            padding:0;
             .title-1{
                width:100%; 
                color: #fff;
                text-align: left;
                background-color: #4280EC;
                display: inherit;
-               padding:7px 10px;
+               padding:6px 10px;
+            }
+            .item-inner{
+                padding:0;
+                border:0;
+            }
+            .label-ios{
+                margin: 0;
             }
             .b{ 
                 width:30px;
-                height:31px;
+                height:32px;
                 overflow: hidden;
                 position: absolute;
                 top:0;
@@ -65,9 +73,6 @@ page-message {
                     width:100%;
                     height:100%;
                 }
-            }
-            .n{
-                display:none;
             }
             .text-auto{
                 height:28px;
@@ -86,8 +91,19 @@ page-message {
                 overflow: hidden;
                 img{
                     position: relative;
-                    top:-6px;
+                    top:-8px;
                     left:0;
+                }
+            }
+        }
+        ion-item-options{
+            padding-top:10px;
+            border:0;
+            .button-ios{
+                color:red;
+                background-color: #fff;
+                ion-icon{
+                    font-size: 2em;
                 }
             }
         }
@@ -96,6 +112,9 @@ page-message {
                 height:auto;
                 white-space: normal;
             }
+        }
+        .n{
+            display:none;
         }
     }
 }

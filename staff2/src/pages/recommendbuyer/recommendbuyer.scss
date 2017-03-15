@@ -1,0 +1,49 @@
+page-recommendbuyer {
+    .recommendbuyer {
+        padding: 0 15px;
+        .item {
+            border: 0 !important;
+            padding: 0;
+            color: #b2bac7;
+            margin-top:20px;
+            .item-inner{
+                padding:0;
+                border-bottom:0;
+            }
+            .title{
+                width: 20vw;
+                line-height: 36px;
+                font-size:16px;
+            }
+            ion-textarea{
+                margin-left:7px;
+            }
+            .input{
+                border-radius: 8px;
+                border: 1px solid #e7eaef;
+                input {
+                    margin-left:10px;
+                    z-index:1;
+                }
+                textarea{
+                    margin:10px;
+                    height:150px;
+                }
+            }
+        }
+        .icon{
+            position: absolute;
+            right: 25px;
+            top: 181px;
+        }
+    }
+        .sub{
+            padding: 0 5%;
+            overflow: hidden;
+            margin-top: 50px;
+            .button {
+                width: 100%;
+                border-radius: 20px;
+            }
+        }
+}

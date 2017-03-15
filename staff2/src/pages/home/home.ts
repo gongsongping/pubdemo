@@ -4,6 +4,9 @@ import { NavController, NavParams} from 'ionic-angular';
 import { Housemine } from '../housemine/housemine';
 import { Housesearch } from '../housesearch/housesearch';
 import { Message } from '../message/message';
+import { Recommendbuyer } from '../recommendbuyer/recommendbuyer';
+import { Houseclue } from '../houseclue/houseclue';
+
 /*
   Generated class for the Home page.
 
@@ -19,13 +22,17 @@ export class Home {
   housemine: any = Housemine
   housesearch: any = Housesearch
   message: any = Message
+  recommendbuyer: any = Recommendbuyer
   // tabOne = Page1;
   // tabTwo = Page2;
   // tabThree = Page3;
   // tabFour = Page4;
   tasksTotal:any
   messagesTotal:any
-  constructor(public navCtrl: NavController, public navParams: NavParams) { }
+  houseclue:any = Houseclue
+  constructor(public navCtrl: NavController, public navParams: NavParams) { 
+     console.log(this.navParams.get('id'))
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad HomePage');

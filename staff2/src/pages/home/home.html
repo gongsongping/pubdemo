@@ -33,12 +33,12 @@
 	</div>
 	<div class="home-add" *ngIf="tabIndex == 2">
 		<ion-list>
-			<ion-item>
+			<ion-item [navPush]='houseclue'>
 				<img src="assets/img/icon/_0011_recommend.png" />
 				<ion-icon name="ios-add"></ion-icon>
 				<h5>推荐房源</h5>
 			</ion-item>
-			<ion-item>
+			<ion-item (click)="pushHousemine(recommendbuyer)">
 				<img src="assets/img/icon/_0012_recommend.png" />
 				<ion-icon name="ios-add"></ion-icon>
 				<h5>推荐客户</h5>
@@ -75,12 +75,12 @@
 					<h5>我的房源</h5>
 				</div>
 			</div>
-			<!--<div class="col-50">
+			<div class="col-50">
 				<div>
 					<img src="assets/img/icon/_0007_myhome.png" width="65" />
 					<h5>房源管理</h5>
 				</div>
-			</div>-->
+			</div>
 			<div class="col-50" (click)="pushHousemine(housesearch)">
 				<div>
 					<img src="assets/img/icon/_0006_search.png" width="65" />
@@ -127,11 +127,5 @@
 				</div>-->
 			</div>
 		</div>
-		<!--<ion-tabs>
-      <ion-tab  tabIcon="call" show="true" [root]="tabOne" tabBadge="3" tabBadgeStyle="danger" tabTitle="待办事项"></ion-tab>
-      <ion-tab tabIcon="chatbubbles" [root]="tabTwo" tabTitle="新建任务"></ion-tab>
-      <ion-tab tabIcon="musical-notes" [root]="tabThree" tabTitle="数据管理"></ion-tab>
-      <ion-tab tabIcon="musical-notes" [root]="tabFour" tabTitle="房源管理"></ion-tab>
-    </ion-tabs>-->
 	</ion-toolbar>
 </ion-footer>

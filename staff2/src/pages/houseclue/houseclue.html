@@ -7,12 +7,19 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>houseclue</ion-title>
+    <ion-title>推荐房源</ion-title>
   </ion-navbar>
 
+<div *ngIf='showHeight'  style='width:100vw;height: 100vh;background-color: tomato;position:absolute;z-index:100;'>
+    <button ion-button small color='primary'  (click)='closeDistrict()'>关闭</button>  
+</div>
 </ion-header>
 
 
-<ion-content padding>
-
+<ion-content >
+  <!--[style.height]='height'-->
+<input type="" name="" value="">
+<input type="" name="" value="">
+<button ion-button block small color='primary' (click)='chooseDistrict()'>选择小区</button>
+<input type="" name="" value="">
 </ion-content>
