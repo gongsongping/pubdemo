@@ -1,0 +1,45 @@
+page-myRecommendbuyer {
+    .mybuyer{
+        padding:0;
+        border-top:1px solid #f0f2f6;
+        border-bottom:1px solid #f0f2f6;
+        .flex-row{
+            padding:15px 0;
+            background-color: #f0f2f6;
+            width:100%;
+            display: flex;
+            .col-25{
+                width:25%;
+                font-size:16px;
+                text-align: center;
+            }
+        }
+    }
+    // ion-list{
+    //     .list-header-ios{
+    //         padding-left:0;
+    //         background-color: #f0f2f6;
+    //         .col-25{
+    //             width:25%;
+    //             display: inline-block;
+    //             text-align: center;
+    //             font-size:1.2em;
+    //         }
+    //     }
+    //     .item-ios{
+    //         padding-left:0;
+    //         .item-inner{
+    //             padding-right:0 !important;
+    //             .label-ios{
+    //                 margin: 0;
+    //                 .col-25{
+    //                     width:25%;
+    //                     display: inline-block;
+    //                     text-align: center;
+    //                     font-size:1em;
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }
+}
