@@ -33,7 +33,7 @@
 	</div>
 	<div class="home-add" *ngIf="tabIndex == 2">
 		<ion-list>
-			<ion-item>
+			<ion-item [navPush]='houseclue'>
 				<img src="assets/img/icon/_0011_recommend.png" />
 				<ion-icon name="ios-add"></ion-icon>
 				<h5>推荐房源</h5>

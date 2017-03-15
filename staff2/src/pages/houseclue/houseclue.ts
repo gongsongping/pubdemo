@@ -12,11 +12,19 @@ import { NavController, NavParams } from 'ionic-angular';
   templateUrl: 'houseclue.html'
 })
 export class Houseclue {
-
+  height:string
+  showHeight = false
   constructor(public navCtrl: NavController, public navParams: NavParams) {}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad HousecluePage');
   }
-
+  chooseDistrict(){
+    //  this.height = '500px'
+    this.showHeight = true
+  }
+  closeDistrict(){
+    //  this.height = '500px'
+    this.showHeight = false
+  }
 }

@@ -84,7 +84,6 @@ export class MyApp {
 
   refreshToken (){
     if (localStorage.getItem('tokens')) {
-        this.prepareInfo() //red prepareInfo
         let vm = this;
         // this.userInfo = JSON.parse(localStorage.getItem('userInfo'))
         let access_token = JSON.parse(localStorage.getItem('tokens')).access_token
@@ -107,10 +106,11 @@ export class MyApp {
                     .then(function (res) {
                         localStorage.setItem('tokens', JSON.stringify(res.data))
                         axios.defaults.headers.common['Authorization'] = "Bearer " + res.data.access_token
+                        vm.prepareInfo() //red prepareInfo                        
                     })
-                    .catch(function (error) {
-                        console.log(error);
-                    });
+                    
+            } else {
+                vm.prepareInfo() //red prepareInfo
             }
         }
     }
