@@ -39,13 +39,12 @@ export class MyApp {
 
         if (localStorage.getItem('tokens')) {
             this.tokens = JSON.parse(localStorage.getItem('tokens'))
-            // this.userInfo = JSON.parse(localStorage.getItem('userInfo'))
+            this.userInfo = JSON.parse(localStorage.getItem('userInfo'))
             console.log('------',this.tokens,'-----')
             axios.defaults.headers.common['Authorization'] = "Bearer " + this.tokens.access_token
-            let vm = this;
-            // this.userInfo = JSON.parse(localStorage.getItem('userInfo'))
-            let access_token = JSON.parse(localStorage.getItem('tokens')).access_token
-            let refresh_token = JSON.parse(localStorage.getItem('tokens')).refresh_token
+
+            let access_token = this.tokens.access_token
+            let refresh_token = this.tokens.refresh_token
             console.log('---accesstoken expired----', this.jwtHelper.isTokenExpired(access_token), '---refreshtoken expired----', this.jwtHelper.isTokenExpired(refresh_token));
             if (this.jwtHelper.isTokenExpired(refresh_token)) {
                 // vm.logout()
@@ -63,17 +62,13 @@ export class MyApp {
                         }
                     };
                     //refresh_token: $window.localStorage.refresh_token, grant_type: 'refresh_token'
-                    let data = new FormData()
-                    data.append('refresh_token', refresh_token);
-                    data.append('grant_type', 'refresh_token');
+                    
+                    let data = `refresh_token=${refresh_token}&grant_type=refresh_token`                
                     axios.post(url, data, config)
                         .then(function (res) {
                             localStorage.setItem('tokens', JSON.stringify(res.data))
                             axios.defaults.headers.common['Authorization'] = "Bearer " + res.data.access_token
                         })
-                        .catch(function (error) {
-                            console.log(error);
-                        });
                 }
             }
          } else {
@@ -84,6 +79,7 @@ export class MyApp {
       });
       this.events.publish('tokens:refresh', 'user', 'time');
   }
+  
   // $rootScope.prepareProcesses = function () {
   //       var bs64 = window.btoa($rootScope.userInfo.mobile + ':' + $rootScope.access_token)
   //       $http({

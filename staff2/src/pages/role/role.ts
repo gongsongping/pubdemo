@@ -17,24 +17,33 @@ export class Role {
   mobile : any;
   validateCode : any;
   loginErr : any;
-  tokens:any = localStorage.getItem('tokens')
-  userInfo:any = localStorage.getItem('userInfo')
+  tokens:any; 
+  userInfo:any;
   jwtHelper: JwtHelper = new JwtHelper();
-  resetpw:any = Resetpw
-  message: any = Message
-  home: any = Home
-  tasksTotal:any
-  messagesTotal:any
-  constructor(public navCtrl : NavController, public navParams : NavParams, public events: Events) {}
+  resetpw:any = Resetpw;
+  message: any = Message;
+  home: any = Home;
+  tasksTotal:any;
+  messagesTotal:any;
+  constructor(public navCtrl : NavController, public navParams : NavParams, public events: Events) {
+   
+  }
   
   ionViewDidLoad() {
     console.log('ionViewDidLoad RolePage');
   }
-
   ionViewWillEnter() {
+    this.tokens = JSON.parse(localStorage.getItem('tokens'));
+    this.userInfo = JSON.parse(localStorage.getItem('userInfo'));
+  
+  }
+
+  ionViewDidEnter() {
     console.log('---- role Page will enter-----', this.navCtrl.parent);
-    this.tasksTotal =  localStorage.getItem('tasksTotal') 
-    this.messagesTotal = localStorage.getItem('messagesTotal')
+    setTimeout(()=> {
+      this.messagesTotal = localStorage.getItem('messagesTotal');
+      this.tasksTotal =  localStorage.getItem('tasksTotal');  
+    }, 1000);
     console.log('----role page taskstotal----',this.tasksTotal,'---messagesTotal---',this.messagesTotal);
   }
   ngOnInit() {
@@ -51,11 +60,8 @@ export class Role {
         'Content-Type': 'application/x-www-form-urlencoded'
       }
     };
-    let data = new FormData()
-    data.append('username', vm.mobile.toUpperCase());
-    data.append('password', vm.validateCode);
-    data.append('scope', 'ui');
-    data.append('grant_type', 'password');
+
+    let data = `username=${vm.mobile.toUpperCase()}&password=${vm.validateCode}&scope=ui&grant_type=password`                
     axios
       .post(url, data, config)
       .then(function (res) {
@@ -70,7 +76,7 @@ export class Role {
             localStorage.setItem('userInfo', JSON.stringify(res.data))
             vm.userInfo = res.data        
             vm.events.publish('user:created', 'user', 'time');
-            vm.ionViewWillEnter()
+            vm.ionViewDidEnter()
             // vm.navCtrl.setRoot()
           })
           .catch(function (error) {
@@ -115,5 +121,8 @@ export class Role {
   pushHome(i,r){
     this.navCtrl.push(i);
     console.log(r)
+  }
+  goTo(p){
+    this.navCtrl.setRoot(p)
   }
 }

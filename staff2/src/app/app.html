@@ -6,19 +6,19 @@
   </ion-header>-->
 
   <ion-content>
-    <div *ngIf='tokens' class="menu-header">
+    <div *ngIf='userInfo' class="menu-header">
           <div *ngIf="userInfo.avatar" style="width: 80px;height: 80px;border-radius: 50%;overflow: hidden;"><img src="{{userInfo.avatar}}" width="100%" height="100%"/></div>
           <div *ngIf="(!userInfo.avatar)&&(userInfo.gender===2)" style="width: 80px;height: 80px;border-radius: 50%;overflow: hidden;"><img src="assets/img/female.png" width="100%" height="100%"/></div>
           <div *ngIf="(!userInfo.avatar)&&(userInfo.gender===1)" style="width: 80px;height: 80px;border-radius: 50%;overflow: hidden;"><img src="assets/img/male.png" width="100%" height="100%"/></div>
           <div *ngIf="(!userInfo.avatar)&&(userInfo.gender===3)" style="width: 80px;height: 80px;border-radius: 50%;overflow: hidden;"><img src="assets/img/sprite/gender_unknown.jpg" width="100%" height="100%"/></div>
-          <h4>{{userInfo.name}}<span>({{userInfo.role.role}})</span></h4>
+          <h4>{{userInfo.name}}</h4>
           <p>工号 {{userInfo.username}}</p>
     </div>
     <div *ngIf='!tokens' class="menu-header">
          <div style="width: 80px;height: 80px;border-radius: 50%;overflow: hidden;"><img src="assets/img/icon/_0005_head.png" width="100%" height="100%"/></div>
     </div>
     <ion-list class="menu-list" inset no-lines>
-      <button menuClose ion-item (click)="goTo(home)" detail-none="">
+      <button menuClose ion-item (click)="goTo(role)" detail-none="">
         <i><img src="assets/img/icon/_0000_home.png" width="25"/></i>
         <span>回到主页</span>
       </button>

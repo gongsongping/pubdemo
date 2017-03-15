@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, ModalController } from 'ionic-angular';
-// import { ModalPage } from './modal-page'; //模态窗口
+
 import { MyRecommendbuyer } from '../myRecommendbuyer/myRecommendbuyer';
+import { Modaldistrict } from '../../providers/services';
+
 
 /*
   Generated class for the Recommendbuyer page.
@@ -18,7 +20,7 @@ export class Recommendbuyer {
   mobile = '';
   searchName = '';
   myRecommendbuyer: any = MyRecommendbuyer;
-  constructor(public navCtrl: NavController, public navParams: NavParams) { }
+  constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController) { }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad RecommendbuyerPage');
@@ -35,8 +37,8 @@ export class Recommendbuyer {
   pushBuyer(h) {
     this.navCtrl.push(h);
   }
-  // presentModal() {
-  //   let modal = this.modalCtrl.create(ModalPage);
-  //   modal.present();
-  // }
+  presentModal() {
+    let modal = this.modalCtrl.create(Modaldistrict,{id:999});
+    modal.present();
+  }
 }

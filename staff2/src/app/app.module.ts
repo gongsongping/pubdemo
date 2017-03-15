@@ -7,7 +7,7 @@ import { Task } from '../pages/task/task';
 import { Todo } from '../pages/todo/todo';
 import { Tododetails } from '../pages/tododetails/tododetails';
 import { Role } from '../pages/role/role';
-import { ModalResetpw, House, Contactpop } from '../providers/services';
+import { ModalResetpw, House, Contactpop, Modaldistrict } from '../providers/services';
 import { Changepw } from '../pages/changepw/changepw';
 import { Resetpw } from '../pages/resetpw/resetpw';
 import { About } from '../pages/about/about';
@@ -18,6 +18,8 @@ import { Contact } from '../pages/contact/contact';
 import { Contactdetails } from '../pages/contactdetails/contactdetails';
 import { Recommendbuyer } from '../pages/recommendbuyer/recommendbuyer';
 import { MyRecommendbuyer } from '../pages/myRecommendbuyer/myRecommendbuyer';
+import { Housevisitapply } from '../pages/housevisitapply/housevisitapply';
+import { Houseclue } from '../pages/houseclue/houseclue';
 
 
 
@@ -41,7 +43,10 @@ import { MyRecommendbuyer } from '../pages/myRecommendbuyer/myRecommendbuyer';
     Contactdetails,
     Contactpop,
     Recommendbuyer,
-    MyRecommendbuyer
+    MyRecommendbuyer,
+    Housevisitapply,
+    Houseclue,
+    Modaldistrict
   ],
   imports: [
     IonicModule.forRoot(MyApp, {
@@ -68,7 +73,10 @@ import { MyRecommendbuyer } from '../pages/myRecommendbuyer/myRecommendbuyer';
     Contactdetails,
     Contactpop,
     Recommendbuyer,
-    MyRecommendbuyer
+    MyRecommendbuyer,
+    Housevisitapply,
+    Houseclue,
+    Modaldistrict
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })

@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-
+import { Events } from  'ionic-angular';
 import { Home } from '../home/home';
 import { Buy } from '../buy/buy';
 import { Sell } from '../sell/sell';
 import { Mine } from '../mine/mine';
-
+import axios from 'axios';
  
 
  
@@ -20,19 +20,41 @@ import { Mine } from '../mine/mine';
 // `
 })
 export class Tabs {
-    // this tells the tabs component which Pages
-    // should be each tab's root Page
+    // this tells the tabs component which Pages // should be each tab's root Page
     home: any = Home;
     buy: any = Buy;
     sell: any = Sell;
     mine: any = Mine;
-
-    constructor() { }
+    messagesTotal = 0
+    constructor(public events:Events) { }
     //not working
     ionViewWillEnter() {
         console.log('-----tabs------ will enter baseUrl', localStorage.getItem('baseUrl'));
     }
     ngOnInit(){
         console.log('------tabs----- Page oninit');
+        this.events.subscribe('messages:update',()=>{
+            let vm = this
+            if (localStorage.getItem('tokens')) {
+                let tokens = JSON.parse(localStorage.getItem('tokens'))
+                let userInfo = JSON.parse(localStorage.getItem('userInfo'))
+                axios.get('/api/message/notices?size=0&isRead=false&userId=' + userInfo.id)
+                    .then(function(res) {
+                        localStorage.setItem('messagesTotal',res.data.total)
+                        console.log('----messagesTotal----',res.data.total);
+                        vm.messagesTotal = res.data.total
+                    })
+            } else {
+                localStorage.setItem('messagesTotal','')
+                vm.messagesTotal = 0
+            }
+        })
+        this.events.publish('messages:update')
+    }
+    chat(){
+        console.log('--ionselect cahge--');
+    }
+    prepareInfo () {
+
     }
 }

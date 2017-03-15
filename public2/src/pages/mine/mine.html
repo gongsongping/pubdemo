@@ -9,6 +9,12 @@
     <ion-title>
       mine
     </ion-title>
+    <ion-buttons right>
+      <button ion-button icon-only  style='position: relative;'>
+        <img src="assets/img/sprite/system_icon_mine.png" width='30' height='30'>
+        <ion-badge *ngIf="messagesTotal>0" color='danger' style='position: absolute;right:-5px;top:-5px;'>{{messagesTotal}}</ion-badge>
+      </button> 
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
