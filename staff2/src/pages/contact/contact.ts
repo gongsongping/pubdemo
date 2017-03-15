@@ -1,30 +1,31 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
-import { Contactdetails } from '../contactdetails/contactdetails';
+import {NavController, NavParams} from 'ionic-angular';
+import {Component} from '@angular/core';
+import {Contactdetails} from '../contactdetails/contactdetails';
 import axios from 'axios';
 
 
-
 /*
-  Generated class for the Contact page.
+ Generated class for the Contact page.
 
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
+ See http://ionicframework.com/docs/v2/components/#navigation for more info on
+ Ionic pages and navigation.
+ */
 @Component({
   selector: 'page-contact',
   templateUrl: 'contact.html'
 })
 export class Contact {
   person = [];
-  start = 0;
-  dataLength = 10;
-  housesTotal: any
-  allPerson: any
-  contactdetails:any = Contactdetails
+  start = 0
+  dataLength = 10
+  allPerson: number
+  myInput: any = ''
+  shouldShowCancel: any
+  contactdetails: any = Contactdetails
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {}
+
   loadMore(infiniteScroll) {
-    axios.defaults.baseURL = 'http://60.205.169.195:7060';
     let vm = this
     let params = {
       params: {
@@ -34,10 +35,9 @@ export class Contact {
     }
     axios.get('/api/account/employees', params)
       .then(function (res) {
-        vm.person = vm.person.concat(res.data.data);
+        vm.person = vm.person.concat(res.data.data)
         vm.allPerson = res.data.total
         vm.dataLength = res.data.data.length
-        vm.housesTotal = res.data.total
         vm.start = vm.start + 1
         if (infiniteScroll) {
           infiniteScroll.complete();
@@ -48,8 +48,40 @@ export class Contact {
       });
   }
 
+  onInput(event) {
+    let vm = this
+    let params = {
+      params: {
+        nameLike: vm.myInput,
+        enabled: true,
+        size: 999
+      }
+    }
+    if (this.myInput) {
+      axios.get('/api/account/employees', params).then(function (res) {
+        //console.log(res.data.data);
+        vm.dataLength = res.data.data
+        vm.person = res.data.data
+        vm.allPerson = res.data.data
+      })
+        .catch(function (error) {
+          console.log(error);
+        });
+    } else {
+      vm.loadMore(false);
+    }
+  }
+
+  onCancel(event) {
+    console.log(event);
+  }
+
+  goDetail(t) {
+    this.navCtrl.push(Contactdetails, {staff: t})
+  }
+
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ContactPage');
+    this.loadMore(false)
   }
 
 }
