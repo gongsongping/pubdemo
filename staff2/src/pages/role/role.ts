@@ -119,7 +119,9 @@ export class Role {
   }
   
   pushHome(i,r){
-    this.navCtrl.push(i);
+    this.navCtrl.push(i,{
+        id:r
+    });
     console.log(r)
   }
   goTo(p){

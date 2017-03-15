@@ -49,7 +49,7 @@
     <div *ngIf='userInfo'>
         <div class="home-info">
             <div class="row">
-                <div class="col-50" (click)="goTo(home)" *ngFor="let role of userInfo.roles">
+                <div class="col-50" *ngFor="let role of userInfo.roles" (click)="goTo(home,role.id)">
                     <div>
                         {{role.role}}
                     </div>

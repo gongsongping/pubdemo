@@ -27,7 +27,9 @@ export class Home {
   // tabFour = Page4;
   tasksTotal:any
   messagesTotal:any
-  constructor(public navCtrl: NavController, public navParams: NavParams) { }
+  constructor(public navCtrl: NavController, public navParams: NavParams) { 
+     console.log(this.navParams.get('id'))
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad HomePage');

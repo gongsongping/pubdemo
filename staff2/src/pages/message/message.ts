@@ -15,6 +15,7 @@ import axios from 'axios';
 export class Message {
     totalFalse = '';
     totalTrue = '';
+    total = '';
     messageHead = [];
     messages = [];
     selectTab = false;
@@ -23,10 +24,11 @@ export class Message {
     isActive = '';
     text = '编辑';
     constructor(public navCtrl: NavController, public navParams: NavParams, public events: Events) {
-
+         
     }
 
     ngOnInit() {
+
     }
     ionViewWillLoad() {
         console.log('ionViewDidLoad Message');
@@ -82,6 +84,7 @@ export class Message {
             .get(url + '&isRead=' + vm.selectTab)
             .then(function (res) {
                 console.log(res.data.data)
+                vm.total = res.data.total;
                 vm.messages = vm.messages.concat(res.data.data);
             })
             .catch(function (error) {
