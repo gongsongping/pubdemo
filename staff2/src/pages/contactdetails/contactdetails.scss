@@ -1,3 +1,25 @@
 page-contactdetails {
-
+  .contactdetail {
+    .item {
+      padding-top: 26px;
+      border: none;
+    }
+    .detail-bottom {
+      padding: 0 5%;
+      p {
+        margin-top: 1px;
+        display: flex;
+        justify-content: space-between;
+        padding: 18px 5px;
+        color: #aeb4bd;
+        border-top: solid 1px #e7eaef;
+        span {
+          color: #333;
+        }
+      }
+      .p-last {
+        border-bottom: solid 1px #e7eaef;
+      }
+    }
+  }
 }

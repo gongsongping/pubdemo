@@ -7,12 +7,50 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>contactdetails</ion-title>
+    <ion-title>详情</ion-title>
   </ion-navbar>
 
 </ion-header>
 
+<ion-content padding class="contactdetail">
+  <div style="display: flex;align-items: center;padding: 20px">
+    <p style="width: 50px;height: 50px; line-height: 50px; text-align: center;font-size: 20px;color: #fff;border-radius: 50%;background: #EDC50B">
+      {{staff.name | slice:0:1}}</p>
+    <h4 style="margin-left: 7px;color: #405072;">{{staff.name}}</h4>
+  </div>
+  <div class="detail-bottom">
+    <p>
+      电话
+      <span>{{staff.mobile}}</span>
+    </p>
+    <p>
+      工号
+      <span>{{staff.username}}</span>
+    </p>
 
-<ion-content padding>
+    <p>
+      所在大区
+      <span>{{depart[0].name}}</span>
+    </p>
 
+    <p *ngIf="staff.department.type>2">
+      分部
+      <span>{{ staff.department.superior.name }}</span>
+    </p>
+
+    <p *ngIf="staff.department">
+      部门
+      <span>{{staff.department.name}}</span>
+    </p>
+
+    <p class="p-last" *ngIf="staff.position">
+      职位
+      <span>{{staff.position.name}}</span>
+    </p>
+  </div>
 </ion-content>
+
+<ion-footer>
+    <a ion-button full  href="tel:{{staff.mobile}}"><img src="assets/img/staff/phone_white.png" style="max-height: 82%;"/></a>
+</ion-footer>
+
