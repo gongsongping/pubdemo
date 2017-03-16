@@ -1,4 +1,9 @@
 page-housesearch {
+        ion-toolbar{
+            padding:0 !important;
+            border-top:1px solid #f0f2f6;
+            border-bottom:1px solid #f0f2f6;
+        }
     ion-header{
         ion-navbar{
             border-bottom:1px solid #e7eaef;

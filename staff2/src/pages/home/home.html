@@ -3,7 +3,7 @@
 		<button ion-button menuToggle color="light">
 		     <ion-icon name="menu"></ion-icon>
 		</button>
-		<ion-title>壁虎工作台</ion-title>
+		<ion-title>壁虎工作台({{roleName}})</ion-title>
 		<ion-buttons end>
 			<button ion-button icon-only color="light" style="right:10px;" (click)="pushHousemine(message)">
 				<!--<ion-icon name="person-add"></ion-icon>-->
@@ -94,6 +94,13 @@
 	<ion-toolbar>
 		<div class="footer">
 			<div class="footer-content">
+				<div class="col1" (click)="tabColor(0)" *ngIf="roleName == '开发人员'">
+					<div>
+						<ion-badge *ngIf='tasksTotal>0' item-right color="danger">{{tasksTotal}}</ion-badge>
+						<img src="assets/img/icon/{{tabIndex == 0 ? '_0020_todo.png' : '_0021_todo.png'}}" width="25" />
+						<h5 [ngClass]="{'colblue': tabIndex == 0}">合作商家</h5>
+					</div>
+				</div>
 				<div class="col1" (click)="tabColor(1)">
 					<div>
 						<ion-badge *ngIf='tasksTotal>0' item-right color="danger">{{tasksTotal}}</ion-badge>

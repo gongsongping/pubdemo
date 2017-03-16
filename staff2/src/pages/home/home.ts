@@ -30,21 +30,29 @@ export class Home {
   tasksTotal:any
   messagesTotal:any
   houseclue:any = Houseclue
+  roleName:any
   constructor(public navCtrl: NavController, public navParams: NavParams) { 
-     console.log(this.navParams.get('id'))
+     
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad HomePage');
   }
+   ionViewWillEnter() {
+     this.roleName =  localStorage.getItem('role')
+   }
   ionViewDidEnter() {
-    console.log('---- role Page will enter-----', this.navCtrl.parent);
+    // console.log(this.navParams.get('id'))
+    // console.log('---- role Page will enter-----', this.navCtrl.parent);
     setTimeout(()=> {
       this.messagesTotal = localStorage.getItem('messagesTotal')
       this.tasksTotal =  localStorage.getItem('tasksTotal')  
     }, 1000);
     console.log('----role page taskstotal----',this.tasksTotal,'---messagesTotal---',this.messagesTotal);
   }
+  // if(){
+
+  // }
   tabIndex = 1;
   tabColor(index) {
     let num = this;

@@ -1,4 +1,9 @@
 page-housemine {
+        ion-toolbar{
+            padding:0 !important;
+            border-top:1px solid #f0f2f6;
+            border-bottom:1px solid #f0f2f6;
+        }
         .housemine{
         margin-bottom: 6px;
         box-shadow: 0 6px 6px #e4ebf8;
@@ -41,9 +46,9 @@ page-housemine {
                 float:right; 
                 width:70%;
                 &>div{
-                        overflow: hidden;
-                        text-overflow: ellipsis;
-                        white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
                     .text{
                         height:30px;
                         line-height:30px;
@@ -64,6 +69,7 @@ page-housemine {
                         overflow: hidden;
                         text-overflow: ellipsis;
                         white-space: nowrap;
+                        margin: 0;
                     }
                     .positive{
                         width:25%;
