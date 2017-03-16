@@ -20,21 +20,36 @@ Ionic pages and navigation.
     <div class='search flex-1'>
       <div *ngIf='showHeight' class="pop">
         <div class="popover">
-          <ion-select [(ngModel)]="mycity" (ionChange)="ionChange()">
-            <ion-option  *ngFor="let t of cities" value="{{t}}">{{t.name}}</ion-option>
+          <ion-select [(ngModel)]="mycity" okText="确定" cancelText="取消">
+            <ion-option  *ngFor="let t of cities" value="{{t.id}}">{{t.name}}</ion-option>
           </ion-select>
-          <button ion-button small color='primary' (click)='closeDepartment()'>关闭</button>
+          <ion-select [(ngModel)]="myarea" *ngIf="myarea" okText="确定" cancelText="取消">
+            <ion-option  *ngFor="let t of area" value="{{t.id}}">{{t.name}}</ion-option>
+          </ion-select>
+          <ion-select [(ngModel)]="mybranch" *ngIf="mybranch" okText="确定" cancelText="取消">
+            <ion-option  *ngFor="let t of branch" value="{{t.id}}">{{t.name}}</ion-option>
+          </ion-select>
+          <ion-select [(ngModel)]="mygroup" *ngIf="mygroup" okText="确定" cancelText="取消">
+            <ion-option  *ngFor="let t of group" value="{{t.id}}">{{t.name}}</ion-option>
+          </ion-select>
+          <ion-select [(ngModel)]="mywsmasters" *ngIf="mywsmasters" okText="确定" cancelText="取消">
+            <ion-option  *ngFor="let t of wsmasters" value="{{t.id}}">{{t.name}}</ion-option>
+          </ion-select>
+
+          <button ion-button small color='primary' class="atn" (click)='closeDepartment()'>关闭</button>
         </div>
       </div>
 
       <ion-searchbar (ionInput)="onInput($event)" (ionCancel)="onCancel($event)" [showCancelButton]="shouldShowCancel"
                      [(ngModel)]="myInput" class="item item-input" placeholder="搜索联系人">
       </ion-searchbar>
+
       <div style="line-height: 31px" (click)="openDepartment()">
         筛选
         <ion-icon ios="ios-arrow-dropdown" md="md-arrow-dropdown"></ion-icon>
       </div>
     </div>
+
     <div class="contact-action">
       <p class="num">
         共<span>{{allPerson}}</span>人

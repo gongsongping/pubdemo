@@ -4,6 +4,10 @@ page-contact {
     .choosedtab {
       border: none !important;
     }
+    .item-cover {
+      width: auto;
+      height: auto;
+    }
     .search {
       display: flex;
       justify-content: space-around;
@@ -15,14 +19,18 @@ page-contact {
         position:absolute;z-index:100;
         top: 0;
         .popover {
+          margin: 0 2%;
+          border-radius: 2%;
           background: #fff;
           margin-top: 90px;
-          padding: 10px;
-          padding-bottom: 30px;
+          padding: 30px 16px 100px;
           .select {
+            display: inline-flex;
             border: solid 1px;
-            width: 20vw;
             padding: 5px 10px;
+          }
+          .atn {
+            position: absolute;
           }
         }
       }
