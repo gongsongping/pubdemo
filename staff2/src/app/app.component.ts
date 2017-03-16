@@ -32,7 +32,7 @@ export class MyApp {
   tokens:any
   userInfo:any
   jwtHelper: JwtHelper = new JwtHelper();
-
+  roleName:any
   constructor(public platform: Platform, public modalCtrl: ModalController, public events: Events) {
         // this.initializeApp();
         platform.ready().then(() => {
@@ -45,9 +45,10 @@ export class MyApp {
 
     }
 
- 
+
   //willenter not workign
   ionViewWillEnter() {
+     this.roleName =  localStorage.getItem('role')
       console.log('-----app root------ will enter baseUrl', localStorage.getItem('baseUrl'));
   }
   ngOnInit(){

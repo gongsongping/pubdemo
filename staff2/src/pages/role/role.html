@@ -49,14 +49,14 @@
     <div *ngIf='userInfo'>
         <div class="home-info">
             <div class="row">
-                <div class="col-50" *ngFor="let role of userInfo.roles" (click)="goTo(home,role.id)">
+                <div class="col-50" *ngFor="let role of userInfo.roles" (click)="pushHome(home,role.role)">
                     <div>
                         {{role.role}}
                     </div>
                 </div>
-                <!--<div class="col-50" (click)="goTo(home)">
+               <!-- <div class="col-50" (click)="goTo(home)">
                     <div>
-                        置业顾问
+                        看房顾问总经理
                     </div>
                 </div>
                 <div class="col-50" (click)="goTo(home)">
