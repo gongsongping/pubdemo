@@ -23,17 +23,53 @@
     <div style="background-color:#fff;width:21vw;height:21vw;border:2px solid #fff;border-radius:50%;margin:0 auto 15px;">
       <img src="assets/img/sprite/counselor_btn_pre_mine.png">
     </div>
-    <div style="background-color: #F9D00B;">
-      <p *ngIf='userInfo' style="margin:5px 0px 0px;">
-        <span *ngIf="userInfo.name">{{userInfo.name}}</span>&nbsp;&nbsp;
-        <span>{{userInfo.username}}</span>
-      </p>
-      <p *ngIf='userInfo' style="margin:0px 0px 10px;">壁虎好房欢迎您</p>
+    <!--<div *ngIf='userInfo' style="margin:5px 0px 0px;">
+      <span *ngIf="userInfo.name" style="background-color: #F9D00B;">{{userInfo.name}}</span>&nbsp;&nbsp;
+      <span style="background-color: #F9D00B;">{{userInfo.username}}</span>
+    </div>-->
+    <div *ngIf='userInfo' style="margin:5px 0px 10px;">
+      <span style="background-color: #F9D00B;"><span *ngIf="userInfo.name" style="background-color: #F9D00B;">{{userInfo.name}}</span>&nbsp;&nbsp;壁虎好房欢迎您</span>
     </div>
     <div>
       <button *ngIf="userInfo" (click)="logout()" ion-button round small color="light">退出</button>
       <button *ngIf="!userInfo" [navPush]="login" ion-button round small color="light">登录</button>
     </div>
   </div>
+  <div class='mine-2'>
+    <div (click)='goTo(visitrecord)' class='mine-2-item'>
+      <img src="assets/img/sprite/see_btn_mine.png" height='50' width='50'>
+      <div>
+        <h5>看房记录</h5>
+      </div>
+    </div>
+    <div (click)='goTo(sellrecord)' class='mine-2-item'>
+      <img src="assets/img/sprite/sell_btn_mine.png" height='50' width='50'>
+      <div>
+        <h5>卖房记录</h5>
+      </div>
+    </div>
+
+    <div (click)='goTo(consultant)' class='mine-2-item'>
+      <img src="assets/img/sprite/counselor_btn_mine.png" height='50' width='50'>
+      <div>
+        <h5>我的顾问</h5>
+      </div>
+    </div>
+    <div [navPush]='servicecall' class='mine-2-item'>
+      <img src="assets/img/sprite/service_btn_mine.png" height='50' width='50'>
+      <div>
+        <h5>客服电话</h5>
+      </div>
+    </div>
+  </div>
+  <div class="mine-3">
+    <ion-item [navPush]='about' detail-push>
+       <i item-left><img src="assets/img/icon/_0003_about.png" width="25"/></i>
+      关于壁虎
+    </ion-item>
+  </div>
+  <!--<div *ngIf="baseUrl=='http://60.205.169.195:7060'||baseUrl=='http://60.205.169.195:7069'">
+    <p style="font-size:0.5em;">{{baseUrl}}测试</p>
+  </div>-->
 
 </ion-content>

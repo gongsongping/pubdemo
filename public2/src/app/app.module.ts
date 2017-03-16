@@ -11,6 +11,10 @@ import { Housedetails } from '../pages/housedetails/housedetails';
 import { Precise } from '../pages/precise/precise';
 import { Sellcommission } from '../pages/sellcommission/sellcommission';
 import { Sellrecord } from '../pages/sellrecord/sellrecord';
+import { About } from '../pages/about/about';
+import { Consultant } from '../pages/consultant/consultant';
+import { Servicecall } from '../pages/servicecall/servicecall';
+import { Visitrecord } from '../pages/visitrecord/visitrecord';
 
 import { NestedCom, House, TestService, ImgPipe } from '../providers/services';
 
@@ -30,7 +34,11 @@ import { NestedCom, House, TestService, ImgPipe } from '../providers/services';
     NestedCom,
     House,
     Sellrecord,
-    Sellcommission
+    Sellcommission,
+    About,
+    Consultant,
+    Servicecall,
+    Visitrecord
   ],
   imports: [
     IonicModule.forRoot(MyApp,{
@@ -51,7 +59,11 @@ import { NestedCom, House, TestService, ImgPipe } from '../providers/services';
     Precise,
     Tabs,
     Sellrecord,
-    Sellcommission
+    Sellcommission,
+    About,
+    Consultant,
+    Servicecall,
+    Visitrecord
   ],
   providers: [{ provide: ErrorHandler, useClass: IonicErrorHandler }, TestService]
 })

@@ -33,9 +33,13 @@ export class Role {
     console.log('ionViewDidLoad RolePage');
   }
   ionViewWillEnter() {
-    this.tokens = JSON.parse(localStorage.getItem('tokens'));
-    this.userInfo = JSON.parse(localStorage.getItem('userInfo'));
-  
+    if (localStorage.getItem('userInfo')){
+        this.userInfo = JSON.parse(localStorage.getItem('userInfo'))
+        this.tokens = JSON.parse(localStorage.getItem('tokens'));
+    } else {
+        this.userInfo = ''
+        this.tokens = ''
+    }
   }
 
   ionViewDidEnter() {
