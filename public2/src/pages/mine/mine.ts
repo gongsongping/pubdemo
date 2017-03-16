@@ -23,7 +23,7 @@ export class Mine {
     constructor(public navCtrl: NavController, public events:Events) { }
 
     ionViewWillEnter() {
-        this.userInfo = localStorage.getItem('userInfo')
+        this.userInfo = JSON.parse(localStorage.getItem('userInfo'))
     }
     ionViewDidEnter() {
         this.messagesTotal = localStorage.getItem('messagesTotal')
