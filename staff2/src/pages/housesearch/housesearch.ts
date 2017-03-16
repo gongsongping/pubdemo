@@ -84,14 +84,16 @@ export class Housesearch {
             });
     }
     chooseTab(t) {
-        console.log(t.choosed)
+        // console.log(t.choosed)
         let vm = this;
-        if (vm.choosed = t.choosed) {
             vm.choosedTab = t.id;
-        } else {
-            vm.choosed = false;
-            vm.choosedTab = 10;
-        }
+            // vm.choosedTab = 10;
+        // if (vm.choosed = t.choosed) {
+        //     vm.choosedTab = t.id;
+        // } else {
+        //     vm.choosed = false;
+        //     vm.choosedTab = 10;
+        // }
     }
     focus() {
 

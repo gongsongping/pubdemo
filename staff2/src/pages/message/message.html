@@ -43,7 +43,7 @@
       </ion-item-options>
     </ion-item-sliding>
   </ion-list>
-  <div ng-if="total == 0" class="prompt">
+  <div *ngIf="total == 0" class="prompt">
     <ion-icon name="mail"></ion-icon>
     <p>您还没有记录</p>
   </div>

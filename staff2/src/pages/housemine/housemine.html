@@ -25,6 +25,9 @@
             </div>
         </div>
     </ion-toolbar>
+    <!--<div *ngIf='showHeight'  style='width:100vw;height: 100vh;background-color: tomato;position:absolute;z-index:100;'>
+    <button ion-button small color='primary'  (click)='closeDistrict()'>关闭</button>  
+</div>-->
 </ion-header>
 <ion-content>
     <div class="housemine" *ngFor="let h of houses">
@@ -78,4 +81,8 @@
             <p>123456789</p>
         </div>-->
     </div>
+  <div *ngIf="houseTotal == 0" class="prompt">
+    <ion-icon name="home"></ion-icon>
+    <p>您还没有房源</p>
+  </div>
 </ion-content>

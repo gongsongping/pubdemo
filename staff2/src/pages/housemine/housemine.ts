@@ -22,6 +22,7 @@ export class Housemine {
   selectTab = 0;
   userInfo: any;
   choosedTab = 10;
+  houseTotal = '';
   searchData = {input:''}
   subtabs = [{ id: 0, title: '价格' }, { id: 1, title: '户型' }, { id: 2, title: '钥匙' }, { id: 3, title: '更多' }]
   constructor(public navCtrl: NavController, public navParams: NavParams) {
@@ -81,6 +82,7 @@ export class Housemine {
     axios
       .get(url + vm.statusIn)
       .then(function (res) {
+        vm.houseTotal = res.data.total;
         vm.houses = vm.houses.concat(res.data.data);
         console.log(vm.houses)
       })
