@@ -1,3 +1,19 @@
 page-sell {
-
+    .top {
+        background-image: url('../assets/img/bg_img_sell.png');
+        background-size: cover;
+        background-position: center bottom;
+        padding: 15% 10% 0;
+        height: 60%;
+        text-align: center;
+    }
+    .bottom {
+        height: 40%;
+        padding: 6vh 15%;
+        p {
+            font-size: 0.8em;
+            text-align: center;
+            margin-bottom: 5px;
+        }
+    }
 }

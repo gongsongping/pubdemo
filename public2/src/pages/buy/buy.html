@@ -5,25 +5,38 @@
   Ionic pages and navigation.
 -->
 
-<ion-header no-border>
+<ion-header >
   <ion-toolbar>
-     <ion-buttons left>
-      <button ion-button icon-only>
-        <ion-icon name="contact"></ion-icon>
+    <ion-buttons left>
+      <button ion-button>
+        <!--<ion-icon name="locate"></ion-icon>-->
+        <img src="assets/img/sprite/location_icon_buy.png" style="width:10px;height:15px;margin-right:3px;" alt="">
+        北京
       </button>
     </ion-buttons>
-   
+
     <div style="width:100%;padding:0px 5px;">
-      <input clearInput type="text" style="border:1px solid lightgrey;border-radius:5px;width:100%;height:30px;padding:0px 5px;" >
+      <input clearInput type="text" style="border:1px solid lightgrey;border-radius:5px;width:100%;height:30px;padding:0px 5px;">
     </div>
     <ion-buttons right>
-      <button ion-button icon-only >
-        <ion-icon name="options"></ion-icon>
+      <button ion-button icon-only>
+        搜索
       </button>
     </ion-buttons>
   </ion-toolbar>
+  <div style='width:100vw;'>
+    <div style='float:left;width:25%;'><button (click)='chooseAreaTab()' [ngClass]='activeAreaTab ? "select-buy-tab":""' style='margin:0px;' color="light" ion-button small full>1</button></div>
+    <div style='float:left;width:25%;'><button (click)='choosePriceTab()' [ngClass]='activePriceTab ? "select-buy-tab":""' style='margin:0px;' color="light" ion-button small full>1</button></div>
+    <div style='float:left;width:25%;'><button (click)='chooseHouseTypeTab()' [ngClass]='activeHouseTypeTab ? "select-buy-tab":""' style='margin:0px;' color="light" ion-button small full>1</button></div>
+    <div style='float:left;width:25%;'><button (click)='chooseMoreTab()' [ngClass]='activeMoreTab ? "select-buy-tab":""' style='margin:0px;' color="light" ion-button small full>1</button></div>
+  </div>
+  <div *ngIf='activeAreaTab' style='clear:both;background-color: tomato;width: 100vw;height:30px;'>activeAreaTab</div>
+  <div *ngIf='activePriceTab' style='clear:both;background-color: tomato;width: 100vw;height:30px;'>activePriceTab</div>
+  <div *ngIf='activeHouseTypeTab' style='clear:both;background-color: tomato;width: 100vw;height:30px;'>activeHouseTypeTab</div>
+  <div *ngIf='activeMoreTab' style='clear:both;background-color: tomato;width: 100vw;height:30px;'>activeMoreTab</div>
+  
 </ion-header>
- 
+
 
 <ion-content padding>
   <ion-tabs tabbarPlacement="top" #myTabs>
@@ -31,11 +44,24 @@
     <ion-tab>价格</ion-tab>
     <ion-tab>房型</ion-tab>
   </ion-tabs>
+  <div style="padding:0px 8px;">
+    <!--<house *ngFor="let h of houses ; let i = index" (click)="goDetail(h)" [h]='h'></house>-->
+    <!--<ion-item *ngFor="let h of houses; let i = index" (click)="goDetail(h)" style="padding-left:0px;">
+      <ion-thumbnail item-left>
+        <img src="{{(h.images | ImgPipe)[0]}}">
+      </ion-thumbnail>
+      <h2>{{h.name}}</h2>
+      <p>{{h.description}}</p>
+      <p>ll</p>
+      <p>{{i}}</p>
+    </ion-item>-->
+  </div>
   <ion-fab bottom right #fab>
-    <button ion-fab><p>精准</p><p>购房</p></button>
-    <ion-fab-list side="top">
-      <button ion-fab (click)="goPrecise()">navPush precise</button>
-      <button ion-fab>Twitter</button>
-    </ion-fab-list>
+    <button ion-fab (click)="goPrecise()" style='font-size: 0.8em;'>为您找房</button>
   </ion-fab>
+  <!--enabled="dataLength > 0" threshold='20%'-->
+  <!--<ion-infinite-scroll (ionInfinite)="loadMore($event)" threshold='70%'>
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>-->
 </ion-content>

@@ -6,14 +6,25 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+  <!--<ion-navbar>
     <ion-title>sell</ion-title>
-  </ion-navbar>
+  </ion-navbar>-->
 
 </ion-header>
 
 
-<ion-content padding>
-    <nested-com [title]="title"  (notify)='onNotify($event)'></nested-com>    
-
+<ion-content>
+  <!--<nested-com [title]="title"  (notify)='onNotify($event)'></nested-com>    -->
+  <div class='top'>
+      <h2>壁虎好房 只收0.8%</h2>
+      <p>买房卖房 省钱省心</p>
+  </div>
+  <div class='bottom'>
+    <!--<a class="button button-positive pill shadow" href="#/tab/sell/sellcommission">发布房源</a>-->
+    <button ion-button round block (click)='goTo(sellcommission)'>发布房源</button>
+    <p>已有房子在壁虎好房出售？您可以</p>
+    <button ion-button round outline block (click)='goTo(sellrecord)'>查看我的房子</button>
+    <!--<a ng-if='currentUser' href="#/tab/{{activeTab}}/sellrecord" class="button button-positive button-outline pill">查看我的房子</a>-->
+    <!--<button ng-if='!currentUser' ng-click='loginmodal.show()' class="button button-positive button-outline pill">查看我的房子</button>-->
+  </div>
 </ion-content>

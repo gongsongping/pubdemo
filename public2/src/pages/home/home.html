@@ -13,7 +13,7 @@
 
   <div id="allmap" style="width:100px;height: 100px;"></div>
   <div style="padding:0px 8px;">
-    <house *ngFor="let h of houses ; let i = index" (click)="goDetail(h)" [h]='h'>{{i}}</house>
+    <house *ngFor="let h of houses ; let i = index" (click)="goDetail(h)" [h]='h'></house>
     <!--<ion-item *ngFor="let h of houses; let i = index" (click)="goDetail(h)" style="padding-left:0px;">
       <ion-thumbnail item-left>
         <img src="{{(h.images | ImgPipe)[0]}}">
@@ -25,11 +25,7 @@
     </ion-item>-->
   </div>
   <ion-fab bottom right #fab>
-    <button ion-fab (click)="goPrecise()"><p style='font-size: 0.8em;'>为您</p><p style='font-size: 0.8em;'>找房</p></button>
-    <!--<ion-fab-list side="top">
-      <button ion-fab (click)="goPrecise()">precise</button>
-      <button ion-fab>Twitter</button>
-    </ion-fab-list>-->
+    <button ion-fab (click)="goPrecise()" style='font-size: 0.8em;'>为您找房</button>
   </ion-fab>
   <!--enabled="dataLength > 0" threshold='20%'-->
   <ion-infinite-scroll (ionInfinite)="loadMore($event)" threshold='70%'>

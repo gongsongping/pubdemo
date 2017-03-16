@@ -14,7 +14,6 @@ declare var BMap: any;
 @Component({
     selector: 'page-home',
     templateUrl: 'home.html'
-    // pipes:[ImgPipe]
 })
 export class Home {
     houses = [];

@@ -17,6 +17,10 @@ export class Buy {
   @ViewChild('myTabs') tabRef: Tabs;
   // userInfo:any;
   precise = Precise
+  activeAreaTab = false
+  activeHouseTypeTab = false
+  activePriceTab = false
+  activeMoreTab = false
   constructor(public navCtrl: NavController) {}
 
   ionViewDidLoad() {
@@ -26,6 +30,31 @@ export class Buy {
   ionViewWillEnter() {
     // this.userInfo = window.localStorage.getItem('userInfo')
     console.log('Hello BuyPage Page');
+  }
+ 
+  chooseAreaTab (){
+    this.activeAreaTab =  !this.activeAreaTab
+    this.activeHouseTypeTab = false
+    this.activePriceTab = false
+    this.activeMoreTab = false
+  }
+  chooseHouseTypeTab(){
+    this.activeAreaTab = false
+    this.activeHouseTypeTab = !this.activeHouseTypeTab
+    this.activePriceTab = false
+    this.activeMoreTab = false
+  }
+  choosePriceTab(){
+    this.activeAreaTab = false
+    this.activeHouseTypeTab = false
+    this.activePriceTab = !this.activePriceTab
+    this.activeMoreTab = false
+  }
+  chooseMoreTab(){
+    this.activeAreaTab = false
+    this.activeHouseTypeTab = false
+    this.activePriceTab = false
+    this.activeMoreTab = !this.activeMoreTab
   }
   goPrecise(){
     if (window.localStorage.getItem('tokens')){
