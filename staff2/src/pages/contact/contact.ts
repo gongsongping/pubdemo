@@ -21,9 +21,27 @@ export class Contact {
   allPerson: number
   myInput: any = ''
   shouldShowCancel: any
+  showHeight = false
+  mycity: any
+  cities=[]
   contactdetails: any = Contactdetails
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
+    let vm = this
+    axios.get('/api/account/departments', {
+      params: {
+        type: 1
+      }
+    })
+      .then(function (res) {
+        vm.cities = res.data.data
+        console.log(vm.cities);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
 
   loadMore(infiniteScroll) {
     let vm = this
@@ -74,6 +92,18 @@ export class Contact {
 
   onCancel(event) {
     console.log(event);
+  }
+
+  ionChange(){
+    console.log(1);
+  }
+  openDepartment(){
+    //  this.height = '500px'
+    this.showHeight = true
+  }
+  closeDepartment(){
+    //  this.height = '500px'
+    this.showHeight = false
   }
 
   goDetail(t) {

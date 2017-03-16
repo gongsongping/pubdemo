@@ -8,6 +8,24 @@ page-contact {
       display: flex;
       justify-content: space-around;
       margin: 11px 5%;
+      .pop {
+        width:100vw;
+        height: 100vh;
+        background-color: rgba(0,0,0,.7);
+        position:absolute;z-index:100;
+        top: 0;
+        .popover {
+          background: #fff;
+          margin-top: 90px;
+          padding: 10px;
+          padding-bottom: 30px;
+          .select {
+            border: solid 1px;
+            width: 20vw;
+            padding: 5px 10px;
+          }
+        }
+      }
       .ion-search {
         font-size: 18px;
         color: #aaa;

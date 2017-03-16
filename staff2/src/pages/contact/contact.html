@@ -18,9 +18,19 @@ Ionic pages and navigation.
 <ion-content padding class="contact">
   <div class="contact">
     <div class='search flex-1'>
+      <div *ngIf='showHeight' class="pop">
+        <div class="popover">
+          <ion-select [(ngModel)]="mycity" (ionChange)="ionChange()">
+            <ion-option  *ngFor="let t of cities" value="{{t}}">{{t.name}}</ion-option>
+          </ion-select>
+          <button ion-button small color='primary' (click)='closeDepartment()'>关闭</button>
+        </div>
+      </div>
+
       <ion-searchbar (ionInput)="onInput($event)" (ionCancel)="onCancel($event)" [showCancelButton]="shouldShowCancel"
-                     [(ngModel)]="myInput" class="item item-input" placeholder="搜索联系人"></ion-searchbar>
-      <div style="line-height: 31px" ng-click="openPopover($event)">
+                     [(ngModel)]="myInput" class="item item-input" placeholder="搜索联系人">
+      </ion-searchbar>
+      <div style="line-height: 31px" (click)="openDepartment()">
         筛选
         <ion-icon ios="ios-arrow-dropdown" md="md-arrow-dropdown"></ion-icon>
       </div>
@@ -47,7 +57,9 @@ Ionic pages and navigation.
         </p>
       </div>
     </div>
-    <a href="tel:{{t.mobile}}"><ion-icon name="call" style="font-size: 40px;margin-right: 15px;"></ion-icon></a>
+    <a href="tel:{{t.mobile}}">
+      <ion-icon name="call" style="font-size: 40px;margin-right: 15px;"></ion-icon>
+    </a>
   </div>
   <div *ngIf="dataLength == 0" style="padding:10px;">
     <h5 style="text-align: center;color: #666">没有了!</h5>
