@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 // import { NestedCom, NestedContent } from '../../providers/nested-com';
 
+import { Sellcommission } from '../sellcommission/sellcommission';
+import { Sellrecord } from '../sellrecord/sellrecord';
+import { Login } from '../login/login';
 /*
   Generated class for the Sell page.
 
@@ -14,6 +17,9 @@ import { NavController } from 'ionic-angular';
 })
 export class Sell {
   title:any = 'title from parent'
+  sellcommission = Sellcommission
+  sellrecord = Sellrecord
+  
   constructor(public navCtrl: NavController) {}
 
   ionViewDidLoad() {
@@ -21,5 +27,12 @@ export class Sell {
   }
   onNotify(message:any) {
     alert(message);
+  }
+  goTo(p){
+    if (window.localStorage.getItem('tokens')){
+       this.navCtrl.push(p)
+    } else {
+       this.navCtrl.push(Login)      
+    }
   }
 }
