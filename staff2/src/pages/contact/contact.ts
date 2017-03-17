@@ -192,6 +192,15 @@ export class Contact {
     // }
   }
 
+  cityChange(mycity){
+    console.log(mycity);
+  }
+
+  areaChange(myarea){
+    console.log(1);
+    console.log(myarea);
+  }
+
   closeDepartment(){
     //  this.height = '500px'
     this.showHeight = false
