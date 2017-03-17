@@ -69,15 +69,15 @@
 	</div>
 	<div class="home-info" *ngIf="tabIndex == 4">
 		<div class="row">
-			<div class="col-50" (click)="pushHousemine(housemine)">
+			<div class="col-50" (click)="pushHousemine(housemine)"  *ngIf="roleName == '房管家'">
 				<div>
-					<img src="assets/img/icon/_0007_myhome.png" width="65" />
+					<img src="assets/img/icon/_0007_myhome.png" width="65"/>
 					<h5>我的房源</h5>
 				</div>
 			</div>
-			<div class="col-50">
+			<div class="col-50"  *ngIf="roleName == '经理' || roleName == '副总经理' || roleName == '总经理'">
 				<div>
-					<img src="assets/img/icon/_0007_myhome.png" width="65" />
+					<img src="assets/img/icon/_0007_myhome.png" width="65"/>
 					<h5>房源管理</h5>
 				</div>
 			</div>
@@ -120,7 +120,7 @@
 						<h5 [ngClass]="{'colblue': tabIndex == 3}">数据管理</h5>
 					</div>
 				</div>
-				<div class="col1" (click)="tabColor(4)" *ngIf="roleName == '房管家'">
+				<div class="col1" (click)="tabColor(4)">
 					<div>
 						<img src="assets/img/icon/{{tabIndex == 4 ? '_0014_house.png' : '_0015_house.png'}}" width="25" />
 						<h5 [ngClass]="{'colblue': tabIndex == 4}">房源管理</h5>

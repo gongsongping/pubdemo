@@ -205,3 +205,17 @@
         font-size:0.8em;
     }
 } 
+
+.menu-option{
+    position: fixed;
+    top: 44px;
+    right: 0;
+    width: 100px;
+    z-index: 15;
+    background-color: #fff;
+    border: 1px solid #e4ebf8;
+    border-top:0;
+    div{
+
+    }
+}

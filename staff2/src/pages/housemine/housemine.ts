@@ -31,7 +31,7 @@ export class Housemine {
     addMore = false;
     dataLength = 10;
     searchData = { input: '', district: '' }
-    subtabs = [{ id: 0, title: '价格' }, { id: 1, title: '户型' }, { id: 2, title: '钥匙' }, { id: 3, title: '更多' }]
+    subtabs = [{ id: 0, title: '价格' }, { id: 1, title: '户型' }, { id: 2, title: '二手房' }, { id: 3, title: '更多' }]
     constructor(public navCtrl: NavController, public navParams: NavParams) {
 
     }
@@ -52,6 +52,11 @@ export class Housemine {
             this.userInfo = ''
         }
     }
+
+    presentPopover(e){
+        console.log(e);
+    }
+
     totalMessages() {
         let vm = this
         let url = '/api/housing/houses?size=10&hkId=' + this.userInfo.id
