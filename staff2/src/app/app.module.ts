@@ -7,7 +7,7 @@ import { Task } from '../pages/task/task';
 import { Todo } from '../pages/todo/todo';
 import { Tododetails } from '../pages/tododetails/tododetails';
 import { Role } from '../pages/role/role';
-import { ModalResetpw, House, Contactpop, Modaldistrict } from '../providers/services';
+import {  House, ImgPipe } from '../providers/services';
 import { Changepw } from '../pages/changepw/changepw';
 import { Resetpw } from '../pages/resetpw/resetpw';
 import { About } from '../pages/about/about';
@@ -34,19 +34,17 @@ import { Houseclue } from '../pages/houseclue/houseclue';
     Resetpw,
     About,
     Role,
-    ModalResetpw,
     House,
     Housemine,
     Housesearch,
     Message,
     Contact,
     Contactdetails,
-    Contactpop,
     Recommendbuyer,
     MyRecommendbuyer,
     Housevisitapply,
     Houseclue,
-    Modaldistrict
+    ImgPipe
   ],
   imports: [
     IonicModule.forRoot(MyApp, {
@@ -65,18 +63,15 @@ import { Houseclue } from '../pages/houseclue/houseclue';
     Resetpw,
     About,
     Role,
-    ModalResetpw,
     Housemine,
     Housesearch,
     Message,
     Contact,
     Contactdetails,
-    Contactpop,
     Recommendbuyer,
     MyRecommendbuyer,
     Housevisitapply,
-    Houseclue,
-    Modaldistrict
+    Houseclue
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })

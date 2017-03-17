@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, Pipe, PipeTransform } from '@angular/core';
 import axios from 'axios';
 
 /*
@@ -7,6 +7,19 @@ import axios from 'axios';
   See https://angular.io/docs/ts/latest/guide/dependency-injection.html
   for more info on providers and Angular 2 DI.
 */
+@Pipe({name: 'ImgPipe'})
+export class ImgPipe implements PipeTransform {
+  transform(value: any): any {
+        let ps;
+        if (value) {
+            ps = JSON.parse(value)
+        }
+        // console.log(ps)
+        return ps
+  }
+}
+
+
 @Component({
   selector: 'modal-resetpw',
   template: `
@@ -98,38 +111,5 @@ export class House {
   }
 }
 
-@Component({
-  selector: 'contact-pop',
-  template: `
-    <div>contact-pop</div>
-  `
-})
-export class Contactpop {
 
-  constructor() {
-    console.log('contact pop ');
-  }
-  ngOnInit() {
-    console.log('contact pop');
-  }
-
-}
-
-@Component({
-  selector: 'modaldistrict',
-  // templateUrl: '_modaldistrict.html'
-  template:`
-    <div>modaldistrict</div>
-  `
-})
-export class Modaldistrict {
-
-  constructor() {
-    console.log('contact pop ');
-  }
-  ngOnInit() {
-    console.log('contact pop');
-  }
-
-}
 

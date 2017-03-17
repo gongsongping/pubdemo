@@ -19,18 +19,26 @@ page-contact {
         position:absolute;z-index:100;
         top: 0;
         .popover {
+          position: relative;
           margin: 0 2%;
           border-radius: 2%;
           background: #fff;
           margin-top: 90px;
-          padding: 30px 16px 100px;
+          padding: 10px 16px 80px;
           .select {
+            width: 26%;
+            margin-top: 10px;
+            margin-left: 10px;
             display: inline-flex;
-            border: solid 1px;
+            border: solid 1px #999;
             padding: 5px 10px;
           }
           .atn {
             position: absolute;
+            left: 50%;
+            right: 50%;
+            bottom: 15px;
+            transform: translate(-50%)
           }
         }
       }
