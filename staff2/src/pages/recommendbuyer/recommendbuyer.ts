@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, ModalController } from 'ionic-angular';
 
 import { MyRecommendbuyer } from '../myRecommendbuyer/myRecommendbuyer';
-import { Modaldistrict } from '../../providers/services';
+
 
 
 /*
@@ -38,7 +38,7 @@ export class Recommendbuyer {
     this.navCtrl.push(h);
   }
   presentModal() {
-    let modal = this.modalCtrl.create(Modaldistrict,{id:999});
-    modal.present();
+    // let modal = this.modalCtrl.create(Modaldistrict,{id:999});
+    // modal.present();
   }
 }
