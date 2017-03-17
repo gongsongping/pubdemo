@@ -123,6 +123,7 @@ export class Role {
   }
   
   pushHome(i,r){
+    localStorage.setItem('role',r)
     this.navCtrl.push(i,{
         id:r
     });

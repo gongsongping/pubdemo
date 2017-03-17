@@ -4,10 +4,36 @@ page-contact {
     .choosedtab {
       border: none !important;
     }
+    .item-cover {
+      width: auto;
+      height: auto;
+    }
     .search {
       display: flex;
       justify-content: space-around;
       margin: 11px 5%;
+      .pop {
+        width:100vw;
+        height: 100vh;
+        background-color: rgba(0,0,0,.7);
+        position:absolute;z-index:100;
+        top: 0;
+        .popover {
+          margin: 0 2%;
+          border-radius: 2%;
+          background: #fff;
+          margin-top: 90px;
+          padding: 30px 16px 100px;
+          .select {
+            display: inline-flex;
+            border: solid 1px;
+            padding: 5px 10px;
+          }
+          .atn {
+            position: absolute;
+          }
+        }
+      }
       .ion-search {
         font-size: 18px;
         color: #aaa;

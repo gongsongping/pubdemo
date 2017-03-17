@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-
+import axios from 'axios';
 /*
   Generated class for the Contactdetails page.
 
@@ -12,8 +12,17 @@ import { NavController, NavParams } from 'ionic-angular';
   templateUrl: 'contactdetails.html'
 })
 export class Contactdetails {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  staff: any
+  depart: any = []
+  constructor(public navCtrl: NavController, public params: NavParams) {
+    let vm = this
+    vm.staff = params.get('staff');
+    let department = vm.staff.department
+    while (department){
+      vm.depart.unshift(department)
+      department = department.superior
+    }
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ContactdetailsPage');
