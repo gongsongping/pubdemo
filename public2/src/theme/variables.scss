@@ -21,12 +21,14 @@
 // colors so you can add, rename and remove colors as needed.
 // The "primary" color is the only required color in the map.
 // #387ef5
+// light:      #f4f4f4,
 $colors: (
   primary:    #265fdf,
   secondary:  #32db64,
   danger:     #f53d3d,
-  light:      #f4f4f4,
-  dark:       #222
+  light:      #F6F7FB,
+  dark:       #222,
+  white:white,
 );
 
 
@@ -37,7 +39,9 @@ $colors: (
 // $tabs-ios-tab-min-height:49px;
 // $toolbar-md-height:44px;
 $item-ios-thumbnail-size:80px;
-
+$searchbar-ios-background-color: white;
+$searchbar-ios-input-background-color:#F6F7FB;
+$searchbar-ios-toolbar-input-background: #F6F7FB;
 
 // App Material Design Variables
 // --------------------------------------------------

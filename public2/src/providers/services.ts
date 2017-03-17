@@ -17,13 +17,6 @@ export class ImgPipe implements PipeTransform {
 }
 
 
-
-/*
-  Generated class for the NestedCom provider.
-
-  See https://angular.io/docs/ts/latest/guide/dependency-injection.html
-  for more info on providers and Angular 2 DI.
-*/
 @Component({
   selector: 'nested-com',
   template:`<div>
@@ -44,6 +37,7 @@ export class NestedCom {
     this.notify.emit('Click from nested component');
   }
 }
+
 
 @Component({
   selector: 'house',
@@ -73,12 +67,6 @@ export class House {
 }
 
 
-/*
-  Generated class for the TestService provider.
-
-  See https://angular.io/docs/ts/latest/guide/dependency-injection.html
-  for more info on providers and Angular 2 DI.
-*/
 @Injectable()
 export class TestService {
   public message: any = "I'm a testservice message";
