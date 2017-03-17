@@ -196,6 +196,9 @@
 .search-dropdown{
     position: relative;
     width: 100%;
+    height:auto;
+    overflow: hidden;
+    z-index: 20;
     .button{
         margin: 0;
         height: 30px;
@@ -206,16 +209,142 @@
     }
 } 
 
-.menu-option{
-    position: fixed;
-    top: 44px;
-    right: 0;
-    width: 100px;
-    z-index: 15;
-    background-color: #fff;
-    border: 1px solid #e4ebf8;
-    border-top:0;
-    div{
-
+.content-list{
+    width:100vw;
+    height:100vh;
+    .shadow-top{
+        position: absolute;
+        z-index: 9;
+        width:100vw;
+        height:100rem;
+        background-color: rgba(0,0,0,.3);
+    }
+    .house-list{
+        position: absolute;
+        top:0;
+        left:0;
+        z-index: 18;
+        width: 100vw;
+        .list{
+        background: #fff;
+        margin: 0;
+        height:auto;
+            .button{
+                width:100%;
+                text-align: center;
+                border-left:0;
+                border-right:0;
+                border-color:#e4ebf8;
+                margin: -1px;
+                span{
+                    color:black;
+                }
+            }
+            .button:first-child{
+                border-top:0;
+            }
+        }
+    }
+    .housemore{
+        position: absolute;
+        top:0;
+        left:0;
+        z-index: 18;
+        width: 100vw;
+        margin-bottom: 0;
+        background: #fff;
+    .more-list{
+        margin: 0 10px;
+        .item{
+            margin: 0;
+            padding:10px 0;
+            border-top:0;
+            border-left:0;
+            border-right:0;
+            border-color: #e4ebf8;
+            h5{
+                margin: 0;
+            }
+            .flex-row{
+                align-content: flex-start;
+                flex-wrap: wrap;
+                .button{
+                    border-radius: 5px;
+                    border:1px solid #e4ebf8;
+                    width: 80px;
+                    min-width: 80px;
+                    min-height: 25px;
+                    height: 25px;
+                    line-height:25px;
+                    text-align: center;
+                    margin: 10px 10px 0 0;
+                    font-size:.8em;
+                    background: #fff;
+                    padding:0;
+                    color:gray;
+                }
+                &>div{
+                    border-radius: 5px;
+                    border:1px solid #e4ebf8;
+                    width: 80px;
+                    height: 25px;
+                    line-height:25px;
+                    text-align: center;
+                    margin: 10px 10px 0 0;
+                    font-size:.8em;
+                    background: #fff;
+                    padding:0;
+                    input{
+                        border:0;
+                        border-radius: 5px;
+                        width: 78px;
+                        height: 23px;
+                    }
+                }
+                .main-color{
+                    border-color:#265fdf;
+                    color:#265fdf;
+                }
+                &>span{
+                    width:10px;
+                    height:1px;
+                    background: #e4ebf8;
+                    margin-top: 20px;
+                    margin-right: 10px;
+                }
+            }
+        }
+        .item:last-child{
+            border-bottom:0;
+        }
+    }
+    .button-clear{
+            width: 100%;
+            text-align: center;
+            border-radius: 0;
+            color: gray;
+            border: 1px solid #f0f2f6;
+            border-left: 0;
+            border-right: 0;
+    }
+    .button-positive{
+        margin: 10px;
     }
 }
+}
+// .menu-option{
+//     position: fixed;
+//     top: 46px;
+//     right: 0;
+//     width: 100px;
+//     z-index: 15;
+//     background-color: #fff;
+//     border-left: 1px solid #e4ebf8;
+//     .button{
+//         color:gray;
+//         background-color: #f8f8f8;
+//         margin: 0;
+//         height:2em;
+//         border-bottom: 1px solid #e4ebf8;
+//     }
+// }
