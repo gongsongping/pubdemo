@@ -17,19 +17,18 @@ export class Buy {
   @ViewChild('myTabs') tabRef: Tabs;
   // userInfo:any;
 
-  // searchData = {input:''}
-  inputStart = false
-
   constructor(public navCtrl: NavController) {}
   
   ionViewDidLoad() {
     this.tabRef.select(1);
     console.log('Hello BuyPage Page');
   }
+
   regions:any
   ionViewWillEnter() {
-    let vm = this
     console.log('Hello BuyPage Page');
+    let vm = this
+    vm.loadMore(false)
      // vm.regions = ['武侯区', '青羊区', '金牛区', '锦江区', '高新区']
     axios({
         method: 'get',
@@ -80,6 +79,7 @@ export class Buy {
     console.log('--cancel-event--',e);
   }
   //input district 小区
+  inputStart = false
   focus() {
       this.inputStart = true
   }
@@ -130,21 +130,23 @@ export class Buy {
   dataLength = 0
   // vm.size = 10;
   // vm.status = 2
-  loadMore () {
+  loadMore (infiniteScroll) {
       // vm.start = vm.start + 1
       let vm = this
-      var params = { start: vm.start }
+      let params = { start: vm.start }
+      let tabParams = vm.priceParams + vm.houseTypeParams + vm.buildingAreaParams + vm.buildYearParams + vm.orientationParams + vm.regionParams
       axios({
           method: 'get',
-          url:  '/api/housing/houses?size=10&status=2' + vm.priceParams + vm.houseTypeParams + vm.buildingAreaParams + vm.buildYearParams + vm.orientationParams + vm.regionParams,
+          url:  '/api/housing/houses?size=10&status=2' + tabParams,
           params: params
-      })
-          .then(function successCallback(res) {
+      }).then(function(res) {
               // console.log(res.data.data)
               vm.houses = vm.houses.concat(res.data.data);
               vm.dataLength = res.data.data.length
-              // console.log(vm.dataLength);
               // vm.housesTotal = res.data.total
+              if (infiniteScroll) {
+                  infiniteScroll.complete();
+              }
               vm.start = vm.start + 1
           })
   }
@@ -155,28 +157,27 @@ export class Buy {
       vm.houses = [];
       vm.start = 0;
       vm.dataLength = 10;
-      var params = { start: vm.start }
+      let params = { start: vm.start }
+      let tabParams = vm.priceParams + vm.houseTypeParams + vm.buildingAreaParams + vm.buildYearParams + vm.orientationParams + vm.regionParams
       axios({
           method: 'get',
-          url:  '/api/housing/houses?size=10&status=2' + vm.priceParams + vm.houseTypeParams + vm.buildingAreaParams + vm.buildYearParams + vm.orientationParams + vm.regionParams,
+          url:  '/api/housing/houses?size=10&status=2' + tabParams,
           params: params
       }).then(function (res) {
               vm.houses = vm.houses.concat(res.data.data);
               vm.dataLength = res.data.data.length
-              // console.log(vm.dataLength);
               // vm.housesTotal = res.data.total
               vm.start = vm.start + 1
-              // vm.$broadcast('scroll.infiniteScrollComplete')
           })
   }
 
-  inputSearch  () {
+  inputSearch () {
       let vm = this
       vm.houses = [];
       vm.start = 0;
       vm.dataLength = 10;
 
-      var params = { start: vm.start }
+      let params = { start: vm.start }
       Object.assign(params, { kwLike: vm.searchData.input })
       axios({
           method: 'get',
@@ -185,11 +186,8 @@ export class Buy {
       }).then(function (res) {
               vm.houses = vm.houses.concat(res.data.data);
               vm.dataLength = res.data.data.length
-              // console.log(vm.dataLength);
               // vm.housesTotal = res.data.total
               vm.start = vm.start + 1
-              // $state.go($state.current,null,{reload:true})
-              // vm.$broadcast('scroll.infiniteScrollComplete')
           })
   }
     // subtabs = [{ title: '区域' }, { title: '价格' }, { title: '房型' }, { title: '更多' }]
@@ -227,18 +225,20 @@ export class Buy {
         vm.choosedPrice = p
         vm.priceParams = p.params
         vm.priceTabTitle = p.name
+        this.activePriceTab = !this.activePriceTab        
         vm.search()
         console.log(vm.priceParams);
     }
     //房型
     houseTypes = [{ name: '不限', params: '' }, { name: '1室', params: '&houseType=1' }, { name: '2室', params: '&houseType=2' }, { name: '3室', params: '&houseType=3' }, { name: '3室以上', params: '&houseTypeGreaterThan=3' }]
     choosedHouseType:any
-    houseTypeTitle:any
+    houseTypeTabTitle:any
     chooseHouseType (p) {
         let vm = this
         vm.choosedHouseType = p
         vm.houseTypeParams = p.params
-        vm.houseTypeTitle = p.name
+        vm.houseTypeTabTitle = p.name
+        this.activeHouseTypeTab = !this.activeHouseTypeTab                
         vm.search()
         console.log(vm.houseTypeParams);
     }

@@ -40,30 +40,63 @@
     </div>
     <div style='float:left;width:25%;'>
       <button (click)='choosePriceTab()' [ngClass]='activePriceTab ? "select-buy-tab":""' style='margin:0px;' color="light" ion-button small full>
-        价格 &nbsp;<ion-icon name="md-arrow-dropdown"></ion-icon>
+        <span *ngIf='priceTabTitle'>{{priceTabTitle}}</span><span *ngIf='!priceTabTitle'>价格</span> &nbsp;<ion-icon name="md-arrow-dropdown"></ion-icon>
       </button>
     </div>
     <div style='float:left;width:25%;'>
       <button (click)='chooseHouseTypeTab()' [ngClass]='activeHouseTypeTab ? "select-buy-tab":""' style='margin:0px;' color="light" ion-button small full>
-        房型 &nbsp;<ion-icon name="md-arrow-dropdown"></ion-icon></button></div>
+        <span *ngIf='houseTypeTabTitle'>{{houseTypeTabTitle}}</span><span *ngIf='!houseTypeTabTitle'>房型</span> &nbsp;<ion-icon name="md-arrow-dropdown"></ion-icon>
+      </button>
+    </div>
     <div style='float:left;width:25%;'>
       <button (click)='chooseMoreTab()' [ngClass]='activeMoreTab ? "select-buy-tab":""' style='margin:0px;' color="light" ion-button small full>
         更多 &nbsp;<ion-icon name="md-arrow-dropdown"></ion-icon>
       </button>
      </div>
   </div>
-  <div *ngIf='activeAreaTab' style='clear:both;background-color: tomato;width: 100vw;height:30px;'>activeAreaTab</div>
-  <div *ngIf='activePriceTab' style='clear:both;background-color: tomato;width: 100vw;height:30px;'>activePriceTab</div>
-  <div *ngIf='activeHouseTypeTab' style='clear:both;background-color: tomato;width: 100vw;height:30px;'>activeHouseTypeTab</div>
-  <div *ngIf='activeMoreTab' style='clear:both;background-color: tomato;width: 100vw;height:30px;'>activeMoreTab</div>
+  <div *ngIf='activeAreaTab' style='clear:both;width: 100vw;background: white;'>
+    activeAreaTab
+  </div>
+  <div *ngIf='activePriceTab' style='clear:both;width: 100vw;background: white;'>
+    <!--prices价格-->
+  	<button *ngFor='let p of prices' (click)='choosePrice(p)' ion-button small full clear [color]='choosedPrice == p ? "primary":"dark"' style='margin: 0;border-bottom: 0.5px solid lightgrey;'>{{p.name}}</button>
+  </div>
+  <div *ngIf='activeHouseTypeTab' style='clear:both;width: 100vw;background: white;'>
+    <!--housetype房型-->
+		<button *ngFor='let p of houseTypes' (click)='chooseHouseType(p)' ion-button small full clear [color]='choosedHouseType == p ? "primary":"dark"' style='margin: 0;border-bottom: 0.5px solid lightgrey;'>{{p.name}}</button>
+  </div>
 
+  <div *ngIf='activeMoreTab' style='clear:both;width: 100vw;height:60vh;overflow: scroll;background: white;'>
+    <!--更多-->
+			<div style='padding:5px;font-size: 1em;'>朝向</div>
+      <div *ngFor='let p of orientations' style='padding:5px;width: 33.3vw;float: left;'>
+        <button (click)='chooseOrientation(p)' ion-button small block outline [color]='choosedOrientation == p ? "primary":"lightgrey"'>{{p.name}}</button>
+      </div>
+
+			<div style='clear:both;padding:5px;font-size: 1em;'>面积</div>      
+      <div *ngFor='let p of buildingAreas' style='padding:5px;width: 33.3vw;float: left;'>
+        <button (click)='chooseBuildingArea(p)' ion-button small block outline [color]='choosedBuildingArea == p ? "primary":"lightgrey"'>{{p.name}}</button>
+      </div>
+
+			<div style='clear:both;padding:5px;font-size: 1em;'>楼龄</div>            
+      <div *ngFor='let p of buildYears' style='padding:5px;width: 33.3vw;float: left;'>
+        <button (click)='chooseBuildYear(p)' ion-button small block outline [color]='choosedBuildYear == p ? "primary":"lightgrey"'>{{p.name}}</button>
+      </div>
+      
+			<div style='clear:both;width: 80vw;margin:5px 10vw;'>
+				<button (click)='clearMore()' ion-button clear block color='lightgrey'>清空条件</button>
+			</div>
+			<div style='width: 80vw;margin:5px 10vw;'>
+				<button ng-click='endMore()' ion-button  block>确定</button>
+			</div>
+  </div>
 </ion-header>
 
-<ion-content>
+<ion-content [style.background]='activeAreaTab||activePriceTab||activeHouseTypeTab||activeMoreTab ? "grey":""'>
 
-  <div style="padding:0px 8px;">
+  <div style="padding:5px 8px;">
     <!--<house *ngFor="let h of houses ; let i = index" (click)="goDetail(h)" [h]='h'></house>-->
-    <!--<ion-item *ngFor="let h of houses; let i = index" (click)="goDetail(h)" style="padding-left:0px;">
+    <ion-item *ngFor="let h of houses; let i = index" style="padding-left:0px;">
       <ion-thumbnail item-left>
         <img src="{{(h.images | ImgPipe)[0]}}">
       </ion-thumbnail>
@@ -71,14 +104,14 @@
       <p>{{h.description}}</p>
       <p>ll</p>
       <p>{{i}}</p>
-    </ion-item>-->
+    </ion-item>
   </div>
   <ion-fab bottom right #fab>
     <button ion-fab (click)="goPrecise()" style='font-size: 0.8em;'>为您找房</button>
   </ion-fab>
   <!--enabled="dataLength > 0" threshold='20%'-->
-  <!--<ion-infinite-scroll (ionInfinite)="loadMore($event)" threshold='70%'>
+  <ion-infinite-scroll (ionInfinite)="loadMore($event)" [enabled]='!!dataLength' threshold='70%'>
     <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
     </ion-infinite-scroll-content>
-  </ion-infinite-scroll>-->
+  </ion-infinite-scroll>
 </ion-content>
