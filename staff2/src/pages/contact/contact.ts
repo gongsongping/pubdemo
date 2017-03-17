@@ -33,6 +33,10 @@ export class Contact {
   mygroup: any
   mywsmasters: any
   userInfo: any
+  isMyarea : any
+  isMybranch : any
+  isMygroup : any
+  isMywsmasters : any
   contactdetails: any = Contactdetails
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {}
@@ -52,7 +56,25 @@ export class Contact {
         console.log(error);
       });
   }
+  //封装部门员工
+  departmentStaff(departmentId){
+    let vm =this
+    axios.get('/api/account/employees', {
+      params: {
+        departmentId: departmentId,
+        size: 999,
+        enabled: true
+      }
+    })
+      .then(function (res) {
+        vm.person = res.data.data
+        vm.allPerson = res.data.total
+        vm.dataLength = 0
 
+      })
+      .catch(function (error) {
+      });
+  }
   loadMore(infiniteScroll) {
     let vm = this
     let params = {
@@ -114,6 +136,10 @@ export class Contact {
     let vm = this
     let allDepartment = []
     let department = vm.userInfo.department
+    vm.isMyarea = true
+    vm.isMybranch = true
+    vm.isMygroup = true
+    vm.isMywsmasters = true
     axios.get('/api/account/departments', {
       params: {
         type: 1
@@ -124,7 +150,6 @@ export class Contact {
       })
       .catch(function (error) {
       });
-
     while(department){
       allDepartment.unshift(department)
       department = department.superior
@@ -146,6 +171,8 @@ export class Contact {
         .catch(function (error) {
           console.log(error);
         });
+    }else {
+      vm.isMyarea = false
     }
     if(allDepartment[2]){
       vm.mybranch = allDepartment[2].id
@@ -160,10 +187,11 @@ export class Contact {
         .catch(function (error) {
           console.log(error);
         });
+    }else{
+      vm.isMybranch = false
     }
     if(allDepartment[3]){
       vm.mygroup = allDepartment[3].id
-      // this.departmentSelf(vm.mygroup.id)
       axios.get('/api/account/departments', {
         params: {
           superiorId: vm.mygroup
@@ -175,26 +203,121 @@ export class Contact {
         .catch(function (error) {
           console.log(error);
         });
+    }else{
+      vm.isMygroup = false
     }
-    // if(allDepartment[4]){
-    //   vm.mywsmasters = allDepartment[4].id
-    //   axios.get('/api/account/departments', {
-    //     params: {
-    //       superiorId: vm.mywsmasters
-    //     }
-    //   })
-    //     .then(function (res) {
-    //       vm.wsmasters = res.data.data
-    //     })
-    //     .catch(function (error) {
-    //       console.log(error);
-    //     });
-    // }
+    if(allDepartment[4]){
+      vm.mywsmasters = allDepartment[4].id
+    }else {
+      vm.isMywsmasters = false
+    }
   }
-
+  cityChange(mycity){
+    let vm = this
+    vm.isMyarea = true
+    vm.isMybranch = false
+    vm.isMygroup = false
+    vm.isMywsmasters = false
+    vm.myarea = ''
+    vm.mybranch = ''
+    vm.mygroup = ''
+    vm.mywsmasters = ''
+    axios.get('/api/account/departments', {
+      params: {
+        superiorId: mycity
+      }
+    })
+      .then(function (res) {
+        vm.area = res.data.data
+        if(vm.area.length == 0){
+          vm.isMyarea = false
+        }
+      })
+      .catch(function (error) {
+      });
+  }
+  areaChange(myarea){
+    let vm = this
+    vm.isMybranch = true
+    vm.isMygroup = false
+    vm.isMywsmasters = false
+    vm.mybranch = ''
+    vm.mygroup = ''
+    vm.mywsmasters = ''
+    axios.get('/api/account/departments', {
+      params: {
+        superiorId: myarea
+      }
+    })
+      .then(function (res) {
+        vm.branch = res.data.data
+        if(vm.branch.length == 0 ){
+          vm.isMybranch = false
+        }
+      })
+      .catch(function (error) {
+      });
+  }
+  branchChange(mybranch){
+    let vm = this
+    vm.isMygroup = true
+    vm.isMywsmasters = false
+    vm.mygroup = ''
+    vm.mywsmasters = ''
+    axios.get('/api/account/departments', {
+      params: {
+        superiorId: mybranch
+      }
+    })
+      .then(function (res) {
+        vm.group = res.data.data
+        if(vm.group.length == 0){
+          vm.isMygroup = false
+        }
+      })
+      .catch(function (error) {
+      });
+  }
+  groupChange(mygroup){
+    let vm = this
+    vm.isMywsmasters = true
+    vm.mywsmasters = ''
+    axios.get('/api/account/departments', {
+      params: {
+        superiorId: mygroup
+      }
+    })
+      .then(function (res) {
+        vm.wsmasters = res.data.data
+        if(vm.wsmasters.length == 0){
+          vm.isMywsmasters = false
+        }
+      })
+      .catch(function (error) {
+      });
+  }
+  //关闭删选功能
   closeDepartment(){
-    //  this.height = '500px'
-    this.showHeight = false
+    let vm =this
+    let department = vm.userInfo.department
+    let allDepartment = []
+    vm.showHeight = false
+    while(department){
+      allDepartment.unshift(department)
+      department = department.superior
+    }
+    if(vm.myarea == false){
+      vm.departmentStaff(vm.mycity)
+    }else if(vm.mybranch == false){
+      vm.departmentStaff(vm.myarea)
+    }else if(vm.mygroup == false){
+      vm.departmentStaff(vm.mybranch)
+    }else if(vm.mywsmasters == false){
+      vm.departmentStaff(vm.mygroup)
+    }else {
+      vm.departmentStaff(vm.mywsmasters)
+      // vm.departmentStaff(allDepartment[allDepartment.length-1].id)
+    }
   }
 
   goDetail(t) {
