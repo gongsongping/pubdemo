@@ -7,8 +7,14 @@ import { Buy } from '../pages/buy/buy';
 import { Sell } from '../pages/sell/sell';
 import { Mine } from '../pages/mine/mine';
 import { Login } from '../pages/login/login';
-import { HouseDetail } from '../pages/house-detail/house-detail';
+import { Housedetails } from '../pages/housedetails/housedetails';
 import { Precise } from '../pages/precise/precise';
+import { Sellcommission } from '../pages/sellcommission/sellcommission';
+import { Sellrecord } from '../pages/sellrecord/sellrecord';
+import { About } from '../pages/about/about';
+import { Consultant } from '../pages/consultant/consultant';
+import { Servicecall } from '../pages/servicecall/servicecall';
+import { Visitrecord } from '../pages/visitrecord/visitrecord';
 
 import { NestedCom, House, TestService, ImgPipe } from '../providers/services';
 
@@ -21,12 +27,18 @@ import { NestedCom, House, TestService, ImgPipe } from '../providers/services';
     Sell,
     Mine,
     Login,
-    HouseDetail,
+    Housedetails,
     Precise,
     Tabs,
     ImgPipe,
     NestedCom,
-    House
+    House,
+    Sellrecord,
+    Sellcommission,
+    About,
+    Consultant,
+    Servicecall,
+    Visitrecord
   ],
   imports: [
     IonicModule.forRoot(MyApp,{
@@ -43,9 +55,15 @@ import { NestedCom, House, TestService, ImgPipe } from '../providers/services';
     Sell,
     Mine,
     Login,
-    HouseDetail,
+    Housedetails,
     Precise,
-    Tabs
+    Tabs,
+    Sellrecord,
+    Sellcommission,
+    About,
+    Consultant,
+    Servicecall,
+    Visitrecord
   ],
   providers: [{ provide: ErrorHandler, useClass: IonicErrorHandler }, TestService]
 })

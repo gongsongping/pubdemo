@@ -40,7 +40,7 @@ export class MyApp {
         if (localStorage.getItem('tokens')) {
             this.tokens = JSON.parse(localStorage.getItem('tokens'))
             this.userInfo = JSON.parse(localStorage.getItem('userInfo'))
-            console.log('------',this.tokens,'-----')
+            console.log('------',this.tokens,'-----',this.userInfo)
             axios.defaults.headers.common['Authorization'] = "Bearer " + this.tokens.access_token
 
             let access_token = this.tokens.access_token

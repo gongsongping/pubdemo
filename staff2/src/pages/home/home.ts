@@ -47,7 +47,7 @@ export class Home {
     setTimeout(()=> {
       this.messagesTotal = localStorage.getItem('messagesTotal')
       this.tasksTotal =  localStorage.getItem('tasksTotal')  
-    }, 1000);
+    }, 500);
     console.log('----role page taskstotal----',this.tasksTotal,'---messagesTotal---',this.messagesTotal);
   }
   // if(){
