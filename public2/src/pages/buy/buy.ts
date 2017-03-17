@@ -21,8 +21,10 @@ export class Buy {
   activeHouseTypeTab = false
   activePriceTab = false
   activeMoreTab = false
-  constructor(public navCtrl: NavController) {}
 
+  search:any
+  constructor(public navCtrl: NavController) {}
+  
   ionViewDidLoad() {
     this.tabRef.select(1);
     console.log('Hello BuyPage Page');
@@ -62,6 +64,11 @@ export class Buy {
     } else {
        this.navCtrl.push(Login)      
     }
+  }
+  searchInput (e){
+    console.log('--model--',this.search);
+    console.log('--event--',e);
+
   }
 
 }
