@@ -20,19 +20,19 @@ Ionic pages and navigation.
     <div class='search flex-1'>
       <div *ngIf='showHeight' class="pop">
         <div class="popover">
-          <ion-select [(ngModel)]="mycity" ionChange="cityChange(mycity)" okText="确定" cancelText="取消">
+          <ion-select [(ngModel)]="mycity" (ionChange)="cityChange(mycity)" okText="确定" cancelText="取消">
             <ion-option  *ngFor="let t of cities" value="{{t.id}}">{{t.name}}</ion-option>
           </ion-select>
-          <ion-select [(ngModel)]="myarea" (change)="areaChange(myarea)" *ngIf="myarea" okText="确定" cancelText="取消">
+          <ion-select [(ngModel)]="myarea" (ionChange)="areaChange(myarea)" *ngIf="isMyarea" okText="确定" cancelText="取消">
             <ion-option  *ngFor="let t of area" value="{{t.id}}">{{t.name}}</ion-option>
           </ion-select>
-          <ion-select [(ngModel)]="mybranch" *ngIf="mybranch" okText="确定" cancelText="取消">
+          <ion-select [(ngModel)]="mybranch" (ionChange)="branchChange(mybranch)" *ngIf="isMybranch" okText="确定" cancelText="取消">
             <ion-option  *ngFor="let t of branch" value="{{t.id}}">{{t.name}}</ion-option>
           </ion-select>
-          <ion-select [(ngModel)]="mygroup" *ngIf="mygroup" okText="确定" cancelText="取消">
+          <ion-select [(ngModel)]="mygroup" (ionChange)="groupChange(mygroup)" *ngIf="isMygroup" okText="确定" cancelText="取消">
             <ion-option  *ngFor="let t of group" value="{{t.id}}">{{t.name}}</ion-option>
           </ion-select>
-          <ion-select [(ngModel)]="mywsmasters" *ngIf="mywsmasters" okText="确定" cancelText="取消">
+          <ion-select [(ngModel)]="mywsmasters" *ngIf="isMywsmasters" okText="确定" cancelText="取消">
             <ion-option  *ngFor="let t of wsmasters" value="{{t.id}}">{{t.name}}</ion-option>
           </ion-select>
 
