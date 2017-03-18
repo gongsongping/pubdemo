@@ -3,6 +3,8 @@ import { NavController,Tabs } from 'ionic-angular';
 import { Precise } from '../precise/precise';
 import { Login } from '../login/login';
 import axios from 'axios';
+import { Housedetails } from '../housedetails/housedetails';
+
 /*
   Generated class for the Buy page.
 
@@ -16,19 +18,25 @@ import axios from 'axios';
 export class Buy {
   @ViewChild('myTabs') tabRef: Tabs;
   // userInfo:any;
-
   constructor(public navCtrl: NavController) {}
   
   ionViewDidLoad() {
-    this.tabRef.select(1);
-    console.log('Hello BuyPage Page');
+    // this.tabRef.select(1);
+    console.log('buy BuyPage didload');
+    this.loadMore(false)
+    
+  }
+  
+  housedetails = Housedetails
+  goDetail(h) {
+      this.navCtrl.push(Housedetails, { house: h })
   }
 
   regions:any
   ionViewWillEnter() {
-    console.log('Hello BuyPage Page');
+    console.log('Hello BuyPage willenter');
     let vm = this
-    vm.loadMore(false)
+    // vm.loadMore(false)
      // vm.regions = ['武侯区', '青羊区', '金牛区', '锦江区', '高新区']
     axios({
         method: 'get',
