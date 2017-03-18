@@ -79,13 +79,14 @@ export class Buy {
     this.activeMoreTab = !this.activeMoreTab
   }
  
-  searchInput (e){
-    console.log('--model--',this.search);
-    console.log('--event--',e.target.value);
-  }
-  onCancel(e){
-    console.log('--cancel-event--',e);
-  }
+  // searchInput (e){
+  //   console.log('--model--',this.search);
+  //   console.log('--event--',e.target.value);
+  //   console.log('--event--',value);
+  // }
+  // onCancel(e){
+  //   console.log('--cancel-event--',e);
+  // }
   //input district 小区
   inputStart = false
   focus() {
@@ -97,11 +98,12 @@ export class Buy {
   searchData = { input: '' }
   clearInput (e) {
       this.searchData.input = ""
-      // vm.inputParams = undefined
+      this.inputParams = ''
+      console.log('---inputparams--',this.inputParams);
       this.inputStart = false
   }
   districts = []
-  searchDis (e) {
+  searchDisOnInpuChange (e) {
       console.log(this.searchData.input);
       let vm = this
       if (e.target.value){
@@ -109,6 +111,7 @@ export class Buy {
       } else {
         this.inputStart = false        
       }
+      this.inputParams = '&kwLike='+e.target.value
       axios({
           method: 'get',
           url:  '/api/housing/subdistricts',
@@ -118,21 +121,53 @@ export class Buy {
           })
   }
 
+  inputParams = ''
   chooseDis(d) {
       this.searchData.input = d.name
+      this.inputParams = '&kwLike='+this.searchData.input
       console.log('choose searchdata',this.searchData.input);
       this.inputStart = false
   }
 
-  //params
-  priceParams = ''
-  houseTypeParams = ''
-  buildingAreaParams = ''
-  buildYearParams = ''
-  orientationParams = ''
-  regionParams = ''
+  inputSearch () {
+      let vm = this
+      vm.houses = [];
+      vm.start = 0;
+      vm.dataLength = 10;
+      vm.inputStart = false        
+      
+      //clear other params
+      vm.regionParams = ''
+      vm.choosedRegion = ''
+      vm.choosedPrice = ''
+      vm.priceParams = ''
+      vm.priceTabTitle = '价格'
+      vm.choosedHouseType = ''
+      vm.houseTypeParams = ''
+      vm.houseTypeTabTitle = '房型'
+      vm.choosedOrientation = ''
+      vm.orientationParams = ''
+      vm.choosedBuildingArea = ''
+      vm.buildingAreaParams = ''
+      vm.choosedBuildYear = ''
+      vm.buildYearParams = ''
+      vm.choosedOrientation = ''
+      vm.orientationParams = ''
 
-  inputParams = ''
+      let params = { start: vm.start }
+      // Object.assign(params, { kwLike: vm.searchData.input })
+      axios({
+          method: 'get',
+          url:  '/api/housing/houses?size=10&status=2'+vm.inputParams,
+          params: params
+      }).then(function (res) {
+              vm.houses = vm.houses.concat(res.data.data);
+              vm.dataLength = res.data.data.length
+              // vm.housesTotal = res.data.total
+              vm.start = vm.start + 1
+          })
+  }
+
   houses = [];
   start = 0;
   dataLength = 10
@@ -140,10 +175,10 @@ export class Buy {
   loadMore (infiniteScroll) {
       let vm = this
       let params = { start: vm.start }
-      let tabParams = vm.priceParams + vm.houseTypeParams + vm.buildingAreaParams + vm.buildYearParams + vm.orientationParams + vm.regionParams
+      let inputTabParams = vm.inputParams + vm.priceParams + vm.houseTypeParams + vm.buildingAreaParams + vm.buildYearParams + vm.orientationParams + vm.regionParams
       axios({
           method: 'get',
-          url:  '/api/housing/houses?size=10&status=2' + tabParams,
+          url:  '/api/housing/houses?size=10&status=2' + inputTabParams,
           params: params
       }).then(function(res) {
               // console.log(res.data.data)
@@ -156,38 +191,22 @@ export class Buy {
               vm.start = vm.start + 1
           })
   }
-  // vm.loadMore()
 
   search() {
       let vm = this
       vm.houses = [];
       vm.start = 0;
       vm.dataLength = 10;
+
+      //clear input
+      this.searchData.input = ''
+      this.inputParams = ''
+
       let params = { start: vm.start }
       let tabParams = vm.priceParams + vm.houseTypeParams + vm.buildingAreaParams + vm.buildYearParams + vm.orientationParams + vm.regionParams
       axios({
           method: 'get',
           url:  '/api/housing/houses?size=10&status=2' + tabParams,
-          params: params
-      }).then(function (res) {
-              vm.houses = vm.houses.concat(res.data.data);
-              vm.dataLength = res.data.data.length
-              // vm.housesTotal = res.data.total
-              vm.start = vm.start + 1
-          })
-  }
-
-  inputSearch () {
-      let vm = this
-      vm.houses = [];
-      vm.start = 0;
-      vm.dataLength = 10;
-
-      let params = { start: vm.start }
-      Object.assign(params, { kwLike: vm.searchData.input })
-      axios({
-          method: 'get',
-          url:  '/api/housing/houses?size=10&status=2',
           params: params
       }).then(function (res) {
               vm.houses = vm.houses.concat(res.data.data);
@@ -205,6 +224,7 @@ export class Buy {
         this.choosedAreatab = a
     }
     choosedRegion:any
+    regionParams = ''
     chooseRegion (p) {
         let vm = this
         vm.choosedRegion = p
@@ -222,6 +242,7 @@ export class Buy {
     prices = [{ name: '不限', params: '' }, { name: '200万以下', params: '&priceLessThan=200' }, { name: '200-250万', params: '&priceGreaterThanOrEquals=200&priceLessThanOrEquals=250' }, { name: '250-300万', params: '&priceGreaterThanOrEquals=250&priceLessThanOrEquals=300' }, { name: '300-400万', params: '&priceGreaterThanOrEquals=300&priceLessThanOrEquals=400' }, { name: '400-500万', params: '&priceGreaterThanOrEquals=400&priceLessThanOrEquals=500' }, { name: '500-800万', params: '&priceGreaterThanOrEquals=500&priceLessThanOrEquals=800' }, { name: '800万以上', params: '&priceGreaterThan=800' }]
     choosedPrice:any
     priceTabTitle:any
+    priceParams = ''
     choosePrice (p) {
         let vm = this
         vm.choosedPrice = p
@@ -235,6 +256,7 @@ export class Buy {
     houseTypes = [{ name: '不限', params: '' }, { name: '1室', params: '&houseType=1' }, { name: '2室', params: '&houseType=2' }, { name: '3室', params: '&houseType=3' }, { name: '3室以上', params: '&houseTypeGreaterThan=3' }]
     choosedHouseType:any
     houseTypeTabTitle:any
+    houseTypeParams = ''
     chooseHouseType (p) {
         let vm = this
         vm.choosedHouseType = p
@@ -248,6 +270,7 @@ export class Buy {
     //朝向
     orientations = [{ name: '不限', params: '' }, { name: '朝西', params: '&orientation=1' }, { name: '朝东', params: '&orientation=2' }, { name: '朝北', params: '&orientation=3' }, { name: '朝南', params: '&orientation=4' }, { name: '南北', params: '&orientation=5' }]
     choosedOrientation:any
+    orientationParams = ''
     chooseOrientation (p) {
         let vm = this
         vm.choosedOrientation = p
@@ -257,6 +280,7 @@ export class Buy {
     //面积
     buildingAreas = [{ name: '不限', params: '' }, { name: '50平米以下', params: '&buildingAreaLessThan=50' }, { name: '50-70平米', params: '&buildingAreaGreaterThanOrEquals=50&buildingAreaLessThanOrEquals=70' }, { name: '70-90平米', params: '&buildingAreaGreaterThanOrEquals=70&buildingAreaLessThanOrEquals=90' }, { name: '90-110平米', params: '&buildingAreaGreaterThanOrEquals=90&buildingAreaLessThanOrEquals=110' }, { name: '110-130平米', params: '&buildingAreaGreaterThanOrEquals=110&buildingAreaLessThanOrEquals=130' }, { name: '130-150平米', params: '&buildingAreaGreaterThanOrEquals=130&buildingAreaLessThanOrEquals=150' }, { name: '150-200平米', params: '&buildingAreaGreaterThanOrEquals=150&buildingAreaLessThanOrEquals=200' }, { name: '200平米以上', params: '&buildingAreaGreaterThan=200' }]
     choosedBuildingArea:any
+     buildingAreaParams = ''
     chooseBuildingArea (p) {
         let vm = this
         vm.choosedBuildingArea = p
@@ -266,6 +290,7 @@ export class Buy {
     //楼龄
     buildYears = [{ name: '不限', params: '' }, { name: '5年以內', params: '&buildYearLessThanOrEquals=50' }, { name: '10年以內', params: '&buildYearLessThanOrEquals=10' }, { name: '15年以內', params: '&buildYearLessThanOrEquals=15' }, { name: '20年以内', params: '&buildYearLessThanOrEquals=20' }, { name: '20年以上', params: '&buildYearGreaterThan=20' }]
     choosedBuildYear:any
+    buildYearParams = ''
     chooseBuildYear (p) {
         let vm = this
         vm.choosedBuildYear = p

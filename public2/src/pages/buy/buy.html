@@ -16,7 +16,7 @@
     <!--<div style="width:100%;padding:0px 5px;">
       <input (ngModelChange)='searchInput($event)' [(ngModel)]='search' type="text" class="search-input">
     </div>-->
-    <ion-searchbar [(ngModel)]='searchData.input' placeholder='输入小区或商圈名称' (ionInput)="searchDis($event)" (ionCancel)="clearInput($event)">
+    <ion-searchbar [(ngModel)]='searchData.input' placeholder='输入小区或商圈名称' (ionInput)="searchDisOnInpuChange($event)" (ionClear)="clearInput($event)">
     </ion-searchbar>
     <ion-buttons right>
       <button (click)="inputSearch()" ion-button icon-only>

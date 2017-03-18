@@ -74,14 +74,14 @@ export class House {
   @Input() h:any;
   @Output() notify: EventEmitter<any> = new EventEmitter<any>();
   constructor() {
-    console.log('Hello nested content Provider');
+    // console.log('Hello nested content Provider');
   }
   ngOnInit(){
-    console.log('nested content init');
+    // console.log('nested content init');
   }
-  onClick(){
-    this.notify.emit('Click from nested content');
-  }
+//   onClick(){
+//     this.notify.emit('Click from nested content');
+//   }
 }
 
 
