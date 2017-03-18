@@ -1,0 +1,21 @@
+<ion-item style="padding-left:0px;position: relative;">
+    <ion-thumbnail item-left>
+        <img *ngIf="h.images !== '[]'" src="{{(h.images | ImgPipe)[0]}}">
+        <img *ngIf="h.images == '[]'" src="assets/img/img_null.png" />
+    </ion-thumbnail>
+    <h2 style="width:70%;">{{h.name}}</h2>
+    <p style="width:70%;">{{h.houseType | HouseTypePipe}}/{{h.buildingArea}}m<sup>2</sup>/
+        <span *ngIf="h.orientation == 1">西</span>
+        <span *ngIf="h.orientation == 2">东</span>
+        <span *ngIf="h.orientation == 3">北</span>
+        <span *ngIf="h.orientation == 4">南</span>
+        <span *ngIf="h.orientation == 5">南北</span>
+    </p>
+    <p style="width:70%;overflow:hidden;font-size:.8em;">{{h.subdistrict.name}}</p>
+    <p style="font-size:.8em;overflow:hidden;width:70%;"><span class="positive">{{h.watchedCount}}</span>人看过此房</p>
+
+    <div style="position: absolute;bottom: 7px;right:3px;text-align:right;">
+        <p style="color: tomato;font-size: 1em; margin:0px;">{{h.price}}万</p>
+        <p style="font-size: 0.7em;margin:0px;">{{h.price*10000/h.buildingArea | number : 0}}元/平</p>
+    </div>
+</ion-item>

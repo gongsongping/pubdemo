@@ -26,7 +26,7 @@ export class Buy {
     this.loadMore(false)
     
   }
-  
+
   housedetails = Housedetails
   goDetail(h) {
       this.navCtrl.push(Housedetails, { house: h })
@@ -135,11 +135,9 @@ export class Buy {
   inputParams = ''
   houses = [];
   start = 0;
-  dataLength = 0
-  // vm.size = 10;
-  // vm.status = 2
+  dataLength = 10
+
   loadMore (infiniteScroll) {
-      // vm.start = vm.start + 1
       let vm = this
       let params = { start: vm.start }
       let tabParams = vm.priceParams + vm.houseTypeParams + vm.buildingAreaParams + vm.buildYearParams + vm.orientationParams + vm.regionParams
@@ -198,28 +196,24 @@ export class Buy {
               vm.start = vm.start + 1
           })
   }
-    // subtabs = [{ title: '区域' }, { title: '价格' }, { title: '房型' }, { title: '更多' }]
-    // // vm.subtabs = ['区域', '价格', '房型', '更多']
-    // chooseTab (t, idx) {
-    //     vm.choosedTab = t
-    //     vm.choosedTabIdx = idx
-    // }
 
-  // //区域
-  // areatabs = ['区域']//, '地铁', '附近'
-  // choosedAreatab = '区域'
-  // chooseAreatab  (a) {
-  //     this.choosedAreatab = a
-  // }
+
+    // //区域
+    areatabs = ['区域']//, '地铁', '附近'
+    choosedAreatab = '区域'
+    chooseAreatab (a) {
+        this.choosedAreatab = a
+    }
     choosedRegion:any
     chooseRegion (p) {
-      let vm = this
+        let vm = this
         vm.choosedRegion = p
         if (p.name == '不限') {
             vm.regionParams = ''
         } else {
             vm.regionParams = '&regionName=' + p.name
         }
+        this.activeAreaTab = !this.activeAreaTab                
         vm.search()
         console.log(vm.regionParams);
     }
@@ -287,6 +281,7 @@ export class Buy {
     }
     endMore () {
         let vm = this
+        this.activeMoreTab = !this.activeMoreTab                        
         vm.search()
         console.log(vm.choosedOrientation, vm.choosedBuildingArea)
     }

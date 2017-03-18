@@ -57,22 +57,42 @@
       </button>
     </div>
   </div>
-  <div *ngIf='activeAreaTab||activePriceTab||activeHouseTypeTab||activeMoreTab'  style="width:100vw;height: 100vh;background: #F6F7FB;">
+  <div *ngIf='activeAreaTab||activePriceTab||activeHouseTypeTab||activeMoreTab' style="width:100vw;height: 100vh;background: #F6F7FB;">
     <div *ngIf='activeAreaTab' style='clear:both;width: 100vw;background: white;padding-top:10px;'>
-      activeAreaTab
+      <!--区域-->
+      <ion-row>
+        <ion-col width-33>
+          <button *ngFor='let p of areatabs' (click)='chooseAreatab(p)' ion-button small full clear [color]='choosedAreatab == p ? "primary":"dark"'
+            style='margin: 0;border-top: 0.5px solid lightgrey;border-bottom: 0.5px solid lightgrey;'>{{p}}</button>
+        </ion-col>
+        <ion-col width-33>
+          <div *ngIf='choosedAreatab == "区域"'>
+            <button *ngFor='let p of regions' (click)='chooseRegion(p)' ion-button small full clear [color]='choosedRegion == p ? "primary":"dark"'
+              style='margin: 0;border-top: 0.5px solid lightgrey;'>{{p.name}}</button>
+          </div>
+          <!--<div *ngIf='choosedAreatab == "地铁"'>-->
+          <!--<button ng-repeat='s in subways' (click)='chooseSubway(s)' class="button button-block button-clear" ng-class='choosedSubway == s ? "button-positive":"button-stable"'>{{s}}</button>-->
+          <!--</div>-->
+          <!--<div *ngIf='choosedAreatab == "附近"'>-->
+          <!--<button ng-repeat='n in nearbys' (click)='chooseNearby(n)' class="button button-block button-clear" ng-class='choosedNearby == n ? "button-positive":"button-stable"'>{{n}}km</button>-->
+          <!--</div>-->
+        </ion-col>
+        <ion-col width-33>
+        </ion-col>
+      </ion-row>
     </div>
     <div *ngIf='activePriceTab' style='clear:both;width: 100vw;background: white;padding-top:10px;'>
       <!--prices价格-->
       <button *ngFor='let p of prices' (click)='choosePrice(p)' ion-button small full clear [color]='choosedPrice == p ? "primary":"dark"'
-        style='margin: 0;border-bottom: 0.5px solid lightgrey;'>{{p.name}}</button>
+        style='margin: 0;border-top: 0.5px solid lightgrey;'>{{p.name}}</button>
     </div>
     <div *ngIf='activeHouseTypeTab' style='clear:both;width: 100vw;background: white;padding-top:10px;'>
       <!--housetype房型-->
       <button *ngFor='let p of houseTypes' (click)='chooseHouseType(p)' ion-button small full clear [color]='choosedHouseType == p ? "primary":"dark"'
-        style='margin: 0;border-bottom: 0.5px solid lightgrey;'>{{p.name}}</button>
+        style='margin: 0;border-top: 0.5px solid lightgrey;'>{{p.name}}</button>
     </div>
 
-    <div *ngIf='activeMoreTab' style='clear:both;width: 100vw;height:70vh;overflow: scroll;background: white;padding-top:10px;'>
+    <div *ngIf='activeMoreTab' style='clear:both;width: 100vw;height:75vh;overflow: scroll;background: white;padding-top:10px;'>
       <!--更多-->
       <div style='padding:5px;font-size: 1em;'>朝向</div>
       <div *ngFor='let p of orientations' style='padding:0 5px 5px;width: 33.3vw;float: left;'>
@@ -93,7 +113,7 @@
         <button (click)='clearMore()' ion-button clear block color='lightgrey'>清空条件</button>
       </div>
       <div style='width: 80vw;margin:5px 10vw;'>
-        <button ng-click='endMore()' ion-button round block>确定</button>
+        <button (click)='endMore()' ion-button round block>确定</button>
       </div>
     </div>
   </div>
@@ -114,11 +134,12 @@
       <p>{{i}}</p>
     </ion-item>-->
   </div>
+  <div *ngIf='!dataLength' style='padding:30px;text-align: center;'>没有了!</div>
   <ion-fab bottom right #fab>
     <button ion-fab (click)="goPrecise()" style='font-size: 0.8em;'>为您找房</button>
   </ion-fab>
   <!--enabled="dataLength > 0" threshold='20%'-->
-  <ion-infinite-scroll (ionInfinite)="loadMore($event)" [enabled]='!!dataLength' threshold='70%'>
+  <ion-infinite-scroll (ionInfinite)="loadMore($event)" [enabled]='!!dataLength' threshold='30%'>
     <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>

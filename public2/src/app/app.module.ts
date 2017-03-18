@@ -16,7 +16,7 @@ import { Consultant } from '../pages/consultant/consultant';
 import { Servicecall } from '../pages/servicecall/servicecall';
 import { Visitrecord } from '../pages/visitrecord/visitrecord';
 
-import { NestedCom, House, TestService, ImgPipe } from '../providers/services';
+import { NestedCom, House, TestService, ImgPipe, HouseTypePipe } from '../providers/services';
 
 
 @NgModule({
@@ -38,7 +38,8 @@ import { NestedCom, House, TestService, ImgPipe } from '../providers/services';
     About,
     Consultant,
     Servicecall,
-    Visitrecord
+    Visitrecord,
+    HouseTypePipe
   ],
   imports: [
     IonicModule.forRoot(MyApp,{
