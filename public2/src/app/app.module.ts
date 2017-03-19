@@ -44,7 +44,6 @@ import { NestedCom, House, TestService, ImgPipe, HouseTypePipe } from '../provid
   imports: [
     IonicModule.forRoot(MyApp,{
       tabsHideOnSubPages:true,
-      mode:'ios',
       backButtonText: ''
     })
   ],
