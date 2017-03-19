@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, style, state, animate, transition, trigger } from '@angular/core';
 import { NavController,Tabs } from 'ionic-angular';
 import { Precise } from '../precise/precise';
 import { Login } from '../login/login';
@@ -13,7 +13,29 @@ import { Housedetails } from '../housedetails/housedetails';
 */
 @Component({
   selector: 'page-buy',
-  templateUrl: 'buy.html'
+  templateUrl: 'buy.html',
+  animations: [
+    trigger('transformInOut', [
+      // state('in', style({transform: 'translateY(0)'})),
+      transition('void => *', [
+        style({transform: 'translateY(-100%)'}),
+        animate(300)
+      ]),
+      transition('* => void', [
+        animate(200, style({transform: 'translateY(100%)'}))
+      ])
+    ]),
+    trigger('heightInOut', [
+      transition('* => void', [
+        style({ height: '*' }),
+        animate(0, style({ height: 0 }))
+      ]),
+      transition('void => *', [
+          style({ height: '0' }),
+          animate(300, style({ height: '*' }))
+      ])
+    ]) 
+  ]
 })
 export class Buy {
   @ViewChild('myTabs') tabRef: Tabs;
@@ -46,6 +68,12 @@ export class Buy {
             vm.regions = res.data.data
             vm.regions.unshift(unlimit)
         })
+  }
+  ionViewWillLeave (){
+    this.activeAreaTab = false
+    this.activeHouseTypeTab = false
+    this.activePriceTab = false
+    this.activeMoreTab = false
   }
   // tabbar
   precise = Precise
