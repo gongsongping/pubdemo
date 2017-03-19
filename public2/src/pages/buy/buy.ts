@@ -139,12 +139,13 @@ export class Buy {
       //clear other params
       vm.regionParams = ''
       vm.choosedRegion = ''
+      vm.areaTabTitle = ''
       vm.choosedPrice = ''
       vm.priceParams = ''
-      vm.priceTabTitle = '价格'
+      vm.priceTabTitle = ''
       vm.choosedHouseType = ''
       vm.houseTypeParams = ''
-      vm.houseTypeTabTitle = '房型'
+      vm.houseTypeTabTitle = ''
       vm.choosedOrientation = ''
       vm.orientationParams = ''
       vm.choosedBuildingArea = ''
@@ -153,6 +154,7 @@ export class Buy {
       vm.buildYearParams = ''
       vm.choosedOrientation = ''
       vm.orientationParams = ''
+      vm.moreTabTitle = ''
 
       let params = { start: vm.start }
       // Object.assign(params, { kwLike: vm.searchData.input })
@@ -220,6 +222,7 @@ export class Buy {
     // //区域
     areatabs = ['区域']//, '地铁', '附近'
     choosedAreatab = '区域'
+    areaTabTitle:any
     chooseAreatab (a) {
         this.choosedAreatab = a
     }
@@ -233,6 +236,7 @@ export class Buy {
         } else {
             vm.regionParams = '&regionName=' + p.name
         }
+        vm.areaTabTitle = p.name            
         this.activeAreaTab = !this.activeAreaTab                
         vm.search()
         console.log(vm.regionParams);
@@ -266,7 +270,8 @@ export class Buy {
         vm.search()
         console.log(vm.houseTypeParams);
     }
-
+    //more 更多
+    moreTabTitle:any
     //朝向
     orientations = [{ name: '不限', params: '' }, { name: '朝西', params: '&orientation=1' }, { name: '朝东', params: '&orientation=2' }, { name: '朝北', params: '&orientation=3' }, { name: '朝南', params: '&orientation=4' }, { name: '南北', params: '&orientation=5' }]
     choosedOrientation:any
@@ -275,6 +280,7 @@ export class Buy {
         let vm = this
         vm.choosedOrientation = p
         vm.orientationParams = p.params
+        vm.moreTabTitle = '多选'
         console.log(vm.orientationParams);
     }
     //面积
@@ -285,6 +291,7 @@ export class Buy {
         let vm = this
         vm.choosedBuildingArea = p
         vm.buildingAreaParams = p.params
+        vm.moreTabTitle = '多选'        
         console.log(vm.buildingAreaParams);
     }
     //楼龄
@@ -295,6 +302,7 @@ export class Buy {
         let vm = this
         vm.choosedBuildYear = p
         vm.buildYearParams = p.params
+        vm.moreTabTitle = '多选'                
         console.log(vm.buildYearParams);
     }
     // 标签
@@ -312,14 +320,16 @@ export class Buy {
     }
     clearMore () {
         let vm = this
-        vm.choosedOrientation = undefined
+        vm.choosedOrientation = ''
         vm.orientationParams = ''
-        vm.choosedBuildingArea = undefined
+        vm.choosedBuildingArea = ''
         vm.buildingAreaParams = ''
-        vm.choosedBuildYear = undefined
+        vm.choosedBuildYear = ''
         vm.buildYearParams = ''
-        vm.choosedOrientation = undefined
+        vm.choosedOrientation = ''
         vm.orientationParams = ''
+        vm.moreTabTitle = ''                
+        
     }
 
 //go precise
