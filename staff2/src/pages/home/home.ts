@@ -6,6 +6,7 @@ import { Housesearch } from '../housesearch/housesearch';
 import { Message } from '../message/message';
 import { Recommendbuyer } from '../recommendbuyer/recommendbuyer';
 import { Houseclue } from '../houseclue/houseclue';
+import { Ordermine } from '../ordermine/ordermine';
 
 /*
   Generated class for the Home page.
@@ -23,6 +24,8 @@ export class Home {
   housesearch: any = Housesearch
   message: any = Message
   recommendbuyer: any = Recommendbuyer
+  ordermine: any = Ordermine
+  params
   // tabOne = Page1;
   // tabTwo = Page2;
   // tabThree = Page3;
@@ -31,9 +34,7 @@ export class Home {
   messagesTotal:any
   houseclue:any = Houseclue
   roleName:any
-  constructor(public navCtrl: NavController, public navParams: NavParams) { 
-     
-  }
+  constructor(public navCtrl: NavController, public navParams: NavParams) {}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad HomePage');
@@ -46,20 +47,18 @@ export class Home {
     // console.log('---- role Page will enter-----', this.navCtrl.parent);
     setTimeout(()=> {
       this.messagesTotal = localStorage.getItem('messagesTotal')
-      this.tasksTotal =  localStorage.getItem('tasksTotal')  
+      this.tasksTotal =  localStorage.getItem('tasksTotal')
     }, 500);
     console.log('----role page taskstotal----',this.tasksTotal,'---messagesTotal---',this.messagesTotal);
   }
-  // if(){
 
-  // }
   tabIndex = 1;
   tabColor(index) {
     let num = this;
     num.tabIndex = index;
   }
 
-  pushHousemine(h) {
+  pushTo(h) {
     this.navCtrl.push(h);
   }
 
