@@ -18,21 +18,32 @@ import { Housedetails } from '../housedetails/housedetails';
     trigger('transformInOut', [
       // state('in', style({transform: 'translateY(0)'})),
       transition('void => *', [
-        style({transform: 'translateY(-100%)'}),
-        animate(300)
+        style({transform: 'translateY(-90%)'}),
+        animate(300,style({transform: 'translateY(0)'}))
       ]),
       transition('* => void', [
-        animate(200, style({transform: 'translateY(100%)'}))
+        style({transform: 'translateY(0)'}),
+        animate(200, style({transform: 'translateY(90%)'}))
       ])
     ]),
     trigger('heightInOut', [
       transition('* => void', [
         style({ height: '*' }),
-        animate(0, style({ height: 0 }))
+        animate(250, style({ height: 0 }))
       ]),
       transition('void => *', [
           style({ height: '0' }),
-          animate(300, style({ height: '*' }))
+          animate(250, style({ height: '*' }))
+      ])
+    ]), 
+    trigger('opacityInOut', [
+      transition('* => void', [
+        style({ opacity: 0 }),
+        animate(250, style({ opacity: 1 }))
+      ]),
+      transition('void => *', [
+          style({ opacity: 1 }),
+          animate(250, style({ opacity: 0 }))
       ])
     ]) 
   ]
