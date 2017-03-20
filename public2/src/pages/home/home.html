@@ -1,20 +1,59 @@
 <ion-header>
-  <!--<ion-navbar>
+    <!--<ion-navbar>
     <ion-title text-center>Home</ion-title>
   </ion-navbar>-->
 </ion-header>
 
 <ion-content>
-  <ion-refresher (ionRefresh)="doRefresh($event)">
-    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Refreshing...">
-    </ion-refresher-content>
-  </ion-refresher>
-  {{testService.message}}
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Refreshing...">
+        </ion-refresher-content>
+    </ion-refresher>
+    <div class='home-1'>
+        <div class="header-title">
+            <div class="left">
+                <img src="assets/img/sprite/location_icon_home1.png" width="12">
+                <span>成都市</span>
+            </div>
+            <a class="right" href="tel:4006001669">
+                <img src="assets/img/sprite/photo_400.png" width="16" style="margin-top: 5px;" />
+                <span>客户热线</span>
+            </a>
+        </div>
+        <div class='slogon'>
+            <h1>佣金只收0.8<span>%</span></h1>
+        </div>
+        <div class="tabmenu">
+            <div class="menubar">
+                <ul>
+                    <li [ngClass]="textTitle==i.textTitle ? 'current' : '' " *ngFor="let i of renting" (click)="rentingClick(i)">{{i.title}}</li>
+                </ul>
+            </div>
+            <div class="menubar-content" *ngIf="textTitle==0">
+                <div><img src="assets/img/sprite/home_0005_icon.png" />买二手房</div>
+                <div><img src="assets/img/sprite/home_0003_icon.png" />卖二手房</div>
+                <div><img src="assets/img/sprite/home_0004_icon.png" />买新房</div>
+                <div><img src="assets/img/sprite/accurate_icon_home.png" style="width:45px;" />为您找房</div>
+            </div>
+            <div class="menubar-content" *ngIf="textTitle==1">
+                <div><img src="assets/img/sprite/home_0008_icon.png" />租 房</div>
+                <div><img src="assets/img/sprite/home_0006_icon.png" />出 租</div>
+                <div><img src="assets/img/sprite/home_0007_icon.png" />写字楼</div>
+            </div>
+        </div>
+    </div>
+    <div class='home-3'>
+        <div><img src="assets/img/ad_img_home.png"></div>
+    </div>
+    <div class="item-title">
+        优质房源推荐
+    </div>
+    <!--{{testService.message}}-->
 
-  <div id="allmap" style="width:100px;height: 100px;"></div>
-  <div style="padding:0px 8px;">
-    <house *ngFor="let h of houses ; let i = index" (click)="goDetail(h)" [h]='h'></house>
-    <!--<ion-item *ngFor="let h of houses; let i = index" (click)="goDetail(h)" style="padding-left:0px;">
+    <!--<div id="allmap" style="width:100px;height: 100px;"></div>-->
+    <div style="padding:0px 8px;">
+        <house *ngFor="let h of houses ; let i = index" (click)="goDetail(h)" [h]='h'></house>
+        <!--<ion-item *ngFor="let h of houses; let i = index" (click)="goDetail(h)" style="padding-left:0px;">
       <ion-thumbnail item-left>
         <img src="{{(h.images | ImgPipe)[0]}}">
       </ion-thumbnail>
@@ -23,14 +62,14 @@
       <p>ll</p>
       <p>{{i}}</p>
     </ion-item>-->
-  </div>
-  <div *ngIf='!dataLength' style='padding:30px;text-align: center;'>没有了!</div>
-  <ion-fab bottom right #fab>
-    <button ion-fab (click)="goPrecise()" style='font-size: 0.8em;'>为您找房</button>
-  </ion-fab>
-  <!--enabled="dataLength > 0" threshold='20%'-->
-  <ion-infinite-scroll (ionInfinite)="loadMore($event)" [enabled]='!!dataLength' threshold='30%'>
-    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
-    </ion-infinite-scroll-content>
-  </ion-infinite-scroll>
+    </div>
+    <div *ngIf='!dataLength' style='padding:30px;text-align: center;'>没有了!</div>
+    <ion-fab bottom right #fab>
+        <button ion-fab (click)="goPrecise()" style='font-size: 0.8em;'>为您找房</button>
+    </ion-fab>
+    <!--enabled="dataLength > 0" threshold='20%'-->
+    <ion-infinite-scroll (ionInfinite)="loadMore($event)" [enabled]='!!dataLength' threshold='30%'>
+        <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+        </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
 </ion-content>
