@@ -30,19 +30,19 @@
             </div>-->
         <div class="record-title">
             <div class="titles" (click)='choosePriceTab()'>
-                <span [ngClass]="{'positive': activePriceTab}">价格</span>
+                <span [ngClass]="{'positive': activePriceTab}">{{subtabs.activePrice}}</span>
                 <ion-icon name="{{activePriceTab ? 'md-arrow-dropdown' : 'md-arrow-dropup'}}"></ion-icon>
             </div>
             <div class="titles" (click)='chooseHouseTypeTab()'>
-                <span [ngClass]="{'positive': activeHouseTypeTab}">户型</span>
+                <span [ngClass]="{'positive': activeHouseTypeTab}">{{subtabs.activeHouse}}</span>
                 <ion-icon name="{{activeHouseTypeTab ? 'md-arrow-dropdown' : 'md-arrow-dropup'}}"></ion-icon>
             </div>
-            <div class="titles" (click)='chooseAreaTab()'>
-                <span [ngClass]="{'positive': activeAreaTab}">钥匙</span>
-                <ion-icon name="{{activeAreaTab ? 'md-arrow-dropdown' : 'md-arrow-dropup'}}"></ion-icon>
+            <div class="titles" (click)='chooseKeyTab()'>
+                <span [ngClass]="{'positive': activeKeyTab}">{{subtabs.activeKey}}</span>
+                <ion-icon name="{{activekeyTab ? 'md-arrow-dropdown' : 'md-arrow-dropup'}}"></ion-icon>
             </div>
             <div class="titles" (click)='chooseMoreTab()'>
-                <span [ngClass]="{'positive': activeMoreTab}">更多</span>
+                <span [ngClass]="{'positive': activeMoreTab}">{{subtabs.activeMore}}</span>
                 <ion-icon name="{{activeMoreTab ? 'md-arrow-dropdown' : 'md-arrow-dropup'}}"></ion-icon>
             </div>
         </div>
@@ -69,7 +69,7 @@
         </div>
         <div class="shadow-top" (click)='chooseHouseTypeTab()'></div>
     </ion-scroll>
-    <ion-scroll scrollX="true" scrollY="true" class="content-list" *ngIf='activeAreaTab'>
+    <ion-scroll scrollX="true" scrollY="true" class="content-list" *ngIf='activeKeyTab'>
         <div class='house-list'>
             <!--钥匙-->
             <div class="list">
@@ -78,7 +78,7 @@
                 </div>
             </div>
         </div>
-        <div class="shadow-top" (click)='chooseAreaTab()'></div>
+        <div class="shadow-top" (click)='chooseKeyTab()'></div>
     </ion-scroll>
     <ion-scroll scrollX="true" scrollY="true" class="content-list" *ngIf='activeMoreTab'>
         <div class='housemore'>
@@ -102,15 +102,15 @@
                         <button ion-button *ngFor='let p of buildYears' (click)='chooseBuildYear(p)' [ngClass]='chooseduildYear == p ? "main-color":""'>{{p.name}}</button>
                     </div>
                 </div>
-                <div class='item'>
+                <!--<div class='item'>
                     <h5>状态</h5>
                     <div class="flex-row">
                         <button ion-button *ngFor='let p of chooseStatus' (click)='chooseBuildStatus(p)' [ngClass]='chooseduildStatus == p ? "main-color":""'>{{p.name}}</button>
                     </div>
-                </div>
+                </div>-->
                 <div class='item'>
                     <button ion-button outline class="button button-clear" (click)='clearMore()'>清空条件</button>
-                    <a ion-button (click)='endMore()'>确定</a>
+                    <a ion-button round (click)='endMore()'>确定</a>
                 </div>
             </div>
         </div>

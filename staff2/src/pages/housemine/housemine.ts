@@ -22,21 +22,35 @@ export class Housemine {
     start = 0;
     nameLike = '';
     districtsTotal = '';
+    priceParams = ''
+    houseTypeParams = ''
+    buildingAreaParams = ''
+    buildYearParams = ''
+    orientationParams = ''
+    regionParams = ''
+    hasKeyParams = ''
+    inputParams = ''
+    choosedHouseKey = ''
+    choosedPrice = ''
+    choosedHouseType = ''
+    choosedOrientation = ''
+    choosedBuildingArea = ''
+    chooseduildYear = ''
+    directionParams = ''
     statusIn = '&statusIn=[2]';
     selectTab = 0;
     userInfo: any;
     roleName: any;
-    choosedTab = 10;
     housesTotal = 1;
     inputStart = false;
     addMore = false;
-    activeAreaTab = false
+    activeKeyTab = false
     activeHouseTypeTab = false
     activePriceTab = false
     activeMoreTab = false
     dataLength = 10;
     searchData = { input: '', district: '' }
-    subtabs = [{ id: 0, title: '价格' }, { id: 1, title: '户型' }, { id: 2, title: '钥匙' }, { id: 3, title: '更多' }]
+    subtabs = {activePrice: '价格' , activeHouse: '户型' , activeKey: '钥匙', activeMore: '更多' }
     constructor(public navCtrl: NavController, public navParams: NavParams) {
 
     }
@@ -99,7 +113,7 @@ export class Housemine {
         vm.inputStart = false;
         vm.addMore = false;
         vm.selectTab = m;
-        vm.choosedTab = 10;
+        // vm.choosedTab = 10;
         vm.houses = [];
         vm.dataLength = 10;
         vm.searchData.district = "";
@@ -109,10 +123,10 @@ export class Housemine {
         vm.statusIn = '&statusIn=' + n;
         let url = ''
         if (vm.roleName == '房管家') {
-            url = '/api/housing/houses?size=10&hkId=' + vm.userInfo.id + vm.nameLike;
+            url = '/api/housing/houses?size=10&hkId=';
         }
         if (vm.roleName == '租赁专员') {
-            url = '/api/housing/rents?size=10&hkId=' + vm.userInfo.id + vm.nameLike;
+            url = '/api/housing/rents?size=10&hkId=';
         }
         let params = {
             params: {
@@ -120,7 +134,7 @@ export class Housemine {
             }
         }
         axios
-            .get(url + vm.statusIn, params)
+            .get(url + vm.userInfo.id + vm.nameLike + vm.statusIn + vm.priceParams + vm.houseTypeParams + vm.hasKeyParams + vm.buildingAreaParams + vm.buildYearParams + vm.orientationParams + vm.regionParams, params)
             .then(function (res) {
                 setTimeout(() => {
                     vm.houses = res.data.data;
@@ -140,10 +154,10 @@ export class Housemine {
         vm.addMore = true;
         let url = ''
         if (vm.roleName == '房管家') {
-            url = '/api/housing/houses?size=10&hkId=' + vm.userInfo.id + vm.nameLike;
+            url = '/api/housing/houses?size=10&hkId=';
         }
         if (vm.roleName == '租赁专员') {
-            url = '/api/housing/rents?size=10&hkId=' + vm.userInfo.id + vm.nameLike;
+            url = '/api/housing/rents?size=10&hkId=';
         }
         let params = {
             params: {
@@ -151,7 +165,7 @@ export class Housemine {
             }
         }
         axios
-            .get(url + vm.statusIn, params)
+            .get(url + vm.userInfo.id + vm.nameLike + vm.statusIn + vm.priceParams + vm.houseTypeParams + vm.hasKeyParams + vm.buildingAreaParams + vm.buildYearParams + vm.orientationParams + vm.regionParams, params)
             .then(function (res) {
                 setTimeout(() => {
                     vm.houses = vm.houses.concat(res.data.data);
@@ -168,32 +182,28 @@ export class Housemine {
                 console.log(error);
             });
     }
-    // chooseTab(t) {
-    //     let vm = this;
-    //     vm.choosedTab = t;
-    // }
 
-
-    chooseAreaTab() {
-        this.activeHouseTypeTab = false
-        this.activePriceTab = false
-        this.activeMoreTab = false
-        this.activeAreaTab = !this.activeAreaTab
-    }
+    // 删选条件
     chooseHouseTypeTab() {
-        this.activeAreaTab = false
+        this.activeKeyTab = false
         this.activeHouseTypeTab = !this.activeHouseTypeTab
         this.activePriceTab = false
         this.activeMoreTab = false
     }
     choosePriceTab() {
-        this.activeAreaTab = false
+        this.activeKeyTab = false
         this.activeHouseTypeTab = false
         this.activePriceTab = !this.activePriceTab
         this.activeMoreTab = false
     }
+    chooseKeyTab() {
+        this.activeHouseTypeTab = false
+        this.activePriceTab = false
+        this.activeMoreTab = false
+        this.activeKeyTab = !this.activeKeyTab
+    }
     chooseMoreTab() {
-        this.activeAreaTab = false
+        this.activeKeyTab = false
         this.activeHouseTypeTab = false
         this.activePriceTab = false
         this.activeMoreTab = !this.activeMoreTab
@@ -212,17 +222,17 @@ export class Housemine {
         let statusIn = '&statusIn=' + status;
         let url = ''
         if (vm.roleName == '房管家') {
-            url = '/api/housing/houses?size=10&hkId=' + vm.userInfo.id;
+            url = '/api/housing/houses?size=10&hkId=';
         }
         if (vm.roleName == '租赁专员') {
-            url = '/api/housing/rents?size=10&hkId=' + vm.userInfo.id;
+            url = '/api/housing/rents?size=10&hkId=';
         }
         if (e == '') {
             vm.districtsTotal = '0';
         }
         let params = { params: { kwLike: vm.searchData.input } }
         axios
-            .get(url + vm.statusIn, params)
+            .get(url + vm.userInfo.id + vm.nameLike + vm.statusIn + vm.priceParams + vm.houseTypeParams + vm.hasKeyParams + vm.buildingAreaParams + vm.buildYearParams + vm.orientationParams + vm.regionParams, params)
             .then(function (res) {
                 vm.districts = res.data.data;
                 vm.districtsTotal = res.data.total;
@@ -251,14 +261,14 @@ export class Housemine {
         vm.houses = [];
         let url = ''
         if (vm.roleName == '房管家') {
-            url = '/api/housing/houses?size=10&hkId=' + vm.userInfo.id;
+            url = '/api/housing/houses?size=10&hkId=';
         }
         if (vm.roleName == '租赁专员') {
-            url = '/api/housing/rents?size=10&hkId=' + vm.userInfo.id;
+            url = '/api/housing/rents?size=10&hkId=';
         }
         let params = { params: { kwLike: vm.searchData.input } }
         axios
-            .get(url + vm.statusIn, params)
+            .get(url + vm.userInfo.id + vm.nameLike + vm.statusIn + vm.priceParams + vm.houseTypeParams + vm.hasKeyParams + vm.buildingAreaParams + vm.buildYearParams + vm.orientationParams + vm.regionParams, params)
             .then(function (res) {
                 setTimeout(() => {
                     vm.houses = res.data.data;
@@ -275,53 +285,71 @@ export class Housemine {
                 console.log(error);
             });
     }
-
-
+    search() {
+        let vm = this;
+        vm.houses = [];
+        let url = ''
+        if (vm.roleName == '房管家') {
+            url = '/api/housing/houses?size=10&hkId=' + vm.userInfo.id;
+        }
+        if (vm.roleName == '租赁专员') {
+            url = '/api/housing/rents?size=10&hkId=' + vm.userInfo.id;
+        }
+        axios
+            .get(url + vm.statusIn + vm.nameLike + vm.statusIn + vm.priceParams + vm.houseTypeParams + vm.hasKeyParams + vm.buildingAreaParams + vm.buildYearParams + vm.orientationParams + vm.regionParams)
+            .then(function (res) {
+                vm.houses = res.data.data;
+                vm.dataLength = res.data.data.length
+                if (res.data.total < 10) {
+                    vm.dataLength = 0;
+                } else {
+                    vm.start = 1;
+                }
+            })
+            .catch(function (error) {
+                vm.dataLength = 0
+                alert('服务器错误');
+                console.log(error);
+            });
+    }
     // 删选条件
 
     //钥匙
     houseKey = [{ name: '不限', params: '' }, { name: '有钥匙', params: '&hasKey=true' }, { name: '无钥匙', params: '&hasKey=false' }]
-    chooseHouseKey = function (p) {
+    chooseHouseKey(p) {
         let vm = this;
         vm.choosedHouseKey = p
         vm.hasKeyParams = p.params
-        vm.choosedTab.title = p.name
-        vm.popover.hide()
+        vm.subtabs.activeKey = p.name
+        vm.activeKeyTab = !vm.activeKeyTab
         vm.search()
         // console.log(vm.hasKeyParams);
     }
     //价格
     prices = [{ name: '不限', params: '' }, { name: '200万以下', params: '&priceLessThan=200' }, { name: '200-250万', params: '&priceGreaterThanOrEquals=200&priceLessThanOrEquals=250' }, { name: '250-300万', params: '&priceGreaterThanOrEquals=250&priceLessThanOrEquals=300' }, { name: '300-400万', params: '&priceGreaterThanOrEquals=300&priceLessThanOrEquals=400' }, { name: '400-500万', params: '&priceGreaterThanOrEquals=400&priceLessThanOrEquals=500' }, { name: '500-800万', params: '&priceGreaterThanOrEquals=500&priceLessThanOrEquals=800' }, { name: '800万以上', params: '&priceGreaterThan=800' }]
-    choosePrice = function (p) {
+    choosePrice(p) {
         let vm = this;
         vm.choosedPrice = p
         vm.priceParams = p.params
-        vm.choosedTab.title = p.name
-        vm.popover.hide()
+        vm.subtabs.activePrice = p.name
+        vm.activePriceTab = !vm.activePriceTab
         vm.search()
         // console.log(vm.priceParams);
     }
-    //价格范围
-    // vm.chooseSure = function () {
-    //     vm.priceStart = vm.priceData.priceGreaterThanOrEquals
-    //     vm.priceEnd = vm.priceData.priceLessThanOrEquals
-    //     vm.search();
-    //     vm.popover.hide();
-    // }
     //房型
     houseTypes = [{ name: '不限', params: '' }, { name: '1室', params: '&houseType=1' }, { name: '2室', params: '&houseType=2' }, { name: '3室', params: '&houseType=3' }, { name: '3室以上', params: '&houseTypeGreaterThan=3' }]
-    chooseHouseType = function (p) {
+    chooseHouseType(p) {
         let vm = this;
         vm.choosedHouseType = p
         vm.houseTypeParams = p.params
-        vm.choosedTab.title = p.name
-        vm.popover.hide()
+        vm.subtabs.activeHouse = p.name
+        vm.activeHouseTypeTab = !vm.activeHouseTypeTab
         vm.search()
         // console.log(vm.houseTypeParams);
     }
     //朝向
     orientations = [{ name: '不限', params: '' }, { name: '朝西', params: '&orientation=1' }, { name: '朝东', params: '&orientation=2' }, { name: '朝北', params: '&orientation=3' }, { name: '朝南', params: '&orientation=4' }, { name: '南北', params: '&orientation=5' }]
-    chooseOrientation = function (p) {
+    chooseOrientation(p) {
         let vm = this;
         vm.choosedOrientation = p
         vm.orientationParams = p.params
@@ -329,7 +357,7 @@ export class Housemine {
     }
     //面积
     buildingAreas = [{ name: '不限', params: '' }, { name: '50平米以下', params: '&buildingAreaLessThan=50' }, { name: '50-70平米', params: '&buildingAreaGreaterThanOrEquals=50&buildingAreaLessThanOrEquals=70' }, { name: '70-90平米', params: '&buildingAreaGreaterThanOrEquals=70&buildingAreaLessThanOrEquals=90' }, { name: '90-110平米', params: '&buildingAreaGreaterThanOrEquals=90&buildingAreaLessThanOrEquals=110' }, { name: '110-130平米', params: '&buildingAreaGreaterThanOrEquals=110&buildingAreaLessThanOrEquals=130' }, { name: '130-150平米', params: '&buildingAreaGreaterThanOrEquals=130&buildingAreaLessThanOrEquals=150' }, { name: '150-200平米', params: '&buildingAreaGreaterThanOrEquals=150&buildingAreaLessThanOrEquals=200' }, { name: '200平米以上', params: '&buildingAreaGreaterThan=200' }]
-    chooseBuildingArea = function (p) {
+    chooseBuildingArea(p) {
         let vm = this;
         vm.choosedBuildingArea = p
         vm.buildingAreaParams = p.params
@@ -337,22 +365,19 @@ export class Housemine {
     }
     //楼龄
     buildYears = [{ name: '不限', params: '' }, { name: '5年以內', params: '&buildYearLessThanOrEquals=50' }, { name: '10年以內', params: '&buildYearLessThanOrEquals=10' }, { name: '15年以內', params: '&buildYearLessThanOrEquals=15' }, { name: '20年以内', params: '&buildYearLessThanOrEquals=20' }, { name: '20年以上', params: '&buildYearGreaterThan=20' }]
-    chooseBuildYear = function (p) {
+    chooseBuildYear(p) {
         let vm = this;
         vm.chooseduildYear = p
         vm.buildYearParams = p.params
-        // console.log(vm.buildYearParams);
     }
 
-    endMore = function () {
+    endMore() {
         let vm = this;
-        vm.search()
-        vm.popover.hide()
-        // console.log(vm.choosedDirection, vm.choosedBuildingArea)
+        vm.activeMoreTab = !vm.activeMoreTab;
+        vm.search();
     }
-    clearMore = function () {
+    clearMore() {
         let vm = this;
-        vm.choosedDirection = undefined
         vm.directionParams = ''
         vm.choosedBuildingArea = undefined
         vm.buildingAreaParams = ''
