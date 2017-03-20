@@ -5,8 +5,8 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-  <ion-navbar>
-    <ion-title>
+  <ion-navbar color='lightprimary'>
+    <ion-title text-center>
       个人中心
     </ion-title>
     <ion-buttons right>
@@ -37,29 +37,21 @@
   </div>
   <div class='mine-2'>
     <div (click)='goTo(visitrecord)' class='mine-2-item'>
-      <img src="assets/img/sprite/see_btn_mine.png" height='50' width='50'>
-      <div>
-        <h5>看房记录</h5>
-      </div>
+      <img src="assets/img/sprite/see_btn_mine.png" height='50%' width='50%'>
+      <p>看房记录</p>
     </div>
     <div (click)='goTo(sellrecord)' class='mine-2-item'>
-      <img src="assets/img/sprite/sell_btn_mine.png" height='50' width='50'>
-      <div>
-        <h5>卖房记录</h5>
-      </div>
+      <img src="assets/img/sprite/sell_btn_mine.png" height='50%' width='50%'>
+      <p>卖房记录</p>
     </div>
 
     <div (click)='goTo(consultant)' class='mine-2-item'>
-      <img src="assets/img/sprite/counselor_btn_mine.png" height='50' width='50'>
-      <div>
-        <h5>我的顾问</h5>
-      </div>
+      <img src="assets/img/sprite/counselor_btn_mine.png" height='50%' width='50%'>
+      <p>我的顾问</p>
     </div>
     <div [navPush]='servicecall' class='mine-2-item'>
-      <img src="assets/img/sprite/service_btn_mine.png" height='50' width='50'>
-      <div>
-        <h5>客服电话</h5>
-      </div>
+      <img src="assets/img/sprite/service_btn_mine.png" height='50%' width='50%'>
+      <p>客服电话</p>
     </div>
   </div>
   <div class="mine-3">

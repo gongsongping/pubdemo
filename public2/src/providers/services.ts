@@ -16,14 +16,34 @@ export class ImgPipe implements PipeTransform {
   }
 }
 
+@Pipe({name: 'HouseTypePipe'})
+export class HouseTypePipe implements PipeTransform {
+  transform(items: any): any {
+        let ar, arr;
+        let room = '', hall = '', kitchen = '', bathroom = '';
+        if (items) {
+            ar = items.split('-')
+            arr = ar.map(function (a) {
+                return parseInt(a)
+            })
+            if (arr[0]) {
+                room = arr[0] + '室'
+            }
+            if (arr[1]) {
+                hall = arr[1] + '厅'
+            }
+            if (arr[2]) {
+                kitchen = arr[2] + '厨'
+            }
+            if (arr[3]) {
+                bathroom = arr[3] + '卫'
+            }
+        }
+        return room + hall + kitchen + bathroom
+  }
+}
 
 
-/*
-  Generated class for the NestedCom provider.
-
-  See https://angular.io/docs/ts/latest/guide/dependency-injection.html
-  for more info on providers and Angular 2 DI.
-*/
 @Component({
   selector: 'nested-com',
   template:`<div>
@@ -45,40 +65,26 @@ export class NestedCom {
   }
 }
 
+
 @Component({
   selector: 'house',
-  template:`
-  <ion-item style="padding-left:0px;">
-      <ion-thumbnail item-left>
-        <img src="{{(h.images | ImgPipe)[0]}}">
-      </ion-thumbnail>
-      <h2>{{h.name}}</h2>
-      <p>{{h.description}}</p>
-      <p>ll</p>
-      <p>ll</p>
-    </ion-item>`
+  templateUrl:'_house.html'
 })
 export class House {
   @Input() h:any;
   @Output() notify: EventEmitter<any> = new EventEmitter<any>();
   constructor() {
-    console.log('Hello nested content Provider');
+    // console.log('Hello nested content Provider');
   }
   ngOnInit(){
-    console.log('nested content init');
+    // console.log('nested content init');
   }
-  onClick(){
-    this.notify.emit('Click from nested content');
-  }
+//   onClick(){
+//     this.notify.emit('Click from nested content');
+//   }
 }
 
 
-/*
-  Generated class for the TestService provider.
-
-  See https://angular.io/docs/ts/latest/guide/dependency-injection.html
-  for more info on providers and Angular 2 DI.
-*/
 @Injectable()
 export class TestService {
   public message: any = "I'm a testservice message";
