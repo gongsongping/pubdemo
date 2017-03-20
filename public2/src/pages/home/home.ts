@@ -33,7 +33,7 @@ export class Home {
             .then(function (res) {
                 vm.houses = vm.houses.concat(res.data.data);
                 vm.dataLength = res.data.data.length
-                vm.housesTotal = res.data.total
+                // vm.housesTotal = res.data.total
                 vm.start = vm.start + 1
                 if (infiniteScroll) {
                     infiniteScroll.complete();
