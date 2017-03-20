@@ -219,12 +219,38 @@
         height:100rem;
         background-color: rgba(0,0,0,.3);
     }
+    .area-content{
+        position: absolute;
+        top:0;
+        left:0;
+        z-index: 18;
+        width: 100vw;
+        display: flex;
+       .block {
+             flex:1;
+             padding:5px;
+             border-right:1px solid #e4ebf8;
+            .button {
+                    margin:0;
+                    border-bottom:1px solid #e4ebf8;
+            }
+        }
+    }
     .house-list{
         position: absolute;
         top:0;
         left:0;
         z-index: 18;
         width: 100vw;
+        // .block {
+        //    flex:1;
+        //    padding:5px;
+        //    border-right:1px solid #e4ebf8;
+        //    .button {
+        //        margin:0;
+        //        border-bottom:1px solid #e4ebf8;
+        //    }
+        // }
         .list{
         background: #fff;
         margin: 0;

@@ -4,16 +4,27 @@
     </ion-navbar>
 
     <ion-toolbar>
-        <div class="searchs">
+        <!--<div class="searchs">-->
             <!--<ion-searchbar
   [(ngModel)]="myInput"
   [showCancelButton]="shouldShowCancel"
   (ionInput)="onInput($event)"
   (ionCancel)="onCancel($event)">
 </ion-searchbar>-->
+            <!--<div class="item-input-wrapper">
+                <i class="icon placeholder-icon"><img src="assets/img/staff/search.png"></i>
+                <input (ngModelChange)="searchDis($event)" [(ngModel)]="searchData.input" type="search" style="padding-top:0;"
+                    placeholder="请输入区域、商圈或小区名搜索" />
+                <button ion-botton (click)='clearInput()' *ngIf="searchData.input !==''">
+					<img src="assets/img/sprite/close_btn_home.png" width="18"/>
+				</button>
+            </div>
+            <button ion-button class="inputsub" (click)='inputSearch()'>搜索</button>
+        </div>-->
+        <div class="searchs">
             <div class="item-input-wrapper">
                 <i class="icon placeholder-icon"><img src="assets/img/staff/search.png"></i>
-                <input (ngModelChange)="searchDis()" [(ngModel)]="searchData.input" (focus)='focus()' (blur)='blur()' type="search" style="padding-top:0;"
+                <input [(ngModel)]="searchData.input" (ngModelChange)="searchDis($event)" type="search" style="padding-top:0;"
                     placeholder="请输入区域、商圈或小区名搜索" />
                 <button ion-botton (click)='clearInput()' *ngIf="searchData.input !==''">
 					<img src="assets/img/sprite/close_btn_home.png" width="18"/>
@@ -22,12 +33,116 @@
             <button ion-button class="inputsub" (click)='inputSearch()'>搜索</button>
         </div>
         <div class="record-title">
+            <div class="titles" (click)='chooseAreaTab()'>
+                <span [ngClass]="{'positive': activeAreaTab}">{{subtabs.activeArea}}</span>
+                <ion-icon name="{{activeAreaTab ? 'md-arrow-dropdown' : 'md-arrow-dropup'}}"></ion-icon>
+            </div>
+            <div class="titles" (click)='choosePriceTab()'>
+                <span [ngClass]="{'positive': activePriceTab}">{{subtabs.activePrice}}</span>
+                <ion-icon name="{{activePriceTab ? 'md-arrow-dropdown' : 'md-arrow-dropup'}}"></ion-icon>
+            </div>
+            <div class="titles" (click)='chooseHouseTypeTab()'>
+                <span [ngClass]="{'positive': activeHouseTypeTab}">{{subtabs.activeHouse}}</span>
+                <ion-icon name="{{activeHouseTypeTab ? 'md-arrow-dropdown' : 'md-arrow-dropup'}}"></ion-icon>
+            </div>
+            <div class="titles" (click)='chooseMoreTab()'>
+                <span [ngClass]="{'positive': activeMoreTab}">{{subtabs.activeMore}}</span>
+                <ion-icon name="{{activeMoreTab ? 'md-arrow-dropdown' : 'md-arrow-dropup'}}"></ion-icon>
+            </div>
+        </div>
+        <div *ngIf="inputStart" class='search-dropdown'>
+            <a *ngIf="districtsTotal == 0" ion-button full outline style="color:blue;">没有匹配</a>
+            <button ion-button full outline *ngFor="let d of districts" (click)="chooseDis(d)">{{d.subdistrict.name}}</button>
+        </div>
+        <!--<div class="record-title">
             <div class="titles" *ngFor="let i of subtabs" (click)="chooseTab(i)">
                 <span [ngClass]="{'positive': choosedTab == i.id}">{{i.title}}</span>
                 <ion-icon name="{{choosedTab == i.id ? 'md-arrow-dropdown' : 'md-arrow-dropup'}}"></ion-icon>
             </div>
-        </div>
+        </div>-->
     </ion-toolbar>
+    <ion-scroll scrollX="true" scrollY="true" class="content-list" *ngIf='activeAreaTab'>
+        <div class='area-content'>
+            <!--钥匙-->
+            <div class='block'>
+                <button *ngFor='let a of areatabs' (click)='chooseAreatab(a)' ng-class='choosedAreatab == a ? "button-positive":"button-stable"'>{{a}}</button>
+            </div>
+            <div class='block'>
+                <div ng-if='choosedAreatab == "区域"'>
+                    <button ion-button full outline *ngFor='let p of regions' (click)='chooseRegion(p)' ng-class='choosedRegion == p ? "button-positive":"button-stable"'>{{p.name}}</button>
+                </div>
+                <!--<div ng-if='choosedAreatab == "地铁"'>-->
+                <!--<button *ngFor='s in subways' ng-click='chooseSubway(s)' class="button button-block button-clear" ng-class='choosedSubway == s ? "button-positive":"button-stable"'>{{s}}</button>-->
+                <!--</div>-->
+                <!--<div ng-if='choosedAreatab == "附近"'>-->
+                <!--<button *ngFor='n in nearbys' ng-click='chooseNearby(n)' class="button button-block button-clear" ng-class='choosedNearby == n ? "button-positive":"button-stable"'>{{n}}km</button>-->
+                <!--</div>-->
+            </div>
+			<div class='block'>
+
+			</div>
+            <!--<div class="list">
+                <div ion-button full outline *ngFor='let p of houseKey' (click)='chooseHouseKey(p)'>
+                    <i *ngIf='choosedHouseKey == p' class='icon'><img src="assets/img/staff/key_icon.png" width="15"/></i>{{p.name}}
+                </div>
+            </div>-->
+        </div>
+        <div class="shadow-top" (click)='chooseAreaTab()'></div>
+    </ion-scroll>
+    <ion-scroll scrollX="true" scrollY="true" class="content-list" *ngIf='activePriceTab'>
+        <div class='house-list'>
+            <!--价格-->
+            <div class="list">
+                <button ion-button full outline *ngFor='let p of prices' (click)='choosePrice(p)' [ngClass]='choosedPrice == p ? "choosed":""'>{{p.name}}</button>
+            </div>
+        </div>
+        <div class="shadow-top" (click)='choosePriceTab()'></div>
+    </ion-scroll>
+    <ion-scroll scrollX="true" scrollY="true" class="content-list" *ngIf='activeHouseTypeTab'>
+        <div class='house-list'>
+            <!--户型-->
+            <div class="list">
+                <button ion-button full outline *ngFor='let p of houseTypes' (click)='chooseHouseType(p)' [ngClass]='choosedHouseType == p ? "choosed":""'>{{p.name}}</button>
+            </div>
+        </div>
+        <div class="shadow-top" (click)='chooseHouseTypeTab()'></div>
+    </ion-scroll>
+    <ion-scroll scrollX="true" scrollY="true" class="content-list" *ngIf='activeMoreTab'>
+        <div class='housemore'>
+            <!--更多-->
+            <div class="more-list">
+                <div class='item'>
+                    <h5>朝向</h5>
+                    <div class="flex-row">
+                        <button ion-button *ngFor='let p of orientations' (click)='chooseOrientation(p)' [ngClass]='choosedOrientation == p ? "main-color":""'>{{p.name}}</button>
+                    </div>
+                </div>
+                <div class='item'>
+                    <h5>面积</h5>
+                    <div class="flex-row">
+                        <button ion-button *ngFor='let p of buildingAreas' (click)='chooseBuildingArea(p)' [ngClass]='choosedBuildingArea == p ? "main-color":""'>{{p.name}}</button>
+                    </div>
+                </div>
+                <div class='item'>
+                    <h5>楼龄</h5>
+                    <div class="flex-row">
+                        <button ion-button *ngFor='let p of buildYears' (click)='chooseBuildYear(p)' [ngClass]='chooseduildYear == p ? "main-color":""'>{{p.name}}</button>
+                    </div>
+                </div>
+                <!--<div class='item'>
+                    <h5>状态</h5>
+                    <div class="flex-row">
+                        <button ion-button *ngFor='let p of chooseStatus' (click)='chooseBuildStatus(p)' [ngClass]='chooseduildStatus == p ? "main-color":""'>{{p.name}}</button>
+                    </div>
+                </div>-->
+                <div class='item'>
+                    <button ion-button outline class="button button-clear" (click)='clearMore()'>清空条件</button>
+                    <a ion-button round (click)='endMore()'>确定</a>
+                </div>
+            </div>
+        </div>
+        <div class="shadow-top" (click)='chooseMoreTab()'></div>
+    </ion-scroll>
 </ion-header>
 <ion-content>
     <div class="housesearch" *ngFor="let h of houses">
@@ -102,10 +217,10 @@
         <h5>只有这么多房源了</h5>
         <div></div>
     </div>
-    <div *ngIf="dataLength == 0" style="padding:10px;">
+    <div *ngIf="dataLength == 0 && addMore == true" style="padding:10px;">
         <h5 style="text-align: center;color: #666">没有了!</h5>
     </div>
-    <ion-infinite-scroll *ngIf="dataLength != 0" (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll *ngIf="dataLength !== 0 && addMore == true" (ionInfinite)="doInfinite($event)">
         <ion-infinite-scroll-content loadingText="正在加载中..."></ion-infinite-scroll-content>
     </ion-infinite-scroll>
 </ion-content>
