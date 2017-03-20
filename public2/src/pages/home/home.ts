@@ -20,7 +20,17 @@ export class Home {
     start = 0;
     dataLength = 10;
     housesTotal: any;
-    
+    textTitle = 0;
+    renting = [
+       {
+          textTitle:0, 
+          title:'买房/卖房'
+       },
+       {
+          textTitle:1, 
+          title:'租房/出租'
+       }
+    ] 
     constructor(public navCtrl: NavController, private testService: TestService, public events: Events) { }
     loadMore(infiniteScroll) {
         let vm = this;
@@ -68,5 +78,9 @@ export class Home {
         } else {
             this.navCtrl.push(Login)
         }
+    }
+    // 选项卡
+    rentingClick(index){
+        this.textTitle = index.textTitle;
     }
 }
