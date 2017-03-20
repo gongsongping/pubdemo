@@ -90,7 +90,7 @@
         style='margin: 0;border-bottom: 0.5px solid lightgrey;'>{{p.name}}</button>
     </div>
 
-    <div [@heightInOut] *ngIf='activeMoreTab' style='clear:both;width: 100vw;height:65vh;overflow: scroll;background: white;padding-bottom: 15px;'>
+    <div [@heightInOut] *ngIf='activeMoreTab' style='clear:both;width: 100vw;height:60vh;overflow: scroll;background: white;padding-bottom: 15px;'>
       <!--更多-->
       <div style='padding:5px;font-size: 1em;'>朝向</div>
       <div *ngFor='let p of orientations' style='padding:0 5px 5px;width: 33.3vw;float: left;'>
@@ -122,21 +122,13 @@
 
   <div style="padding:5px 8px;">
     <house *ngFor="let h of houses ; let i = index" (click)='goDetail(h)' [h]='h'></house>
-    <!--<ion-item *ngFor="let h of houses; let i = index" style="padding-left:0px;">
-      <ion-thumbnail item-left>
-        <img src="{{(h.images | ImgPipe)[0]}}">
-      </ion-thumbnail>
-      <h2>{{h.name}}</h2>
-      <p>{{h.description}}</p>
-      <p>ll</p>
-      <p>{{i}}</p>
     </ion-item>-->
   </div>
   <div *ngIf='!dataLength' style='padding:30px;text-align: center;'>没有了!</div>
   <!--<ion-fab bottom right #fab>
     <button ion-fab (click)="goPrecise()" style='font-size: 0.8em;'>为您找房</button>
   </ion-fab>-->
-  <!--enabled="dataLength > 0" threshold='20%'-->
+
   <ion-infinite-scroll (ionInfinite)="loadMore($event)" [enabled]='!!dataLength' threshold='30%'>
     <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
     </ion-infinite-scroll-content>

@@ -20,6 +20,34 @@ export class ImgPipe implements PipeTransform {
 }
 
 
+
+@Pipe({name: 'HouseTypePipe'})
+export class HouseTypePipe implements PipeTransform {
+  transform(items: any): any {
+        let ar, arr;
+        let room = '', hall = '', kitchen = '', bathroom = '';
+        if (items) {
+            ar = items.split('-')
+            arr = ar.map(function (a) {
+                return parseInt(a)
+            })
+            if (arr[0]) {
+                room = arr[0] + '室'
+            }
+            if (arr[1]) {
+                hall = arr[1] + '厅'
+            }
+            if (arr[2]) {
+                kitchen = arr[2] + '厨'
+            }
+            if (arr[3]) {
+                bathroom = arr[3] + '卫'
+            }
+        }
+        return room + hall + kitchen + bathroom
+  }
+}
+
 @Component({
   selector: 'modal-resetpw',
   template: `
