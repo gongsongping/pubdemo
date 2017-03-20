@@ -38,7 +38,7 @@
 				<ion-icon name="ios-add"></ion-icon>
 				<h5>推荐房源</h5>
 			</ion-item>
-			<ion-item (click)="pushHousemine(recommendbuyer)">
+			<ion-item (click)="pushTo(recommendbuyer)">
 				<img src="assets/img/icon/_0012_recommend.png" />
 				<ion-icon name="ios-add"></ion-icon>
 				<h5>推荐客户</h5>
@@ -47,7 +47,7 @@
 	</div>
 	<div class="home-info" *ngIf="tabIndex == 3">
 		<div class="row">
-			<div class="col-50">
+			<div class="col-50" [navPush]='ordermine'>
 				<div>
 					<img src="assets/img/icon/_0008_list.png" width="65" />
 					<h5>订单管理</h5>
@@ -69,7 +69,7 @@
 	</div>
 	<div class="home-info" *ngIf="tabIndex == 4">
 		<div class="row">
-			<div class="col-50" (click)="pushHousemine(housemine)">
+			<div class="col-50" (click)="pushTo(housemine)">
 				<div>
 					<img src="assets/img/icon/_0007_myhome.png" width="65" />
 					<h5>我的房源</h5>
@@ -81,7 +81,7 @@
 					<h5>房源管理</h5>
 				</div>
 			</div>
-			<div class="col-50" (click)="pushHousemine(housesearch)">
+			<div class="col-50" (click)="pushTo(housesearch)">
 				<div>
 					<img src="assets/img/icon/_0006_search.png" width="65" />
 					<h5>房源搜索</h5>
