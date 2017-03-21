@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import axios from 'axios';
 import { Districtdetails } from '../districtdetails/districtdetails';
 
 /*
@@ -15,11 +14,12 @@ import { Districtdetails } from '../districtdetails/districtdetails';
 })
 export class Housedetails {
 
-    districtdetails: any = Districtdetails;
-    userInfo:any;
-    houses: any;
-    constructor(public navCtrl: NavController, public navParams: NavParams) {
-        this.houses = navParams.get('house')
+    userInfo: any;
+    house: any;
+    isAction = false;
+    constructor(public navCtrl: NavController, public Params: NavParams) {
+        console.log(Params.get('house'))
+        this.house = Params.get('house')
     }
 
     ionViewDidLoad() {
@@ -41,32 +41,11 @@ export class Housedetails {
             vm.userInfo = ''
         }
     }
-    houseDetailsAll() {
-        let vm = this;
-        vm.houses = [];
-        let url = ''
-        // if (vm.roleName == '房管家') {
-        //     url = '/api/housing/houses?size=10';
-        // }
-        // if (vm.roleName == '租赁专员') {
-        //     url = '/api/housing/rents?size=10';
-        // }
-        // axios
-        //     .get(url + vm.nameLike + vm.priceParams + vm.houseTypeParams + vm.buildingAreaParams + vm.buildYearParams + vm.orientationParams + vm.buildStatusParams + vm.regionParams)
-        //     .then(function (res) {
-        //         vm.houses = res.data.data;
-        //         vm.dataLength = res.data.data.length
-        //         if (res.data.total < 10) {
-        //             vm.dataLength = 0;
-        //         } else {
-        //             vm.start = 1;
-        //         }
-        //     })
-        //     .catch(function (error) {
-        //         vm.dataLength = 0
-        //         alert('服务器错误');
-        //         console.log(error);
-        //     });
+    districtDs(d){
+        this.navCtrl.push(Districtdetails, { house: d })
+    }
+    action () {
+        this.isAction = !this.isAction
     }
 }
 

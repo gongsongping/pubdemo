@@ -3,9 +3,8 @@
         <ion-title>{{house.name}}</ion-title>
     </ion-navbar>
 </ion-header>
-
-
 <ion-content class="housedetails">
+    <div></div>
     <div class="details-1">
         <div class='name'>{{house.name}}</div>
         <div class='simple'>
@@ -27,218 +26,67 @@
             <span>{{house.price*10000/house.buildingArea | number : 0}}元/平米</span>
         </div>
     </div>
-    <div class="details-2">
-        <div class='flex-1'>
-            <span>朝向：</span>
-            <span *ngIf="house.orientation == 1">西</span>
-            <span *ngIf="house.orientation == 2">东</span>
-            <span *ngIf="house.orientation == 3">北</span>
-            <span *ngIf="house.orientation == 4">南</span>
-            <span *ngIf="house.orientation == 5">南北</span>
-        </div>
-        <div class='item flex-row'>
-            <div class='flex-1'>
-                <span>装修：</span>
+    <div class="details-1">
+        <div class="row">
+            <div class='flex-col'>
+                楼层：
+                <span>{{house.floor}}/{{house.totalFloor}}</span>
+            </div>
+            <div class='flex-col'>
+                朝向：
+                <span *ngIf="house.orientation == 1">西</span>
+                <span *ngIf="house.orientation == 2">东</span>
+                <span *ngIf="house.orientation == 3">北</span>
+                <span *ngIf="house.orientation == 4">南</span>
+                <span *ngIf="house.orientation == 5">南北</span>
+            </div>
+            <div class='flex-col'>
+                装修：
                 <span *ngIf="house.decorate == 1">毛坯</span>
                 <span *ngIf="house.decorate == 2">简装</span>
                 <span *ngIf="house.decorate == 3">精装</span>
             </div>
-            <div class='flex-1'>
-                <span>楼型：</span>
+            <div class='flex-col'>
+                楼型：
                 <span *ngIf="house.subdistrict.buildingType == 1">塔式</span>
                 <span *ngIf="house.subdistrict.buildingType == 2">板式</span>
                 <span *ngIf="house.subdistrict.buildingType == 3">塔板结合</span>
                 <span *ngIf="house.subdistrict.buildingType == 4">未知类型</span>
             </div>
-        </div>
-    </div>
-</ion-content>
-<!--<div class='details-1'>-->
-<!--<ion-slide-box auto-play="true" on-slide-changed  = "changeCurrentSlideHandler($index)" does-continue="true" delegate-handle="slideboximgs">
-                <ion-slide ng-repeat="i in (house.images | parseImgUrls) track by $index">
-                    <div class="box">
-                        <ion-scroll zooming="true"
-                                    direction="xy"
-                                    min-zoom="1"
-                                    scrollbar-x="false"
-                                    scrollbar-y="false"
-                                    overflow-scroll="false">
-                            <img ng-src="{{i}}" width='100%' height="200">
-                        </ion-scroll>
-                        <img src="{{i}}" width='100%' height="200"/>-->
-<!--</div>
-                </ion-slide>
-                <ion-slide ng-repeat="i in (house.planImages | parseImgUrls) track by $index">
-                    <div class="box">
-                        <ion-scroll zooming="true"
-                                    direction="xy"
-                                    min-zoom="1"
-                                    scrollbar-x="false"
-                                    scrollbar-y="false"
-                                    overflow-scroll="false">
-                            <img ng-src="{{i}}" width='100%' height="200">
-                        </ion-scroll>-->
-<!--<img src="{{i}}" width='100%' height="200"/>-->
-<!--</div>
-                </ion-slide>
-            </ion-slide-box>-->-->
-<!--<img *ngIf="(house.images == '[]')&&(house.planImages == '[]')" src="assets/img/img_null.png" width='100%' height="200" />-->
-<!--<div class='name'>{{house.name}}</div>
-            <div class='simple flex-row '>
-                <div class='flex-1'>
-                    <p>售价</p>
-                    <h4><span>{{house.price}}</span>万</h4>
-                </div>
-                <div class='flex-1'>
-                    <p>房型</p>
-                    <h4><span>{{house.houseType | houseTypeToArray}}</span></h4>
-                </div>
-                <div class='flex-1'>
-                    <p>面积</p>
-                    <h4><span>{{house.buildingArea}}</span>平米</h4>
-                </div>
-            </div>
-            <div class='calculate'>
-                <span>单价：</span>
-                <span>{{house.price*10000/house.buildingArea | number : 0}}元/平米</span>
-            </div>
-        </div>
-        <div class='details-2'>
-            <div class='item flex-row'>
-                <div class='flex-1'>
-                    <span>楼层：</span>
-                    <span>{{house.floor}}/{{house.totalFloor}}</span>
-                </div>
-            </div>
-        </div>
-        <div class='flex-1'>
-            <span>朝向：</span>
-            <span *ngIf="house.orientation == 1">西</span>
-            <span *ngIf="house.orientation == 2">东</span>
-            <span *ngIf="house.orientation == 3">北</span>
-            <span *ngIf="house.orientation == 4">南</span>
-            <span *ngIf="house.orientation == 5">南北</span>
-        </div>
-        <div class='item flex-row'>
-            <div class='flex-1'>
-                <span>装修：</span>
-                <span *ngIf="house.decorate == 1">毛坯</span>
-                <span *ngIf="house.decorate == 2">简装</span>
-                <span *ngIf="house.decorate == 3">精装</span>
-            </div>
-            <div class='flex-1'>
-                <span>楼型：</span>
-                <span *ngIf="house.subdistrict.buildingType == 1">塔式</span>
-                <span *ngIf="house.subdistrict.buildingType == 2">板式</span>
-                <span *ngIf="house.subdistrict.buildingType == 3">塔板结合</span>
-                <span *ngIf="house.subdistrict.buildingType == 4">未知类型</span>
-            </div>
-        </div>
-        <!--<div class='item flex-row'>
-            <div class='flex-1'>
-                <span>年代：</span>
+            <div class='flex-col'>
+                年代：
                 <span>{{house.subdistrict.buildYear}}年</span>
             </div>
-            <div class='flex-1'>
-                <span>挂盘时间：</span>
-                <span>{{statusFrist.modifiedTime | date: 'yyyy-MM-dd'}}</span>
-                <span *ngIf="!statusFrist.modifiedTime">暂未上架</span>
+            <div class='flex-col'>
+
             </div>
-        </div>-->
-<!--<div class='item flex-row' *ngIf="housesearch == 1">
-            <div class='flex-1'>
-                <span>房号：</span>
-                <span>{{house.detailAddr}}</span>
+            <a class='flex-row' *ngIf="house.subdistrict !== null" (click)="districtDs(house.subdistrict)">
+                <div>
+                    小区：
+                    <span>{{house.subdistrict.name}}</span>
+                </div>
+                <ion-icon name="arrow-forward"></ion-icon>
+            </a>
+        </div>
+    </div>
+    <div class='details-3'>
+        <p>房源描述(点击内容可查看)：</p>
+        <div [ngClass]="isAction ? 'description' : 'descriptionAn'" (click)="action()">{{house.description}}</div>
+    </div>
+    <div class='map'>
+        <div id='housedetails-map'> </div>
+    </div>
+</ion-content>
+<ion-footer>
+    <ion-toolbar style="padding:0;">
+        <button ion-button full style="margin: 0;">预约看房</button>
+        <!--<div *ngIf="currentUser">
+            <div ng-hide="activeTab=='mine'|| activeTab=='sell'" class="details-6" (click)="knowmodal.show()">
+                <a class='button button-positive'>预约看房</a>
             </div>
         </div>
-        <a class='item flex-row' *ngIf="house.subdistrict !== null" href='#/app/districtdetails/{{house.subdistrict.id}}'>
-            <div class='flex-1'>
-                <span>小区：</span>
-                <span>{{house.subdistrict.name}}</span>
-            </div>
-            <div class='flex-1'>
-                <i class="icon ion-ios-arrow-right"></i>
-            </div>
-        </a>-->
-<!--<div class='details-3'>
-            <p>房源描述(点击内容可查看)：</p>
-            <div class="description" [ngClass]="{true:'description',false:'descriptionAn'}[isAction]" (click)="action()">{{house.description}}</div>
+        <div *ngIf="!currentUser" class="details-6" (click)="loginmodal.show()">
+            <a class='button button-positive'>预约看房</a>
         </div>-->
-<!--<div class='map'>
-            <div id='housedetails-map'> </div>
-        </div>-->
-<!--<div class="role-person">
-            <div class="title">角色人信息</div>
-            <div class="list">
-                <div class="item" *ngIf="houseHk">
-                    <div *ngIf="hkName.avatar"><img ng-src="{{hkName.avatar}}" width="100%" height="100%" /></div>
-                    <div *ngIf="(!hkName.avatar)&&(hkName.gender===2)"><img src="assets/img/female.png" width="100%" height="100%" /></div>
-                    <div *ngIf="(!hkName.avatar)&&(hkName.gender===1)"><img src="assets/img/male.png" width="100%" height="100%" /></div>
-                    <div *ngIf="(!hkName.avatar)&&(hkName.gender===3)"><img src="assets/img/sprite/gender_unknown.jpg" width="100%" height="100%" /></div>
-                    <a href="tel:{{hkName.mobile}}"><i class="ion-ios-telephone-outline"></i></a>
-                    <h2>{{hkName.name}} <span>房管家</span></h2>
-                    <p>{{hkName.department.name}}</p>
-                </div>
-                <div class="item" *ngIf="!houseHk">
-                    无房管家
-                </div>
-                <div class="item" *ngIf="houseReferrer">
-                    <div *ngIf="referrerName.avatar"><img ng-src="{{referrerName.avatar}}" width="100%" height="100%" /></div>
-                    <div *ngIf="(!referrerName.avatar)&&(referrerName.gender===2)"><img src="assets/img/female.png" width="100%" height="100%" /></div>
-                    <div *ngIf="(!referrerName.avatar)&&(referrerName.gender===1)"><img src="assets/img/male.png" width="100%" height="100%" /></div>
-                    <div *ngIf="(!referrerName.avatar)&&(referrerName.gender===3)"><img src="assets/img/sprite/gender_unknown.jpg" width="100%" height="100%" /></div>
-                    <a href="tel:{{referrerName.mobile}}"><i class="ion-ios-telephone-outline"></i></a>
-                    <h2>{{referrerName.name}} <span>推荐人</span></h2>
-                    <p *ngIf="referrerName.department.name">{{referrerName.department.name}}</p>
-                    <p *ngIf="!referrerName.department.name">用户推荐</p>
-                </div>
-                <div class="item" *ngIf="!houseReferrer">
-                    无推荐人
-                </div>
-            </div>
-        </div>
-        <div class='details-6' style="padding-bottom:47px;">
-            <div class='item flex-row'>
-                <div class='flex-1'>
-                    <h2>客户看房记录（{{house.watchedCount}}）</h2>
-                    <p>近一个月新增<span class="price assertive">{{house.watchedCount}}</span>位看房客户</p>
-                </div>
-            </div>
-            <div class='item' *ngIf="(user_role =='房管家' || user_role =='房管家经理') && housesearch == 1">
-                <div *ngIf="house.hasKey == true">
-                    有钥匙&nbsp;&nbsp &nbsp
-                    <img src="assets/img/staff/key_icon.png" width="17" />
-                </div>
-                <div *ngIf="house.hasKey == false">
-                    无钥匙&nbsp;&nbsp &nbsp
-                </div>
-            </div>
-            <div class="item flex-row" *ngIf="(user_role =='房管家' || user_role =='房管家经理') && housesearch == 1">
-                <div class="flex-1">
-                    <span>业主：</span> {{messagesDetailName.name}} {{messagesDetailName.mobile}}
-                </div>
-                <a href="tel:{{messagesDetailName.mobile}}" class="flex-1">
-                    <i class="ion-ios-telephone-outline"></i>
-                </a>
-            </div>-->
-<!--</div>-->
-<!--<div class='details-7' *ngIf="housesearch == 1">
-    <a href="#/app/housedetailsedit/{{house.id}}/1" class="button button-small button-clear flex-1">
-        <i class="ion-compose"></i>
-        <span>编辑</span>
-    </a>
-    <div class='button button-positive' href="" *ngIf="house.status == 0">初始状态</div>
-    <div class='button stable-bg' href="" *ngIf="house.status == 1">实勘中</div>
-    <div class='button button-positive' href="" *ngIf="house.status == 2">已上架</div>
-    <div class='button button-positive' href="" *ngIf="house.status == 3">已下架</div>
-    <div class='button stable-bg' href="" *ngIf="house.status == 4">已锁定</div>
-    <div class='button stable-bg' href="" *ngIf="house.status == 5">已销售</div>
-</div>
-<div class='details-7' *ngIf="housesearch == 2">
-    <div style="width:100%;" class='button button-positive' href="" *ngIf="house.status == 0">初始状态</div>
-<div style="width:100%;" class='button stable-bg' href="" *ngIf="house.status == 1">实勘中</div>
-<div style="width:100%;" class='button button-positive' href="" *ngIf="house.status == 2">已上架</div>
-<div style="width:100%;" class='button button-positive' href="" *ngIf="house.status == 3">已下架</div>
-<div style="width:100%;" class='button stable-bg' href="" *ngIf="house.status == 4">已锁定</div>
-<div style="width:100%;" class='button stable-bg' href="" *ngIf="house.status == 5">已销售</div>
-</div>-->
+    </ion-toolbar>
+</ion-footer>

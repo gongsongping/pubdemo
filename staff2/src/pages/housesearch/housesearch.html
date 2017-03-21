@@ -134,7 +134,7 @@
     </ion-scroll>
 </ion-header>
 <ion-content>
-    <div class="housesearch" *ngFor="let h of houses">
+    <div class="housesearch" *ngFor="let h of houses" (click)="goDetail(h)">
         <house [h]='h'></house>
         <!--<ion-item>
             <img *ngIf="h.images !== '[]'" src="{{h.images[0]}}" width='70' height='70' />

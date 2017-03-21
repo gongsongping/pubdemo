@@ -15,6 +15,7 @@ import { About } from '../pages/about/about';
 import { Consultant } from '../pages/consultant/consultant';
 import { Servicecall } from '../pages/servicecall/servicecall';
 import { Visitrecord } from '../pages/visitrecord/visitrecord';
+import { Districtdetails } from '../pages/districtdetails/districtdetails';
 
 import { NestedCom, House, TestService, ImgPipe, HouseTypePipe } from '../providers/services';
 
@@ -39,7 +40,8 @@ import { NestedCom, House, TestService, ImgPipe, HouseTypePipe } from '../provid
     Consultant,
     Servicecall,
     Visitrecord,
-    HouseTypePipe
+    HouseTypePipe,
+    Districtdetails
   ],
   imports: [
     IonicModule.forRoot(MyApp,{
@@ -63,7 +65,8 @@ import { NestedCom, House, TestService, ImgPipe, HouseTypePipe } from '../provid
     About,
     Consultant,
     Servicecall,
-    Visitrecord
+    Visitrecord,
+    Districtdetails
   ],
   providers: [{ provide: ErrorHandler, useClass: IonicErrorHandler }, TestService]
 })

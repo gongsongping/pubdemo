@@ -15,7 +15,6 @@ import { Housedetails } from '../housedetails/housedetails';
 })
 export class Housemine {
 
-    housedetails: any = Housedetails;
     houses = [];
     houseTitle = [];
     districts = [];
@@ -388,6 +387,8 @@ export class Housemine {
         vm.choosedOrientation = undefined
         vm.orientationParams = ''
     }
-
+    goDetail(h) {
+        this.navCtrl.push(Housedetails, { house: h })
+    }
 
 }

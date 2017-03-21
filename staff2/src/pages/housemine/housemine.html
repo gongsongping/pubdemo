@@ -102,25 +102,19 @@
                         <button ion-button *ngFor='let p of buildYears' (click)='chooseBuildYear(p)' [ngClass]='chooseduildYear == p ? "main-color":""'>{{p.name}}</button>
                     </div>
                 </div>
-                <!--<div class='item'>
-                    <h5>状态</h5>
-                    <div class="flex-row">
-                        <button ion-button *ngFor='let p of chooseStatus' (click)='chooseBuildStatus(p)' [ngClass]='chooseduildStatus == p ? "main-color":""'>{{p.name}}</button>
-                    </div>
-                </div>-->
-                <div class='item'>
-                    <button ion-button outline class="button button-clear" (click)='clearMore()'>清空条件</button>
-                    <a ion-button round (click)='endMore()'>确定</a>
-                </div>
+            </div>
+            <div class='item'>
+                <button ion-button outline class="button button-clear" (click)='clearMore()'>清空条件</button>
+                <a ion-button round (click)='endMore()'>确定</a>
             </div>
         </div>
         <div class="shadow-top" (click)='chooseMoreTab()'></div>
     </ion-scroll>
 </ion-header>
 <ion-content>
-    <div class="housemine" *ngFor="let h of houses">
+    <div class="housemine" *ngFor="let h of houses" (click)="goDetail(h)">
         <!--<house [h]='h'></house>-->
-        <div class='item' [navPush]='housedetails' [navParams]="h.id">
+        <div class='item'>
             <img src="assets/img/img_null.png" width='70' height='70' style="float: left;" />
             <a style="width:75%;">
                 <div class="flex-row">
