@@ -30,54 +30,45 @@
     </div>
     <p  *ngFor="let t of sub; let i=index" (click)="chooseTab(t, i)" [ngClass]="{'checkedp': choosedidx == i}">
       {{t.title}}
-      <!--<span *ngIf="i==0">({{mission.length || 0}})</span><span *ngIf="i==1">({{orderLength || 0}})</span>-->
+      <span *ngIf="i==0">({{mission.length || 0}})</span>
+      <!--<span *ngIf="i==1">({{orderLength || 0}})</span>-->
     </p>
   </div>
+
   <!--待处理-->
-  <!--<div class="item item-first" *ngIf="choosedidx==0"  *ngFor = 'let t in mission' ng-init="waitOrder(t)" (click)="goOrderDetails(t)">-->
-  <div class="item item-first">
+  <div class="item item-first" *ngFor='let t of mission' (click)="goDetails(t)">
     <p class="item-top" style="color: #C5C8CE;">
-      <!--<span>{{t.serialNumber}}</span>-->
-      <!--<span>{{t.modifiedDate | date: 'yyyy-MM-dd'}}</span>-->
+      <span>{{t.serialNumber}}</span>
+      <span>{{t.modifiedDate | date: 'yyyy-MM-dd'}}</span>
     </p>
-    <!--<div class="item-bottom" >-->
-      <!--<div class="order-info">-->
-        <!--<h2>{{t.houseInfo.subdistrict.name}}</h2>-->
-        <!--<p style="margin-top: 10px" ng-if="t.houseId != 0">-->
-          <!--{{t.houseInfo.name}}&nbsp&nbsp&nbsp<span ng-if="t.houseInfo.detailAddr">( {{t.houseInfo.detailAddr}} )</span>-->
-        <!--</p>-->
-        <!--<p class="p1" style="margin-top: 4px" ng-if="t.houseId != 0">-->
-          <!--<span>{{t.houseInfo.houseType[0]}}室{{t.houseInfo.houseType[2]}}厅</span>&nbsp&nbsp&nbsp-->
-          <!--<span>{{t.houseInfo.buildingArea}}m<sup>2</sup></span>&nbsp&nbsp&nbsp-->
-          <!--<span>{{t.houseInfo.price}}</span>万-->
-        <!--</p>-->
-      <!--</div>-->
-      <!--<div class="order-status">-->
-        <!--<p ng-if="t.status==-2">已终止</p>-->
-        <!--<p ng-if="/api/activiti/query/taskst.status==-1">已取消</p>-->
-        <!--<img src="img/staff/non_payment_icon.png" ng-if="t.status==1"/>-->
-        <!--<p ng-if="t.status==2">验房中</p>-->
-        <!--<p ng-if="t.status==3">看房中</p>-->
-        <!--<p ng-if="t.status==4">签约中</p>-->
-        <!--<p ng-if="t.status==6">已过户</p>-->
-        <!--<p ng-if="t.status==7">处理中</p>-->
-        <!--<p ng-if="t.status==0">已完成</p>-->
-        <!--&lt;!&ndash;权证经理订单是以下几种状态&ndash;&gt;-->
-        <!--<p ng-if="t.status==5">过户中</p>-->
-        <!--<p ng-if="t.status==8">贷款中</p>-->
-        <!--<p ng-if="t.status==9">网签中</p>-->
-      <!--</div>-->
-    <!--</div>-->
-    <!--权证经理的订单，多了置业顾问的信息-->
-    <!--<div class="employee" ng-if="false ">-->
-      <!--<div class="employee-info">-->
-        <!--<p>-->
-          <!--按揭专员： <span>李翔 &nbsp&nbsp13555555555</span>-->
-        <!--</p>-->
-        <!--<h6>订单派出时间：2016-02-21</h6>-->
-      <!--</div>-->
-      <!--<img src="img/staff/phone_line_btn.png" />-->
-    <!--</div>-->
+    <div class="item-bottom">
+      <div class="order-info">
+        <h4>{{t.houseInfo?.subdistrict.name}}</h4>
+        <p style="margin-top: 10px" *ngIf="t.houseId != 0">
+          {{t.houseInfo?.name}} <span>( {{t.houseInfo?.detailAddr}} )</span>
+        </p>
+        <p class="p1" style="margin-top: 4px" *ngIf="t.houseId != 0">
+          <span>{{t.houseInfo?.houseType[0]}}室{{t.houseInfo?.houseType[2]}}厅</span>
+          <span>{{t.houseInfo?.buildingArea}}m<sup>2</sup></span>
+          <span>{{t.houseInfo?.price}}</span>万
+        </p>
+      </div>
+      <div class="order-status">
+        <p *ngIf="t.status==-2">已终止</p>
+        <p *ngIf="t.status==-1">已取消</p>
+        <img src="img/staff/non_payment_icon.png" *ngIf="t.status==1"/>
+        <p *ngIf="t.status==2">验房中</p>
+        <p *ngIf="t.status==3">看房中</p>
+        <p *ngIf="t.status==4">签约中</p>
+        <p *ngIf="t.status==6">已过户</p>
+        <p *ngIf="t.status==7">处理中</p>
+        <p *ngIf="t.status==0">已完成</p>
+        <!--权证经理订单是以下几种状态-->
+        <p *ngIf="t.status==5">过户中</p>
+        <p *ngIf="t.status==8">贷款中</p>
+        <p *ngIf="t.status==9">网签中</p>
+      </div>
+    </div>
   </div>
   <!--<h4 ng-if="noUnfinishOrders && choosedidx==0" style="text-align: center;margin-top: 48%;color: #999;">暂无订单！</h4>-->
   <!--<h4 ng-if="noOrders && choosedidx==1" style="text-align: center;margin-top: 48%;color: #999;">暂无订单！</h4>-->

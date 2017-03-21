@@ -21,6 +21,7 @@ import { MyRecommendbuyer } from '../pages/myRecommendbuyer/myRecommendbuyer';
 import { Housevisitapply } from '../pages/housevisitapply/housevisitapply';
 import { Houseclue } from '../pages/houseclue/houseclue';
 import { Ordermine } from '../pages/ordermine/ordermine';
+import { Orderdetailsmine } from '../pages/orderdetailsmine/orderdetailsmine';
 
 
 
@@ -46,7 +47,8 @@ import { Ordermine } from '../pages/ordermine/ordermine';
     Housevisitapply,
     Houseclue,
     ImgPipe,
-    Ordermine
+    Ordermine,
+    Orderdetailsmine
   ],
   imports: [
     IonicModule.forRoot(MyApp, {
@@ -74,7 +76,8 @@ import { Ordermine } from '../pages/ordermine/ordermine';
     MyRecommendbuyer,
     Housevisitapply,
     Houseclue,
-    Ordermine
+    Ordermine,
+    Orderdetailsmine
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })
