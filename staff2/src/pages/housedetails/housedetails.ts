@@ -3,16 +3,16 @@ import { NavController, NavParams } from 'ionic-angular';
 import axios from 'axios';
 
 /*
-  Generated class for the Housesearch page.
+  Generated class for the Housedetails page.
 
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
 @Component({
-    selector: 'page-housesearch',
-    templateUrl: 'housesearch.html'
+    selector: 'page-housedetails',
+    templateUrl: 'housedetails.html'
 })
-export class Housesearch {
+export class Housedetails {
     houses = [];
     districts = [];
     regions = [];

@@ -5,13 +5,13 @@
 
     <ion-toolbar>
         <!--<div class="searchs">-->
-            <!--<ion-searchbar
+        <!--<ion-searchbar
   [(ngModel)]="myInput"
   [showCancelButton]="shouldShowCancel"
   (ionInput)="onInput($event)"
   (ionCancel)="onCancel($event)">
 </ion-searchbar>-->
-            <!--<div class="item-input-wrapper">
+        <!--<div class="item-input-wrapper">
                 <i class="icon placeholder-icon"><img src="assets/img/staff/search.png"></i>
                 <input (ngModelChange)="searchDis($event)" [(ngModel)]="searchData.input" type="search" style="padding-top:0;"
                     placeholder="请输入区域、商圈或小区名搜索" />
@@ -24,8 +24,8 @@
         <div class="searchs">
             <div class="item-input-wrapper">
                 <i class="icon placeholder-icon"><img src="assets/img/staff/search.png"></i>
-                <input [(ngModel)]="searchData.input" (ngModelChange)="searchDis($event)" type="search" style="padding-top:0;"
-                    placeholder="请输入区域、商圈或小区名搜索" />
+                <input [(ngModel)]="searchData.input" (ngModelChange)="searchDis($event)" type="search" style="padding-top:0;" placeholder="请输入区域、商圈或小区名搜索"
+                />
                 <button ion-botton (click)='clearInput()' *ngIf="searchData.input !==''">
 					<img src="assets/img/sprite/close_btn_home.png" width="18"/>
 				</button>
@@ -63,29 +63,18 @@
     </ion-toolbar>
     <ion-scroll scrollX="true" scrollY="true" class="content-list" *ngIf='activeAreaTab'>
         <div class='area-content'>
-            <!--钥匙-->
+            <!--区域-->
             <div class='block'>
-                <button *ngFor='let a of areatabs' (click)='chooseAreatab(a)' ng-class='choosedAreatab == a ? "button-positive":"button-stable"'>{{a}}</button>
+                <button ion-button full outline *ngFor='let a of areatabs' (click)='chooseAreatab(a)' [ngClass]='choosedAreatab == a ? "button-positive":""'>{{a}}</button>
             </div>
             <div class='block'>
                 <div ng-if='choosedAreatab == "区域"'>
-                    <button ion-button full outline *ngFor='let p of regions' (click)='chooseRegion(p)' ng-class='choosedRegion == p ? "button-positive":"button-stable"'>{{p.name}}</button>
+                    <button ion-button full outline *ngFor='let p of regions' (click)='chooseRegion(p)' [ngClass]='choosedRegion == p ? "button-positive":""'>{{p.name}}</button>
                 </div>
-                <!--<div ng-if='choosedAreatab == "地铁"'>-->
-                <!--<button *ngFor='s in subways' ng-click='chooseSubway(s)' class="button button-block button-clear" ng-class='choosedSubway == s ? "button-positive":"button-stable"'>{{s}}</button>-->
-                <!--</div>-->
-                <!--<div ng-if='choosedAreatab == "附近"'>-->
-                <!--<button *ngFor='n in nearbys' ng-click='chooseNearby(n)' class="button button-block button-clear" ng-class='choosedNearby == n ? "button-positive":"button-stable"'>{{n}}km</button>-->
-                <!--</div>-->
             </div>
-			<div class='block'>
+            <div class='block'>
 
-			</div>
-            <!--<div class="list">
-                <div ion-button full outline *ngFor='let p of houseKey' (click)='chooseHouseKey(p)'>
-                    <i *ngIf='choosedHouseKey == p' class='icon'><img src="assets/img/staff/key_icon.png" width="15"/></i>{{p.name}}
-                </div>
-            </div>-->
+            </div>
         </div>
         <div class="shadow-top" (click)='chooseAreaTab()'></div>
     </ion-scroll>
@@ -129,16 +118,16 @@
                         <button ion-button *ngFor='let p of buildYears' (click)='chooseBuildYear(p)' [ngClass]='chooseduildYear == p ? "main-color":""'>{{p.name}}</button>
                     </div>
                 </div>
-                <!--<div class='item'>
+                <div class='item'>
                     <h5>状态</h5>
                     <div class="flex-row">
                         <button ion-button *ngFor='let p of chooseStatus' (click)='chooseBuildStatus(p)' [ngClass]='chooseduildStatus == p ? "main-color":""'>{{p.name}}</button>
                     </div>
-                </div>-->
-                <div class='item'>
-                    <button ion-button outline class="button button-clear" (click)='clearMore()'>清空条件</button>
-                    <a ion-button round (click)='endMore()'>确定</a>
                 </div>
+            </div>
+            <div class='item'>
+                <button ion-button outline class="button button-clear" (click)='clearMore()'>清空条件</button>
+                <a ion-button round (click)='endMore()'>确定</a>
             </div>
         </div>
         <div class="shadow-top" (click)='chooseMoreTab()'></div>
