@@ -76,15 +76,18 @@ export class HouseTypePipe implements PipeTransform {
 export class House {
   he = []
   hkName = []
+  // hk = {mobile:'0998',name:'ddd'}
+  hk:any
   referrerName = []
+  referrer:any
   @Input() h: any;
   @Output() notify: EventEmitter<any> = new EventEmitter<any>();
   constructor() {
     console.log('Hello house content Provider');
   }
   ngOnInit() {
-    // console.log('house content init');
-    // let vm = this
+    // console.log('--house content init---');
+    let vm = this
     // let url = '/api/housing/subdistricts/' + vm.h.subdistrict.id
     // axios
     //   .get(url)
@@ -92,47 +95,36 @@ export class House {
     //     console.log(res)
     //     vm.he = res.data.hkId;
     //   })
-    //   .catch(function (error) {
-    //     alert('服务器错误');
-    //     console.log(error);
-    //   });
-    // let url1 = '/api/account/employees/' + vm.h.hkId
-    // axios
-    //   .get(url1)
-    //   .then(function (res) {
-    //     console.log(res)
-    //     vm.hkName = res.data.hkId;
-    //   })
-    //   .catch(function (error) {
-    //     alert('服务器错误');
-    //     console.log(error);
-    //   });
-    // if (vm.h.referrerId < 5000000) {
-    //   let url2 = '/api/account/employees/' + vm.h.referrerId
-    //   axios
-    //     .get(url2)
-    //     .then(function (res) {
-    //     console.log(res)
-    //       vm.referrerName = vm.referrerName.concat(res.data.data);
-    //     })
-    //     .catch(function (error) {
-    //       alert('服务器错误');
-    //       console.log(error);
-    //     });
-    // }
-    // if (vm.h.referrerId > 5000000) {
-    //   let url3 = '/api/account/users/' + vm.h.referrerId
-    //   axios
-    //     .get(url3)
-    //     .then(function (res) {
-    //     console.log(res)
-    //       vm.referrerName = vm.referrerName.concat(res.data.data);
-    //     })
-    //     .catch(function (error) {
-    //       alert('服务器错误');
-    //       console.log(error);
-    //     });
-    // }
+ 
+    let url1 = '/api/account/employees/' + vm.h.hkId
+    axios
+      .get(url1)
+      .then(function (res) {
+        vm.hk = res.data;
+        // console.log(vm.hk)
+      })
+  
+    if (vm.h.referrerId < 5000000) {
+      let url2 = '/api/account/employees/' + vm.h.referrerId
+      axios
+        .get(url2)
+        .then(function (res) {
+        console.log(res)
+          // vm.referrerName = vm.referrerName.concat(res.data.data);
+          vm.referrer = res.data          
+        })
+    }
+    if (vm.h.referrerId > 5000000) {
+      let url3 = '/api/account/users/' + vm.h.referrerId
+      axios
+        .get(url3)
+        .then(function (res) {
+        console.log(res)
+          // vm.referrerName = vm.referrerName.concat(res.data.data);
+          vm.referrer = res.data
+        })
+    }
+
   }
   onClick() {
     this.notify.emit('Click from nested content');
