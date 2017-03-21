@@ -52,7 +52,8 @@ export class Home {
     }
     ionViewWillEnter() {
         //refresh token
-        this.events.publish('tokens:refresh', 'user', 'time');// red refresh token
+        // this.events.publish('tokens:refresh', 'user', 'time');// red refresh token
+        this.events.publish('messages:update')
         var map = new BMap.Map("allmap");
         var point = new BMap.Point(116.404, 39.915);
         map.centerAndZoom(point, 15);

@@ -25,7 +25,7 @@ export class Tabs {
     buy: any = Buy;
     sell: any = Sell;
     mine: any = Mine;
-    messagesTotal = 0
+    messagesTotal:any = 0
     constructor(public events:Events) { }
     //not working
     ionViewWillEnter() {
@@ -35,17 +35,13 @@ export class Tabs {
         console.log('------tabs----- Page oninit');
         this.events.subscribe('messages:update',()=>{
             let vm = this
+            this.events.publish('tokens:refresh', 'user', 'time');
             if (localStorage.getItem('tokens')) {
-                let tokens = JSON.parse(localStorage.getItem('tokens'))
-                let userInfo = JSON.parse(localStorage.getItem('userInfo'))
-                axios.get('/api/message/notices?size=0&isRead=false&userId=' + userInfo.id)
-                    .then(function(res) {
-                        localStorage.setItem('messagesTotal',res.data.total)
-                        console.log('----messagesTotal----',res.data.total);
-                        vm.messagesTotal = res.data.total
-                    })
+                setTimeout(()=>{
+                  vm.messagesTotal = localStorage.getItem('messagesTotal')
+                  console.log('----tabs-messagesTotal----',vm.messagesTotal);
+                },500)
             } else {
-                localStorage.setItem('messagesTotal','')
                 vm.messagesTotal = 0
             }
         })
@@ -54,7 +50,5 @@ export class Tabs {
     chat(){
         console.log('--ionselect cahge--');
     }
-    prepareInfo () {
-
-    }
+    
 }

@@ -23,7 +23,7 @@ export class Mine {
     servicecall = Servicecall
     visitrecord = Visitrecord
     sellrecord = Sellrecord
-    
+
     items = [1, 2, 3, 4, 5];
     // tokens: any;
     userInfo: any;
@@ -33,16 +33,18 @@ export class Mine {
     constructor(public navCtrl: NavController, public events:Events) { }
 
     ionViewWillEnter() {
+        let vm = this
         if (localStorage.getItem('userInfo')){
             this.userInfo = JSON.parse(localStorage.getItem('userInfo'))
         } else {
             this.userInfo = ''
         }
+        setTimeout(()=>{
+            vm.messagesTotal = localStorage.getItem('messagesTotal')
+            console.log('----mine-page-messagesTotal----',vm.messagesTotal);
+        },500)
     }
-    ionViewDidEnter() {
-        this.messagesTotal = localStorage.getItem('messagesTotal')
-        console.log('----mine Page will enter userInfo-----', this.userInfo);
-    }
+  
     logout() {
         localStorage.setItem('tokens', '')
         localStorage.setItem('userInfo', '')
