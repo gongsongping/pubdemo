@@ -1,0 +1,100 @@
+page-ordermine {
+  .ordermine {
+    background: #f6f7fb;
+    .scroll {
+      position: relative;
+    }
+    .item-input {
+      padding: 10px;
+      height: initial;
+    }
+    .item-input-wrapper {
+      background-color: #F6F7FB;
+    }
+    .upright-line{
+      top: 15px;
+      position: absolute;
+      left: 50%;
+      height: 14px;
+      width: 2px;
+      background: #E6E7EB;
+    }
+    .customer-info {
+      align-items: center;
+      display: flex;
+      justify-content: space-around;
+      background: #F6F7FB;
+      p {
+        color: #7B8299;
+        display: inline-block;
+        padding: 12px;
+      }
+      .checkedp {
+        border-bottom: 1px solid #265fdf;
+        color: #265fdf;
+      }
+    }
+    .item {
+      margin-top: 15px;
+      border: none;
+      //border-bottom: solid 5px #eee;
+      .item-top {
+        display: flex;
+        justify-content: space-between;
+        span:nth-of-type(2) {
+          font-size: 12px;
+        }
+      }
+      .item-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 8px;
+        border-top: 1px solid #e5e5e5;
+        padding-top: 8px;
+        .order-info {
+          width: 82%;
+          p {
+            color: #afb9c5
+          }
+        }
+        .order-status {
+          text-align: right;
+          p {
+            color: #265fdf;
+          }
+          img {
+            max-width: 55%;
+            display: inline-block;
+          }
+        }
+      }
+      .employee {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 8px;
+        border-top: 1px solid #e5e5e5;
+        padding-top: 8px;
+        .employee-info {
+          p {
+            color: #afb9c5;
+            span {
+              color: #8f9db8;
+            }
+          }
+          h6 {
+            color: #8f9db8;
+            margin-top: 3px;
+          }
+        }
+        img {
+          max-width: 50%;
+        }
+      }
+    }
+    .item:first-child {
+      margin-top: 0;
+    }
+  }
+}

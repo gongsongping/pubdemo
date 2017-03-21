@@ -216,10 +216,9 @@ export class Housemine {
         this.inputStart = false;
     }
 
-    searchDis(e, status) {
+    searchDis(e) {
         let vm = this;
         vm.inputStart = true;
-        let statusIn = '&statusIn=' + status;
         let url = ''
         if (vm.roleName == '房管家') {
             url = '/api/housing/houses?size=10&hkId=';
@@ -296,7 +295,7 @@ export class Housemine {
             url = '/api/housing/rents?size=10&hkId=' + vm.userInfo.id;
         }
         axios
-            .get(url + vm.statusIn + vm.nameLike + vm.statusIn + vm.priceParams + vm.houseTypeParams + vm.hasKeyParams + vm.buildingAreaParams + vm.buildYearParams + vm.orientationParams + vm.regionParams)
+            .get(url + vm.statusIn + vm.nameLike + vm.priceParams + vm.houseTypeParams + vm.hasKeyParams + vm.buildingAreaParams + vm.buildYearParams + vm.orientationParams + vm.regionParams)
             .then(function (res) {
                 vm.houses = res.data.data;
                 vm.dataLength = res.data.data.length

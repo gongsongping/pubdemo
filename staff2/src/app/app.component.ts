@@ -3,7 +3,7 @@ import { Nav, Platform, ModalController, Events } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 
 import { Home } from '../pages/home/home';
-import { ModalResetpw } from '../providers/services';
+
 import { Changepw } from '../pages/changepw/changepw';
 import { Resetpw } from '../pages/resetpw/resetpw';
 import { About } from '../pages/about/about';
@@ -148,10 +148,6 @@ export class MyApp {
   pushTo (p){
     this.nav.push(p)
   }
-  resetpwModal (){
-    console.log('--menu click test--');
-    let log = this.modalCtrl.create(ModalResetpw,{});
-    log.present();
-  }
+  
 
 }

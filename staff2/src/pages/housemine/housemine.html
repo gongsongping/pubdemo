@@ -39,7 +39,7 @@
             </div>
             <div class="titles" (click)='chooseKeyTab()'>
                 <span [ngClass]="{'positive': activeKeyTab}">{{subtabs.activeKey}}</span>
-                <ion-icon name="{{activekeyTab ? 'md-arrow-dropdown' : 'md-arrow-dropup'}}"></ion-icon>
+                <ion-icon name="{{activeKeyTab ? 'md-arrow-dropdown' : 'md-arrow-dropup'}}"></ion-icon>
             </div>
             <div class="titles" (click)='chooseMoreTab()'>
                 <span [ngClass]="{'positive': activeMoreTab}">{{subtabs.activeMore}}</span>

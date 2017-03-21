@@ -48,25 +48,25 @@ export class HouseTypePipe implements PipeTransform {
   }
 }
 
-@Component({
-  selector: 'modal-resetpw',
-  template: `
-    <div>modal-resetpw</div>
-  `
-})
-export class ModalResetpw {
-  @Input() title: any;
-  @Output() notify: EventEmitter<any> = new EventEmitter<any>();
-  constructor() {
-    console.log('Hello NestedCom Provider');
-  }
-  ngOnInit() {
-    console.log('nested-com init');
-  }
-  onClick() {
-    this.notify.emit('Click from nested component');
-  }
-}
+// @Component({
+//   selector: 'modal-resetpw',
+//   template: `
+//     <div>modal-resetpw</div>
+//   `
+// })
+// export class ModalResetpw {
+//   @Input() title: any;
+//   @Output() notify: EventEmitter<any> = new EventEmitter<any>();
+//   constructor() {
+//     console.log('Hello NestedCom Provider');
+//   }
+//   ngOnInit() {
+//     console.log('nested-com init');
+//   }
+//   onClick() {
+//     this.notify.emit('Click from nested component');
+//   }
+// }
 
 @Component({
   selector: 'house',
