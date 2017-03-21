@@ -32,29 +32,29 @@
             <strong class="price assertive">{{h.price}}万</strong>
         </div>
     </a>
-    <!--<div class="handle">
-        <div>
-            <a *ngIf="h.hkId != 0"><img src="assets/img/staff/phone_line_btn.png" width="20" /></a>
-            <p>
-                房管家：
-                <span *ngIf="h.hkId != 0">
-						{{hkName.name}}
-					</span>
-                <span *ngIf="h.hkId == 0" style="color:#265fdf;">无</span>
-            </p>
-            <p>{{hkName.mobile}}</p>
-        </div>
-        <span class="spacing"></span>
-        <div>
-            <a *ngIf="h.referrerId" href="tel:{{h.referrerName.mobile}}"><img src="assets/img/staff/phone_line_btn.png" width="20" /></a>
-            <p>
-                推荐人<span style="font-size:.8em;color:#999;" *ngIf="h.referrerId > 5000000">(业主)</span>：
-                <span *ngIf="h.referrerId">
-						        {{referrerName.name}}
-					          </span>
-                <span *ngIf="!h.referrerId" style="color:#265fdf;">无</span>
-            </p>
-            <p>{{referrerName.mobile}}</p>
-        </div>
-    </div>-->
 </ion-item>
+<div class="handle">
+    <div>
+        <a *ngIf="h.hkId != 0"><img src="assets/img/staff/phone_line_btn.png" width="20" /></a>
+        <p>
+            房管家：
+            <span *ngIf="hk">
+                {{hk.name}}
+            </span>
+            <span *ngIf="hk" style="color:#265fdf;">无</span>
+        </p>
+        <p >{{hk?.mobile}}</p>
+    </div>
+    <span class="spacing"></span>
+    <div>
+        <a *ngIf="h.referrerId" href="tel:{{referrer?.mobile}}"><img src="assets/img/staff/phone_line_btn.png" width="20" /></a>
+        <p>
+            推荐人<span style="font-size:.8em;color:#999;" *ngIf="h.referrerId > 5000000">(业主)</span>：
+            <span *ngIf="h.referrerId">
+                            {{referrer?.name}}
+                            </span>
+            <span *ngIf="!h.referrerId" style="color:#265fdf;">无</span>
+        </p>
+        <p>{{referrer?.mobile}}</p>
+    </div>
+</div>
