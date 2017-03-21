@@ -90,29 +90,29 @@
         style='margin: 0;border-bottom: 0.5px solid lightgrey;'>{{p.name}}</button>
     </div>
 
-    <div [@heightInOut] *ngIf='activeMoreTab' style='clear:both;width: 100vw;height:65vh;overflow: scroll;background: white;padding-bottom: 15px;'>
+    <div [@heightInOut] *ngIf='activeMoreTab' style='clear:both;width: 100vw;height:55vh;overflow: scroll;background: white;padding-bottom: 15px;'>
       <!--更多-->
       <div style='padding:5px;font-size: 1em;'>朝向</div>
       <div *ngFor='let p of orientations' style='padding:0 5px 5px;width: 33.3vw;float: left;'>
-        <button (click)='chooseOrientation(p)' ion-button  block outline [color]='choosedOrientation == p ? "primary":"lightgrey"'>{{p.name}}</button>
+        <button (click)='chooseOrientation(p)' ion-button small round  block outline [color]='choosedOrientation == p ? "primary":"lightgrey"'>{{p.name}}</button>
       </div>
 
       <div style='clear:both;padding:5px;font-size: 1em;'>面积</div>
       <div *ngFor='let p of buildingAreas' style='padding:0 5px 5px;width: 33.3vw;float: left;'>
-        <button (click)='chooseBuildingArea(p)' ion-button  block outline [color]='choosedBuildingArea == p ? "primary":"lightgrey"'>{{p.name}}</button>
+        <button (click)='chooseBuildingArea(p)' ion-button small round  block outline [color]='choosedBuildingArea == p ? "primary":"lightgrey"'>{{p.name}}</button>
       </div>
 
       <div style='clear:both;padding:5px;font-size: 1em;'>楼龄</div>
       <div *ngFor='let p of buildYears' style='padding:0 5px 5px;width: 33.3vw;float: left;'>
-        <button (click)='chooseBuildYear(p)' ion-button  block outline [color]='choosedBuildYear == p ? "primary":"lightgrey"'>{{p.name}}</button>
-      </div>
-      <div style='clear:both;width: 80vw;margin:5px 10vw;'>
-        <button (click)='clearMore()' ion-button clear block color='lightgrey'>清空条件</button>
+        <button (click)='chooseBuildYear(p)' ion-button  small round block outline [color]='choosedBuildYear == p ? "primary":"lightgrey"'>{{p.name}}</button>
       </div>
 
     </div>
+      <div *ngIf='activeMoreTab' style='clear:both;width: 80vw;margin:5px 10vw;'>
+        <button (click)='clearMore()' ion-button outline round block  color='lightgrey'>清空条件</button>
+      </div>
       <div *ngIf='activeMoreTab' style='width: 80vw;margin:5px 10vw;'>
-        <button (click)='endMore()' ion-button round block>确定</button>
+        <button (click)='endMore()' ion-button round block >确定</button>
       </div>
   </div>
 
@@ -122,21 +122,12 @@
 
   <div style="padding:5px 8px;">
     <house *ngFor="let h of houses ; let i = index" (click)='goDetail(h)' [h]='h'></house>
-    <!--<ion-item *ngFor="let h of houses; let i = index" style="padding-left:0px;">
-      <ion-thumbnail item-left>
-        <img src="{{(h.images | ImgPipe)[0]}}">
-      </ion-thumbnail>
-      <h2>{{h.name}}</h2>
-      <p>{{h.description}}</p>
-      <p>ll</p>
-      <p>{{i}}</p>
-    </ion-item>-->
   </div>
   <div *ngIf='!dataLength' style='padding:30px;text-align: center;'>没有了!</div>
   <!--<ion-fab bottom right #fab>
     <button ion-fab (click)="goPrecise()" style='font-size: 0.8em;'>为您找房</button>
   </ion-fab>-->
-  <!--enabled="dataLength > 0" threshold='20%'-->
+
   <ion-infinite-scroll (ionInfinite)="loadMore($event)" [enabled]='!!dataLength' threshold='30%'>
     <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
     </ion-infinite-scroll-content>

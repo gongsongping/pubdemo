@@ -7,7 +7,7 @@ import { Task } from '../pages/task/task';
 import { Todo } from '../pages/todo/todo';
 import { Tododetails } from '../pages/tododetails/tododetails';
 import { Role } from '../pages/role/role';
-import {  House, ImgPipe } from '../providers/services';
+import {  House, ImgPipe, HouseTypePipe } from '../providers/services';
 import { Changepw } from '../pages/changepw/changepw';
 import { Resetpw } from '../pages/resetpw/resetpw';
 import { About } from '../pages/about/about';
@@ -22,6 +22,7 @@ import { Housevisitapply } from '../pages/housevisitapply/housevisitapply';
 import { Houseclue } from '../pages/houseclue/houseclue';
 import { Housedetails } from '../pages/housedetails/housedetails';
 import { Districtdetails } from '../pages/districtdetails/districtdetails';
+import { Ordermine } from '../pages/ordermine/ordermine';
 
 
 
@@ -48,7 +49,9 @@ import { Districtdetails } from '../pages/districtdetails/districtdetails';
     Houseclue,
     ImgPipe,
     Housedetails,
-    Districtdetails
+    Districtdetails,
+    HouseTypePipe,
+    Ordermine
   ],
   imports: [
     IonicModule.forRoot(MyApp, {
@@ -77,7 +80,8 @@ import { Districtdetails } from '../pages/districtdetails/districtdetails';
     Housevisitapply,
     Houseclue,
     Housedetails,
-    Districtdetails
+    Districtdetails,
+    Ordermine
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })

@@ -120,7 +120,7 @@
 <ion-content>
     <div class="housemine" *ngFor="let h of houses">
         <!--<house [h]='h'></house>-->
-        <div class='item'>
+        <div class='item' [navPush]='housedetails' [navParams]="h.id">
             <img src="assets/img/img_null.png" width='70' height='70' style="float: left;" />
             <a style="width:75%;">
                 <div class="flex-row">

@@ -112,7 +112,7 @@ export class Contact {
         //console.log(res.data.data);
         vm.dataLength = res.data.data
         vm.person = res.data.data
-        vm.allPerson = res.data.data
+        vm.allPerson = res.data.data.length
       })
         .catch(function (error) {
           console.log(error);
