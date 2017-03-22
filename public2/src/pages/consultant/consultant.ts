@@ -18,5 +18,9 @@ export class Consultant {
   ionViewDidLoad() {
     console.log('ionViewDidLoad ConsultantPage');
   }
-
+  tabs = ['置业顾问','房管家']
+  activeTab = 0
+  chooseTab (i){
+    this.activeTab = i
+  }
 }

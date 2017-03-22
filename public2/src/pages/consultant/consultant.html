@@ -6,13 +6,28 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>consultant</ion-title>
+  <ion-navbar mode='ios'>
+    <ion-title text-center>我的顾问</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
-
+<ion-content padding-bottom>
+  <!--<div style='width:100vw;'>
+    <div style='float:left;width:50%;'>
+      <button *ngFor='let p of tabs;let i = index;' (click)='chooseTab(i)' [ngClass]='activeTab===i ? "select-buy-tab":""' style='margin:0px;' mode='ios'
+        color="white" ion-button full> 
+        {{p}}
+      </button>
+    </div>
+  </div>
+  <ion-slides pager='true' loop='true' paginationType='progress' >
+    <ion-slide >
+      <h1>置业顾问</h1>
+    </ion-slide>
+    <ion-slide >
+      <h1>房管家</h1>
+    </ion-slide>
+  </ion-slides>-->
 </ion-content>

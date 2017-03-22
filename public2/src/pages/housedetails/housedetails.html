@@ -4,16 +4,16 @@
     </ion-navbar>
 </ion-header>
 <ion-content class="housedetails">
-    <div *ngIf="house.images == '[]'" tyle='width: 100vw;height:25%;'>
-        <img src="assets/img/img_null.png"  style='width:100%;height:100%;'/>
+    <div *ngIf="house.images == '[]'" tyle='width: 100vw;height:200px;'>
+        <img src="assets/img/img_null.png"  style='width:100%;height:200px;'/>
     </div>
-    <div *ngIf="house.images !== '[]'" style='width: 100vw;height:30%;'>
-        <ion-slides zoom='true' pager='true' autoplay='2000' loop='true' paginationType='bullets'  parallax='true'>
-            <ion-slide *ngFor='let img of (house.images | ImgPipe)'>
-                <img src="{{img}}" style='width:100%;height:100%;' />
+    <div *ngIf="house.images !== '[]'" >
+        <ion-slides zoom='true' pager='true' autoplay='2000' loop='true' paginationType='bullets'  parallax='true' >
+            <ion-slide *ngFor='let img of (house.images | ImgPipe)' style='width:100%;height:200px;'>
+                <img src="{{img}}" style='width:100%;height:auto;' />
             </ion-slide>
             <ion-slide *ngFor='let img of (house.planImages | ImgPipe)'>
-                <img src="{{img}}" style='width:100%;height:100%;' />
+                <img src="{{img}}" style='width:100%;height:auto;' />
             </ion-slide>
         </ion-slides>
     </div>
