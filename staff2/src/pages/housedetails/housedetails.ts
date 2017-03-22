@@ -18,6 +18,7 @@ export class Housedetails {
     house: any;
     isAction = false;
     constructor(public navCtrl: NavController, public Params: NavParams) {
+        console.log(Params.get('house'))
         this.house = Params.get('house')
     }
 
@@ -29,7 +30,17 @@ export class Housedetails {
     ionViewWillEnter() {
         // this.roleName = localStorage.getItem('role')
     }
-
+    ionViewDidEnter() {
+        let vm = this;
+        if (localStorage.getItem('userInfo')) {
+            vm.userInfo = JSON.parse(localStorage.getItem('userInfo'));
+            console.log('-----', vm.userInfo);
+            // vm.doInfinite(false);
+            // vm.areaList();
+        } else {
+            vm.userInfo = ''
+        }
+    }
     districtDs(d){
         this.navCtrl.push(Districtdetails, { house: d })
     }
@@ -37,5 +48,4 @@ export class Housedetails {
         this.isAction = !this.isAction
     }
 }
-
 

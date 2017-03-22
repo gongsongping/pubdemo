@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import axios from 'axios';
+import { Housedetails } from '../housedetails/housedetails';
 
 /*
   Generated class for the Housemine page.
@@ -13,6 +14,7 @@ import axios from 'axios';
     templateUrl: 'housemine.html'
 })
 export class Housemine {
+
     houses = [];
     houseTitle = [];
     districts = [];
@@ -385,6 +387,8 @@ export class Housemine {
         vm.choosedOrientation = undefined
         vm.orientationParams = ''
     }
-
+    goDetail(h) {
+        this.navCtrl.push(Housedetails, { house: h })
+    }
 
 }

@@ -1,0 +1,65 @@
+<ion-header>
+
+    <ion-navbar>
+        <ion-title>{{subdistricts.name}}</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+<ion-content class="housedetails">
+    <div class='details-1'>
+        <div class='name'>
+            {{subdistricts.name}}
+        </div>
+        <div class='simple flex-row'>
+            <div class='flex-1'>
+                <h4>小区参考均价</h4>
+            </div>
+            <div class='flex-1'>
+                <h4>{{subdistricts.avgUnitPrice}}/平米</h4>
+            </div>
+        </div>
+    </div>
+    <div class='details-1'>
+        <div class="row">
+            <div class='flex-col'>
+                物业费：
+                <span>{{subdistricts.pmFee}}元/平米</span>
+            </div>
+            <div class='flex-col'>
+                楼栋数：
+                <span>{{subdistricts.totalBuilding}}栋</span>
+            </div>
+            <div class='flex-col'>
+                房屋总数：
+                <span>{{subdistricts.totalHouse}}间</span>
+            </div>
+            <div class='flex-col'>
+                容积率：
+                <span>{{subdistricts.plotRatio*100}}%</span>
+            </div>
+            <div class='flex-col'>
+                建筑年代：
+                <span>{{subdistricts.buildYear}}年</span>
+            </div>
+            <div class='flex-col'>
+                绿化率：
+                <span>{{subdistricts.greenRatio*100}}%</span>
+            </div>
+            <div class='flex-col'>
+                建筑类型：
+                <span *ngIf="subdistricts.buildingType == 1">塔式</span>
+                <span *ngIf="subdistricts.buildingType == 2">板式</span>
+                <span *ngIf="subdistricts.buildingType == 3">塔板结合</span>
+                <span *ngIf="subdistricts.buildingType == 4">未知类型</span>
+            </div>
+            <div class='flex-col'>
+                区域：
+                <span>{{subdistricts.region?.name}}</span>
+            </div>
+        </div>
+    </div>
+    <div class='map'>
+        <div id='details-map'> </div>
+    </div>
+</ion-content>

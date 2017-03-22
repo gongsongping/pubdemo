@@ -58,6 +58,15 @@
                 <span>{{house.subdistrict.buildYear}}年</span>
             </div>
             <div class='flex-col'>
+                挂盘时间：
+                <!--<span>{{statusFrist.modifiedTime | date: 'yyyy-MM-dd'}}</span>-->
+                <!--<span *ngIf="!statusFrist.modifiedTime">暂未上架</span>-->
+            </div>
+            <div class='flex-col'>
+                房号：
+                <span>{{house.detailAddr}}</span>
+            </div>
+            <div class='flex-col'>
 
             </div>
             <a class='flex-row' *ngIf="house.subdistrict !== null" (click)="districtDs(house.subdistrict)">

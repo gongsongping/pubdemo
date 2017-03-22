@@ -169,3 +169,114 @@
     border-bottom:1px solid #265fdf;
     color:#265fdf !important;
 }
+// 房源小区详情
+.housedetails {
+        background-color: #F4F5F9;
+        .details-1{
+            width:100vw;
+            margin-top: 10px;
+            background-color: #fff;
+            .name{
+                color:#6c727e;
+                font-size:1em;
+                padding:1em;
+                font-weight:700;
+                border-top:1px solid #f0f2f6;
+            }
+            .simple {
+                border-top:1px solid #f0f2f6;
+                display: flex;
+                justify-content: space-around;
+                padding: 10px 0;
+                .flex-1{
+                    width:33%;
+                    text-align: center;
+                }
+                .bor{
+                    border-left:1px solid #f0f2f6;
+                }
+                p {
+                    margin: 0;
+                    padding-top:10px;
+                }
+                h4{
+                    margin: 0;
+                    padding:5px 0;
+                    color: #f16341;
+                }
+            }
+            .calculate{
+                border-top:1px solid #f0f2f6;
+                color:#6c727e;
+                font-size:1em;
+                padding:1em;
+                span{
+                    color:#333;
+                }
+            }
+            .row{
+                .flex-col{
+                    width: 50%;
+                    border-bottom: 1px solid #f0f2f6;
+                }
+                .flex-row{
+                    width: 100%;
+                    justify-content: space-between;
+                }
+                .flex-row,.flex-col{
+                    padding:1em;
+                    color:#6c727e;
+                    span{
+                        color:#333;
+                    }
+                }
+            }
+        } 
+        .details-3{
+            width:100vw;
+            margin-top: 10px;
+            background-color: #fff;
+            overflow: hidden;
+            p{
+                padding:1em;
+                margin: 0;
+                color: grey;
+            }
+            div{
+                margin: 0 1em 1em 1em;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                line-height: 20px;
+            }
+            .description{
+                height: 59px;
+                white-space: pre;
+            }
+            .descriptionAn{
+                height: auto;
+                white-space: pre-line;
+            }
+        } 
+        .map {
+            width:100vw;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            background-color: #fff;
+            .item {
+                padding: 10px;
+                border-top: 1px solid #f0f2f6;
+                border-bottom: 1px solid #f0f2f6;
+                span:first-child {
+                    color: gray;
+                }
+                i {
+                    float: right;
+                }
+            }
+            #housedetails-map,#details-map{
+                width:100vw;
+                height:60vw;
+                background-color: gray;
+            }
+        }
+    }

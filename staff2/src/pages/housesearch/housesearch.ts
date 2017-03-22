@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import axios from 'axios';
+import { Housedetails } from '../housedetails/housedetails';
 
 /*
   Generated class for the Housesearch page.
@@ -35,6 +36,7 @@ export class Housesearch {
     directionParams = ''
     districtsTotal = ''
     buildStatusParams = ''
+    chooseduildStatus = ''
     choosedRegion = ''
     statusIn = '&statusIn=[0,2]';
     choosed = false;
@@ -230,19 +232,7 @@ export class Housesearch {
                 console.log(error);
             });
     }
-    // 删选条件
-
-    //钥匙
-    // houseKey = [{ name: '不限', params: '' }, { name: '有钥匙', params: '&hasKey=true' }, { name: '无钥匙', params: '&hasKey=false' }]
-    // chooseHouseKey(p) {
-    //     let vm = this;
-    //     vm.choosedHouseKey = p
-    //     vm.hasKeyParams = p.params
-    //     vm.subtabs.activeArea = p.name
-    //     vm.activeAreaTab = !vm.activeAreaTab
-    //     vm.search()
-    //     // console.log(vm.hasKeyParams);
-    // } //区域
+    //区域
     areatabs = ['区域']//, '地铁', '附近'
     choosedAreatab = '区域'
     chooseAreatab = function (a) {
@@ -274,7 +264,7 @@ export class Housesearch {
         } else {
             vm.regionParams = '&regionName=' + p.name
         }
-        // vm.popover.hide()
+        vm.activeAreaTab = !vm.activeAreaTab;
         vm.search()
     }
     //价格
@@ -322,7 +312,14 @@ export class Housesearch {
         vm.chooseduildYear = p
         vm.buildYearParams = p.params
     }
-
+    
+    //状态
+    chooseStatus = [{ name: '全部', params: '&statusIn=[0,2]' }, { name: '初始状态', params: '&statusIn=[0]' }, { name: '已上架', params: '&statusIn=[2]' }]
+    chooseBuildStatus = function (p) {
+        let vm =this;
+        vm.chooseduildStatus = p
+        vm.buildStatusParams = p.params
+    }
     endMore() {
         let vm = this;
         vm.activeMoreTab = !vm.activeMoreTab;
@@ -337,7 +334,12 @@ export class Housesearch {
         vm.buildYearParams = ''
         vm.choosedOrientation = undefined
         vm.orientationParams = ''
+        vm.chooseduildStatus = undefined
+        vm.buildStatusParams = ''
     }
-
+    
+    goDetail(h) {
+        this.navCtrl.push(Housedetails, { house: h })
+    }
 }
 

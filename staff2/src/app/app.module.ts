@@ -20,6 +20,8 @@ import { Recommendbuyer } from '../pages/recommendbuyer/recommendbuyer';
 import { MyRecommendbuyer } from '../pages/myRecommendbuyer/myRecommendbuyer';
 import { Housevisitapply } from '../pages/housevisitapply/housevisitapply';
 import { Houseclue } from '../pages/houseclue/houseclue';
+import { Housedetails } from '../pages/housedetails/housedetails';
+import { Districtdetails } from '../pages/districtdetails/districtdetails';
 import { Ordermine } from '../pages/ordermine/ordermine';
 
 
@@ -46,6 +48,8 @@ import { Ordermine } from '../pages/ordermine/ordermine';
     Housevisitapply,
     Houseclue,
     ImgPipe,
+    Housedetails,
+    Districtdetails,
     HouseTypePipe,
     Ordermine
   ],
@@ -75,6 +79,8 @@ import { Ordermine } from '../pages/ordermine/ordermine';
     MyRecommendbuyer,
     Housevisitapply,
     Houseclue,
+    Housedetails,
+    Districtdetails,
     Ordermine
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
