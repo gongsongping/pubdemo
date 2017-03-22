@@ -95,9 +95,6 @@ export class Contact {
           infiniteScroll.complete();
         }
       })
-      .catch(function (error) {
-        console.log(error);
-      });
   }
 
   onInput(event) {
