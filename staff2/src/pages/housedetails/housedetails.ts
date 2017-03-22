@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { NavController, NavParams, Slides } from 'ionic-angular';
 import { Districtdetails } from '../districtdetails/districtdetails';
+import axios from 'axios';
 
 /*
   Generated class for the Housedetails page.
@@ -17,11 +18,51 @@ export class Housedetails {
     userInfo: any;
     house: any;
     isAction = false;
-    constructor(public navCtrl: NavController, public Params: NavParams) {
-        console.log(Params.get('house'))
-        this.house = Params.get('house')
+    houses = [];
+    mySlideOptions;
+    constructor(public navCtrl: NavController, public navParams: NavParams) {
+        // console.log(Params.get('house'))
+        // this.house = Params.get('house')
+        let vm = this;
+        vm.house = navParams.get('house')
+        let url = 'api/housing/houses/' + vm.house.id
+        axios
+            .get(url)
+            .then(function (res) {
+                vm.houses = res.data;
+              console.log(vm.houses)
+            })
+            .catch(function (error) {
+                alert('服务器错误');
+                console.log(error);
+            });
     }
-
+    @ViewChild(Slides) slides: Slides;
+    ngOnInit() {//页面加载完成后自己调用
+        // this.mySlideOptions = {
+        //     autoplay: 2000,
+        //     initialSlide: 0,
+        //     pager: true,
+        //     loop: true,
+        //     speed: 300,
+        //     zoom: true,
+        //     effect: 'flip'
+        // };
+        // setInterval(() => {
+        //     this.slides.slideNext(500, true);
+        //     // this.slides.slidePrev(500, true);
+        // }, 2000);
+    }
+    // goToSlide() {
+    //     this.slides.slideTo(2, 500);
+    // }
+    // startAutoplay() {
+    //     this.slides.slideTo(2, 500);
+    // }
+    slideChanged() {
+        let currentIndex = this.slides.getActiveIndex();
+        console.log("Current index is", currentIndex);
+    }
     ionViewDidLoad() {
         // this.doInfinite(false);
         console.log('ionViewDidLoad HousesearchPage');
@@ -41,10 +82,10 @@ export class Housedetails {
             vm.userInfo = ''
         }
     }
-    districtDs(d){
+    districtDs(d) {
         this.navCtrl.push(Districtdetails, { house: d })
     }
-    action () {
+    action() {
         this.isAction = !this.isAction
     }
 }

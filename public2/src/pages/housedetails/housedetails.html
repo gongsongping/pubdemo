@@ -14,7 +14,7 @@
             </div>
             <div class='flex-1 bor'>
                 <p>房型</p>
-                <h4><span>{{house.houseType}}</span></h4>
+                <h4><span>{{house.houseType | HouseTypePipe}}</span></h4>
             </div>
             <div class='flex-1 bor'>
                 <p>面积</p>
@@ -78,9 +78,8 @@
     </div>
 </ion-content>
 <ion-footer>
-    <ion-toolbar style="padding:0;">
-        <button ion-button full style="margin: 0;">预约看房</button>
-        <!--<div *ngIf="currentUser">
+    <button ion-button full style="margin: 0;">预约看房</button>
+    <!--<div *ngIf="currentUser">
             <div ng-hide="activeTab=='mine'|| activeTab=='sell'" class="details-6" (click)="knowmodal.show()">
                 <a class='button button-positive'>预约看房</a>
             </div>
@@ -88,5 +87,4 @@
         <div *ngIf="!currentUser" class="details-6" (click)="loginmodal.show()">
             <a class='button button-positive'>预约看房</a>
         </div>-->
-    </ion-toolbar>
 </ion-footer>
