@@ -1,10 +1,22 @@
 <ion-header>
-    <ion-navbar>
-        <ion-title>{{house.name}}</ion-title>
+    <ion-navbar mode='ios'>
+        <ion-title text-center>{{house.name}}</ion-title>
     </ion-navbar>
 </ion-header>
 <ion-content class="housedetails">
-    <div></div>
+    <div *ngIf="house.images == '[]'" tyle='width: 100vw;height:25%;'>
+        <img src="assets/img/img_null.png"  style='width:100%;height:100%;'/>
+    </div>
+    <div *ngIf="house.images !== '[]'" style='width: 100vw;height:30%;'>
+        <ion-slides zoom='true' pager='true' autoplay='2000' loop='true' paginationType='bullets'  parallax='true'>
+            <ion-slide *ngFor='let img of (house.images | ImgPipe)'>
+                <img src="{{img}}" style='width:100%;height:100%;' />
+            </ion-slide>
+            <ion-slide *ngFor='let img of (house.planImages | ImgPipe)'>
+                <img src="{{img}}" style='width:100%;height:100%;' />
+            </ion-slide>
+        </ion-slides>
+    </div>
     <div class="details-1">
         <div class='name'>{{house.name}}</div>
         <div class='simple'>
@@ -23,7 +35,7 @@
         </div>
         <div class='calculate'>
             单价：
-            <span>{{house.price*10000/house.buildingArea | number : 0}}元/平米</span>
+            <span>{{house.price*10000/house.buildingArea | number : '1.0-0'}}元/平米</span>
         </div>
     </div>
     <div class="details-1">
@@ -60,7 +72,7 @@
             <div class='flex-col'>
 
             </div>
-            <a class='flex-row' *ngIf="house.subdistrict !== null" (click)="districtDs(house.subdistrict)">
+            <a class='flex-row' *ngIf="house.subdistrict !== null" (click)="districtDs(house)">
                 <div>
                     小区：
                     <span>{{house.subdistrict.name}}</span>
@@ -78,9 +90,9 @@
     </div>
 </ion-content>
 <ion-footer>
-    <ion-toolbar style="padding:0;">
-        <button ion-button full style="margin: 0;">预约看房</button>
-        <!--<div *ngIf="currentUser">
+    <!--<ion-toolbar style="padding:0;">-->
+    <button ion-button full style="margin: 0;">预约看房</button>
+    <!--<div *ngIf="currentUser">
             <div ng-hide="activeTab=='mine'|| activeTab=='sell'" class="details-6" (click)="knowmodal.show()">
                 <a class='button button-positive'>预约看房</a>
             </div>
@@ -88,5 +100,5 @@
         <div *ngIf="!currentUser" class="details-6" (click)="loginmodal.show()">
             <a class='button button-positive'>预约看房</a>
         </div>-->
-    </ion-toolbar>
+    <!--</ion-toolbar>-->
 </ion-footer>
