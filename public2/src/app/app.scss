@@ -172,13 +172,25 @@
 // 房源小区详情
 .housedetails {
         background-color: #F4F5F9;
+        .slide-img{
+            ion-slide{
+                height:200px;
+            }
+            .slide-zoom{
+                height:200px;
+                overflow: hidden;
+                img{
+                    width:100%;
+                    height:100%;
+                }
+            }
+        }
         .details-1{
             width:100vw;
-            margin-top: 10px;
             background-color: #fff;
             .name{
                 color:#6c727e;
-                font-size:1em;
+                font-size:1.2em;
                 padding:1em;
                 font-weight:700;
                 border-top:1px solid #f0f2f6;
@@ -260,7 +272,7 @@
         .map {
             width:100vw;
             margin-top: 10px;
-            margin-bottom: 10px;
+            padding-bottom: 10px;
             background-color: #fff;
             .item {
                 padding: 10px;

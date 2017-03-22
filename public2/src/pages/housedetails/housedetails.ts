@@ -45,7 +45,7 @@ export class Housedetails {
         // this.roleName = localStorage.getItem('role')
     }
 
-    districtDs(d){
+    goDistrict(d){
         this.navCtrl.push(Districtdetails, { house: d })
     }
     action () {

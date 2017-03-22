@@ -112,10 +112,11 @@
     </ion-scroll>
 </ion-header>
 <ion-content>
-    <div class="housemine" *ngFor="let h of houses" (click)="goDetail(h)">
+    <div class="housemine" *ngFor="let h of houses">
         <!--<house [h]='h'></house>-->
-        <div class='item'>
-            <img src="assets/img/img_null.png" width='70' height='70' style="float: left;" />
+        <div class='item' (click)="goDetail(h)">
+            <img *ngIf="h.images !== '[]'" src="{{(h.images | ImgPipe)[0]}}" width='70' height='70' style="float: left;"/>
+            <img *ngIf="h.images == '[]'" src="assets/img/img_null.png" width='70' height='70' style="float: left;"/>
             <a style="width:75%;">
                 <div class="flex-row">
                     <p>
@@ -152,6 +153,7 @@
                 </div>
             </a>
         </div>
+        <house [h]='h'></house>
         <!--<div class="handle" style="padding:10px 20px;">
             <a><img src="assets/img/staff/phone_line_btn.png" width="20" /></a>
             <p>
