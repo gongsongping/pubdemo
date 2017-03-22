@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
 import axios from 'axios';
+
+declare var BMap:any
+
 /*
   Generated class for the Districtdetails page.
 
@@ -18,21 +21,29 @@ export class Districtdetails {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
         let vm = this;
         vm.house = navParams.get('house')
-        let url = 'api/housing/subdistricts/' + vm.house.id
-        axios
-            .get(url)
+        let url = 'api/housing/subdistricts/' + vm.house.subdistrict.id
+        axios.get(url)
             .then(function (res) {
                 vm.subdistricts = res.data;
-              console.log(vm.subdistricts)
+                console.log(vm.subdistricts)
             })
-            .catch(function (error) {
-                alert('服务器错误');
-                console.log(error);
-            });
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad DistrictdetailsPage');
+  ionViewDidEnter() {
+    console.log('ionViewDidEnter DistrictdetailsPage');
+    let map = new BMap.Map("details-map");
+    if (this.house.subdistrict.longitude) {
+        console.log(this.house.subdistrict.longitude, this.house.subdistrict.latitude)
+        let point = new BMap.Point(this.house.subdistrict.longitude, this.house.subdistrict.latitude);
+        let mk = new BMap.Marker(point);
+        map.addOverlay(mk);
+        // map.panTo(point);
+        map.centerAndZoom(point, 18);
+        // mk.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
+    } else {
+        map.centerAndZoom("北京", 12);
+    }
+    map.enableScrollWheelZoom(true);
   }
 
 }

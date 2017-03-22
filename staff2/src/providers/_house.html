@@ -1,25 +1,24 @@
 <div class="handle">
-    <div>
-        <a href="tel:{{hk?.mobile}}" ><img src="assets/img/staff/phone_line_btn.png" width="20" /></a>
-        <p>
-            房管家：
-            <span *ngIf="hk">
-                {{hk.name}}
-            </span>
-            <!--<span *ngIf="hk" style="color:#265fdf;">无</span>-->
-        </p>
-        <p >{{hk?.mobile}}</p>
+    <div class="handle-hk">
+        <div>
+            <p>
+                房管家：
+                <span *ngIf="hk">{{hk.name}}</span>
+            </p>
+            <p>{{hk?.mobile}}</p>
+        </div>
+        <a href="tel:{{hk?.mobile}}"><img src="assets/img/staff/phone_line_btn.png" width="20" /></a>
     </div>
-    <span class="spacing"></span>
-    <div>
+    <!--<span class="spacing"></span>-->
+    <div class="handle-hk border-spacing">
+        <div>
+            <p>
+                推荐人<span style="font-size:.8em;color:#999;" *ngIf="h.referrerId > 5000000">(业主)</span>：
+                <span *ngIf="h.referrerId">{{referrer?.name}}</span>
+                <!--<span *ngIf="!h.referrerId" style="color:#265fdf;">无</span>-->
+            </p>
+            <p>{{referrer?.mobile}}</p>
+        </div>
         <a *ngIf="h.referrerId" href="tel:{{referrer?.mobile}}"><img src="assets/img/staff/phone_line_btn.png" width="20" /></a>
-        <p>
-            推荐人<span style="font-size:.8em;color:#999;" *ngIf="h.referrerId > 5000000">(业主)</span>：
-            <span *ngIf="h.referrerId">
-                            {{referrer?.name}}
-                            </span>
-            <span *ngIf="!h.referrerId" style="color:#265fdf;">无</span>
-        </p>
-        <p>{{referrer?.mobile}}</p>
     </div>
 </div>

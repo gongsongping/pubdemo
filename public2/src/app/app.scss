@@ -172,9 +172,21 @@
 // 房源小区详情
 .housedetails {
         background-color: #F4F5F9;
+        .slide-img{
+            ion-slide{
+                height:200px;
+            }
+            .slide-zoom{
+                height:200px;
+                overflow: hidden;
+                img{
+                    width:100%;
+                    height:100%;
+                }
+            }
+        }
         .details-1{
             width:100vw;
-            margin-top: 10px;
             background-color: #fff;
             .name{
                 color:#6c727e;

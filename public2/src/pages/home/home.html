@@ -6,7 +6,7 @@
 
 <ion-content>
     <ion-refresher (ionRefresh)="doRefresh($event)">
-        <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Refreshing...">
+        <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="刷新" refreshingSpinner="circles" refreshingText="刷新...">
         </ion-refresher-content>
     </ion-refresher>
     <div class='home-1'>
@@ -50,7 +50,6 @@
     </div>
     <!--{{testService.message}}-->
 
-    <!--<div id="allmap" style="width:100px;height: 100px;"></div>-->
     <div style="padding:0px 8px;">
         <house *ngFor="let h of houses ; let i = index" (click)="goDetail(h)" [h]='h'></house>
     </div>

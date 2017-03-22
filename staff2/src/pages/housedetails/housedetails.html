@@ -4,17 +4,19 @@
     </ion-navbar>
 </ion-header>
 <ion-content class="housedetails">
-    <!--<ion-slides [options]="mySlideOptions" (ionSlideDidChange)="slideChanged()" style="width:100%;height:200px">
-        <ion-slide>
-            <h1>Slide 1</h1>
-        </ion-slide>
-        <ion-slide>
-            <h1>Slide 2</h1>
-        </ion-slide>
-        <ion-slide>
-            <h1>Slide 3</h1>
-        </ion-slide>
-    </ion-slides>-->
+    <div *ngIf="house.images == '[]'" tyle='width: 100vw;height:200px;'>
+        <img src="assets/img/img_null.png"  style='width:100%;height:100%;'/>
+    </div>
+    <div class="slide-img" *ngIf="house.images !== '[]'">
+        <ion-slides zoom='true' pager='true' autoplay='2000' loop='true' paginationType='bullets'  parallax='true'>
+            <ion-slide *ngFor='let img of (house.images | ImgPipe)'>
+                <img src="{{img}}"/>
+            </ion-slide>
+            <ion-slide *ngFor='let img of (house.planImages | ImgPipe)'>
+                <img src="{{img}}"/>
+            </ion-slide>
+        </ion-slides>
+    </div>
     <div class="details-1">
         <div class='name'>{{houses.name}}</div>
         <div class='simple'>
