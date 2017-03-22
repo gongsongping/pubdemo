@@ -5,7 +5,7 @@
     </ion-thumbnail>
     <p style="width:100%;font-weight:600;font-size:.9em;color:black;white-space:pre-line;">{{h.name}}</p>
     <!--m<sup>2</sup>-->
-    <p style="width:100%;font-size:.8em;margin-top:2px;">{{h.houseType | HouseTypePipe}}/{{h.buildingArea}}平/
+    <p style="width:100%;font-size:.8em;margin-top:2px;">{{h.houseType | HouseTypePipe}}&nbsp;/&nbsp;{{h.buildingArea}}平&nbsp;/
         <span *ngIf="h.orientation == 1">西</span>
         <span *ngIf="h.orientation == 2">东</span>
         <span *ngIf="h.orientation == 3">北</span>
