@@ -75,12 +75,14 @@ export class Contact {
       .catch(function (error) {
       });
   }
+
   loadMore(infiniteScroll) {
     let vm = this
     let params = {
       params: {
         start: vm.start,
         enabled: true,
+        size: 10
       }
     }
     axios.get('/api/account/employees', params)

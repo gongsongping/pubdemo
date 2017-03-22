@@ -34,63 +34,65 @@
       <!--<span *ngIf="i==1">({{orderLength || 0}})</span>-->
     </p>
   </div>
-
   <!--待处理-->
-  <div class="item item-first" *ngFor='let t of mission' (click)="goDetails(t)">
-    <p class="item-top" style="color: #C5C8CE;">
-      <span>{{t.serialNumber}}</span>
-      <span>{{t.modifiedDate | date: 'yyyy-MM-dd'}}</span>
-    </p>
-    <div class="item-bottom">
-      <div class="order-info">
-        <h4>{{t.houseInfo?.subdistrict.name}}</h4>
-        <p style="margin-top: 10px" *ngIf="t.houseId != 0">
-          {{t.houseInfo?.name}} <span>( {{t.houseInfo?.detailAddr}} )</span>
-        </p>
-        <p class="p1" style="margin-top: 4px" *ngIf="t.houseId != 0">
-          <span>{{t.houseInfo?.houseType[0]}}室{{t.houseInfo?.houseType[2]}}厅</span>
-          <span>{{t.houseInfo?.buildingArea}}m<sup>2</sup></span>
-          <span>{{t.houseInfo?.price}}</span>万
-        </p>
-      </div>
-      <div class="order-status">
-        <p *ngIf="t.status==-2">已终止</p>
-        <p *ngIf="t.status==-1">已取消</p>
-        <img src="img/staff/non_payment_icon.png" *ngIf="t.status==1"/>
-        <p *ngIf="t.status==2">验房中</p>
-        <p *ngIf="t.status==3">看房中</p>
-        <p *ngIf="t.status==4">签约中</p>
-        <p *ngIf="t.status==6">已过户</p>
-        <p *ngIf="t.status==7">处理中</p>
-        <p *ngIf="t.status==0">已完成</p>
-        <!--权证经理订单是以下几种状态-->
-        <p *ngIf="t.status==5">过户中</p>
-        <p *ngIf="t.status==8">贷款中</p>
-        <p *ngIf="t.status==9">网签中</p>
+  <div *ngIf="choosedidx == 0">
+    <div class="item item-first"  *ngFor='let t of mission' (click)="goDetails(t)">
+      <p class="item-top" style="color: #C5C8CE;">
+        <span>{{t.serialNumber}}</span>
+        <span>{{t.modifiedDate | date: 'yyyy-MM-dd'}}</span>
+      </p>
+      <div class="item-bottom">
+        <div class="order-info">
+          <h4>{{t.houseInfo?.subdistrict.name}}</h4>
+          <p style="margin-top: 10px" *ngIf="t.houseId != 0">
+            {{t.houseInfo?.name}} <span>( {{t.houseInfo?.detailAddr}} )</span>
+          </p>
+          <p class="p1" style="margin-top: 4px" *ngIf="t.houseId != 0">
+            <span>{{t.houseInfo?.houseType[0]}}室{{t.houseInfo?.houseType[2]}}厅</span>
+            <span>{{t.houseInfo?.buildingArea}}m<sup>2</sup></span>
+            <span>{{t.houseInfo?.price}}</span>万
+          </p>
+        </div>
+        <div class="order-status">
+          <p *ngIf="t.status==-2">已终止</p>
+          <p *ngIf="t.status==-1">已取消</p>
+          <img src="assets/img/staff/non_payment_icon.png" *ngIf="t.status==1"/>
+          <p *ngIf="t.status==2">验房中</p>
+          <p *ngIf="t.status==3">看房中</p>
+          <p *ngIf="t.status==4">签约中</p>
+          <p *ngIf="t.status==6">已过户</p>
+          <p *ngIf="t.status==7">处理中</p>
+          <p *ngIf="t.status==0">已完成</p>
+          <!--权证经理订单是以下几种状态-->
+          <p *ngIf="t.status==5">过户中</p>
+          <p *ngIf="t.status==8">贷款中</p>
+          <p *ngIf="t.status==9">网签中</p>
+        </div>
       </div>
     </div>
   </div>
-  <!--<h4 ng-if="noUnfinishOrders && choosedidx==0" style="text-align: center;margin-top: 48%;color: #999;">暂无订单！</h4>-->
+  <h4 *ngIf="noUnfinishOrders && choosedidx == 0" style="text-align: center;margin-top: 48%;color: #999;">暂无订单！</h4>
   <!--<h4 ng-if="noOrders && choosedidx==1" style="text-align: center;margin-top: 48%;color: #999;">暂无订单！</h4>-->
   <!--全部-->
-  <!--<div class="item item-first" ng-if="choosedidx==1"  ng-repeat = 't in items track by $index' ng-click="goOrderDetails(t)">-->
-    <!--<p class="item-top" style="color: #C5C8CE;">-->
-      <!--<span>{{t.serialNumber}}</span>-->
-      <!--<span>{{t.modifiedDate | date: 'yyyy-MM-dd'}}</span>-->
-    <!--</p>-->
-    <!--<div class="item-bottom" >-->
-      <!--<div class="order-info">-->
+  <div *ngIf="chooosedidx == 1">
+    <div class="item item-first"  (click)="goOrderDetails(t)">
+      <p class="item-top" style="color: #C5C8CE;">
+        <!--<span>{{t.serialNumber}}</span>-->
+        <!--<span>{{t.modifiedDate | date: 'yyyy-MM-dd'}}</span>-->
+      </p>
+      <div class="item-bottom" >
+        <!--<div class="order-info">-->
         <!--<h2>{{t.houseInfo.subdistrict.name}}</h2>-->
         <!--<p style="margin-top: 10px" ng-if="t.houseId != 0">-->
-          <!--{{t.houseInfo.name}}&nbsp&nbsp&nbsp<span ng-if="t.houseInfo.detailAddr">( {{t.houseInfo.detailAddr}} )</span>-->
+        <!--{{t.houseInfo.name}}&nbsp&nbsp&nbsp<span ng-if="t.houseInfo.detailAddr">( {{t.houseInfo.detailAddr}} )</span>-->
         <!--</p>-->
         <!--<p class="p1" style="margin-top: 4px" ng-if="t.houseId != 0">-->
-          <!--<span>{{t.houseInfo.houseType[0]}}室{{t.houseInfo.houseType[2]}}厅</span>&nbsp&nbsp&nbsp-->
-          <!--<span>{{t.houseInfo.buildingArea}}m<sup>2</sup></span>&nbsp&nbsp&nbsp-->
-          <!--<span>{{t.houseInfo.price}}</span>万-->
+        <!--<span>{{t.houseInfo.houseType[0]}}室{{t.houseInfo.houseType[2]}}厅</span>&nbsp&nbsp&nbsp-->
+        <!--<span>{{t.houseInfo.buildingArea}}m<sup>2</sup></span>&nbsp&nbsp&nbsp-->
+        <!--<span>{{t.houseInfo.price}}</span>万-->
         <!--</p>-->
-      <!--</div>-->
-      <!--<div class="order-status">-->
+        <!--</div>-->
+        <!--<div class="order-status">-->
         <!--<p ng-if="t.status==-2">已终止</p>-->
         <!--<p ng-if="t.status==-1">已取消</p>-->
         <!--&lt;!&ndash;<p ng-if="t.status==0">已完成</p>&ndash;&gt;-->
@@ -104,7 +106,13 @@
         <!--<p ng-if="t.status==7">处理中</p>-->
         <!--<p ng-if="t.status==8">贷款中</p>-->
         <!--<p ng-if="t.status==9">网签中</p>-->
-      <!--</div>-->
-    <!--</div>-->
-  <!--</div>-->
+        <!--</div>-->
+      </div>
+    </div>
+  </div>
+
+  <ion-infinite-scroll (ionInfinite)="loadMore($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles"  loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>

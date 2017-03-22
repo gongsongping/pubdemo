@@ -15,7 +15,7 @@ import axios from 'axios';
 })
 export class Ordermine {
   sub = []
-  choosedidx: any = 0
+  choosedidx: any
   checkedp: any
   userId: any
   mission: any = []
@@ -38,7 +38,6 @@ export class Ordermine {
         for (let j of res3.data.data) {
           if (t.houseId == j.id) {
             t.houseInfo = j;
-            console.log(j);
           }
         }
       })
@@ -46,23 +45,22 @@ export class Ordermine {
       });
   }
 
-  ionViewDidEnter(){
+  loadMore(infiniteScroll){
     let vm = this
     let orderType =''
     let missionIds = []
+    let start = 0
     let userInfo = JSON.parse(localStorage.getItem('userInfo'))
     let userToken = JSON.parse(localStorage.getItem('tokens'))
     let bs64 = window.btoa(userInfo.username + ':' + userToken.access_token);
-    vm.sub = [{title: '待处理', choose: true}, {title: '全部', choose: false}]
-    vm.choosedidx = 0;
-    vm.checkedp = this.sub[0];
     axios({
       method: 'POST',
       headers: {"Authorization": "Basic " + bs64},
       url: '/api/activiti/query/tasks',
       data: {
         assignee: userInfo.id,
-        size: 999,
+        start: start,
+        size: 10,
         order: 'desc',
       }
     }).then(function successCallback(res) {
@@ -99,13 +97,21 @@ export class Ordermine {
             });
         }
       }
+      if (infiniteScroll) {
+        infiniteScroll.complete();
+      }
     })
       .catch(function (error) {
       });
   }
 
+  ionViewDidEnter(){
+    let vm = this
+    vm.sub = [{title: '待处理', choose: true}, {title: '全部', choose: false}]
+    vm.choosedidx = 0;
+  }
+
   chooseTab(t, idx) {
-    // this.checkedp = t;
     this.choosedidx = idx;
   }
 //   $scope.softings = function () {
@@ -117,7 +123,7 @@ export class Ordermine {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad OrderminePage');
+    this.loadMore(false)
   }
 
 }

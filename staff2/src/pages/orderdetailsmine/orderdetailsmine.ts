@@ -18,9 +18,12 @@ export class Orderdetailsmine {
     vm.mission = params.get('mission');
   }
 
+  loadMore(){
+    console.log(1);
+  }
+
   ionViewDidLoad() {
     let vm = this
-    console.log(vm.mission);
     console.log('ionViewDidLoad OrderdetailsminePage');
   }
 
