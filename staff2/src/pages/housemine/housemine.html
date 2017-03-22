@@ -102,16 +102,10 @@
                         <button ion-button *ngFor='let p of buildYears' (click)='chooseBuildYear(p)' [ngClass]='chooseduildYear == p ? "main-color":""'>{{p.name}}</button>
                     </div>
                 </div>
-                <!--<div class='item'>
-                    <h5>状态</h5>
-                    <div class="flex-row">
-                        <button ion-button *ngFor='let p of chooseStatus' (click)='chooseBuildStatus(p)' [ngClass]='chooseduildStatus == p ? "main-color":""'>{{p.name}}</button>
-                    </div>
-                </div>-->
-                <div class='item'>
-                    <button ion-button outline class="button button-clear" (click)='clearMore()'>清空条件</button>
-                    <a ion-button round (click)='endMore()'>确定</a>
-                </div>
+            </div>
+            <div class='item'>
+                <button ion-button outline class="button button-clear" (click)='clearMore()'>清空条件</button>
+                <a ion-button round (click)='endMore()'>确定</a>
             </div>
         </div>
         <div class="shadow-top" (click)='chooseMoreTab()'></div>
@@ -120,8 +114,9 @@
 <ion-content>
     <div class="housemine" *ngFor="let h of houses">
         <!--<house [h]='h'></house>-->
-        <div class='item'>
-            <img src="assets/img/img_null.png" width='70' height='70' style="float: left;" />
+        <div class='item' (click)="goDetail(h)">
+            <img *ngIf="h.images !== '[]'" src="{{(h.images | ImgPipe)[0]}}" width='70' height='70' style="float: left;"/>
+            <img *ngIf="h.images == '[]'" src="assets/img/img_null.png" width='70' height='70' style="float: left;"/>
             <a style="width:75%;">
                 <div class="flex-row">
                     <p>
@@ -158,6 +153,7 @@
                 </div>
             </a>
         </div>
+        <house [h]='h'></house>
         <!--<div class="handle" style="padding:10px 20px;">
             <a><img src="assets/img/staff/phone_line_btn.png" width="20" /></a>
             <p>

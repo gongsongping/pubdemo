@@ -36,7 +36,7 @@ export class MyApp {
       this.events.subscribe('tokens:refresh', (user, time) => {
         // user and time are the same arguments passed in `events.publish(user, time)`
         console.log('----events refresh', user, 'at', time);
-
+        let vm = this
         if (localStorage.getItem('tokens')) {
             this.tokens = JSON.parse(localStorage.getItem('tokens'))
             this.userInfo = JSON.parse(localStorage.getItem('userInfo'))
@@ -61,14 +61,16 @@ export class MyApp {
                             'Content-Type': 'application/x-www-form-urlencoded'
                         }
                     };
-                    //refresh_token: $window.localStorage.refresh_token, grant_type: 'refresh_token'
-                    
+                    //refresh_token: $window.localStorage.refresh_token, grant_type: 'refresh_token'  
                     let data = `refresh_token=${refresh_token}&grant_type=refresh_token`                
                     axios.post(url, data, config)
                         .then(function (res) {
                             localStorage.setItem('tokens', JSON.stringify(res.data))
                             axios.defaults.headers.common['Authorization'] = "Bearer " + res.data.access_token
+                            vm.prepareInfo () // red prepareinfo
                         })
+                } else {
+                    vm.prepareInfo () 
                 }
             }
          } else {
@@ -80,32 +82,41 @@ export class MyApp {
       this.events.publish('tokens:refresh', 'user', 'time');
   }
   
-  // $rootScope.prepareProcesses = function () {
-  //       var bs64 = window.btoa($rootScope.userInfo.mobile + ':' + $rootScope.access_token)
-  //       $http({
-  //           method: 'get',
-  //           headers: { "Authorization": "Basic " + bs64 },
-  //           url: $rootScope.baseUrl + '/api/activiti/repository/process-definitions?latest=true&key=buy_process'
-  //       })
-  //           .then(function successCallback(res) {
-  //               $rootScope.proccessDefIdBuy = res.data.data[0].id
-  //               // console.log($scope.proccessDefId);
-  //           }, function errorCallback() { })
-  //       $http({
-  //           method: 'get',
-  //           headers: { "Authorization": "Basic " + bs64 },
-  //           url: $rootScope.baseUrl + '/api/activiti/repository/process-definitions?latest=true&key=houseShelveProcess'
-  //       })
-  //           .then(function successCallback(res) {
-  //               $rootScope.proccessDefIdShelve = res.data.data[0].id
-  //               // console.log($scope.proccessDefId);
-  //           }, function errorCallback() { })
-  //       $http({ method: 'get', url: $rootScope.baseUrl + '/api/message/notices?isRead=false&userId=' + $rootScope.user_id })
-  //           .then(function succ(res) {
-  //               // $rootScope.messagesTotal = res.data.data.length
-  //               $rootScope.messagesTotal = res.data.total
-  //           }, function err() {  })
-
-  //   }
+  prepareInfo () {
+        let vm = this
+        if (localStorage.getItem('tokens')) {
+            let tokens = JSON.parse(localStorage.getItem('tokens'))
+            let userInfo = JSON.parse(localStorage.getItem('userInfo'))
+            axios.get('/api/message/notices?size=0&isRead=false&userId=' + userInfo.id)
+                .then(function(res) {
+                    localStorage.setItem('messagesTotal',res.data.total)
+                    console.log('----messagesTotal----',res.data.total);
+                    // vm.messagesTotal = res.data.total
+                })
+        } else {
+            localStorage.setItem('messagesTotal','')
+            // vm.messagesTotal = 0
+        }
+        // let bs64 = window.btoa($rootScope.userInfo.mobile + ':' + $rootScope.access_token)
+        // $http({
+        //     method: 'get',
+        //     headers: { "Authorization": "Basic " + bs64 },
+        //     url: $rootScope.baseUrl + '/api/activiti/repository/process-definitions?latest=true&key=buy_process'
+        // })
+        //     .then(function successCallback(res) {
+        //         $rootScope.proccessDefIdBuy = res.data.data[0].id
+        //         // console.log($scope.proccessDefId);
+        //     }, function errorCallback() { })
+        // $http({
+        //     method: 'get',
+        //     headers: { "Authorization": "Basic " + bs64 },
+        //     url: $rootScope.baseUrl + '/api/activiti/repository/process-definitions?latest=true&key=houseShelveProcess'
+        // })
+        //     .then(function successCallback(res) {
+        //         $rootScope.proccessDefIdShelve = res.data.data[0].id
+        //         // console.log($scope.proccessDefId);
+        //     }, function errorCallback() { })
+      
+    }
   
 }

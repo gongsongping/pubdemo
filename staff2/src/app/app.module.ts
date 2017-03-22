@@ -7,7 +7,7 @@ import { Task } from '../pages/task/task';
 import { Todo } from '../pages/todo/todo';
 import { Tododetails } from '../pages/tododetails/tododetails';
 import { Role } from '../pages/role/role';
-import {  House, ImgPipe } from '../providers/services';
+import {  House, ImgPipe, HouseTypePipe } from '../providers/services';
 import { Changepw } from '../pages/changepw/changepw';
 import { Resetpw } from '../pages/resetpw/resetpw';
 import { About } from '../pages/about/about';
@@ -20,6 +20,8 @@ import { Recommendbuyer } from '../pages/recommendbuyer/recommendbuyer';
 import { MyRecommendbuyer } from '../pages/myRecommendbuyer/myRecommendbuyer';
 import { Housevisitapply } from '../pages/housevisitapply/housevisitapply';
 import { Houseclue } from '../pages/houseclue/houseclue';
+import { Housedetails } from '../pages/housedetails/housedetails';
+import { Districtdetails } from '../pages/districtdetails/districtdetails';
 import { Ordermine } from '../pages/ordermine/ordermine';
 import { Orderdetailsmine } from '../pages/orderdetailsmine/orderdetailsmine';
 
@@ -48,7 +50,10 @@ import { Orderdetailsmine } from '../pages/orderdetailsmine/orderdetailsmine';
     Houseclue,
     ImgPipe,
     Ordermine,
-    Orderdetailsmine
+    Orderdetailsmine,
+    Housedetails,
+    Districtdetails,
+    HouseTypePipe,
   ],
   imports: [
     IonicModule.forRoot(MyApp, {
@@ -77,7 +82,9 @@ import { Orderdetailsmine } from '../pages/orderdetailsmine/orderdetailsmine';
     Housevisitapply,
     Houseclue,
     Ordermine,
-    Orderdetailsmine
+    Orderdetailsmine,
+    Housedetails,
+    Districtdetails,
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })
