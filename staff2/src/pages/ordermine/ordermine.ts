@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { Orderdetailsmine } from '../orderdetailsmine/orderdetailsmine';
 import axios from 'axios';
 
 /*
@@ -14,85 +15,36 @@ import axios from 'axios';
 })
 export class Ordermine {
   sub = []
-  choosedidx: any = 0
-  checkedp: any
-  userId: any
+  choosedidx: any
+  userInfo: any = JSON.parse(localStorage.getItem('userInfo'))
+  mission: any = []
+  items: any = []
+  missionIds: any = []
+  tasks: any = []
+  start: any = 0
+  start1: any = 0
+  missionData: any
+  orderLength: any
+  missionLength: any = 10
+  allMission: any = 10
+  noUnfinishOrders: any
+  noOrders: any
+  houseIdArr: any = []
+  orderdetailsmine: any = Orderdetailsmine
   constructor(public navCtrl: NavController, public navParams: NavParams, public params: NavParams) {}
-
-  ionViewDidEnter(){
-    let vm = this
-    let orderType =''
-    let missionIds = []
-    let mission = []
-    let userInfo = JSON.parse(localStorage.getItem('userInfo'))
-    let userToken = JSON.parse(localStorage.getItem('tokens'))
-    let bs64 = window.btoa(userInfo.username + ':' + userToken.access_token);
-    vm.sub = [{title: '待处理', choose: true}, {title: '全部', choose: false}]
-    vm.choosedidx = 0;
-    vm.checkedp = this.sub[0];
-    axios({
-      method: 'POST',
-      headers: {"Authorization": "Basic " + bs64},
-      url: '/api/activiti/query/tasks',
-      data: {
-        assignee: userInfo.id,
-        size: 999,
-        order: 'desc',
-      }
-    }).then(function successCallback(res) {
-      // console.log(res.data.data);
-      if (res.data.data) {
-        for (let t of res.data.data) {
-          axios({
-            method: 'GET',
-            headers: {"Authorization": "Basic " + bs64},
-            url:'/api/activiti/runtime/process-instances/' + t.processInstanceId + '/variables/mission_id?sort=creatDate',
-          }).then(function successCallback(res2) {
-            missionIds.push(res2.data.value);
-            if (missionIds.length == res.data.data.length) {
-              axios({
-                method: 'get',
-                url: '/api/mission/missions',
-                params: {
-                  idIn: JSON.stringify(missionIds),
-                  // type: orderType,
-                  sort: 'modifiedDate',
-                  size: 999
-                }
-              }).then(function successCallback(res) {
-                mission = res.data.data;
-                console.log(mission);
-                // $scope.noUnfinishOrders = !$scope.mission.length;
-                // angular.forEach($scope.mission, function (j) {
-                //   $scope.orderInfo(j);
-                // })
-              }, function errorCallback() {
-              })
-            }
-          })
-            .catch(function (error) {
-            });
-        }
-      }
-    })
-      .catch(function (error) {
-      });
-
-  }
 
   //封装房屋信息
   orderInfo(t) {
     let vm = this
-    let houseIdArr = []
-    houseIdArr.push(t.houseId);
+    vm.houseIdArr.push(t.houseId)
     axios.get('/api/housing/houses', {
       params: {
-        idIn: JSON.stringify(houseIdArr),
+        idIn: JSON.stringify(vm.houseIdArr),
         size: 999
       }
     })
-      .then(function (res) {
-        for (let j of res.data.data) {
+      .then(function (res3) {
+        for (let j of res3.data.data) {
           if (t.houseId == j.id) {
             t.houseInfo = j;
           }
@@ -102,142 +54,110 @@ export class Ordermine {
       });
   }
 
+  loadMore(infiniteScroll){
+    let vm = this
+    let orderType =''
+    let userToken = JSON.parse(localStorage.getItem('tokens'))
+    let bs64 = window.btoa(vm.userInfo.username + ':' + userToken.access_token);
+    axios({
+      method: 'POST',
+      headers: {"Authorization": "Basic " + bs64},
+      url: '/api/activiti/query/tasks',
+      data: {
+        assignee: vm.userInfo.id,
+        start: vm.start,
+        size: 10,
+        order: 'desc',
+      }
+    }).then(function successCallback(res) {
+      // console.log(res.data.data);
+      vm.tasks = vm.tasks.concat(res.data.data)
+      vm.missionData = res.data.total
+      vm.missionLength = res.data.data.length
+      vm.noUnfinishOrders = !vm.tasks.length
+      vm.start = vm.start + 1
+      if (vm.tasks.length) {
+        for (let t of res.data.data) {
+          axios({
+            method: 'GET',
+            headers: {"Authorization": "Basic " + bs64},
+            url: '/api/activiti/runtime/process-instances/' + t.processInstanceId + '/variables/mission_id?sort=creatDate',
+          }).then(function successCallback(res2) {
+            vm.missionIds.push(res2.data.value);
+            if (vm.missionIds.length == res.data.data.length) {
+              axios({
+                method: 'get',
+                url: '/api/mission/missions',
+                params: {
+                  idIn: JSON.stringify(vm.missionIds),
+                  // type: orderType,
+                  sort: 'modifiedDate',
+                  size: 10
+                }
+              }).then(function successCallback(res3) {
+                vm.mission = res3.data.data;
+                vm.noUnfinishOrders = !vm.mission.length;
+                for (let j of res3.data.data) {
+                  vm.orderInfo(j);
+                }
+              })
+            }
+          })
+        }
+      }
+      if (infiniteScroll) {
+        infiniteScroll.complete();
+      }
+    })
+  }
 
+  loadMore1(infiniteScroll){
+    let vm = this
+    let params = {
+      pcId_OR_pcmId_OR_hkId_OR_hkmId_OR_wcId_OR_lsId_OR_nsId_OR_ctId_OR_csId: vm.userInfo.id,
+      size: 10,
+      start: vm.start1,
+      // type: orderType
+    }
+    axios({
+      method: 'get',
+      url:  '/api/mission/missions',
+      params: params
+    }).then(function successCallback(res) {
+      vm.items = vm.items.concat(res.data.data)
+      vm.start1 = vm.start1 + 1;
+      vm.allMission = res.data.data.length
+      vm.noOrders = !vm.items.length;
+      vm.orderLength = res.data.total;
+      for(let t of vm.items){
+        vm.orderInfo(t)
+      }
+      if (infiniteScroll) {
+        infiniteScroll.complete();
+      }
+    })
+  }
 
+  ionViewDidEnter(){
+    let vm = this
+    vm.sub = [{title: '待处理', choose: true}, {title: '全部', choose: false}]
+    vm.choosedidx = 0;
+  }
 
-
-// ( $scope.exist = function (t, idx) {
-//   $scope.choosedidx = 0;
-//   $scope.checkidx = idx;
-//   $scope.results = t;
-//   $scope.toggle = false;
-//   if (t == '全部') {
-//     $scope.orderType = null;
-//   } else if (t == '普通买房') {
-//     $scope.orderType = 1;
-//   } else if (t == '精准购房') {
-//     $scope.orderType = 2;
-//   } else if (t == '卖房') {
-//     $scope.orderType = 3;
-//   } else if (t == '房源上架') {
-//     $scope.orderType = 9;
-//   } else if (t == '房源下架') {
-//     $scope.orderType = 8;
-//   } else {
-//     $scope.orderType = null;
-//     $scope.results = $scope.pop[0];
-//     $scope.checkidx = 0;
-//   }
-//   $scope.items = [];
-//   $scope.start = 0;
-//   $scope.size = 10;
-//   $scope.houseIdArr = [];
-//   $scope.unfinishedItems = [];
-//   var params = {
-//     pcId_OR_pcmId_OR_hkId_OR_hkmId_OR_wcId_OR_lsId_OR_nsId_OR_ctId_OR_csId: $stateParams.id,
-//     size: 999,
-//     start: $scope.start,
-//     type: $scope.orderType
-//   };
-//   $scope.waitOrderLength = '';
-//   //房屋信息接口
-//   $scope.orderInfo = function (t) {
-//     $scope.houseIdArr.push(t.houseId);
-//     $http({
-//       method: 'get',
-//       url: $rootScope.baseUrl + '/api/housing/houses',
-//       params: {
-//         idIn: JSON.stringify($scope.houseIdArr),
-//         size: 999
-//       }
-//     }).then(function successCallback(res) {
-//       angular.forEach(res.data.data, function (j) {
-//         if (t.houseId == j.id) {
-//           t.houseInfo = j;
-//         }
-//       })
-//     }, function errorCallback() {
-//
-//     })
-//   }
-//   $scope.mission = [];
-//   $scope.tasks = [];
-//   var bs64 = window.btoa($rootScope.user_name + ':' + $window.localStorage.access_token);
-//   //待处理订单
-//   $http({
-//     method: 'POST',
-//     headers: {"Authorization": "Basic " + bs64},
-//     url: $rootScope.baseUrl + '/api/activiti/query/tasks',
-//     data: {
-//       assignee: $stateParams.id,
-//       size: 999,
-//       order: 'desc',
-//     }
-//   }).then(function successCallback(res) {
-//     var missionIds = [];
-//     if (res.data.data.length) {
-//       angular.forEach(res.data.data, function (i) {
-//         $http({
-//           method: 'GET',
-//           headers: {"Authorization": "Basic " + bs64},
-//           url: $rootScope.baseUrl + '/api/activiti/runtime/process-instances/' + i.processInstanceId + '/variables/mission_id?sort=creatDate',
-//         }).then(function successCallback(res2) {
-//           missionIds.push(res2.data.value);
-//           //missionIds加入完毕再执行下面请求
-//           if (missionIds.length == res.data.data.length) {
-//             $http({
-//               method: 'get',
-//               url: $rootScope.baseUrl + '/api/mission/missions',
-//               params: {
-//                 idIn: JSON.stringify(missionIds),
-//                 type: $scope.orderType,
-//                 sort: 'modifiedDate',
-//                 size: 999
-//               }
-//             }).then(function successCallback(res) {
-//               $scope.mission = res.data.data;
-//               $scope.noUnfinishOrders = !$scope.mission.length;
-//               angular.forEach($scope.mission, function (j) {
-//                 $scope.orderInfo(j);
-//               })
-//             }, function errorCallback() {
-//             })
-//           }
-//         }, function errorCallback() {
-//         })
-//       })
-//     } else {
-//       $scope.noUnfinishOrders = true;
-//     }
-//
-//   }, function errorCallback() {
-//   })
-//   //全部订单
-//   $http({
-//     method: 'get',
-//     url: $rootScope.baseUrl + '/api/mission/missions',
-//     params: params,
-//   }).then(function successCallback(res) {
-//     $scope.items = res.data.data;
-//     // $scope.start = $scope.start + 1;
-//     // $scope.$broadcast('scroll.infiniteScrollComplete');
-//     $scope.noOrders = !res.data.data.length;
-//     $scope.orderLength = res.data.total;
-//     angular.forEach($scope.items, function (t) {
-//       $scope.orderInfo(t);
-//     })
-//   }, function errorCallback() {
-//   })
-// } )()
-  chooseTab(t, idx) {
-    // this.checkedp = t;
+  chooseTab(idx) {
     this.choosedidx = idx;
   }
 //   $scope.softings = function () {
 //   $scope.toggle = !$scope.toggle;
 // }
+
+  goDetails(t){
+    this.navCtrl.push(Orderdetailsmine, {mission: t})
+  }
+
   ionViewDidLoad() {
-    console.log('ionViewDidLoad OrderminePage');
+    this.loadMore(false)
+    this.loadMore1(false)
   }
 
 }
