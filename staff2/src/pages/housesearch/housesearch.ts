@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import axios from 'axios';
-import { Housedetails } from '../housedetails/housedetails';
 
 /*
   Generated class for the Housesearch page.
@@ -35,10 +34,9 @@ export class Housesearch {
     chooseduildYear = ''
     directionParams = ''
     districtsTotal = ''
-    buildStatusParams = ''
+    buildStatusParams = '&statusIn=[0,2]';
     chooseduildStatus = ''
     choosedRegion = ''
-    statusIn = '&statusIn=[0,2]';
     choosed = false;
     inputStart = false;
     activeAreaTab = false
@@ -136,10 +134,9 @@ export class Housesearch {
                 console.log(error);
             });
     }
-    searchDis(e, status) {
+    searchDis(e) {
         let vm = this;
         vm.inputStart = true;
-        let statusIn = '&statusIn=' + status;
         let url = ''
         if (vm.roleName == '房管家') {
             url = '/api/housing/houses?size=10';
@@ -338,8 +335,5 @@ export class Housesearch {
         vm.buildStatusParams = ''
     }
     
-    goDetail(h) {
-        this.navCtrl.push(Housedetails, { house: h })
-    }
 }
 

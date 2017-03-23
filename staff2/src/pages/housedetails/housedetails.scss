@@ -1,3 +1,64 @@
 page-housedetails {
-    
+    .role-person{
+        background-color: #fff;
+        .title{
+            padding:10px;
+        }
+        .list{
+            margin:0;
+            .item-ios ion-thumbnail{ 
+               img{
+                   border-radius: 50%;
+               }
+            }
+            .assertive{
+                color:red;
+            }
+        }
+        .item-block:first-child,
+        .item-block:last-child,
+        .item-block .item-inner,
+        .item-wrapper:last-child .item-block{
+            border-color:#f6f7fb;
+        } 
+    }
+    .footer {
+        .footer-flex{
+            width:100%;
+            display: flex;
+            align-items:center;
+            .create{
+                width:80px;
+                .create-content{ 
+                    display: flex;
+                    flex-direction: column;
+                    div{
+                        margin: 0 auto;
+                        img{
+                            margin-top: 2px;
+                        }
+                    }
+                    h5{
+                        margin: 0;
+                        text-align: center;
+                        font-size: 1em;
+                    }
+                }
+            }
+            p{
+                width:100%;
+                text-align:center;
+                padding: 12px 0;
+                margin: 0;
+            }
+            .positive{
+                background-color: #265fdf;
+                color:#fff;
+            }
+            .stable-bg{
+                background-color: #D4E0FA;
+                color:#265fdf;
+            }
+        }
+    }
 }

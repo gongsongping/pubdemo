@@ -376,47 +376,13 @@
         margin: 10px;
     }
 }
-}
-// 房源列表人员信息
-                .handle { 
-                    border-top: solid 1px #e7eaef;
-                    border-bottom: solid 1px #e7eaef;
-                    overflow: hidden;
-                    position:relative;
-                    display:flex;
-                    .handle-hk{ 
-                        padding:0 10px;
-                        width:50%;
-                        display:flex;
-                        justify-content: space-around;
-                        div{
-                            width:80%;
-                        }
-                        a{
-                            width:20%;
-                            padding: 5px;
-                            img{
-                                margin-top:100%;
-                            }
-                        }
-                    }
-                    p {
-                        color: #b8bfc9;
-                        span {
-                            color: #64708a;
-                        }
-                    }
-                    .border-spacing{
-                        border-left: 1px solid #e6e6e6;                       
-                    }
-                }
-                
+}           
 // 房源小区详情
 .housedetails {
         background-color: #F4F5F9;
         .slide-img{
             ion-slide{
-                height:200px;
+                height:160px;
             }
             .slide-zoom{
                 height:100%;
@@ -514,7 +480,7 @@
         .map {
             width:100vw;
             margin-top: 10px;
-            padding-bottom: 10px;
+            // padding-bottom: 10px;
             background-color: #fff;
             .item {
                 padding: 10px;
