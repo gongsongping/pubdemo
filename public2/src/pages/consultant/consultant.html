@@ -16,34 +16,27 @@
 <ion-content padding-bottom>
   <div style='width:100vw;'>
     <div *ngFor='let p of tabs;let i = index;' style='float:left;width:50%;'>
-      <button  (click)='chooseTab(i)' [ngClass]='activeTab===i ? "select-buy-tab":""' style='margin:0px;'
-        mode='ios' color="white" ion-button full> 
+      <button (click)='chooseTab(i)' [ngClass]='activeTab===i ? "select-buy-tab":""' style='margin:0px;' mode='ios' color="white"
+        ion-button full> 
         {{p}}
       </button>
     </div>
   </div>
 
 
-    <!--<ion-slides #sld1  slidesPerView='2' pager='true' loop='true'  paginationType='progress' >
-      <ion-slide>
-        <h1>置业顾问1</h1>
-      </ion-slide>
-      <ion-slide>
-        <h1>房管家1</h1>
-      </ion-slide>
-    </ion-slides>-->
+  <div style='clear:left;height:200px;'>
 
-<div style='clear:left;height:200px;'>
-
-    <ion-slides (ionSlideDrag)='ionSlideDrag($event)' (ionSlideWillChange)='ionSlideWillChange($event)' (ionSlideDidChange)='ionSlideDidChange($event)' (ionSlidePrevStart)='ionSlidePrevStart()' (ionSlidePrevEnd)='ionSlidePrevEnd()'  (ionSlideNextStart)='ionSlideNextStart()' (ionSlideNextEnd)='ionSlideNextEnd()' #sld2  pager='true'  paginationType='bullets' >
+    <ion-slides (ionSlideDrag)='ionSlideDrag($event)' (ionSlideWillChange)='ionSlideWillChange($event)' (ionSlideDidChange)='ionSlideDidChange($event)'
+      (ionSlidePrevStart)='ionSlidePrevStart()' (ionSlidePrevEnd)='ionSlidePrevEnd()' (ionSlideNextStart)='ionSlideNextStart()'
+      (ionSlideNextEnd)='ionSlideNextEnd()' #sld2 pager='true' paginationType='bullets'>
       <ion-slide>
-        <h1>置业顾问2</h1>
+        <h1>置业顾问</h1>
       </ion-slide>
       <ion-slide>
-        <h1>房管家2</h1>
+        <h1>房管家</h1>
       </ion-slide>
     </ion-slides>
-</div>
+  </div>
 
 
 </ion-content>
