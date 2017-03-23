@@ -1,0 +1,119 @@
+<!--
+  Generated template for the Orderdetailsmine page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>订单详情</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="orderdetail1">
+  <div style="display: flex;justify-content: space-between;align-items: flex-end">
+    <div class="ipt">
+      <p class="p2" *ngIf="orderDetails?.status==-2">已终止</p>
+      <p class="p2" *ngIf="orderDetails?.status==-1">已取消</p>
+      <p class="p2" *ngIf="orderDetails?.status==0">已完成</p>
+      <p class="p2" *ngIf="orderDetails?.status==1">待付款</p>
+      <p class="p2" *ngIf="orderDetails?.status==2">验房中</p>
+      <p class="p2" *ngIf="orderDetails?.status==3">看房中</p>
+      <p class="p2" *ngIf="orderDetails?.status==4">签约中</p>
+      <p class="p2" *ngIf="orderDetails?.status==5">过户中</p>
+      <p class="p2" *ngIf="orderDetails?.status==6">已过户</p>
+      <p class="p2" *ngIf="orderDetails?.status==7">处理中</p>
+      <p class="p2" *ngIf="orderDetails?.status==8">贷款中</p>
+      <p class="p2" *ngIf="orderDetails?.status==9">网签</p>
+    </div>
+    <!--<a  href="#/app/tododetails/{{taskId}}" *ngIf="todoOrder" class="button button-stable  button-small" style="font-size: 14px;color: #7b8bad;right: 10px;bottom: 5px">前去处理</a>-->
+    <a class="button button-stable  button-small" style="font-size: 14px;color: #7b8bad;right: 12px;bottom: 15px">前去处理</a>
+  </div>
+  <hr/>
+  <div class="order-info">
+    <p>
+      处理时间：<span>{{orderDetails?.modifiedDate | date: 'yyyy.MM.dd HH:mm:ss'}}</span>
+    </p>
+    <!--<p>-->
+      <!--备注：<span>{{orderNote}}</span>-->
+    <!--</p>-->
+  </div>
+  <hr/>
+  <div class="buyer-info" *ngIf="orderDetails?.demanderId != 0">
+    <div class="buyer-top">
+      <!--<div class="user-info">-->
+        <!--<p class="p1">{{buyerName | limitTo: 1}}</p>-->
+        <!--<div class="mid">-->
+          <!--<p style="font-size: 18px">{{buyerName}} <span>(意向买家)</span></p>-->
+          <!--<p>{{buyerMobile}}</p>-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<a href="tel:{{buyerMobile}}" class="icon ion-ios-telephone-outline" style="color: #265fdf;font-size: 45px;margin-right: 15px;margin-left: 11px"></a>-->
+    </div>
+  </div>
+  <hr/>
+  <!--<div class="buyer-info" *ngIf="orderDetails.supplierId != 0">-->
+    <!--<div class="buyer-top">-->
+      <!--<div class="user-info">-->
+        <!--<p class="p1" style="background: #7C8AAD">{{sallerName | limitTo: 1}}</p>-->
+        <!--<div class="mid">-->
+          <!--<p style="font-size: 18px">{{sallerName}} <span>(卖家)</span></p>-->
+          <!--<p>{{sallerMobile}}</p>-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<a href="tel:{{sallerMobile}}" class="icon ion-ios-telephone-outline" style="color: #265fdf;font-size: 45px;margin-right: 15px;margin-left: 11px"></a>-->
+    <!--</div>-->
+  <!--</div>-->
+  <!--<hr/>-->
+  <!--<div class="order-details">-->
+    <!--<p>订单编号：{{orderDetails.serialNumber}}</p>-->
+    <!--<div class="addr" *ngIf="orderDetails.houseId != 0">-->
+      <!--<div class="addr-top">-->
+        <!--<img src="img/staff/key_icon.png" *ngIf="haskey"/>-->
+        <!--<p>{{smallArea}}</p>-->
+        <!--<span class="span1">-->
+                        <!--{{detailAddr}}-->
+                        <!--<span *ngIf="floor">{{floor}}/{{totalFloor}}</span>-->
+                        <!--<span *ngIf="orientation==1">西</span>-->
+                        <!--<span *ngIf="orientation==2">东</span>-->
+                        <!--<span *ngIf="orientation==3">北</span>-->
+                        <!--<span *ngIf="orientation==4">南</span>-->
+                        <!--<span *ngIf="orientation==5">南北</span>-->
+                    <!--</span>-->
+      <!--</div>-->
+      <!--<div class="addr-bottom">-->
+        <!--<span>{{alBuildingArea}}m<sup>2</sup></span>&nbsp-->
+        <!--|&nbsp-->
+        <!--<span>{{price}}万元</span>&nbsp&nbsp-->
+        <!--|&nbsp-->
+        <!--<span *ngIf="decorate==1">清水</span>-->
+        <!--<span *ngIf="decorate==2">简装</span>-->
+        <!--<span *ngIf="decorate==3">精装</span>&nbsp-->
+        <!--|&nbsp-->
+        <!--<span>{{alHouseType | houseTypeToArray}}</span>-->
+      <!--</div>-->
+      <!--<div class="totle" *ngIf="orderType == 1 || orderType==2 ">-->
+        <!--<div class="totle-price">-->
+          <!--<div class="price-lf">-->
+            <!--<p>看房费：<span>{{watchHouseFee || 0 | currency: '￥'}}</span></p>-->
+            <!--<p>已付看房费：<span>{{watchHousePaid || 0 | currency: '￥'}}</span></p>-->
+            <!--<p>未付看房费：<span>{{watchHouseFee - watchHousePaid || 0 | currency: '￥'}}</span></p>-->
+          <!--</div>-->
+          <!--<div class="price-lf price-rf">-->
+            <!--<p>中介费：<span>{{intermediaryFee || 0 | currency: '￥'}}</span></p>-->
+            <!--<p>已付中介费：<span>{{intermediaryPaid || 0 | currency: '￥'}}</span></p>-->
+            <!--<p>未付中介费：<span>{{intermediaryFee - intermediaryPaid  || 0 | currency: '￥'}}</span></p>-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<p style="margin-top: 5px">成交价格：<span style="color: red">{{dealPrice || 0  | currency: '￥'}} <span *ngIf="dealPrice">万</span></span></p><br>-->
+      <!--</div>-->
+      <!--<p style="margin-top: 10px;color: #666;font-size: 12px">-->
+        <!--订单生成时间 : {{orderDetails.createdDate | date: 'yy-MM-dd HH:mm:ss'}}-->
+      <!--</p>-->
+    <!--</div>-->
+  <!--</div>-->
+
+</ion-content>
