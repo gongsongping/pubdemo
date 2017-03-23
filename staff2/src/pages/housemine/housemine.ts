@@ -218,9 +218,10 @@ export class Housemine {
         this.inputStart = false;
     }
 
-    searchDis(e) {
+    searchDis(e,status) {
         let vm = this;
         vm.inputStart = true;
+        let statusIn = '&statusIn=' + status;
         let url = ''
         if (vm.roleName == '房管家') {
             url = '/api/housing/houses?size=10&hkId=';

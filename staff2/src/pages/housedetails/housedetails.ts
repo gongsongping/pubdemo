@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams, Slides } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import { Districtdetails } from '../districtdetails/districtdetails';
 import axios from 'axios';
 
@@ -17,9 +17,14 @@ export class Housedetails {
 
     userInfo: any;
     house: any;
+    roleName: any;
     isAction = false;
     houses = [];
-    mySlideOptions;
+    housesHkId = '';
+    messagesDetailName = [];
+    referrerName = [];
+    hkName = [];
+    referrerWu = [];
     constructor(public navCtrl: NavController, public navParams: NavParams) {
         // console.log(Params.get('house'))
         // this.house = Params.get('house')
@@ -30,46 +35,45 @@ export class Housedetails {
             .get(url)
             .then(function (res) {
                 vm.houses = res.data;
-              console.log(vm.houses)
+                axios
+                    .get('/api/account/users/' + res.data.supplierId)
+                    .then(function (res) {
+                        vm.messagesDetailName = res.data;
+                    })
+                axios
+                    .get('/api/account/employees/' + res.data.hkId)
+                    .then(function (res) {
+                        vm.hkName = res.data;
+                    })
+                if (!res.data.referrerId) {
+                    return vm.referrerWu = ['无'];
+                }
+                if (res.data.referrerId < 5000000) {
+                    let url1 = '/api/account/employees/' + res.data.referrerId
+                    axios
+                        .get(url1)
+                        .then(function (res) {
+                            vm.referrerWu = undefined;
+                            vm.referrerName = res.data;
+                        })
+                }
+                if (res.data.referrerId > 5000000) {
+                    let url2 = '/api/account/users/' + res.data.referrerId
+                    axios
+                        .get(url2)
+                        .then(function (res) {
+                            vm.referrerWu = undefined;
+                            vm.referrerName = res.data
+                        })
+                }
             })
-            .catch(function (error) {
-                alert('服务器错误');
-                console.log(error);
-            });
-    }
-    @ViewChild(Slides) slides: Slides;
-    ngOnInit() {//页面加载完成后自己调用
-        // this.mySlideOptions = {
-        //     autoplay: 2000,
-        //     initialSlide: 0,
-        //     pager: true,
-        //     loop: true,
-        //     speed: 300,
-        //     zoom: true,
-        //     effect: 'flip'
-        // };
-        // setInterval(() => {
-        //     this.slides.slideNext(500, true);
-        //     // this.slides.slidePrev(500, true);
-        // }, 2000);
-    }
-    // goToSlide() {
-    //     this.slides.slideTo(2, 500);
-    // }
-    // startAutoplay() {
-    //     this.slides.slideTo(2, 500);
-    // }
-    slideChanged() {
-        let currentIndex = this.slides.getActiveIndex();
-        console.log("Current index is", currentIndex);
     }
     ionViewDidLoad() {
         // this.doInfinite(false);
         console.log('ionViewDidLoad HousesearchPage');
     }
-
     ionViewWillEnter() {
-        // this.roleName = localStorage.getItem('role')
+        this.roleName = localStorage.getItem('role')
     }
     ionViewDidEnter() {
         let vm = this;

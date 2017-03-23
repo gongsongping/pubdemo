@@ -4,16 +4,16 @@
     </ion-navbar>
 </ion-header>
 <ion-content class="housedetails">
-    <div *ngIf="house.images == '[]'" tyle='width: 100vw;height:200px;'>
-        <img src="assets/img/img_null.png"  style='width:100%;height:100%;'/>
+    <div *ngIf="house.images == '[]'" tyle='width: 100vw;height:160px;'>
+        <img src="assets/img/img_null.png" style='width:100%;height:100%;' />
     </div>
     <div class="slide-img" *ngIf="house.images !== '[]'">
-        <ion-slides zoom='true' pager='true' autoplay='2000' loop='true' paginationType='bullets'  parallax='true'>
+        <ion-slides zoom='true' pager='true' autoplay='2000' loop='true' paginationType='bullets' parallax='true'>
             <ion-slide *ngFor='let img of (house.images | ImgPipe)'>
-                <img src="{{img}}"/>
+                <img src="{{img}}" />
             </ion-slide>
             <ion-slide *ngFor='let img of (house.planImages | ImgPipe)'>
-                <img src="{{img}}"/>
+                <img src="{{img}}" />
             </ion-slide>
         </ion-slides>
     </div>
@@ -97,17 +97,86 @@
     <div class='map'>
         <div id='housedetails-map'> </div>
     </div>
+    <div class="role-person">
+        <div class="title">角色人信息</div>
+        <ion-list>
+            <ion-item>
+                <ion-thumbnail item-left *ngIf="hkName.avatar">
+                    <img src="{{hkName.avatar}}" width="100%" height="100%" />
+                </ion-thumbnail>
+                <ion-thumbnail item-left *ngIf="(!hkName.avatar)&&(hkName.gender===2)">
+                    <img src="assets/img/female.png" width="100%" height="100%" />
+                </ion-thumbnail>
+                <ion-thumbnail item-left *ngIf="(!hkName.avatar)&&(hkName.gender===1)">
+                    <img src="assets/img/male.png" width="100%" height="100%" />
+                </ion-thumbnail>
+                <ion-thumbnail item-left *ngIf="(!hkName.avatar)&&(hkName.gender===3)">
+                    <img src="assets/img/sprite/gender_unknown.jpg" width="100%" height="100%" />
+                </ion-thumbnail>
+                <h2>{{hkName.name}} <span>房管家</span></h2>
+                <p>{{hkName.department?.name}}</p>
+                <a href="tel:{{hkName.mobile}}" ion-button clear item-right><img src="assets/img/staff/phone_line_btn.png" width="18" /></a>
+            </ion-item>
+            <ion-item>
+                <ion-thumbnail item-left *ngIf="referrerName.avatar">
+                    <img src="{{referrerName.avatar}}" width="100%" height="100%" />
+                </ion-thumbnail>
+                <ion-thumbnail item-left *ngIf="(!referrerName.avatar)&&(referrerName.gender===2)">
+                    <img src="assets/img/female.png" width="100%" height="100%" />
+                </ion-thumbnail>
+                <ion-thumbnail item-left *ngIf="(!referrerName.avatar)&&(referrerName.gender===1)">
+                    <img src="assets/img/male.png" width="100%" height="100%" />
+                </ion-thumbnail>
+                <ion-thumbnail item-left *ngIf="(!referrerName.avatar)&&(referrerName.gender===3)">
+                    <img src="assets/img/sprite/gender_unknown.jpg" width="100%" height="100%" />
+                </ion-thumbnail>
+                <h2>{{referrerName.name}}{{referrerWu}} <span>推荐人</span></h2>
+                <p *ngIf="referrerName.department?.name && !referrerWu">{{referrerName.department?.name}}</p>
+                <p *ngIf="!referrerName.department?.name && !referrerWu">用户推荐</p>
+                <a *ngIf="!referrerName.department?.name && !referrerWu" href="tel:{{referrerName.mobile}}" ion-button clear item-right><img src="assets/img/staff/phone_line_btn.png" width="18" /></a>
+            </ion-item>
+        </ion-list>
+    </div>
+    <div class='role-person' style="margin-top:10px;">
+        <ion-list>
+            <ion-item>
+                <h2>客户看房记录（{{house.watchedCount}}）</h2>
+                <p>近一个月新增<span class="assertive">{{house.watchedCount}}</span>位看房客户</p>
+                <!--<button ion-button clear item-right>View</button>-->
+            </ion-item>
+            <ion-item *ngIf="roleName =='房管家' || roleName =='经理'">
+                <i *ngIf="house.hasKey == true" item-left><img src="assets/img/staff/key_icon.png" width="17"/></i>
+                <span *ngIf="house.hasKey == true">
+                    有钥匙&nbsp;&nbsp;&nbsp;
+                </span>
+                <span *ngIf="house.hasKey == false">
+                    无钥匙&nbsp;&nbsp;&nbsp;
+                </span>
+            </ion-item>
+            <ion-item *ngIf="roleName =='房管家' || roleName =='经理'">
+                <div class="flex-1">
+                    <span>业主：</span> {{messagesDetailName.name}} {{messagesDetailName.mobile}}
+                </div>
+                <a ion-button clear item-right href="tel:{{messagesDetailName.mobile}}">
+                    <img src="assets/img/staff/phone_line_btn.png" width="18" />
+                </a>
+            </ion-item>
+        </ion-list>
+    </div>
 </ion-content>
 <ion-footer>
-    <ion-toolbar style="padding:0;">
-        <button ion-button full style="margin: 0;">预约看房</button>
-        <!--<div *ngIf="currentUser">
-            <div ng-hide="activeTab=='mine'|| activeTab=='sell'" class="details-6" (click)="knowmodal.show()">
-                <a class='button button-positive'>预约看房</a>
+    <div class="footer-flex">
+        <a ion-bu class="create" *ngIf="roleName =='房管家' || roleName =='经理'">
+            <div class="create-content">
+                <div><img src="assets/img/staff/compile_btn_grayness.png" width="18"></div>
+                <h5>编辑</h5>
             </div>
-        </div>
-        <div *ngIf="!currentUser" class="details-6" (click)="loginmodal.show()">
-            <a class='button button-positive'>预约看房</a>
-        </div>-->
-    </ion-toolbar>
+        </a>
+        <p class='positive' *ngIf="house.status == 0">初始状态</p>
+        <p class='stable-bg' *ngIf="house.status == 1">实勘中</p>
+        <p class='positive' *ngIf="house.status == 2">已上架</p>
+        <p class='stable-bg' *ngIf="house.status == 3">已下架</p>
+        <p class='stable-bg' *ngIf="house.status == 4">已锁定</p>
+        <p class='stable-bg' *ngIf="house.status == 5">已销售</p>
+    </div>
 </ion-footer>
