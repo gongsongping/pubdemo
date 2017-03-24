@@ -20,6 +20,7 @@ export class Housedetails {
     userInfo: any;
     house: any;
     roleName: any;
+    enterTyle:any;
     isAction = false;
     houses = [];
     housesHkId = '';
@@ -31,6 +32,7 @@ export class Housedetails {
         // this.house = Params.get('house')
         let vm = this;
         vm.house = navParams.get('house')
+        vm.enterTyle = navParams.get('enter');
         let url = 'api/housing/houses/' + vm.house.id
         axios
             .get(url)

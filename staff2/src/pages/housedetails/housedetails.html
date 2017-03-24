@@ -4,7 +4,7 @@
     </ion-navbar>
 </ion-header>
 <ion-content class="housedetails">
-    <div *ngIf="house.images == '[]'" tyle='width: 100vw;height:160px;'>
+    <div *ngIf="house.images == '[]'" style='width: 100%;height:160px;overflow:hidden;'>
         <img src="assets/img/img_null.png" style='width:100%;height:100%;' />
     </div>
     <div class="slide-img" *ngIf="house.images !== '[]'">
@@ -19,7 +19,7 @@
     </div>
     <div class="details-1">
         <div class='name'>{{houses.name}}</div>
-        <div class='simple'>
+        <div class='simple flex-row'>
             <div class='flex-1'>
                 <p>售价</p>
                 <h4><span>{{houses.price}}</span>万</h4>
@@ -81,7 +81,7 @@
             <div class='flex-col'>
 
             </div>
-            <a class='flex-row' *ngIf="houses.subdistrict !== null" (click)="districtDs(houses.subdistrict)">
+            <a class='flex-row' *ngIf="houses.subdistrict !== null" (click)="districtDs(houses)">
                 <div>
                     小区：
                     <span>{{houses.subdistrict?.name}}</span>
@@ -144,7 +144,7 @@
                 <p>近一个月新增<span class="assertive">{{house.watchedCount}}</span>位看房客户</p>
                 <!--<button ion-button clear item-right>View</button>-->
             </ion-item>
-            <ion-item *ngIf="roleName =='房管家' || roleName =='经理'">
+            <ion-item *ngIf="(roleName =='房管家' || roleName =='经理') && enterTyle == 2">
                 <i *ngIf="house.hasKey == true" item-left><img src="assets/img/staff/key_icon.png" width="17"/></i>
                 <span *ngIf="house.hasKey == true">
                     有钥匙&nbsp;&nbsp;&nbsp;
@@ -153,7 +153,7 @@
                     无钥匙&nbsp;&nbsp;&nbsp;
                 </span>
             </ion-item>
-            <ion-item *ngIf="roleName =='房管家' || roleName =='经理'">
+            <ion-item *ngIf="(roleName =='房管家' || roleName =='经理') && enterTyle == 2">
                 <div class="flex-1">
                     <span>业主：</span> {{messagesDetailName.name}} {{messagesDetailName.mobile}}
                 </div>
@@ -166,7 +166,7 @@
 </ion-content>
 <ion-footer>
     <div class="footer-flex">
-        <a ion-bu class="create" *ngIf="roleName =='房管家' || roleName =='经理'">
+        <a ion-bu class="create" *ngIf="(roleName =='房管家' || roleName =='经理') && enterTyle == 2">
             <div class="create-content">
                 <div><img src="assets/img/staff/compile_btn_grayness.png" width="18"></div>
                 <h5>编辑</h5>

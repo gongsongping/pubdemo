@@ -233,7 +233,9 @@ export class Housesearch {
     areatabs = ['区域']//, '地铁', '附近'
     choosedAreatab = '区域'
     chooseAreatab = function (a) {
-        this.choosedAreatab = a
+        let vm = this;
+        vm.choosedAreatab = a;
+        // vm.search();
     }
     // vm.districts = ['武侯区', '青羊区', '金牛区', '锦江区', '高新区']
     areaList() {

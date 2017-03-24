@@ -38,7 +38,7 @@ export class Districtdetails {
   
   
   ionViewDidEnter() {
-    console.log('ionViewDidEnter DistrictdetailsPage');
+    console.log('ionViewDidEnter DistrictdetailsPage',this.house);
     let map = new BMap.Map("details-map");
     if (this.house.subdistrict.longitude) {
         console.log(this.house.subdistrict.longitude, this.house.subdistrict.latitude)

@@ -388,7 +388,7 @@ export class Housemine {
         vm.orientationParams = ''
     }
     goDetail(h) {
-        this.navCtrl.push(Housedetails, { house: h })
+        this.navCtrl.push(Housedetails, { house: h , enter: '2'})
     }
 
 }
