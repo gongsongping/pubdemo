@@ -35,7 +35,7 @@
         </div>
         <div class='calculate'>
             单价：
-            <span>{{houses.price*10000/houses.buildingArea | number : 0}}元/平米</span>
+            <span>{{houses.price*10000/houses.buildingArea | number : '1.0-0'}}元/平米</span>
         </div>
     </div>
     <div class="details-1">
@@ -95,7 +95,7 @@
         <div [ngClass]="isAction ? 'description' : 'descriptionAn'" (click)="action()">{{houses.description}}</div>
     </div>
     <div class='map'>
-        <div id='housedetails-map'> </div>
+        <div id='housedetails-map'></div>
     </div>
     <div class="role-person">
         <div class="title">角色人信息</div>
@@ -130,10 +130,10 @@
                 <ion-thumbnail item-left *ngIf="(!referrerName.avatar)&&(referrerName.gender===3)">
                     <img src="assets/img/sprite/gender_unknown.jpg" width="100%" height="100%" />
                 </ion-thumbnail>
-                <h2>{{referrerName.name}}{{referrerWu}} <span>推荐人</span></h2>
-                <p *ngIf="referrerName.department?.name && !referrerWu">{{referrerName.department?.name}}</p>
-                <p *ngIf="!referrerName.department?.name && !referrerWu">用户推荐</p>
-                <a *ngIf="!referrerName.department?.name && !referrerWu" href="tel:{{referrerName.mobile}}" ion-button clear item-right><img src="assets/img/staff/phone_line_btn.png" width="18" /></a>
+                <h2>{{referrerName.name}} <span>推荐人</span></h2>
+                <p *ngIf="referrerName.department?.name">{{referrerName.department?.name}}</p>
+                <p *ngIf="!referrerName.department?.name">用户推荐</p>
+                <a *ngIf="referrerName.mobile" href="tel:{{referrerName.mobile}}" ion-button clear item-right><img src="assets/img/staff/phone_line_btn.png" width="18" /></a>
             </ion-item>
         </ion-list>
     </div>
