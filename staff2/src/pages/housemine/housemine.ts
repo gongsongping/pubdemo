@@ -66,7 +66,6 @@ export class Housemine {
     }
     ionViewDidEnter() {
         let vm = this;
-        vm.selectTab = 0;
         if (localStorage.getItem('userInfo')) {
             vm.userInfo = JSON.parse(localStorage.getItem('userInfo'));
             console.log('-----', vm.userInfo);
@@ -218,9 +217,10 @@ export class Housemine {
         this.inputStart = false;
     }
 
-    searchDis(e) {
+    searchDis(e,status) {
         let vm = this;
         vm.inputStart = true;
+        let statusIn = '&statusIn=' + status;
         let url = ''
         if (vm.roleName == '房管家') {
             url = '/api/housing/houses?size=10&hkId=';
@@ -388,7 +388,7 @@ export class Housemine {
         vm.orientationParams = ''
     }
     goDetail(h) {
-        this.navCtrl.push(Housedetails, { house: h })
+        this.navCtrl.push(Housedetails, { house: h , enter: '2'})
     }
 
 }

@@ -1,7 +1,9 @@
-import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams, Slides } from 'ionic-angular';
+import { Component } from '@angular/core';
+import { NavController, NavParams } from 'ionic-angular';
 import { Districtdetails } from '../districtdetails/districtdetails';
 import axios from 'axios';
+
+declare var BMap: any;
 
 /*
   Generated class for the Housedetails page.
@@ -17,67 +19,87 @@ export class Housedetails {
 
     userInfo: any;
     house: any;
+    roleName: any;
+    enterTyle:any;
     isAction = false;
     houses = [];
-    mySlideOptions;
+    housesHkId = '';
+    messagesDetailName = [];
+    referrerName = {};
+    hkName = [];
     constructor(public navCtrl: NavController, public navParams: NavParams) {
         // console.log(Params.get('house'))
         // this.house = Params.get('house')
         let vm = this;
         vm.house = navParams.get('house')
+        vm.enterTyle = navParams.get('enter');
         let url = 'api/housing/houses/' + vm.house.id
         axios
             .get(url)
             .then(function (res) {
                 vm.houses = res.data;
-              console.log(vm.houses)
+                axios
+                    .get('/api/account/users/' + res.data.supplierId)
+                    .then(function (res) {
+                        vm.messagesDetailName = res.data;
+                    })
+                axios
+                    .get('/api/account/employees/' + res.data.hkId)
+                    .then(function (res) {
+                        vm.hkName = res.data;
+                    })
+                if (!res.data.referrerId) {
+                    return vm.referrerName = {
+                        name: "无",
+                        mobile: "",
+                        department: 
+                            {
+                                name: "无"
+                            }
+                    }
+                }
+                if (res.data.referrerId < 5000000) {
+                    let url1 = '/api/account/employees/' + res.data.referrerId
+                    axios
+                        .get(url1)
+                        .then(function (res) {
+                            vm.referrerName = res.data;
+                        })
+                }
+                if (res.data.referrerId > 5000000) {
+                    let url2 = '/api/account/users/' + res.data.referrerId
+                    axios
+                        .get(url2)
+                        .then(function (res) {
+                            vm.referrerName = res.data
+                        })
+                }
             })
-            .catch(function (error) {
-                alert('服务器错误');
-                console.log(error);
-            });
-    }
-    @ViewChild(Slides) slides: Slides;
-    ngOnInit() {//页面加载完成后自己调用
-        // this.mySlideOptions = {
-        //     autoplay: 2000,
-        //     initialSlide: 0,
-        //     pager: true,
-        //     loop: true,
-        //     speed: 300,
-        //     zoom: true,
-        //     effect: 'flip'
-        // };
-        // setInterval(() => {
-        //     this.slides.slideNext(500, true);
-        //     // this.slides.slidePrev(500, true);
-        // }, 2000);
-    }
-    // goToSlide() {
-    //     this.slides.slideTo(2, 500);
-    // }
-    // startAutoplay() {
-    //     this.slides.slideTo(2, 500);
-    // }
-    slideChanged() {
-        let currentIndex = this.slides.getActiveIndex();
-        console.log("Current index is", currentIndex);
     }
     ionViewDidLoad() {
         // this.doInfinite(false);
         console.log('ionViewDidLoad HousesearchPage');
     }
-
     ionViewWillEnter() {
-        // this.roleName = localStorage.getItem('role')
+        this.roleName = localStorage.getItem('role')
     }
     ionViewDidEnter() {
+        let map = new BMap.Map("housedetails-map");
+        if (this.house.subdistrict.longitude) {
+            console.log(this.house.subdistrict.longitude, this.house.subdistrict.latitude)
+            let point = new BMap.Point(this.house.subdistrict.longitude, this.house.subdistrict.latitude);
+            let mk = new BMap.Marker(point);
+            map.addOverlay(mk);
+            // map.panTo(point);
+            map.centerAndZoom(point, 18);
+            // mk.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
+        } else {
+            map.centerAndZoom("北京", 12);
+        }
+        map.enableScrollWheelZoom(true);
         let vm = this;
         if (localStorage.getItem('userInfo')) {
             vm.userInfo = JSON.parse(localStorage.getItem('userInfo'));
-            console.log('-----', vm.userInfo);
-            // vm.doInfinite(false);
-            // vm.areaList();
         } else {
             vm.userInfo = ''
         }

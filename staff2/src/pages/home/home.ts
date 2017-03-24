@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams} from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 
 import { Housemine } from '../housemine/housemine';
 import { Housesearch } from '../housesearch/housesearch';
@@ -35,29 +35,36 @@ export class Home {
   messagesTotal:any
   houseclue:any = Houseclue
   roleName:any
+  tabIndex: any
   customermine: any = Customermine
   constructor(public navCtrl: NavController, public navParams: NavParams) {}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad HomePage');
   }
-   ionViewWillEnter() {
-     this.roleName =  localStorage.getItem('role')
-   }
+  ionViewWillEnter() {
+    let vm = this;
+    vm.roleName = localStorage.getItem('role')
+  }
   ionViewDidEnter() {
     // console.log(this.navParams.get('id'))
     // console.log('---- role Page will enter-----', this.navCtrl.parent);
-    setTimeout(()=> {
+    setTimeout(() => {
       this.messagesTotal = localStorage.getItem('messagesTotal')
-      this.tasksTotal =  localStorage.getItem('tasksTotal')
+      this.tasksTotal = localStorage.getItem('tasksTotal')
     }, 500);
-    console.log('----role page taskstotal----',this.tasksTotal,'---messagesTotal---',this.messagesTotal);
+    console.log('----role page taskstotal----', this.tasksTotal, '---messagesTotal---', this.messagesTotal);
+    if (this.roleName == '开发专员'){
+      this.tabIndex = 1;
+    } else if(this.roleName == '看房顾问' || this.roleName == '看房顾问总经理'){
+      this.tabIndex = 3;
+    } else {
+      this.tabIndex = 2;
+    }
   }
-
-  tabIndex = 1;
   tabColor(index) {
-    let num = this;
-    num.tabIndex = index;
+    let vm = this;
+    vm.tabIndex = index;
   }
 
   pushTo(h) {

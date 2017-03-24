@@ -31,10 +31,11 @@ page-recommendbuyer {
                 }
             }
         }
-        .icon{
+        .item-ios ion-icon[item-right]{
             position: absolute;
-            right: 25px;
-            top: 181px;
+            right: 10px;
+            top: 13px;
+            margin: 0;
         }
     }
         .sub{

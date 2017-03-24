@@ -1,4 +1,4 @@
-import { NgModule, ErrorHandler } from '@angular/core';
+import { NgModule, ErrorHandler, enableProdMode } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { Home } from '../pages/home/home';
@@ -19,6 +19,10 @@ import { Districtdetails } from '../pages/districtdetails/districtdetails';
 
 import { NestedCom, House, TestService, ImgPipe, HouseTypePipe } from '../providers/services';
 
+// let prodMode: boolean = window.hasOwnProperty('cordova');//!!window.cordova;
+// ionicBootstrap(MyApp, [], {prodMode: prodMode});
+// import {enableProdMode} from '@angular/core';
+enableProdMode();
 
 @NgModule({
   declarations: [

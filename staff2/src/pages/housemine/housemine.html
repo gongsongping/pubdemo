@@ -153,17 +153,7 @@
                 </div>
             </a>
         </div>
-        <house [h]='h'></house>
-        <!--<div class="handle" style="padding:10px 20px;">
-            <a><img src="assets/img/staff/phone_line_btn.png" width="20" /></a>
-            <p>
-                推荐人<span style="font-size:.8em;color:#999;">(业主)</span>：
-                <span style="color:#265fdf;">
-							皇帝强
-						</span>
-            </p>
-            <p>123456789</p>
-        </div>-->
+        <handle [h]='h'></handle>
     </div>
     <div *ngIf="dataLength==0 && addMore == true && houseTotal !== 0" class="doInfinite">
         <h5>只有这么多房源了</h5>

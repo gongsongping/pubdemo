@@ -144,6 +144,37 @@ page-housesearch {
                     margin-top: 10px;
                 }
             }
+                .handle { 
+                    border-top: solid 1px #e7eaef;
+                    border-bottom: solid 1px #e7eaef;
+                    overflow: hidden;
+                    position:relative;
+                    display:flex;
+                    .handle-hk{ 
+                        padding:0 10px;
+                        width:50%;
+                        display:flex;
+                        justify-content: space-around;
+                        div{
+                            width:80%;
+                        }
+                        a{
+                            width:20%;
+                            padding: 0;
+                            background-color: #fff;
+                            margin-top: 14px;
+                        }
+                    }
+                    p {
+                        color: #b8bfc9;
+                        span {
+                            color: #64708a;
+                        }
+                    }
+                    .border-spacing{
+                        border-left: 1px solid #e6e6e6;                       
+                    }
+                }
             .item:last-child{
                 border-bottom:1px solid #f0f2f6;
             }

@@ -4,7 +4,7 @@
     </ion-navbar>
 </ion-header>
 <ion-content class="housedetails">
-    <div *ngIf="house.images == '[]'" tyle='width: 100vw;height:200px;'>
+    <div *ngIf="house.images == '[]'" style='width: 100vw;height:160px;overflow:hidden;'>
         <img src="assets/img/img_null.png"  style='width:100%;height:100%;'/>
     </div>
     <div class="slide-img" *ngIf="house.images !== '[]'">
@@ -19,7 +19,7 @@
     </div>
     <div class="details-1">
         <div class='name'>{{house.name}}</div>
-        <div class='simple'>
+        <div class='simple flex-row'>
             <div class='flex-1'>
                 <p>售价</p>
                 <h4><span>{{house.price}}</span>万</h4>
@@ -42,7 +42,7 @@
         <div class="row">
             <div class='flex-col'>
                 楼层：
-                <span>{{house.floor}}/{{house.totalFloor}}</span>
+                <span>{{house.floorType}}<span style="color:lightgray;font-size: .8em;">(共{{house.totalFloor}}层)</span></span>
             </div>
             <div class='flex-col'>
                 朝向：

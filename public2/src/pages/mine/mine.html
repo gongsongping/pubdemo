@@ -27,8 +27,8 @@
       <span *ngIf="userInfo.name" style="background-color: #F9D00B;">{{userInfo.name}}</span>&nbsp;&nbsp;
       <span style="background-color: #F9D00B;">{{userInfo.username}}</span>
     </div>-->
-    <div *ngIf='userInfo' style="margin:5px 0px 10px;">
-      <span style="background-color: #F9D00B;"><span *ngIf="userInfo.name" style="background-color: #F9D00B;">{{userInfo.name}}</span>&nbsp;&nbsp;壁虎好房欢迎您</span>
+    <div *ngIf='userInfo' style="margin:5px 0px 10px;padding:5px;">
+      <span style="background-color: #F9D00B;"><span *ngIf="userInfo.name" >{{userInfo.name}}</span>&nbsp;&nbsp;壁虎好房欢迎您</span>
     </div>
     <div>
       <button *ngIf="userInfo" (click)="logout()" ion-button round small color="light">退出</button>

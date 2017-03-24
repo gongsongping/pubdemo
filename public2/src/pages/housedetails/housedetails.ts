@@ -25,7 +25,7 @@ export class Housedetails {
 
     ionViewDidEnter() {
         // this.doInfinite(false);
-        console.log('ionViewDidEnter HousesearchPage');
+        console.log('ionViewDidEnter HousedetailsPage');
         let map = new BMap.Map("housedetails-map");
         if (this.house.subdistrict.longitude) {
             console.log(this.house.subdistrict.longitude, this.house.subdistrict.latitude)
@@ -42,7 +42,10 @@ export class Housedetails {
     }
 
     ionViewWillEnter() {
-        // this.roleName = localStorage.getItem('role')
+
+    }
+    ionViewDidLoad() {
+        console.log('----housedetails----- Page did load');
     }
 
     goDistrict(d){

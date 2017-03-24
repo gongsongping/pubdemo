@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import axios from 'axios';
-import { Housedetails } from '../housedetails/housedetails';
 
 /*
   Generated class for the Housesearch page.
@@ -35,10 +34,9 @@ export class Housesearch {
     chooseduildYear = ''
     directionParams = ''
     districtsTotal = ''
-    buildStatusParams = ''
+    buildStatusParams = '&statusIn=[0,2]';
     chooseduildStatus = ''
     choosedRegion = ''
-    statusIn = '&statusIn=[0,2]';
     choosed = false;
     inputStart = false;
     activeAreaTab = false
@@ -136,10 +134,9 @@ export class Housesearch {
                 console.log(error);
             });
     }
-    searchDis(e, status) {
+    searchDis(e) {
         let vm = this;
         vm.inputStart = true;
-        let statusIn = '&statusIn=' + status;
         let url = ''
         if (vm.roleName == '房管家') {
             url = '/api/housing/houses?size=10';
@@ -236,7 +233,9 @@ export class Housesearch {
     areatabs = ['区域']//, '地铁', '附近'
     choosedAreatab = '区域'
     chooseAreatab = function (a) {
-        this.choosedAreatab = a
+        let vm = this;
+        vm.choosedAreatab = a;
+        // vm.search();
     }
     // vm.districts = ['武侯区', '青羊区', '金牛区', '锦江区', '高新区']
     areaList() {
@@ -338,8 +337,5 @@ export class Housesearch {
         vm.buildStatusParams = ''
     }
     
-    goDetail(h) {
-        this.navCtrl.push(Housedetails, { house: h })
-    }
 }
 
