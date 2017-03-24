@@ -28,6 +28,10 @@ export class MyApp {
   ionViewWillEnter() {
     console.log('----root app----- Page will enter');
   }
+  //not working
+  ionViewDidLoad() {
+    console.log('----root app----- Page did load');
+  }
   
   ngOnInit(){
       console.log('----root app---- Page will init');
