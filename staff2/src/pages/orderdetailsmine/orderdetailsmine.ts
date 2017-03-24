@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-
+import axios from 'axios';
 /*
   Generated class for the Orderdetailsmine page.
 
@@ -13,6 +13,10 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class Orderdetailsmine {
   orderDetails: any
+  orderNote: any
+  buyerInfo: any
+  sallerInfo: any
+  houseInfo: any
   constructor(public navCtrl: NavController, public params: NavParams) {
     let vm = this
     vm.orderDetails = params.get('mission');
@@ -48,54 +52,45 @@ export class Orderdetailsmine {
 //   })
 // }
 //   $scope.todoOrderInfo();
-//   if ($scope.orderDetails.demanderId != 0) {                      //买家
-//   $http({
-//     method: 'get',
-//     url: $rootScope.baseUrl + '/api/account/users/' + $scope.orderDetails.demanderId,
-// }).then(function successCallback(res) {
-//   $scope.buyerName = res.data.name;
-//   $scope.buyerMobile = res.data.mobile;
-// }, function errorCallback() {
-// })
-// }
-// if ($scope.orderDetails.supplierId != 0) {                //卖家
-//   $http({
-//     method: 'get',
-//     url: $rootScope.baseUrl + '/api/account/users/' + $scope.orderDetails.supplierId,
-//   }).then(function successCallback(res) {
-//     $scope.sallerName = res.data.name;
-//     $scope.sallerMobile = res.data.mobile;
-//   }, function errorCallback() {
-//   })
-// }
-// if ($scope.orderDetails.houseId != 0) {
-//   $http({
-//     method: 'get',
-//     url: $rootScope.baseUrl + '/api/housing/houses/' + $scope.orderDetails.houseId,
-//   }).then(function successCallback(res) {
-//     $scope.smallArea = res.data.name;
-//     $scope.detailAddr = res.data.detailAddr;
-//     $scope.alHouseType = res.data.houseType;
-//     $scope.alBuildingArea = res.data.buildingArea;
-//     $scope.floor = res.data.floor;
-//     $scope.totalFloor = res.data.totalFloor;
-//     $scope.orientation = res.data.orientation;
-//     $scope.price = res.data.price;
-//     $scope.decorate = res.data.decorate;
-//   }, function errorCallback() {
-//   })
-// }
-// $http({                //备注
-//   method: 'get',
-//   url: $rootScope.baseUrl + '/api/mission/missions/' + $scope.orderDetails.id,
-// }).then(function successCallback(res) {
-//   $scope.orderNote = res.data.records[0].note;
-// }, function errorCallback() {
-// })
 
   ionViewDidLoad() {
     let vm = this
-    console.log(vm.orderDetails);
+    axios({
+      method: 'get',
+      url: '/api/mission/missions/' + vm.orderDetails.id,
+    }).then(function successCallback(res) {
+      vm.orderNote = res.data.records[0].note;
+
+    })
+    //买家信息
+    if (vm.orderDetails.demanderId != 0) {
+      axios({
+        method: 'get',
+        url: '/api/account/users/' + vm.orderDetails.demanderId,
+      }).then(function successCallback(res) {
+        vm.buyerInfo = res.data
+        console.log(vm.buyerInfo);
+      })
+    }
+    //卖家信息
+    if (vm.orderDetails.supplierId != 0) {
+      axios({
+        method: 'get',
+        url: '/api/account/users/' + vm.orderDetails.supplierId,
+      }).then(function successCallback(res) {
+        vm.sallerInfo = res.data
+      })
+    }
+    //房屋信息
+    if (vm.orderDetails.houseId != 0) {
+      axios({
+        method: 'get',
+        url: '/api/housing/houses/' + vm.orderDetails.houseId,
+      }).then(function successCallback(res) {
+        vm.houseInfo = res.data
+      })
+    }
+
   }
 
 }

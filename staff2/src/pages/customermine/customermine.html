@@ -1,0 +1,62 @@
+<!--
+  Generated template for the Customermine page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>客户管理</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="customermine">
+  <p class="upright-line"></p>
+  <div class="customer-info" >
+    <p *ngFor="let t of sub;let i=index" [ngClass]="{checkedp: choosedidx == i}" (click)="chooseTab(i)">
+      {{t}}
+      <span *ngIf="i==0">({{userLenght}})</span><span *ngIf="i==1">({{recommendLenght}})</span>
+    </p>
+  </div>
+
+  <div *ngIf="choosedidx==0">
+    <!--<div class="customer-transactions expired"  *ngFor="let of in customors;let i=index | filter: searchData.val">-->
+    <div class="customer-transactions expired" *ngFor="let t of customors; let i=index" (click)="goDetails(t)">
+      <div class="item">
+        <div class="item-nav">
+          <p class="p1 p-valid" [ngClass]="{'bule': i%4 == 0,'yellow': i%4 == 1,'darkyellow': i%4 == 2,'lightblue': i%4 ==3}">{{t.user.name | slice:0:1}}</p>
+          <p class="p2">{{t.user?.name}} <span>[{{t.user?.mobile}}]</span></p>
+        </div>
+      </div>
+      <a href="tel:{{t.user?.mobile}}" class="icon ion-ios-telephone-outline">
+        <ion-icon name="call"></ion-icon>
+      </a>
+    </div>
+    <div *ngIf="personLength == 0" style="padding:10px;">
+      <h4 style="text-align: center;color: #666;margin-top: 30px">没有了!</h4>
+    </div>
+    <ion-infinite-scroll (ionInfinite)="loadMore($event)" *ngIf="personLength != 0">
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </div>
+  <div class="customer-commend" *ngIf="choosedidx==1">
+    <div class="commend-top">
+      <p>客户姓名</p>
+      <p>录入时间</p>
+      <p>推荐小区</p>
+      <p>联系电话</p>
+    </div>
+    <a class="commend-top commend-info" style="display: block" *ngFor = 'let t of recomend'>
+      <i class="icon imgs"><img src="img/staff/guoqi.png" width="35"/></i>
+      <p>{{t.name}}</p>
+      <p>2017/02/01</p>
+      <p>远洋山水</p>
+      <p>{{t.mobile}}</p>
+    </a>
+  </div>
+  <h4 *ngIf="noCustomer && choosedidx==0" style="text-align: center;margin-top: 48%;color: #999;">暂无客户！</h4>
+  <h4 *ngIf="noRecommendCustomer && choosedidx==1" style="text-align: center;margin-top: 48%;color: #999;">暂无客户！</h4>
+</ion-content>

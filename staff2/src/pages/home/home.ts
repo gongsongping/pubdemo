@@ -7,6 +7,7 @@ import { Message } from '../message/message';
 import { Recommendbuyer } from '../recommendbuyer/recommendbuyer';
 import { Houseclue } from '../houseclue/houseclue';
 import { Ordermine } from '../ordermine/ordermine';
+import { Customermine } from '../customermine/customermine';
 
 /*
   Generated class for the Home page.
@@ -34,6 +35,7 @@ export class Home {
   messagesTotal:any
   houseclue:any = Houseclue
   roleName:any
+  customermine: any = Customermine
   constructor(public navCtrl: NavController, public navParams: NavParams) {}
 
   ionViewDidLoad() {

@@ -1,0 +1,44 @@
+page-newrecord {
+  background: #f4f5f9;
+  p {
+    padding: 0;
+    margin: 0;
+  }
+  .newrecord {
+    #textarea {
+      margin-top: 10px;
+      border: solid 1px #9B9B9A;
+      padding: 5px;
+      width: 100%;
+      resize: none;
+    }
+  }
+  .info {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 0;
+    border-top: solid 1px #e7eaef;
+    color: #b1b7c5;
+  }
+  .customer-infos {
+    padding: 15px 10px;
+    display: flex;
+    align-items: center;
+    .firstName {
+      font-size: 24px;
+      width: 50px;
+      height: 50px;
+      display: inline-block;
+      text-align: center;
+      line-height: 50px;
+      color: #fff;
+      border-radius: 50%;
+      background: #fbab0c;
+    }
+    h2 {
+      font-size: 18px;
+      margin: 0;
+      margin-left: 10px;
+    }
+  }
+}

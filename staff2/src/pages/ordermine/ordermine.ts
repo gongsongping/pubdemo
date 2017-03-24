@@ -50,8 +50,6 @@ export class Ordermine {
           }
         }
       })
-      .catch(function (error) {
-      });
   }
 
   loadMore(infiniteScroll){
