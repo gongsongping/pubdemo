@@ -62,7 +62,9 @@ export class Home {
         this.loadMore(refresher)
     }
     ionViewDidLoad() {
-        this.loadMore(false)
+        setTimeout(()=>{
+          this.loadMore(false)
+        },1000)
     }
     goDetail(h) {
         this.navCtrl.push(Housedetails, { house: h })

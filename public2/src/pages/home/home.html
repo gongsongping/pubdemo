@@ -55,11 +55,13 @@
     </div>
     <div *ngIf='!dataLength' style='padding:30px;text-align: center;'>没有了!</div>
     <ion-fab bottom right #fab>
-        <button ion-fab (click)="goPrecise()" style='font-size: 0.8em;'>为您找房</button>
+        <button ion-fab (click)="goPrecise()" style='font-size: 0.8em;font-weight: 600;'>
+            为您找房
+        </button>
     </ion-fab>
 
     <ion-infinite-scroll (ionInfinite)="loadMore($event)" [enabled]='!!dataLength' threshold='30%'>
-        <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+        <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="正在努力加载中...">
         </ion-infinite-scroll-content>
     </ion-infinite-scroll>
 </ion-content>

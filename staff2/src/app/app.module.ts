@@ -1,4 +1,4 @@
-import { NgModule, ErrorHandler } from '@angular/core';
+import { NgModule, ErrorHandler, enableProdMode } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { Home } from '../pages/home/home';
@@ -25,6 +25,7 @@ import { Districtdetails } from '../pages/districtdetails/districtdetails';
 import { Ordermine } from '../pages/ordermine/ordermine';
 import { Orderdetailsmine } from '../pages/orderdetailsmine/orderdetailsmine';
 
+enableProdMode();
 
 
 @NgModule({
