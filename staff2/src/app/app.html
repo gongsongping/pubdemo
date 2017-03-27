@@ -42,6 +42,9 @@
         <i><img src="assets/img/icon/_0004_exit.png" width="25"/></i>
         <span>退出</span>
       </button>
+       <button menuClose ion-item *ngIf="baseURL=='http://60.205.169.195:7060'||baseURL=='http://60.205.169.195:7069'" detail-none="">
+            <p style="font-size:0.5em;color:tomato;">测试{{baseURL}}</p>
+       </button>
     </ion-list>
   </ion-content>
 </ion-menu>

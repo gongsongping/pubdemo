@@ -33,6 +33,7 @@ export class MyApp {
   userInfo:any
   jwtHelper: JwtHelper = new JwtHelper();
   roleName:any
+  baseURL:any
   constructor(public platform: Platform, public modalCtrl: ModalController, public events: Events) {
         // this.initializeApp();
         platform.ready().then(() => {
@@ -52,10 +53,14 @@ export class MyApp {
       console.log('-----app root------ will enter baseUrl', localStorage.getItem('baseUrl'));
   }
   ngOnInit(){
-      console.log('----root app---- Page will init',this.nav.parent);
-      localStorage.setItem('baseUrl', 'http://60.205.169.195:7060')
+      //set global base url
+      // localStorage.setItem('baseURL', 'http://60.205.169.195:7060')
       axios.defaults.baseURL = 'http://60.205.169.195:7060';
-      
+      // axios.defaults.baseURL = 'http://cd.bihuhaofang.com';
+      // axios.defaults.baseURL = 'http://bj.bihuhaofang.com';
+      console.log('----root app---- Page will init', axios.defaults.baseURL);
+      this.baseURL = axios.defaults.baseURL
+
       this.events.subscribe('user:created', (user, time) => {
         console.log('----events userinfo', user, 'at', time);
         if (localStorage.getItem('tokens')) {
