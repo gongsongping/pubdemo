@@ -24,6 +24,7 @@ import { Housedetails } from '../pages/housedetails/housedetails';
 import { Districtdetails } from '../pages/districtdetails/districtdetails';
 import { Ordermine } from '../pages/ordermine/ordermine';
 import { Orderdetailsmine } from '../pages/orderdetailsmine/orderdetailsmine';
+import { Housedetailsedit } from '../pages/housedetailsedit/housedetailsedit';
 
 enableProdMode();
 
@@ -56,6 +57,7 @@ enableProdMode();
     Housedetails,
     Districtdetails,
     HouseTypePipe,
+    Housedetailsedit
   ],
   imports: [
     IonicModule.forRoot(MyApp, {
@@ -87,6 +89,7 @@ enableProdMode();
     Orderdetailsmine,
     Housedetails,
     Districtdetails,
+    Housedetailsedit
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })

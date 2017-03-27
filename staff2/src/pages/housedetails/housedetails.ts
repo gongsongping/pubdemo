@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { Districtdetails } from '../districtdetails/districtdetails';
+import { Housedetailsedit } from '../housedetailsedit/housedetailsedit';
 import axios from 'axios';
 
 declare var BMap: any;
@@ -17,10 +18,11 @@ declare var BMap: any;
 })
 export class Housedetails {
 
+    housedetailsedit: any = Housedetailsedit;
     userInfo: any;
     house: any;
     roleName: any;
-    enterTyle:any;
+    enterTyle: any;
     isAction = false;
     houses = [];
     housesHkId = '';
@@ -33,7 +35,21 @@ export class Housedetails {
         let vm = this;
         vm.house = navParams.get('house')
         vm.enterTyle = navParams.get('enter');
-        let url = 'api/housing/houses/' + vm.house.id
+    }
+    ionViewDidLoad() {
+        // this.doInfinite(false);
+        console.log('ionViewDidLoad HousesearchPage');
+    }
+    ionViewWillEnter() {
+        let vm = this;
+        vm.roleName = localStorage.getItem('role');
+        let url = ''
+        if (vm.roleName == '房管家') {
+            url = '/api/housing/houses/' + vm.house.id
+        }
+        if (vm.roleName == '租赁专员') {
+            url = '/housing/rents/' + vm.house.id
+        }
         axios
             .get(url)
             .then(function (res) {
@@ -52,10 +68,10 @@ export class Housedetails {
                     return vm.referrerName = {
                         name: "无",
                         mobile: "",
-                        department: 
-                            {
-                                name: "无"
-                            }
+                        department:
+                        {
+                            name: "无"
+                        }
                     }
                 }
                 if (res.data.referrerId < 5000000) {
@@ -75,13 +91,6 @@ export class Housedetails {
                         })
                 }
             })
-    }
-    ionViewDidLoad() {
-        // this.doInfinite(false);
-        console.log('ionViewDidLoad HousesearchPage');
-    }
-    ionViewWillEnter() {
-        this.roleName = localStorage.getItem('role')
     }
     ionViewDidEnter() {
         let map = new BMap.Map("housedetails-map");
@@ -106,6 +115,9 @@ export class Housedetails {
     }
     districtDs(d) {
         this.navCtrl.push(Districtdetails, { house: d })
+    }
+    pushEdit(e) {
+        this.navCtrl.push(Housedetailsedit, { house: e })
     }
     action() {
         this.isAction = !this.isAction
