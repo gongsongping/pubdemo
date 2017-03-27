@@ -94,8 +94,8 @@ export class Message {
     }
     messagesClickEnter(m) {
         let vm = this
-        vm.messagesId.push(m.id);
-        console.log('---msgIds--', m.id, vm.messagesId);
+        // vm.messagesId.push(m.id);
+        // console.log('---msgIds--', m.id, vm.messagesId);
         vm.isActive = m.id;
         let url = '/api/message/notices';
         let config = {
@@ -117,7 +117,7 @@ export class Message {
                 m.isRead = true;
                 vm.messageFalse();
                 vm.totalMessages();
-                vm.events.publish('user:created', 'user', 'time');
+                // vm.events.publish('user:created', 'user', 'time');
             })
             .catch(function (error) {
                 console.log(error);

@@ -131,7 +131,7 @@ export class House {
   }
   
   goDetail(h) {
-        this.navCtrl.push(Housedetails, { house: h })
+        this.navCtrl.push(Housedetails, { house: h , enter: '1' })
     }
   onClick() {
     this.notify.emit('Click from nested content');
@@ -152,7 +152,7 @@ export class House {
                         </p>
                         <p *ngIf="referrer?.mobile !== ''">{{referrer?.mobile}}</p>
                     </div>
-                    <a ion-button full *ngIf="referrer?.mobile !== ''" href="tel:{{referrer?.mobile}}"><img src="assets/img/staff/phone_line_btn.png" width="25" /></a>
+                    <a ion-button full *ngIf="referrer?.mobile !== ''" href="tel:{{referrer?.mobile}}"><img src="assets/img/staff/phone_line_btn.png" width="20" /></a>
                 </div>
             </div>
             `

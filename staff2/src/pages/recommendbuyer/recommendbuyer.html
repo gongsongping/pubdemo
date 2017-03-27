@@ -21,9 +21,9 @@
         </ion-item>
         <ion-item>
             <ion-label color="dark">推荐小区<span color="danger">*</span></ion-label>
-            <ion-input placeholder="请选择您推荐的小区" (click)="presentModal()"></ion-input>
+            <ion-input placeholder="请选择您推荐的小区" [(ngModel)]="districtInput" (click)="presentModal()"></ion-input>
+            <ion-icon name="arrow-dropright" item-right></ion-icon>
         </ion-item>
-        <i class="icon"><img src="assets/img/staff/more_btn.png" width="20"/></i>
         <ion-item>
             <ion-label color="dark">备注信息</ion-label>
             <ion-textarea placeholder="请在此填写您对该客户的备注"></ion-textarea>

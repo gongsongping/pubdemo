@@ -24,7 +24,6 @@ export class Role {
   message: any = Message;
   home: any = Home;
   tasksTotal:any;
-  messagesTotal:any;
   constructor(public navCtrl : NavController, public navParams : NavParams, public events: Events) {
    
   }
@@ -45,10 +44,9 @@ export class Role {
   ionViewDidEnter() {
     console.log('---- role Page will enter-----', this.navCtrl.parent);
     setTimeout(()=> {
-      this.messagesTotal = localStorage.getItem('messagesTotal');
       this.tasksTotal =  localStorage.getItem('tasksTotal');  
     }, 500);
-    console.log('----role page taskstotal----',this.tasksTotal,'---messagesTotal---',this.messagesTotal);
+    console.log('----role page taskstotal----',this.tasksTotal);
   }
   ngOnInit() {
     console.log('----- role Page oninit------');

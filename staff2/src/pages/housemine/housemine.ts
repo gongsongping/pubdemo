@@ -66,7 +66,6 @@ export class Housemine {
     }
     ionViewDidEnter() {
         let vm = this;
-        vm.selectTab = 0;
         if (localStorage.getItem('userInfo')) {
             vm.userInfo = JSON.parse(localStorage.getItem('userInfo'));
             console.log('-----', vm.userInfo);
@@ -389,7 +388,7 @@ export class Housemine {
         vm.orientationParams = ''
     }
     goDetail(h) {
-        this.navCtrl.push(Housedetails, { house: h })
+        this.navCtrl.push(Housedetails, { house: h , enter: '2'})
     }
 
 }

@@ -3,7 +3,7 @@ import { NavController, NavParams, ModalController } from 'ionic-angular';
 
 import { MyRecommendbuyer } from '../myRecommendbuyer/myRecommendbuyer';
 
-
+import axios from 'axios';
 
 /*
   Generated class for the Recommendbuyer page.
@@ -16,6 +16,8 @@ import { MyRecommendbuyer } from '../myRecommendbuyer/myRecommendbuyer';
   templateUrl: 'recommendbuyer.html'
 })
 export class Recommendbuyer {
+
+  userInfo:any;
   name = '';
   mobile = '';
   searchName = '';
@@ -25,8 +27,38 @@ export class Recommendbuyer {
   ionViewDidLoad() {
     console.log('ionViewDidLoad RecommendbuyerPage');
   }
-  serviceInput() { //提交
 
+  ionViewDidEnter() {
+    let vm = this;
+    if (localStorage.getItem('userInfo')) {
+      vm.userInfo = JSON.parse(localStorage.getItem('userInfo'));
+      console.log('-----', vm.userInfo);
+    } else {
+      vm.userInfo = ''
+    }
+  }
+
+  serviceInput() { //提交
+    // let vm = this
+    // let url = '/api/crm/recommends'
+    // let config = {
+    //   headers: {
+    //     'Authorization': 'Basic YnJvd3Nlcjo=',
+    //     'Content-Type': 'application/x-www-form-urlencoded'
+    //   }
+    // };
+    // let data = {
+    //   referrerId: vm.userInfo.id
+    // }                
+    // axios
+    //   .post(url, data, config)
+    //   .then(function (res) {
+    //     console.log(res)
+    //   })
+    //   .catch(function (error) {
+    //     alert('错误');
+    //     console.log(error);
+    //   });
   }
   clearInputName() {
     this.name = ''

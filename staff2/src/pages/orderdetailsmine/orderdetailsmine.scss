@@ -2,7 +2,7 @@ page-orderdetailsmine {
   .orderdetail1 {
     background: #F4F5F9;
     .ipt {
-      margin: 20px 15px 0;
+      margin: 13px 15px 5px;;
       text-align: center;
       padding: 5px 12px;
       background: #265fdf;
@@ -26,9 +26,9 @@ page-orderdetailsmine {
       border-left: solid 2px #d4d8e3;
     }
     .order-info {
-      margin: 0 15px;
+      margin: 15px 15px;
       border-radius: 14px;
-      padding: 15px;
+      padding: 1px 15px;
       background: #fff;
       p {
         width: 100%;
@@ -42,9 +42,9 @@ page-orderdetailsmine {
       }
     }
     .buyer-info {
-      margin: 0 15px;
+      margin: 15px 15px;
       border-radius: 14px;
-      padding: 15px 10px;
+      padding: 0 10px;
       background: #fff;
       .buyer-top {
         display: flex;
@@ -98,7 +98,7 @@ page-orderdetailsmine {
       }
     }
     .order-details {
-      margin: 0 15px;
+      margin: 15px 15px;
       border-radius: 14px;
       padding: 12px 15px;
       background: #fff;
@@ -108,7 +108,6 @@ page-orderdetailsmine {
         border-bottom: solid 1px #e5e5e5;
       }
       .addr {
-        padding: 15px 0 0;
         .addr-top {
           img, p {
             display: inline-block;
@@ -138,7 +137,6 @@ page-orderdetailsmine {
         .totle {
           padding-top: 10px;
           position: relative;
-          padding-bottom: 10px;
           p {
             display: inline-block;
             color: #b0b7c7;

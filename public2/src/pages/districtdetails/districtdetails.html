@@ -7,7 +7,7 @@
 </ion-header>
 
 <ion-content class="housedetails">
-    <div *ngIf="subdistricts.images == '[]'" tyle='width: 100vw;height:160px;'>
+    <div *ngIf="subdistricts.images == '[]'" style='width: 100vw;height:160px;overflow:hidden;'>
         <img src="assets/img/img_null.png"  style='width:100%;height:100%;'/>
     </div>
     <!--<div class="slide-img" *ngIf="subdistricts.images !== '[]'">
@@ -21,7 +21,7 @@
         <div class='name'>
             {{subdistricts.name}}
         </div>
-        <div class='simple flex-row'>
+        <div class='simple-1 flex-row'>
             <div class='flex-1'>
                 <h4>小区参考均价</h4>
             </div>
@@ -30,7 +30,7 @@
             </div>
         </div>
     </div>
-    <div class='details-1'>
+    <div class='details-1' style="margin-top: 10px;">
         <div class="row">
             <div class='flex-col'>
                 物业费：

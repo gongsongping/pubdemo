@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
 import axios from 'axios';
+declare var BMap: any;
 /*
   Generated class for the Districtdetails page.
 
@@ -34,5 +35,22 @@ export class Districtdetails {
   ionViewDidLoad() {
     console.log('ionViewDidLoad DistrictdetailsPage');
   }
-
+  
+  
+  ionViewDidEnter() {
+    console.log('ionViewDidEnter DistrictdetailsPage',this.house);
+    let map = new BMap.Map("details-map");
+    if (this.house.subdistrict.longitude) {
+        console.log(this.house.subdistrict.longitude, this.house.subdistrict.latitude)
+        let point = new BMap.Point(this.house.subdistrict.longitude, this.house.subdistrict.latitude);
+        let mk = new BMap.Marker(point);
+        map.addOverlay(mk);
+        // map.panTo(point);
+        map.centerAndZoom(point, 18);
+        // mk.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
+    } else {
+        map.centerAndZoom("北京", 12);
+    }
+    map.enableScrollWheelZoom(true);
+  }
 }
