@@ -106,26 +106,7 @@ export class MyApp {
             localStorage.setItem('messagesTotal','')
             // vm.messagesTotal = 0
         }
-        // let bs64 = window.btoa($rootScope.userInfo.mobile + ':' + $rootScope.access_token)
-        // $http({
-        //     method: 'get',
-        //     headers: { "Authorization": "Basic " + bs64 },
-        //     url: $rootScope.baseUrl + '/api/activiti/repository/process-definitions?latest=true&key=buy_process'
-        // })
-        //     .then(function successCallback(res) {
-        //         $rootScope.proccessDefIdBuy = res.data.data[0].id
-        //         // console.log($scope.proccessDefId);
-        //     }, function errorCallback() { })
-        // $http({
-        //     method: 'get',
-        //     headers: { "Authorization": "Basic " + bs64 },
-        //     url: $rootScope.baseUrl + '/api/activiti/repository/process-definitions?latest=true&key=houseShelveProcess'
-        // })
-        //     .then(function successCallback(res) {
-        //         $rootScope.proccessDefIdShelve = res.data.data[0].id
-        //         // console.log($scope.proccessDefId);
-        //     }, function errorCallback() { })
-      
+       
     }
   
 }
