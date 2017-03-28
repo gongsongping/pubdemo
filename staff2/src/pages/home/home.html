@@ -24,20 +24,26 @@
 			</ion-item>
 		</ion-list>
 	</div>
-	<div class="home-list" *ngIf="tabIndex == 2">
-		<ion-list>
-			<ion-list-header>您收到一条“房源实勘”任务</ion-list-header>
-			<ion-item>
-				<p><span>订单编号：</span>2018025236999</p>
-				<p><span>业主姓名：</span>黄忠</p>
-				<p><span>房源地址：</span>成都市一环路西八段80号</p>
-				<div class="see">
-					<img src="assets/img/icon/_0013_seeright.png" width="16">
-					<span>查看详情 </span>
-				</div>
-			</ion-item>
-		</ion-list>
+	<div *ngIf="tabIndex == 2">
+		<todoitem>
+			
+		</todoitem>
+		<div class="home-list">
+			<ion-list>
+				<ion-list-header>您收到一条“房源实勘”任务</ion-list-header>
+				<ion-item>
+					<p><span>订单编号：</span>2018025236999</p>
+					<p><span>业主姓名：</span>黄忠</p>
+					<p><span>房源地址：</span>成都市一环路西八段80号</p>
+					<div class="see">
+						<img src="assets/img/icon/_0013_seeright.png" width="16">
+						<span>查看详情 </span>
+					</div>
+				</ion-item>
+			</ion-list>
+		</div>
 	</div>
+	<button ion-button small (click)='getTotalTasks(20)'>get all tasks</button>
 	<div class="home-add" *ngIf="tabIndex == 3">
 		<ion-list>
 			<ion-item [navPush]='houseclue'>

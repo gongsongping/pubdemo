@@ -197,3 +197,39 @@ export class Handle {
 }
 
 
+@Component({
+  selector: 'todoitem',
+  // templateUrl:'_todoitem.html'
+  template: ` 
+	<div class="todoitem" >
+		<ion-list>
+			<ion-list-header>您收到一条“房源实勘”任务</ion-list-header>
+			<ion-item>
+				<p><span>订单编号：</span>2018025236999</p>
+				<p><span>业主姓名：</span>黄忠</p>
+				<p><span>房源地址：</span>成都市一环路西八段80号</p>
+				<div class="see">
+					<img src="assets/img/icon/_0013_seeright.png" width="16">
+					<span>查看详情 </span>
+				</div>
+			</ion-item>
+		</ion-list>
+	</div>`
+})
+export class Todoitem {
+  @Input() todo: any;
+
+  constructor(public navCtrl: NavController) {
+    console.log('todo item content Provider');
+  }
+  ngOnInit() {
+    let vm = this
+    
+
+  }
+  
+  goDetail(h) {
+    //  this.navCtrl.push(Housedetails, { house: h , enter: '1' })
+  }
+  
+}

@@ -7,7 +7,7 @@ import { Task } from '../pages/task/task';
 import { Todo } from '../pages/todo/todo';
 import { Tododetails } from '../pages/tododetails/tododetails';
 import { Role } from '../pages/role/role';
-import {  House, Handle, ImgPipe, HouseTypePipe } from '../providers/services';
+import {  House, Handle, ImgPipe, HouseTypePipe, Todoitem } from '../providers/services';
 import { Changepw } from '../pages/changepw/changepw';
 import { Resetpw } from '../pages/resetpw/resetpw';
 import { About } from '../pages/about/about';
@@ -63,7 +63,8 @@ enableProdMode();
     Housedetailsedit,
     Customermine,
     Customerdetailsmine,
-    Newrecord
+    Newrecord,
+    Todoitem
   ],
   imports: [
     IonicModule.forRoot(MyApp, {
