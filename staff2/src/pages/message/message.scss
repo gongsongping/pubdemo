@@ -4,37 +4,6 @@ page-message {
         border-top:1px solid #f0f2f6;
         border-bottom:1px solid #f0f2f6;
     }
-    .record-select {
-        height: 44px;
-        padding: 0 15px;
-        justify-content: space-between;
-        display: flex;
-        position: relative;
-        z-index: 9;
-        box-shadow: 0 6px 6px #e4ebf8;
-        width: 100%;
-        background-color: #fff;
-        p {
-            margin: 0;
-            width: 40%;
-            text-align: center;
-            line-height: 44px;
-        }
-        .tabP {
-            border-bottom: solid 2px #265fdf;
-            color: #265fdf;
-        }
-        .spacing{
-            width: 1px;
-            height: 16px;
-            background-color: #e6e6e6;
-            display: block;
-            position: absolute;
-            left: 50%;
-            top: 15px;
-            z-index: 7;                         
-        }
-    }
     .message-content{
         padding:0 20px;
         .message-list{

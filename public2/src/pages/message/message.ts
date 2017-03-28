@@ -82,8 +82,6 @@ export class Message {
     }
     messagesClickEnter(m) {
         let vm = this
-        // vm.messagesId.push(m.id);
-        // console.log('---msgIds--', m.id, vm.messagesId);
         vm.isActive = m.id;
         let url = '/api/message/notices';
         let config = {
@@ -91,14 +89,7 @@ export class Message {
                 'Content-Type': 'application/x-www-form-urlencoded'
             }
         };
-
-        // let data = new FormData()
-        // data.append('noticesIds', m.id);
-        // data.append('isRead', 'true');
-        // let data = `noticesIds=${m.id}&isRead=true`
         let data = 'noticesIds=' + m.id + '&isRead=true'
-        console.log(data);
-        // let data =  new URLSearchParams(`noticesIds=${m.id}&isRead=true`).rawParams
         axios
             .put(url, data, config)
             .then(function (res) {

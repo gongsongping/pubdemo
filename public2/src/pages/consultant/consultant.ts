@@ -1,6 +1,7 @@
-import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams , Slides} from 'ionic-angular';
+import { Component } from '@angular/core';
+import { NavController, NavParams } from 'ionic-angular';
 
+import axios from 'axios';
 /*
   Generated class for the Consultant page.
 
@@ -12,42 +13,39 @@ import { NavController, NavParams , Slides} from 'ionic-angular';
   templateUrl: 'consultant.html'
 })
 export class Consultant {
-  @ViewChild(Slides) slds:Slides
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+
+  serviceType = 1;
+  myUsers: any;
+  userInfo: any;
+  totals: any;
+  constructor(public navCtrl: NavController, public navParams: NavParams) { }
 
   ionViewDidEnter() {
     console.log('ionViewDidEnter ConsultantPage');
-    // this.slds.slideTo(2)
-    console.log('---',this.slds.getActiveIndex(),'---');
+    if (localStorage.getItem('userInfo')) {
+      this.userInfo = JSON.parse(localStorage.getItem('userInfo'));
+      console.log('-----', this.userInfo);
+      this.contentltan();
+    } else {
+      this.userInfo = ''
+    }
   }
-  tabs = ['置业顾问','房管家']
-  activeTab
-  chooseTab (i){
-    console.log('---',i,'---',this.slds.getActiveIndex());
-    this.activeTab = i
-    this.slds.slideTo(i)
-    console.log('---',i,this.slds.getActiveIndex(),'---');
+
+
+  subtabs = [{ title: '置业顾问', type: 1 }, { title: '房管家', type: 2 }]
+
+  contentltan() {
+    let vm = this;
+    let url = '/api/account/user_service_maps?userId=' + vm.userInfo.id + '&serviceType=' + vm.serviceType
+    axios.get(url)
+      .then(function (res) {
+        vm.totals = res.data.total
+        vm.myUsers = res.data.data;
+        console.log(vm.myUsers)
+      })
   }
-  
-  ionSlideDrag(e){
-    console.log('ionSlideDrag',this.slds.getActiveIndex(),e.swipeDirection,e.pageX,e.pageY);
-  }
-  ionSlideWillChange(e){
-    console.log('ionSlideWillChange',this.slds.getActiveIndex(),e.swipeDirection,e.pageX,e.pageY);
-  }
-  ionSlideDidChange(e){
-    console.log('ionSlideDidChange',this.slds.getActiveIndex(),e.swipeDirection,e.pageX,e.pageY);
-  }
-  ionSlidePrevStart(){
-    console.log('ionSlidePrevStart',this.slds.getActiveIndex());
-  }
-  ionSlidePrevEnd(){
-    console.log('ionSlidePrevEnd',this.slds.getActiveIndex());
-  }
-  ionSlideNextStart(){
-    console.log('ionSlideNextStart',this.slds.getActiveIndex());
-  }
-  ionSlideNextEnd(){
-    console.log('ionSlideNextEnd',this.slds.getActiveIndex());
+  chooseTab(t) {
+    this.serviceType = t.type;
+    this.contentltan();
   }
 }

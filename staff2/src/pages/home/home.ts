@@ -40,8 +40,7 @@ export class Home {
   roleName:any
   tabIndex: any
   customermine: any = Customermine
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+  constructor(public navCtrl: NavController, public navParams: NavParams) { }
 
   ionViewDidLoad() {
     this.roleName = this.navParams.get('roleName')
@@ -65,7 +64,6 @@ export class Home {
       this.tasksTotal = localStorage.getItem('tasksTotal')
     }, 500);
     console.log('----role page taskstotal----', this.tasksTotal, '---messagesTotal---', this.messagesTotal);
-   
   }
   tabColor(index) {
     let vm = this;

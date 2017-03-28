@@ -16,6 +16,7 @@ import { Consultant } from '../pages/consultant/consultant';
 import { Servicecall } from '../pages/servicecall/servicecall';
 import { Visitrecord } from '../pages/visitrecord/visitrecord';
 import { Districtdetails } from '../pages/districtdetails/districtdetails';
+import { Message } from '../pages/message/message';
 
 import { NestedCom, House, TestService, ImgPipe, HouseTypePipe } from '../providers/services';
 
@@ -45,11 +46,12 @@ enableProdMode();
     Servicecall,
     Visitrecord,
     HouseTypePipe,
-    Districtdetails
+    Districtdetails,
+    Message
   ],
   imports: [
-    IonicModule.forRoot(MyApp,{
-      tabsHideOnSubPages:true,
+    IonicModule.forRoot(MyApp, {
+      tabsHideOnSubPages: true,
       backButtonText: ''
     })
   ],
@@ -70,7 +72,8 @@ enableProdMode();
     Consultant,
     Servicecall,
     Visitrecord,
-    Districtdetails
+    Districtdetails,
+    Message
   ],
   providers: [{ provide: ErrorHandler, useClass: IonicErrorHandler }, TestService]
 })
