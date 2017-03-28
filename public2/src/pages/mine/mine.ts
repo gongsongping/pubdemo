@@ -28,6 +28,7 @@ export class Mine {
     // tokens: any;
     userInfo: any;
     messagesTotal:any = 0
+    baseURL:any
 
     jwtHelper: JwtHelper = new JwtHelper();
     constructor(public navCtrl: NavController, public events:Events) { }
@@ -43,6 +44,7 @@ export class Mine {
             vm.messagesTotal = localStorage.getItem('messagesTotal')
             console.log('----mine-page-messagesTotal----',vm.messagesTotal);
         },500)
+        this.baseURL = axios.defaults.baseURL 
     }
   
     logout() {

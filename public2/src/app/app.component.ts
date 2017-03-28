@@ -34,9 +34,14 @@ export class MyApp {
   }
   
   ngOnInit(){
-      console.log('----root app---- Page will init');
-      localStorage.setItem('baseUrl', 'http://60.205.169.195:7060')
+      //set global base url
+      localStorage.setItem('baseUrl', '')
+      // localStorage.setItem('baseURL', 'http://60.205.169.195:7060')
       axios.defaults.baseURL = 'http://60.205.169.195:7060';
+      // axios.defaults.baseURL = 'http://cd.bihuhaofang.com';
+      // axios.defaults.baseURL = 'http://bj.bihuhaofang.com';
+      console.log('----root app---- Page will init base url', axios.defaults.baseURL);
+
       this.events.subscribe('tokens:refresh', (user, time) => {
         // user and time are the same arguments passed in `events.publish(user, time)`
         console.log('----events refresh', user, 'at', time);
@@ -101,26 +106,7 @@ export class MyApp {
             localStorage.setItem('messagesTotal','')
             // vm.messagesTotal = 0
         }
-        // let bs64 = window.btoa($rootScope.userInfo.mobile + ':' + $rootScope.access_token)
-        // $http({
-        //     method: 'get',
-        //     headers: { "Authorization": "Basic " + bs64 },
-        //     url: $rootScope.baseUrl + '/api/activiti/repository/process-definitions?latest=true&key=buy_process'
-        // })
-        //     .then(function successCallback(res) {
-        //         $rootScope.proccessDefIdBuy = res.data.data[0].id
-        //         // console.log($scope.proccessDefId);
-        //     }, function errorCallback() { })
-        // $http({
-        //     method: 'get',
-        //     headers: { "Authorization": "Basic " + bs64 },
-        //     url: $rootScope.baseUrl + '/api/activiti/repository/process-definitions?latest=true&key=houseShelveProcess'
-        // })
-        //     .then(function successCallback(res) {
-        //         $rootScope.proccessDefIdShelve = res.data.data[0].id
-        //         // console.log($scope.proccessDefId);
-        //     }, function errorCallback() { })
-      
+       
     }
   
 }

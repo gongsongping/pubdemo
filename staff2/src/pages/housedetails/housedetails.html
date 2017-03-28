@@ -166,7 +166,7 @@
 </ion-content>
 <ion-footer>
     <div class="footer-flex">
-        <a ion-bu class="create" *ngIf="(roleName =='房管家' || roleName =='经理') && enterTyle == 2">
+        <a ion-bu class="create" *ngIf="(roleName =='房管家' || roleName =='经理') && enterTyle == 2"  (click)="pushEdit(houses)">
             <div class="create-content">
                 <div><img src="assets/img/staff/compile_btn_grayness.png" width="18"></div>
                 <h5>编辑</h5>

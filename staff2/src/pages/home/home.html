@@ -82,7 +82,7 @@
 	</div>
 	<div class="home-info" *ngIf="tabIndex == 5">
 		<div class="row">
-			<div class="col-50" (click)="pushTo(housemine)"  *ngIf="roleName == '房管家'">
+			<div class="col-50" (click)="pushTo(housemine)"  *ngIf="(roleName == '房管家') || (roleName == '租赁专员')">
 				<div>
 					<img src="assets/img/icon/_0007_myhome.png" width="65"/>
 					<h5>我的房源</h5>

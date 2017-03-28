@@ -111,6 +111,12 @@ export class Housesearch {
         let vm = this
         vm.addMore = true;
         let url = '/api/housing/houses?size=10';
+        // if (vm.roleName == '房管家') {
+        //   url = '/api/housing/houses?size=10';
+        // }
+        // if (vm.roleName == '租赁专员') {
+        //   url = '/api/housing/rents?size=10';
+        // }
         let params = {
             params: {
                 start: vm.start

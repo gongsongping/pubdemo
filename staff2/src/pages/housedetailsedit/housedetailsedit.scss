@@ -1,0 +1,37 @@
+page-housedetailsedit {
+    .houseedit{
+        .list{
+            .item{
+                border-top: 1px solid #f0f2f6;
+                .item-inner{
+                    border:0;
+                }
+                p{
+                    float:right;
+                    margin: 0;
+                    padding: 0;
+                    color:black;
+                    input{
+                        width:40px;
+                        height:20px;
+                        line-height: 20px;
+                        text-align: center;
+                        border:1px solid #f0f2f6;
+                    }
+                }
+                .num{
+                    input{
+                         text-align: right;
+                    }
+                }
+                .icon{
+                    font-size:1em;
+                    line-height: 34px;
+                }
+            }
+            .item:last-child{
+                border-bottom: 1px solid #f0f2f6;
+            }
+        }
+    }
+}
