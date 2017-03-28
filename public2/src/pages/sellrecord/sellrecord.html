@@ -1,18 +1,67 @@
-<!--
-  Generated template for the Sellrecord page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>sellrecord</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>卖房记录</ion-title>
+    </ion-navbar>
 
 </ion-header>
-
-
-<ion-content padding>
-
+<ion-content>
+    <div>
+        <div class='visit-record' *ngFor="let h of record">
+            <div class="item record-1">
+                <span class="number">订单编号：{{h.serialNumber}}</span>
+                <span class='status' *ngIf="h.status == -2">已终止</span>
+                <span class='status' *ngIf="h.status == -1">已取消</span>
+                <span class='status' *ngIf="h.status == 0">已完成</span>
+                <span class='status' *ngIf="h.status == 1">等待付款</span>
+                <span class='status' *ngIf="h.status == 2">验房中</span>
+                <span class='status' *ngIf="h.status == 3">看房中</span>
+                <span class='status' *ngIf="h.status == 4">签约中</span>
+                <span class='status' *ngIf="h.status == 5">过户中</span>
+                <span class='status' *ngIf="h.status == 6">联系被推荐中</span>
+                <span class='status' *ngIf="h.status == 7">处理中</span>
+                <span class='status' *ngIf="h.status == 8">贷款中</span>
+                <span class='status' *ngIf="h.status == 9">网签中</span>
+            </div>
+            <div class="item record-3" *ngIf="h.status == 2">
+                <p>{{houseNone}}</p>
+            </div>
+            <house [hId]='h.houseId'></house>
+            <!--<a class='item item-thumbnail-left house-item' *ngIf="h.status == 0">
+                <img *ngIf="h.houses.images !== '[]'" src="{{(h.houses.images | ImgPipe)[0]}}" />
+                <img *ngIf="h.houses.images == '[]'" src="assets/img/img_null.png" />
+                <h2>{{h.houses.name}}</h2>
+                <p>{{h.houses.houseType | HouseTypePipe}}
+                    <span *ngIf="h.houses.orientation == 1">西</span>
+                    <span *ngIf="h.houses.orientation == 2">东</span>
+                    <span *ngIf="h.houses.orientation == 3">北</span>
+                    <span *ngIf="h.houses.orientation == 4">南</span>
+                    <span *ngIf="h.houses.orientation == 5">南北</span>
+                </p>
+                <p style="width:70%;overflow:hidden;font-size:.8em;">{{h.houses.subdistrict.name}}</p>
+                <p style="font-size:.8em;overflow:hidden;width:70%;"><span class="positive">{{h.houses.watchedCount}}</span>人看过此房</p>
+                <div class='price' style="bottom: 10px;width:30%;">
+                    <p class='price-total' style="color:black;">{{h.houses.price}}<span style="font-weight:100;color:#333;">万</span></p>
+                    <p class='price-p-square'>{{h.houses.price*10000/h.houses.buildingArea | number : 0}}元/平</p>
+                </div>
+            </a>-->
+            <!--<div class="item record-3" *ngIf="h.hkId == 0">
+                <p>正在分配房管家，稍后与您联系！</p>
+            </div>
+            <div class="item record-3" ng-hide="h.hkId == 0">
+                <span class='title'>房管家：</span>
+                <span class='telnumber'>{{h.pcDepartments.name}}&nbsp;{{h.pcDepartments.mobile}}&nbsp;&nbsp;</span>
+                <a href="tel:{{h.pcDepartments.mobile}}" class='phone'><i class='icon ion-ios-telephone phone-icon'></i></a>
+            </div>-->
+            <div class="item record-4">
+                <div class='group'>
+                    <a class="button button-positive button-small button-outline pill">跟踪状态</a>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="total === 0" class="prompt">
+            <div class="icon ion-document-text"></div>
+            您还没有相关的记录
+        </div>
+    </div>
 </ion-content>

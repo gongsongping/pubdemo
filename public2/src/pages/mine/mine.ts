@@ -9,6 +9,7 @@ import { Consultant } from '../consultant/consultant';
 import { Servicecall } from '../servicecall/servicecall';
 import { Visitrecord } from '../visitrecord/visitrecord';
 import { Sellrecord } from '../sellrecord/sellrecord';
+import { Message } from '../message/message';
 
 
 @Component({
@@ -23,6 +24,7 @@ export class Mine {
     servicecall = Servicecall
     visitrecord = Visitrecord
     sellrecord = Sellrecord
+    message = Message
 
     items = [1, 2, 3, 4, 5];
     // tokens: any;

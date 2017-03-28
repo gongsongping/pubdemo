@@ -37,7 +37,17 @@ export class Home {
   roleName:any
   tabIndex: any
   customermine: any = Customermine
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
+    let vm = this
+    vm.roleName = localStorage.getItem('role')
+    if (vm.roleName == '开发专员'){
+      vm.tabIndex = 1;
+    } else if(vm.roleName == '看房顾问' || vm.roleName == '看房顾问总经理'){
+      vm.tabIndex = 3;
+    } else {
+      vm.tabIndex = 2;
+    }
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad HomePage');
@@ -54,13 +64,6 @@ export class Home {
       this.tasksTotal = localStorage.getItem('tasksTotal')
     }, 500);
     console.log('----role page taskstotal----', this.tasksTotal, '---messagesTotal---', this.messagesTotal);
-    if (this.roleName == '开发专员'){
-      this.tabIndex = 1;
-    } else if(this.roleName == '看房顾问' || this.roleName == '看房顾问总经理'){
-      this.tabIndex = 3;
-    } else {
-      this.tabIndex = 2;
-    }
   }
   tabColor(index) {
     let vm = this;
