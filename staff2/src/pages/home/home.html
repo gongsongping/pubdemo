@@ -25,9 +25,7 @@
 		</ion-list>
 	</div>
 	<div *ngIf="tabIndex == 2">
-		<todoitem>
-			
-		</todoitem>
+		<todoitem *ngFor='let t of todos' [todo]='t'></todoitem>
 		<div class="home-list">
 			<ion-list>
 				<ion-list-header>您收到一条“房源实勘”任务</ion-list-header>

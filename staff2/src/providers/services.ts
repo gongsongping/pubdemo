@@ -2,6 +2,10 @@ import { Component, Input, Output, EventEmitter, Pipe, PipeTransform } from '@an
 import { NavController} from 'ionic-angular';
 import axios from 'axios';
 import { Housedetails } from '../pages/housedetails/housedetails';
+import { Tododetails } from '../pages/tododetails/tododetails';
+// import _ from "lodash";
+// import * as _ from "lodash";
+import entries from "lodash/entries";
 
 /*
   Generated class for the NestedCom provider.
@@ -208,7 +212,7 @@ export class Handle {
 				<p><span>订单编号：</span>2018025236999</p>
 				<p><span>业主姓名：</span>黄忠</p>
 				<p><span>房源地址：</span>成都市一环路西八段80号</p>
-				<div class="see">
+				<div class="see" (click)='goDetail()'>
 					<img src="assets/img/icon/_0013_seeright.png" width="16">
 					<span>查看详情 </span>
 				</div>
@@ -218,18 +222,71 @@ export class Handle {
 })
 export class Todoitem {
   @Input() todo: any;
+  variables:any;
+  description:any;
 
   constructor(public navCtrl: NavController) {
     console.log('todo item content Provider');
   }
   ngOnInit() {
     let vm = this
+    let userInfo = JSON.parse(localStorage.getItem('userInfo'))
+    let tokens = JSON.parse(localStorage.getItem('tokens'));
+    let bs64 = window.btoa(userInfo.username + ':' + tokens.access_token)
+
+    // axios({
+    //     method: 'get',
+    //     headers: { "Authorization": "Basic " + bs64 },
+    //     url: '/api/activiti/form/form-data?taskId=' + vm.todo.id
+    // })
+    //     .then(function successCallback(res) {
+    //         // $scope.formData = res.data
+    //         // $scope.formProperties = res.data.formProperties
+    //         // console.log($scope.formData, $scope.formProperties);
+    //     })
+
+    axios({
+        method: 'get',
+        headers: { "Authorization": "Basic " + bs64 },
+        url: '/api/activiti/runtime/process-instances/' + vm.todo.processInstanceId + '/variables'
+    })
+        .then(function successCallback(res) {
+            vm.variables = res.data
+            vm.description = JSON.parse(vm.todo.description).map(function (d) {
+                return entries(d)[0]
+                // return Object.entries(d)[0]
+            })
+            console.log(vm.description);
+        })
+        
     
+    // getMoreInfo (d, url) {
+    //     // url: $rootScope.baseUrl + '/api/activiti/runtime/process-instances/' + $scope.todo.processInstanceId+'/variables/'+d[0]
+    //   this.variables.forEach(function (v) {
+    //         // if (v.name=="region_id"){
+    //         //     $scope.region_id = v.value
+    //         //     console.log($scope.region_id);
+    //         // }
+    //         if (v.name == d[0]) {
+    //             d[2] = v
+    //             if (!url) { return }
+    //             axios({
+    //                 method: 'get',
+    //                 url: url + d[2].value
+    //             })
+    //                 .then(function successCallback(res) {
+    //                     d[2].details = res.data
+    //                 }, function errorCallback() {
+    //                     d[2].details = null
+    //                 })
+    //         }
+    //     })
+    // }
 
   }
   
-  goDetail(h) {
-    //  this.navCtrl.push(Housedetails, { house: h , enter: '1' })
+  goDetail() {
+     this.navCtrl.push(Tododetails, { todo: this.todo })
   }
   
 }

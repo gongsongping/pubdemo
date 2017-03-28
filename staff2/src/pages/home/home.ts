@@ -83,14 +83,14 @@ export class Home {
   //todos
   tokens:any
   userInfo:any
-  tasks:any
+  todos:any
   dataLength:any
   spinner:any 
   ionViewWillEnter() {
       this.userInfo = JSON.parse(localStorage.getItem('userInfo'))
       this.tokens = JSON.parse(localStorage.getItem('tokens'));
       let vm  = this
-      vm.tasks = []
+      vm.todos = []
       vm.dataLength = 20
       vm.spinner = true
       //api/activiti/runtime/tasks?assingee=43
@@ -105,7 +105,7 @@ export class Home {
                   vm.spinner = false
                   vm.dataLength = res.data.data.length
               }, 1000)
-             vm.tasks = res.data.data
+             vm.todos = res.data.data
           })
      
   }
@@ -137,7 +137,7 @@ export class Home {
     goTodoDetails (t) {
         this.navCtrl.push(Tododetails,{todo: t})
     }
-    
+
     totalTasks:any
     getTotalTasks (s) {
         let vm = this
