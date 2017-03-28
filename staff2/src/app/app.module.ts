@@ -27,6 +27,7 @@ import { Orderdetailsmine } from '../pages/orderdetailsmine/orderdetailsmine';
 import { Customermine } from '../pages/customermine/customermine';
 import { Customerdetailsmine } from '../pages/customerdetailsmine/customerdetailsmine';
 import { Newrecord } from '../pages/newrecord/newrecord';
+import { Statistics } from '../pages/statistics/statistics';
 
 enableProdMode();
 
@@ -61,7 +62,8 @@ enableProdMode();
     HouseTypePipe,
     Customermine,
     Customerdetailsmine,
-    Newrecord
+    Newrecord,
+    Statistics
   ],
   imports: [
     IonicModule.forRoot(MyApp, {
@@ -95,7 +97,8 @@ enableProdMode();
     Districtdetails,
     Customermine,
     Customerdetailsmine,
-    Newrecord
+    Newrecord,
+    Statistics
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })

@@ -54,7 +54,13 @@
 	</div>
 	<div class="home-info" *ngIf="tabIndex == 4">
 		<div class="row">
-			<div class="col-50" [navPush]='ordermine'>
+			<div class="col-50" [navPush]='ordermine' *ngIf="roleName == '总经理' || roleName == '副总经理' || roleName == '置业顾问经理' || roleName == '销售总监' || roleName == '房管家经理' || roleName == '房源总监' || roleName == '看房顾问经理' || roleName == '金融经理' || roleName == '权证经理' || roleName == '客服经理'">
+				<div>
+					<img src="assets/img/icon/_0008_list.png" width="65" />
+					<h5>部门订单</h5>
+				</div>
+			</div>
+      <div class="col-50" [navPush]='ordermine' *ngIf="roleName == '置业顾问' || roleName =='房管家' || roleName =='看房顾问' || roleName =='金融专员' || roleName =='权证专员' || roleName =='网签专员' || roleName =='客服专员'">
 				<div>
 					<img src="assets/img/icon/_0008_list.png" width="65" />
 					<h5>订单管理</h5>
@@ -66,7 +72,7 @@
 					<h5>客户管理</h5>
 				</div>
 			</div>
-			<div class="col-50">
+			<div class="col-50" (click)="pushTo(statistics)">
 				<div>
 					<img src="assets/img/icon/info.png" width="65" />
 					<h5>统计数据</h5>

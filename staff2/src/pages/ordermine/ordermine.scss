@@ -1,4 +1,8 @@
 page-ordermine {
+  p{
+    margin: 0;
+    padding: 0;
+  }
   .ordermine {
     background: #f6f7fb;
     .scroll {
@@ -35,7 +39,7 @@ page-ordermine {
       }
     }
     .item {
-      padding: 15px 16px 0;
+      padding: 15px 16px 10px;
       border: none;
       border-bottom: solid 5px #eee;
       .item-top {

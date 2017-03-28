@@ -8,6 +8,7 @@ import { Recommendbuyer } from '../recommendbuyer/recommendbuyer';
 import { Houseclue } from '../houseclue/houseclue';
 import { Ordermine } from '../ordermine/ordermine';
 import { Customermine } from '../customermine/customermine';
+import { Statistics } from '../statistics/statistics';
 
 /*
   Generated class for the Home page.
@@ -37,6 +38,7 @@ export class Home {
   roleName:any
   tabIndex: any
   customermine: any = Customermine
+  statistics: any = Statistics
   constructor(public navCtrl: NavController, public navParams: NavParams) {}
 
   ionViewDidLoad() {

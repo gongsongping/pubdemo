@@ -1,0 +1,367 @@
+<!--
+  Generated template for the Statistics page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>数据统计</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only color="dark" style="right:10px;" (click)="changeType()">
+        <div class="button button-small button-clear" (click)="chooseDate()"><img src="assets/img/staff/calendar_pre_icon.png" style="width:20px;margin-top:5px;"></div>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="statistics">
+  <ion-slides>
+    <!--概括-->
+    <!--<ion-slide>-->
+      <!--<div class="statistics1">-->
+        <!--<div class="report">-->
+          <!--<div class="date" (click)="switch1($index)">-->
+            <!--{{date}} <i [ngClass]="{true: 'ion-ios-arrow-down', false: 'ion-ios-arrow-up'}[isactivetime]"></i>-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div class="reportlist">-->
+          <!--<p style="line-height: 31px"><span style="color: #265fdf;">{{date}} </span><span ng-if="statsAuthority>= 0">{{title}}</span>统计：</p>-->
+        <!--</div>-->
+        <!--<div class="lists">-->
+          <!--<div class="itemflex">-->
+            <!--<span>{{statistics[0].watchHouseCount || 0}}</span>次-->
+            <!--<p>看房量</p>-->
+          <!--</div>-->
+          <!--<div class="itemflex">-->
+            <!--<span>{{statistics[0].watchHousePaidAmount || 0 | currency: '￥'}}</span>-->
+            <!--<p>带看收入</p>-->
+          <!--</div>-->
+          <!--<div class="itemflex">-->
+            <!--<span>{{statistics[0].housePutOnSaleCount || 0}}</span>套-->
+            <!--<p>上架房源</p>-->
+          <!--</div>-->
+          <!--<div class="itemflex">-->
+            <!--<span>{{statistics[0].createPartnersCount || 0}}</span>套-->
+            <!--<p>新建合作商家</p>-->
+          <!--</div>-->
+          <!--<div class="itemflex">-->
+            <!--<span>{{statistics[0].applyForHousePutOnSaleCount + statistics[0].applyForByHouseCount || 0 }}单</span>-->
+            <!--<p>派单量</p>-->
+          <!--</div>-->
+          <!--<div class="itemflex">-->
+            <!--<span>{{statistics[0].turnoverCount || 0 }}单</span>-->
+            <!--<p>签单量</p>-->
+          <!--</div>-->
+          <!--<div class="itemflex">-->
+            <!--<span>{{statistics[0].intermediaryPaidAmount || 0 | currency: '￥'}}</span>-->
+            <!--<p>佣金收入</p>-->
+          <!--</div>-->
+          <!--<div class="itemflex">-->
+            <!--<span>{{statistics[0].provideCluesCount || 0}}</span>套-->
+            <!--<p>提供线索量</p>-->
+          <!--</div>-->
+
+
+
+
+          <!--&lt;!&ndash;&lt;!&ndash;<div class="itemflex">&ndash;&gt;&ndash;&gt;-->
+          <!--&lt;!&ndash;&lt;!&ndash;<span>{{statistics[0].netSignedCount || 0}}</span>&ndash;&gt;&ndash;&gt;-->
+          <!--&lt;!&ndash;&lt;!&ndash;<p>网签</p>&ndash;&gt;&ndash;&gt;-->
+          <!--&lt;!&ndash;&lt;!&ndash;</div>&ndash;&gt;&ndash;&gt;-->
+          <!--&lt;!&ndash;&lt;!&ndash;<div class="itemflex">&ndash;&gt;&ndash;&gt;-->
+          <!--&lt;!&ndash;&lt;!&ndash;<span>{{statistics[0].mortgageCount || 0}}</span>&ndash;&gt;&ndash;&gt;-->
+          <!--&lt;!&ndash;&lt;!&ndash;<p>按揭订单</p>&ndash;&gt;&ndash;&gt;-->
+          <!--&lt;!&ndash;&lt;!&ndash;</div>&ndash;&gt;&ndash;&gt;-->
+          <!--&lt;!&ndash;&lt;!&ndash;<div class="itemflex">&ndash;&gt;&ndash;&gt;-->
+          <!--&lt;!&ndash;&lt;!&ndash;<span>{{statistics[0].transferCount || 0}}</span>&ndash;&gt;&ndash;&gt;-->
+          <!--&lt;!&ndash;&lt;!&ndash;<p>权证订单</p>&ndash;&gt;&ndash;&gt;-->
+          <!--&lt;!&ndash;&lt;!&ndash;</div>&ndash;&gt;&ndash;&gt;-->
+        <!--</div>-->
+        <!--<div class="select" ng-if="personsPop">-->
+          <!--<p class="next">选择部门人员</p>-->
+        <!--</div>-->
+        <!--<div class="nextdepartment">-->
+          <!--<a href="#/app/statistics1/{{t.id}}/{{t.name}}/{{t.type}}" ng-repeat="t in persons track by $index">{{t.name}}<i class="icon ion-ios-arrow-right"></i></span></a>-->
+        <!--</div>-->
+        <!--<div class="select" ng-if="deparementPop" style="margin-top: 20px">-->
+          <!--<p class="next">选择下级部门</p>-->
+        <!--</div>-->
+        <!--<div class="nextdepartment">-->
+          <!--<a href="#/app/statistics1/{{t.id}}/{{t.name}}/{{t.type}}" ng-repeat="t in cities track by $index">{{t.name}}<i class="icon ion-ios-arrow-right"></i></span></a>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</ion-slide>-->
+
+
+
+
+
+    <!--&lt;!&ndash;业绩排行&ndash;&gt;-->
+    <!--<ion-slide>-->
+    <!--<div class="buttons">-->
+    <!--<p ng-click="switch1($index)">-->
+    <!--{{date}}-->
+    <!--<i ng-class="{true: 'ion-ios-arrow-down', false: 'ion-ios-arrow-up'}[isactivetime]"></i>-->
+    <!--</p>-->
+    <!--<p ng-click="switch3($index)" class="p1">-->
+    <!--{{area}}-->
+    <!--<i ng-class="{true: 'ion-ios-arrow-down', false: 'ion-ios-arrow-up'}[isactivearea]"></i>-->
+    <!--</p>-->
+    <!--<p ng-click="switch2($index)" class="p1">-->
+    <!--{{user}}-->
+    <!--<i ng-class="{true: 'ion-ios-arrow-down', false: 'ion-ios-arrow-up'}[isactiveuser]"></i>-->
+    <!--</p>-->
+    <!--</div>-->
+    <!--<div class="raking">-->
+    <!--<p>你所在大区今日排名：</p>-->
+    <!--<a class="mineraking" href="#/app/statisticsrecord1/1">-->
+    <!--<p>18&nbsp&nbsp&nbsp&nbsp&nbsp大区十八</p>-->
+    <!--<p>15669</p>-->
+    <!--<p>156,215,323 <i class="ion-ios-arrow-right"></i></p>-->
+    <!--</a>-->
+    <!--</div>-->
+    <!--<div class="statistics2">-->
+    <!--<div class="classify">-->
+    <!--<p>大区</p>-->
+    <!--<p>数量(套)</p>-->
+    <!--<p><span ng-if="money">佣金(￥)</span></p>-->
+    <!--</div>-->
+    <!--<a class="items" ng-repeat="item in items" href="#/app/statisticsrecord1">-->
+    <!--<div class="item-area">-->
+    <!--<img src="img/staff/ranking1_icon.png" />-->
+    <!--<span class="num">{{item.num}}</span>-->
+    <!--<span style="margin-left: 12px">大区一</span>-->
+    <!--</div>-->
+    <!--<p>25665</p>-->
+    <!--<p class="p2">-->
+    <!--<span ng-if="span">12,321,22</span>&nbsp&nbsp&nbsp&nbsp <i class="ion-ios-arrow-right"></i>-->
+    <!--</p>-->
+    <!--</a>-->
+    <!--</div>-->
+    <!--</ion-slide>-->
+    <!--&lt;!&ndash;看房&ndash;&gt;-->
+    <!--<ion-slide>-->
+    <!--<div>-->
+    <!--<div class="buttons" style="justify-content: space-around!important;">-->
+    <!--<p ng-click="switch1($index)">-->
+    <!--{{date}}-->
+    <!--<i ng-class="{true: 'ion-ios-arrow-down', false: 'ion-ios-arrow-up'}[isactivetime]"></i>-->
+    <!--</p>-->
+    <!--&lt;!&ndash;<p ng-click="switch3($index)" class="p1">&ndash;&gt;-->
+    <!--&lt;!&ndash;{{area}}&ndash;&gt;-->
+    <!--&lt;!&ndash;<i ng-class="{true: 'ion-ios-arrow-down', false: 'ion-ios-arrow-up'}[isactivearea]"></i>&ndash;&gt;-->
+    <!--&lt;!&ndash;</p>&ndash;&gt;-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--<div class="statistics3">-->
+    <!--<p class="p1">-->
+    <!--[ 房源总数：32321 ]-->
+    <!--</p>-->
+    <!--<div class="house-num">-->
+    <!--<div>-->
+    <!--<p ng-if="true">今日大区看房量</p>-->
+    <!--<p ng-if="false">今日分部看房量</p>-->
+    <!--<p ng-if="false">今日小组看房量</p>-->
+    <!--<p ng-if="false">今日看房量</p>-->
+    <!--<p class="p1">-->
+    <!--<span>521</span>-->
+    <!--(套)-->
+    <!--</p>-->
+    <!--</div>-->
+    <!--<a href="" ng-if="statsAuthority >= 0"><div class="button">查看看房订单</div></a>-->
+    <!--</div>-->
+    <!--<div class="p2">-->
+    <!--今日大区带看收入-->
+    <!--<p>￥<span class="span">1,123,456</span></p>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--<div class="statistics3" ng-if="statsAuthority >= 0">-->
+    <!--<a class="item" ng-repeat="item in allitems" href="#/app/statisticsshowings1">-->
+    <!--<div class="item-left">-->
+    <!--<p class="progress1"></p>-->
+    <!--<p class="progress2"></p>-->
+    <!--<p style="color: #3f4e75;font-size: 14px">大区一</p>-->
+    <!--<p>-->
+    <!--217/400-->
+    <!--<span>￥20,124</span>-->
+    <!--</p>-->
+    <!--</div>-->
+    <!--<i class="ion-ios-arrow-right"></i>-->
+    <!--</a>-->
+    <!--</div>-->
+    <!--<div class="statisticsprocess3 statistics3" ng-if="statsAuthority == -1" style="border-top: solid 1px #F4F5F9;margin-top: 15px">-->
+    <!--<a class="item" style="position: relative;padding-top: 25px!important;" ng-repeat= 'item in showingsOrder'>-->
+    <!--<p class="date" style="position: absolute;top: 2px;padding: 2px 3px!important;width: auto!important">{{item.createdDate | date: 'yyyy-MM-dd'}}</p>-->
+    <!--<div class="item-left">-->
+    <!--<div class="flex-row">-->
+    <!--<div>-->
+    <!--<img src="img/staff/key_icon.png" />&nbsp-->
+    <!--<span>中世纪花园</span>-->
+    <!--</div>-->
+    <!--<p>-->
+    <!--3-1202 2/4 南-->
+    <!--</p>-->
+    <!--</div>-->
+    <!--<div class="flex-row-2">-->
+    <!--<span>98m<sup>2</sup></span>|-->
+    <!--<span>98万元</span> |-->
+    <!--<span>豪华装修</span> |-->
+    <!--<span>3室2厅</span>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--<div class="money">-->
+    <!--<p>￥980,000</p>-->
+    <!--<p>￥980,000</p>-->
+    <!--</div>-->
+    <!--</a>-->
+    <!--</div>-->
+    <!--</ion-slide>-->
+    <!--&lt;!&ndash;上架&ndash;&gt;-->
+    <!--<ion-slide>-->
+    <!--<div class="buttons" style="justify-content: space-around!important;">-->
+    <!--<p ng-click="switch1($index)">-->
+    <!--{{date}}-->
+    <!--<i ng-class="{true: 'ion-ios-arrow-down', false: 'ion-ios-arrow-up'}[isactivetime]"></i>-->
+    <!--</p>-->
+    <!--<p ng-click="switch4($index)" class="p1">-->
+    <!--{{proces}}-->
+    <!--<i ng-class="{true: 'ion-ios-arrow-down', false: 'ion-ios-arrow-up'}[isactiveprocess]"></i>-->
+    <!--</p>-->
+    <!--</div>-->
+    <!--<div class="statistics3 statistics4">-->
+    <!--<p class="p1">-->
+    <!--[ 已分派房源总数：32321 ]-->
+    <!--</p>-->
+    <!--<div class="house-num">-->
+    <!--<div>-->
+    <!--<p ng-if="true">今日大区完成权证订单</p>-->
+    <!--<p ng-if="false">今日分部看房量</p>-->
+    <!--<p ng-if="false">今日小组看房量</p>-->
+    <!--<p ng-if="false">今日看房量</p>-->
+    <!--<p class="p1">-->
+    <!--<span style="color: #fbab0c;">521</span>-->
+    <!--</p>-->
+    <!--</div>-->
+    <!--<a href=""><div class="button">查看剩余订单</div></a>-->
+    <!--</div>-->
+    <!--<div class="p2">-->
+    <!--今日大区剩余权证订单-->
+    <!--<p><span class="span" style="color: red">1,12</span></p>-->
+    <!--</div>-->
+    <!--<a class="item" ng-repeat="item in items" href="#/app/statisticsshelves1">-->
+    <!--<div class="item-left">-->
+    <!--<p class="progress2"></p>-->
+    <!--<p style="color: #3f4e75;font-size: 14px">大区一</p>-->
+    <!--<p style="color: #fbab0c;">-->
+    <!--217  &nbsp&nbsp&nbsp-->
+    <!--<span style="color: red;">217</span>-->
+    <!--</p>-->
+    <!--</div>-->
+    <!--<i class="ion-ios-arrow-right"></i>-->
+    <!--</a>-->
+    <!--</div>-->
+    <!--</ion-slide>-->
+    <!--&lt;!&ndash;成交&ndash;&gt;-->
+    <!--<ion-slide>-->
+    <!--<div class="buttons" style="justify-content: space-around!important;">-->
+    <!--<p ng-click="switch1($index)">-->
+    <!--{{date}}-->
+    <!--<i ng-class="{true: 'ion-ios-arrow-down', false: 'ion-ios-arrow-up'}[isactivetime]"></i>-->
+    <!--</p>-->
+    <!--<p ng-click="switch3($index)" class="p1">-->
+    <!--{{area}}-->
+    <!--<i ng-class="{true: 'ion-ios-arrow-down', false: 'ion-ios-arrow-up'}[isactivearea]"></i>-->
+    <!--</p>-->
+    <!--</div>-->
+    <!--<div class="statistics3 statistics5">-->
+    <!--<p class="p1">-->
+    <!--[ 房源总数：32321 ]-->
+    <!--</p>-->
+    <!--<div class="house-num">-->
+    <!--<div>-->
+    <!--<p ng-if="true">今日大区成交量</p>-->
+    <!--<p ng-if="false">今日分部看房量</p>-->
+    <!--<p ng-if="false">今日小组看房量</p>-->
+    <!--<p ng-if="false">今日看房量</p>-->
+    <!--<p class="p1" style="color: #23c7c8;">-->
+    <!--<span>521</span>-->
+    <!--(套)-->
+    <!--</p>-->
+    <!--</div>-->
+    <!--<a href=""><div class="button">查看成交房源</div></a>-->
+    <!--</div>-->
+    <!--<div class="loan">-->
+    <!--<div class="amount">-->
+    <!--今日大区实收佣金-->
+    <!--<p>￥<span class="span">1,123,456</span></p>-->
+    <!--</div>-->
+    <!--<div class="receivables ">-->
+    <!--今日大区应收佣金-->
+    <!--<p>￥<span class="span">1,123,456</span></p>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--<a class="item" ng-repeat="item in items" href="#/app/statisticsprocess1">-->
+    <!--<div class="item-left">-->
+    <!--<p class="progress1" style="background: #23c7c8"></p>-->
+    <!--<p class="progress2" style="background: red"></p>-->
+    <!--<p style="color: #3f4e75;font-size: 14px">大区一</p>-->
+    <!--<p>-->
+    <!--217/400-->
+    <!--<span style="color: red">￥20,124</span>-->
+    <!--<span>￥20,124</span>-->
+    <!--</p>-->
+    <!--</div>-->
+    <!--<i class="ion-ios-arrow-right"></i>-->
+    <!--</a>-->
+    <!--</div>-->
+    <!--</ion-slide>-->
+    <!--&lt;!&ndash;权证&ndash;&gt;-->
+    <!--<ion-slide>-->
+    <!--<div class="buttons" style="justify-content: space-around!important;">-->
+    <!--<p ng-click="switch1($index)">-->
+    <!--{{date}}-->
+    <!--<i ng-class="{true: 'ion-ios-arrow-down', false: 'ion-ios-arrow-up'}[isactivetime]"></i>-->
+    <!--</p>-->
+    <!--<p ng-click="switch4($index)" class="p1">-->
+    <!--{{proces}}-->
+    <!--<i ng-class="{true: 'ion-ios-arrow-down', false: 'ion-ios-arrow-up'}[isactiveprocess]"></i>-->
+    <!--</p>-->
+    <!--</div>-->
+    <!--<div class="statistics3 statistics4 statistics6">-->
+    <!--<p class="p1">-->
+    <!--[ 已分派房源总数：32321 ]-->
+    <!--</p>-->
+    <!--<div class="house-num">-->
+    <!--<div>-->
+    <!--<p ng-if="true">今日大区完成权证订单</p>-->
+    <!--<p ng-if="false">本周大区完成权证订单</p>-->
+    <!--<p ng-if="false">本月大区完成权证订单</p>-->
+    <!--<p class="p1">-->
+    <!--<span style="color: #fbab0c;">51</span>-->
+    <!--</p>-->
+    <!--</div>-->
+    <!--<a href=""><div class="button">查看剩余订单</div></a>-->
+    <!--</div>-->
+    <!--<div class="p2">-->
+    <!--今日大区剩余权证订单-->
+    <!--<p><span class="span" style="color: red">112</span></p>-->
+    <!--</div>-->
+    <!--<a class="item" ng-repeat="item in items" href="#/app/statisticswarrants1">-->
+    <!--<div class="item-left">-->
+    <!--<p class="progress2"></p>-->
+    <!--<p style="color: #3f4e75;font-size: 14px">大区一</p>-->
+    <!--<p style="color: #fbab0c;">-->
+    <!--27  &nbsp&nbsp&nbsp-->
+    <!--<span style="color: red;">20</span>-->
+    <!--</p>-->
+    <!--</div>-->
+    <!--<i class="ion-ios-arrow-right"></i>-->
+    <!--</a>-->
+    <!--</div>-->
+    <!--</ion-slide>-->
+  </ion-slides>
+</ion-content>
