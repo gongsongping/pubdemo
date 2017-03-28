@@ -141,7 +141,6 @@ export class House {
 
 @Component({
   selector: 'handle',
-  // templateUrl:'_handle.html'
   template: `
             <div class="handle">
                 <div class="handle-hk border-spacing">

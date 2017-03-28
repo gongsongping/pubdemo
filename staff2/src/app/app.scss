@@ -197,6 +197,16 @@
        color:#47557A;
        background-color: #F8F8F8;
    }
+}
+//提交统一样式
+.sub{
+     padding: 0 5%;
+     overflow: hidden;
+     margin-top: 50px;
+     .button {
+          width: 100%;
+          border-radius: 20px;
+     }
 } 
 // 输入框模糊匹配
 .search-dropdown{

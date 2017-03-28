@@ -24,6 +24,7 @@ import { Housedetails } from '../pages/housedetails/housedetails';
 import { Districtdetails } from '../pages/districtdetails/districtdetails';
 import { Ordermine } from '../pages/ordermine/ordermine';
 import { Orderdetailsmine } from '../pages/orderdetailsmine/orderdetailsmine';
+import { Housedetailsedit } from '../pages/housedetailsedit/housedetailsedit';
 import { Customermine } from '../pages/customermine/customermine';
 import { Customerdetailsmine } from '../pages/customerdetailsmine/customerdetailsmine';
 import { Newrecord } from '../pages/newrecord/newrecord';
@@ -59,6 +60,7 @@ enableProdMode();
     Housedetails,
     Districtdetails,
     HouseTypePipe,
+    Housedetailsedit,
     Customermine,
     Customerdetailsmine,
     Newrecord
@@ -93,6 +95,7 @@ enableProdMode();
     Orderdetailsmine,
     Housedetails,
     Districtdetails,
+    Housedetailsedit,
     Customermine,
     Customerdetailsmine,
     Newrecord
