@@ -13,10 +13,8 @@
         北京
       </button>
     </ion-buttons>
-    <!--<div style="width:100%;padding:0px 5px;">
-      <input (ngModelChange)='searchInput($event)' [(ngModel)]='search' type="text" class="search-input">
-    </div>-->
-    <ion-searchbar mode='ios' [(ngModel)]='searchData.input' placeholder='输入小区或商圈名称' (ionInput)="searchDisOnInpuChange($event)" (ionClear)="clearInput($event)">
+   
+    <ion-searchbar mode='ios' [(ngModel)]='searchData.input' placeholder='请输入小区或商圈名称' (ionInput)="searchDisOnInpuChange($event)" (ionClear)="clearInput($event)">
     </ion-searchbar>
     <ion-buttons right>
       <button (click)="inputSearch()" ion-button icon-only>
@@ -25,9 +23,6 @@
     </ion-buttons>
   </ion-toolbar>
   <div *ngIf='inputStart' style='position: absolute;z-index:900;width:100vw;'>
-    <!--<button (click)="blur()" ion-button  icon-only color='light'>
-      <ion-icon name="ios-close-circle"></ion-icon>
-    </button>-->
     <button *ngIf="!districts.length" ion-button full  color='light' style='margin:0;border-bottom: 1px solid lightgray;'>没有匹配</button>
     <button *ngFor="let d of districts" (click)="chooseDis(d)" ion-button full  color='light' style='margin:0;border-bottom: .2px solid lightgray;'>{{d.name}}</button>
   </div>
