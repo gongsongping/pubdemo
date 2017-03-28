@@ -1,0 +1,162 @@
+page-customermine {
+  p {
+    margin: 0;
+    padding: 0;
+  }
+  .customermine {
+    position: relative;
+    .imgs {
+      top: 8%;
+      left: 15vw;
+      position: absolute;
+    }
+    .item-input {
+      padding: 20px;
+      height: initial;
+      border: none;
+    }
+    .bar {
+      background-position : top;
+    }
+    .item-input-wrapper {
+      background: #F6F7FB;
+    }
+    .upright-line{
+      top: 15px;
+      position: absolute;
+      left: 50%;
+      height: 14px;
+      width: 2px;
+      background: #E6E7EB;
+    }
+    .customer-info {
+      color: #b1b9c6;;
+      background: #F6F7FB;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 0 8px;
+      p {
+        display: inline-block;
+        padding: 12px 5px;
+      }
+      .checkedp {
+        border-bottom: solid 1px #265fdf;
+        color: #265fdf !important;
+      }
+    }
+    .optice {
+      position: absolute;
+      bottom: 44px;
+    }
+    .customer-commend {
+      .commend-top {
+        padding: 10px 5px;
+        width: 100vw;
+        color: #666;
+        //font-size: 13px;
+        border-bottom: solid 1px #D5D5D5;
+        overflow: auto;
+        p {
+          white-space:nowrap;
+          text-overflow:ellipsis;
+          overflow:hidden;
+          width: 24.1vw;
+          //display: inline-block;
+          float: left;
+          border: none;
+          text-align: center;
+        }
+        p:first-child {
+          text-indent: -10px;
+        }
+        p:last-child {
+          text-indent: 10px;
+        }
+      }
+      .commend-info {
+        border: none;
+        position: relative;
+        overflow: hidden;
+        padding: 12px 0;
+      }
+    }
+    //成交客户
+    .customer-transactions {
+      border-bottom: 1px solid #e6e9ee;
+      padding: 10px 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .ion-ios-telephone-outline {
+        text-align: center;
+        width: 50px;
+        color: #265fdf;
+        font-size: 40px;
+        height: 50px;
+      }
+      .item {
+        width: 85vw;
+        display: inline-block;
+        margin-top: 1px;
+        border: none;
+        .span-1 {
+          margin-left: 10px;
+        }
+        .ion-ios-telephone {
+          font-size: 30px;
+          color: #265fdf;
+        }
+        > div, > p {
+          font-size: 12px;
+        }
+      }
+      .item:first-of-type(1) {
+        margin-top: 0;
+      }
+    }
+    //无效客户
+    .expired {
+      .item-nav {
+        font-size: 14px !important;
+        .p1 {
+          display: inline-block;
+          font-size: 20px;
+          width: 50px;
+          height: 50px;
+          display: inline-block;
+          text-align: center;
+          line-height: 50px;
+          background: #c2c6cf;
+          color: #fff;
+          border-radius: 50%;
+        }
+        .p2 {
+          display: inline-block;
+          margin-bottom: 15px;
+          margin-left: 7px;
+          color: #405074;
+          span {
+            font-size: 12px !important;
+            margin-left: 2px;
+          }
+        }
+        .p-valid {
+          background: #edc50b;
+        }
+        .yellow {
+          background: #EDC50B;
+        }
+        .darkyellow {
+          background: #FBAB0C;
+        }
+        .lightblue {
+          background: #5CCCCD;
+        }
+        .bule {
+          background: #577FDE;
+        }
+      }
+    }
+  }
+}

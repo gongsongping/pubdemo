@@ -7,6 +7,7 @@ import { Message } from '../message/message';
 import { Recommendbuyer } from '../recommendbuyer/recommendbuyer';
 import { Houseclue } from '../houseclue/houseclue';
 import { Ordermine } from '../ordermine/ordermine';
+import { Customermine } from '../customermine/customermine';
 
 /*
   Generated class for the Home page.
@@ -30,14 +31,13 @@ export class Home {
   // tabTwo = Page2;
   // tabThree = Page3;
   // tabFour = Page4;
-  tasksTotal: any
-  messagesTotal: any
-  houseclue: any = Houseclue
-  roleName: any
+  tasksTotal:any
+  messagesTotal:any
+  houseclue:any = Houseclue
+  roleName:any
   tabIndex: any
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    
-  }
+  customermine: any = Customermine
+  constructor(public navCtrl: NavController, public navParams: NavParams) {}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad HomePage');

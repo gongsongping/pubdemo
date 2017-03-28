@@ -1,0 +1,93 @@
+<!--
+  Generated template for the Customerdetailsmine page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>客户详情</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content class="order-details">
+  <div class="customer-infos">
+    <p class="firstName">{{customerInfo?.user.name | slice:0: 1}}</p>
+    <p *ngIf="false">无效</p>
+    <h2>{{customerInfo?.user.name}}</h2>
+  </div>
+  <div style="padding: 0 10px;background: #fff;">
+    <p class="info">
+      联系电话
+      <span>{{customerInfo?.user.mobile}}</span>
+    </p>
+  </div>
+  <div class="customer-info">
+    <p [ngClass]="{checkedp: choosedidx == i}" *ngFor="let t of sub;let i=index " (click)="chooseTab(i)">
+      {{t}}
+    </p>
+  </div>
+
+  <div *ngIf="choosedidx==0">
+    <div class="item" *ngFor="let t of items" (click)="goOrderDetails(t)">
+      <p class="p1">
+        {{t.serialNumber}}
+        <span>{{t.createdDate | date: 'yyyy-MM-dd'}}</span>
+      </p>
+      <div class="item-bottom">
+        <div class="custom-info">
+          <h4>
+            {{t.houseInfo?.subdistrict.name}}
+          </h4>
+          <p *ngIf="t.houseId!= 0">{{t.houseInfo?.name}}<span>( {{t.houseInfo?.detailAddr}} )</span></p>
+          <span *ngIf="t.houseId!= 0">
+            {{t.houseInfo?.houseType | HouseTypePipe}}{{t.houseInfo?.buildingArea}}m<sup>2</sup>{{t.houseInfo?.price}}万
+          </span>
+        </div>
+        <span *ngIf="t.status == -2">已终止</span>
+        <span *ngIf="t.status == -1">已取消</span>
+        <span *ngIf="t.status == 0">已完成</span>
+        <span *ngIf="t.status == 1">待付款</span>
+        <span *ngIf="t.status == 2">验房中</span>
+        <span *ngIf="t.status == 3">看房中</span>
+        <span *ngIf="t.status == 4">签约中</span>
+        <span *ngIf="t.status == 5">过户中</span>
+        <span *ngIf="t.status == 6">推荐中</span>
+        <span *ngIf="t.status == 7">处理中</span>
+        <span *ngIf="t.status == 8">按揭中</span>
+        <span *ngIf="t.status == 9">网签中</span>
+        <img src="assets/img/staff/knockdown_icon-.png" *ngIf="false"/>
+      </div>
+      <p class="p2" *ngIf="false">
+        备注: 周边太吵，房子户型不满意
+      </p>
+    </div>
+    <div *ngIf="missionLength == 0" style="padding:10px;">
+      <h5 style="text-align: center;color: #666">没有了!</h5>
+    </div>
+    <ion-infinite-scroll (ionInfinite)="loadMore($event)" *ngIf="missionLength != 0">
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </div>
+  <div *ngIf="choosedidx==1">
+    <div class="customer-into" (click)="deploy(i)" *ngFor="let item of customerItems;let i=index">
+      <div class="customer-li">
+        <p class="p"></p>
+        <div class="li-info">
+          <p class="p1">2017年2月20日 15时20分</p>
+          <p class="p2" [ngClass]="{'text': choosedli == i }">{{item.content}}</p>
+          <i class="icon" *ngIf="choosedli != i"><img src="assets/img/staff/bottom.png" width="20" height="6"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <a ion-button full href="tel:{{customerInfo?.user.mobile}}" *ngIf="choosedidx==0"><img src="assets/img/staff/phone_white.png" style="max-height: 82%;"/></a>
+  <div ion-button full *ngIf="choosedidx==1" (click)="goNewrecord()">填写跟进</div>
+</ion-footer>
+
+
