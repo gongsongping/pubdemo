@@ -50,13 +50,13 @@
       <p>联系电话</p>
     </div>
     <a class="commend-top commend-info" style="display: block" *ngFor = 'let t of recomend'>
-      <i class="icon imgs"><img src="img/staff/guoqi.png" width="35"/></i>
+      <i class="icon imgs"><img src="assets/img/staff/guoqi.png" width="35"/></i>
       <p>{{t.name}}</p>
       <p>2017/02/01</p>
       <p>远洋山水</p>
       <p>{{t.mobile}}</p>
     </a>
   </div>
-  <h4 *ngIf="noCustomer && choosedidx==0" style="text-align: center;margin-top: 48%;color: #999;">暂无客户！</h4>
-  <h4 *ngIf="noRecommendCustomer && choosedidx==1" style="text-align: center;margin-top: 48%;color: #999;">暂无客户！</h4>
+  <!--<h4 *ngIf="noCustomer && choosedidx==0" style="text-align: center;margin-top: 48%;color: #999;">暂无客户！</h4>-->
+  <!--<h4 *ngIf="noRecommendCustomer && choosedidx==1" style="text-align: center;margin-top: 48%;color: #999;">暂无客户！</h4>-->
 </ion-content>

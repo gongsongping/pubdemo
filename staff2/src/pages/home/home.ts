@@ -8,6 +8,9 @@ import { Recommendbuyer } from '../recommendbuyer/recommendbuyer';
 import { Houseclue } from '../houseclue/houseclue';
 import { Ordermine } from '../ordermine/ordermine';
 import { Customermine } from '../customermine/customermine';
+import { Statistics } from '../statistics/statistics';
+import { Orderarea } from '../orderarea/orderarea';
+import { Customerarea } from '../customerarea/customerarea';
 
 /*
   Generated class for the Home page.
@@ -37,6 +40,10 @@ export class Home {
   roleName:any
   tabIndex: any
   customermine: any = Customermine
+  statistics: any = Statistics
+  orderarea: any = Orderarea
+  customerarea: any = Customerarea
+  userInfo: any = JSON.parse(localStorage.getItem('userInfo'))
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     let vm = this
     vm.roleName = localStorage.getItem('role')
@@ -78,4 +85,11 @@ export class Home {
     console.log('----home---- Page oninit');
   }
 
+  goPerson(h){
+    this.navCtrl.push(h, { staff: this.userInfo})
+  }
+
+  goDepartment(h) {
+    this.navCtrl.push(h, {department: this.userInfo.department});
+  }
 }
