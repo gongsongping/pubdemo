@@ -143,7 +143,7 @@ export class Housesearch {
     searchDis(e) {
         let vm = this;
         vm.inputStart = true;
-        let url = ''
+        let url;
         if (vm.roleName == '房管家') {
             url = '/api/housing/houses?size=10';
         }

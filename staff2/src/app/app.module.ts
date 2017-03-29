@@ -30,6 +30,7 @@ import { Customerdetailsmine } from '../pages/customerdetailsmine/customerdetail
 import { Newrecord } from '../pages/newrecord/newrecord';
 import { Statistics } from '../pages/statistics/statistics';
 import { Orderarea } from '../pages/orderarea/orderarea';
+import { Customerarea } from '../pages/customerarea/customerarea';
 
 enableProdMode();
 
@@ -67,7 +68,8 @@ enableProdMode();
     Customerdetailsmine,
     Newrecord,
     Statistics,
-    Orderarea
+    Orderarea,
+    Customerarea
   ],
   imports: [
     IonicModule.forRoot(MyApp, {
@@ -104,7 +106,8 @@ enableProdMode();
     Customerdetailsmine,
     Newrecord,
     Statistics,
-    Orderarea
+    Orderarea,
+    Customerarea
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })

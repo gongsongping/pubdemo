@@ -71,7 +71,6 @@ export class Housedetailsedit {
       })
     console.log(navParams.get('house'))
   }
-
   ionViewWillEnter() {
     this.roleName = localStorage.getItem('role');
   }
@@ -117,11 +116,11 @@ export class Housedetailsedit {
   houseEdit() {
     let vm = this
     let url = ''
-    if(vm.roleName == '房管家'){
-       url = '/api/housing/houses/' + vm.house.id
+    if (vm.roleName == '房管家') {
+      url = '/api/housing/houses/' + vm.house.id
     }
-    if(vm.roleName == '租赁专员'){
-       url = '/housing/rents/' + vm.house.id
+    if (vm.roleName == '租赁专员') {
+      url = '/housing/rents/' + vm.house.id
     }
     let config = {
       headers: {

@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { NavController, NavParams,Content } from 'ionic-angular';
 import { Districtdetails } from '../districtdetails/districtdetails';
 import { Housedetailsedit } from '../housedetailsedit/housedetailsedit';
 import axios from 'axios';
@@ -18,6 +18,7 @@ declare var BMap: any;
 })
 export class Housedetails {
 
+    @ViewChild(Content) content: Content;
     housedetailsedit: any = Housedetailsedit;
     userInfo: any;
     house: any;
@@ -36,14 +37,18 @@ export class Housedetails {
         vm.house = navParams.get('house')
         vm.enterTyle = navParams.get('enter');
     }
+  scrollToTop() {
+    this.content.scrollToTop();
+  }
     ionViewDidLoad() {
         // this.doInfinite(false);
         console.log('ionViewDidLoad HousesearchPage');
     }
     ionViewWillEnter() {
+        this.scrollToTop();
         let vm = this;
         vm.roleName = localStorage.getItem('role');
-        let url = ''
+        let url;
         if (vm.roleName == '房管家') {
             url = '/api/housing/houses/' + vm.house.id
         }

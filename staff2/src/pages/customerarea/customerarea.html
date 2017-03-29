@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>订单管理</ion-title>
+    <ion-title>客户管理</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -20,9 +20,8 @@
       <div class="areaname">
         {{pop?.name}}<span style="color: red;font-size: 12px;margin-left: 2px" *ngIf="pop.position">[ {{pop.position?.name}} ]</span>
       </div>
-      <span style="color: #666;margin-right: 12px">
-          <!--待处理(<span style="color: #265fdf">{{pop?.unfinish || 0}}</span>)/全部(<span style="color: #265fdf">{{pop?.allOrder || 0 }}</span>)-->
-          待处理(<span style="color: #265fdf">{{ 0}}</span>)/全部(<span style="color: #265fdf">{{pop?.allOrder || 0 }}</span>)
+      <span style="color: #666;margin-right: 12px;">
+          客户人数(<span style="color: #265fdf;">{{  0 }}</span>)
       </span>
       <ion-icon class="ion-icon" name="arrow-forward"></ion-icon>
     </div>
@@ -33,9 +32,8 @@
       <div class="areaname">
         {{pop?.name}}
       </div>
-      <span style="color: #666;margin-right: 12px;">
-          <!--待处理(<span style="color: #265fdf">{{pop.unfinish}}</span>)/全部(<span style="color: #265fdf">{{pop.pcOrderLength}}</span>)-->
-          待处理(<span style="color: #265fdf">{{0}}</span>)/全部(<span style="color: #265fdf">{{pop.pcOrderLength || 0}}</span>)
+      <span style="color: #666;margin-right:12px;">
+          客户人数(<span style="color: #265fdf;">{{  0 }}</span>)
       </span>
       <ion-icon class="ion-icon" name="arrow-forward"></ion-icon>
     </div>

@@ -1,0 +1,28 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>消息</ion-title>
+    </ion-navbar>
+    <ion-toolbar>
+        <div class="record-select">
+            <p [ngClass]="selectTab==m.read ? 'tabP' : ''" *ngFor="let m of messageHead" (click)="selectStatus(m.read)">{{m.name}}({{m.status}})</p>
+            <span class="spacing"></span>
+        </div>
+    </ion-toolbar>
+</ion-header>
+<ion-content style="background-color: #f6f7fb;">
+    <ion-list inset no-lines class="message-content">
+        <ion-item *ngFor="let m of messages" (click)="messagesClickEnter(m)">
+            <ion-thumbnail item-left>
+                <img *ngIf="m.isRead" src="assets/img/sprite/system_icon_mine.png"/>
+                <img *ngIf="!m.isRead" src="assets/img/sprite/system_icon_pre_mine.png"/>
+            </ion-thumbnail>
+            <h2>{{m.title}}</h2>
+            <p class="text-auto">{{m.content}}</p>
+            <div class="message-time">{{m.createdDate | date: 'yyyy-MM-dd hh:mm:ss'}}</div>
+        </ion-item>
+    </ion-list>
+    <div *ngIf="total == 0" class="prompt">
+        <ion-icon name="mail"></ion-icon>
+        <p>您还没有消息</p>
+    </div>
+</ion-content>

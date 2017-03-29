@@ -152,7 +152,7 @@ export class Ordermine {
 // }
 
   goDetails(t){
-    this.navCtrl.push(Orderdetailsmine, {mission: t})
+    this.navCtrl.push(Orderdetailsmine, {mission: t, staff: this.staff})
   }
 
   ionViewDidLoad() {

@@ -5,38 +5,31 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
-  <ion-navbar mode='ios'>
-    <ion-title text-center>我的顾问</ion-title>
-  </ion-navbar>
-
+    <ion-navbar mode='ios'>
+        <ion-title text-center>我的顾问</ion-title>
+    </ion-navbar>
+    <ion-toolbar>
+        <div class="record-select">
+            <p *ngFor="let t of subtabs" (click)="chooseTab(t)" [ngClass]="serviceType==t.type ? 'tabP' : ''" >{{t.title}}</p>
+            <span class="spacing"></span>
+        </div>
+    </ion-toolbar>
 </ion-header>
-
-
-<ion-content padding-bottom>
-  <div style='width:100vw;'>
-    <div *ngFor='let p of tabs;let i = index;' style='float:left;width:50%;'>
-      <button (click)='chooseTab(i)' [ngClass]='activeTab===i ? "select-buy-tab":""' style='margin:0px;' mode='ios' color="white"
-        ion-button full> 
-        {{p}}
-      </button>
+<ion-content style="background-color: #f6f7fb;">
+    <ion-list inset no-lines>
+        <ion-item *ngFor="let m of myUsers">
+            <ion-thumbnail item-left>
+                <img src="{{m.server?.avatar}}" *ngIf="m.server?.avatar" width="100%" height="100%" />
+                <img src="assets/img/female.png" *ngIf="(!m.server?.avatar)&&(m.server?.gender===2)" width="100%" height="100%" />
+                <img src="assets/img/male.png" *ngIf="(!m.server?.avatar)&&(m.server?.gender===1)" width="100%" height="100%" />
+            </ion-thumbnail>
+            <h2>{{m.server?.name}}</h2>
+            <p>{{m.server?.mobile}}</p>
+            <a href="tel:{{m.server?.mobile}}" ion-button clear item-right><img src="assets/img/sprite/phone_btn_pre_buy.png" width='30' height='30'></a>
+        </ion-item>
+    </ion-list>
+    <div *ngIf="totals == 0" class="prompt">
+        <ion-icon name="list-box"></ion-icon>
+        <p>您还没有<span *ngIf="serviceType === 1">置业顾问</span><span *ngIf="serviceType === 2">房管家</span></p>
     </div>
-  </div>
-
-
-  <div style='clear:left;height:200px;'>
-
-    <ion-slides (ionSlideDrag)='ionSlideDrag($event)' (ionSlideWillChange)='ionSlideWillChange($event)' (ionSlideDidChange)='ionSlideDidChange($event)'
-      (ionSlidePrevStart)='ionSlidePrevStart()' (ionSlidePrevEnd)='ionSlidePrevEnd()' (ionSlideNextStart)='ionSlideNextStart()'
-      (ionSlideNextEnd)='ionSlideNextEnd()' #sld2 pager='true' paginationType='bullets'>
-      <ion-slide>
-        <h1>置业顾问</h1>
-      </ion-slide>
-      <ion-slide>
-        <h1>房管家</h1>
-      </ion-slide>
-    </ion-slides>
-  </div>
-
-
 </ion-content>

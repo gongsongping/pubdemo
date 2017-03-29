@@ -30,7 +30,7 @@
       <p class="p2" *ngIf="orderDetails?.status==9">网签</p>
     </div>
     <!--<a  href="#/app/tododetails/{{taskId}}" *ngIf="todoOrder" class="button button-stable  button-small" style="font-size: 14px;color: #7b8bad;right: 10px;bottom: 5px">前去处理</a>-->
-    <a class="button button-stable  button-small" style="font-size: 14px;color: #7b8bad;right: 12px;bottom: 15px">前去处理</a>
+    <div  *ngIf="todoOrder" class="button button-stable  button-small" style="font-size: 14px;color: #7b8bad;right: 12px;bottom: 15px">前去处理</div>
   </div>
   <hr/>
   <div class="order-info">
