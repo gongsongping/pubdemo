@@ -18,7 +18,7 @@
     <div *ngIf="d.name == 'seller_id'" style="border-bottom:1px solid lightgrey;"><span style="color:#265fdf;">{{d.nameCn}}:</span>&nbsp;&nbsp;{{d.details.name}}&nbsp;&nbsp;<a href="tel:{{d.details.mobile}}">{{d.details.mobile}} <ion-icon style="color:#265fdf;" name="call"></ion-icon> </a></div>
     <div *ngIf="d.name == 'buyer_id'" style="border-bottom:1px solid lightgrey;"><span style="color:#265fdf;">{{d.nameCn}}:</span>&nbsp;&nbsp;{{d.details.name}}&nbsp;&nbsp;<a href="tel:{{d.details.mobile}}">{{d.details.mobile}} <ion-icon style="color:#265fdf;" name="call"></ion-icon> </a></div>
     <div *ngIf="d.name == 'mission_id'" style="border-bottom:1px solid lightgrey;"><span style="color:#265fdf;">{{d.nameCn}}:</span>&nbsp;&nbsp;订单号：{{d.details.serialNumber}}&nbsp;&nbsp;</div>
-
+    <!--(click)='goHousedetails(d.details.id)'-->
     <div *ngIf="(d.name == 'house_id')&&(!!d.value)" style="border-bottom:1px solid lightgrey;"><span style="color:#265fdf;">{{d.nameCn}}:</span>&nbsp;&nbsp;{{d.details.name}}&nbsp;&nbsp;价格：{{d.details.price}}万&nbsp;&nbsp;
       描述: {{d.details.description}}
     </div>
@@ -159,6 +159,99 @@
 
   </div>
   <div style="margin:10px;">
-    <h4 style="text-align: center;color:#265fdf;">填写以下表格并提交,没有表格直接提交</h4>
+    <h5 style="text-align: center;color:#265fdf;">填写以下表格并提交&nbsp;&nbsp;没有表格直接提交</h5>
+  </div>
+
+  <div *ngFor="let f of formProperties">
+    <div *ngIf="f.type == 'date'" style="margin:10px;">
+      <!--<div><span style="color:#265fdf;">{{f.name}}:</span> {{house.pickedTime | date: "yyyy-MM-dd HH:mm:ss"}}</div>
+      <button class="button button-positive button-small pill" ion-datetime-picker [(ngModel)]="house.pickedTime">
+          选择时间
+      </button>-->
+    </div>
+    <div *ngIf="f.type == 'boolean'" style="margin:10px;width:90vw;">
+      <span style="color:#265fdf;">{{f.name}}:</span>
+      <!--<ion-radio [(ngModel)]="f.value" ng-value="true" style="border-radius: 6px;">{{f.name}} &nbsp;&nbsp; <span style="color:#265fdf;">是</span></ion-radio>
+      <ion-radio [(ngModel)]="f.value" ng-value="false" style="border-radius: 6px;">{{f.name}} &nbsp;&nbsp; <span style="color:#265fdf;">否</span></ion-radio>-->
+      
+    </div>
+
+    <div *ngIf="f.type == 'double' || f.type == 'long'|| f.type == 'integer'" style="margin:10px;">
+      <!--<div *ngIf="f.id != 'region_id'">
+        <div *ngIf="f.id!='house_id'">
+          <span style="color:#265fdf;">{{f.name}}:</span>
+          <input [(ngModel)]="f.value" type="number" style="width:90vw;border:1px solid lightgrey;border-radius: 6px;">
+        </div>
+        <div *ngIf="f.id=='house_id'">
+          <button (click)="regionmodal.show()" class="button button-small button-positive pill">
+                            选择小区
+                        </button>
+          <div *ngIf="choosedRegion">{{choosedRegion.name}}</div>
+          <button (click)="houseModalShow()" class="button button-small button-positive pill">
+                            选择房源
+                        </button>
+          <div *ngIf="choosedHouse">{{choosedHouse.name}}</div>
+        </div>
+      </div>-->
+      {{f.id}}
+    </div>
+    <div *ngIf="f.type == 'enum'" style="margin:10px;">
+      <span style="color:#265fdf;">{{f.name}}:</span>
+      <!--<div>
+        <select [(ngModel)]="f.value" style="width:40vw;border-radius: 5px;border:1px solid lightgray;">
+                        <option ng-repeat="e in f.enumValues">{{e.name}}</option>
+                    </select>
+      </div>-->
+
+    </div>
+    <div *ngIf="f.type == 'string'" style="margin:10px;">
+      <span style="color:#265fdf;">{{f.name}}:</span>
+      <input [hidden]="(f.id == 'contract_images')||(f.id == 'receipt_images')||(f.id == 'planImages')||(f.id == 'images')||(f.id=='house_type')||(f.id=='house_detail_addr')"
+        [(ngModel)]="f.value" style="width:90vw;border:1px solid lightgrey;height:35px;border-radius: 6px;">
+
+      <div *ngIf="f.id=='house_type'">
+        <div>请输入数字</div>
+        <input type="number" [(ngModel)]="house.room" style="width:15vw;padding:5px;display:inline;border-radius: 6px;"> 室
+        <input type="number" [(ngModel)]="house.hall" style="width:15vw;padding:5px;display:inline;border-radius: 6px;"> 厅
+        <input type="number" [(ngModel)]="house.kitchen" style="width:15vw;padding:5px;display:inline;border-radius: 6px;">        厨
+        <input type="number" [(ngModel)]="house.bathroom" style="width:15vw;padding:5px;display:inline;border-radius: 6px;">        卫
+      </div>
+      <div *ngIf="f.id=='house_detail_addr'">
+        <input [(ngModel)]="house.building" placeholder="楼栋号" style="width:20vw;padding:5px;display:inline;border-radius: 6px;border:1px solid lightgray;">        栋
+        <input [(ngModel)]="house.unit" placeholder="单元号" style="width:20vw;padding:5px;display:inline;border-radius: 6px;border:1px solid lightgray;">        单元
+        <input [(ngModel)]="house.room1" placeholder="门牌号" style="width:20vw;padding:5px;display:inline;border-radius: 6px;border:1px solid lightgray;">        号
+      </div>
+
+      <div *ngIf="f.id == 'receipt_images'||f.id == 'images'" class="upload-images">
+        <!--<div class="upload-img" ng-repeat="b in innerUrls track by $index" style="width:70px;height:70px;position: relative;margin:8px;float:left;">
+          <img ngf-src="b" width="70" height="70" style="position: absolute;top:0;left:0;border-radius: 5px;" />
+          <i class="icon ion-ios-close" (click)="deleteInnerImg($index)" style="position: absolute;top: -11px;right: -8px;font-size: 20px;z-index: 9;color: gray;"></i>
+        </div>
+        <div ngf-select="getInnerBlobs(file)" [(ngModel)]="file" name="file" accept="image/*" ngf-pattern="'image/*'" ngf-resize="{width: 700, height: 700, quality: 0.9}"
+          style="display:inline;float:left;">
+          <img src="img/sprite/photo_icon.png" width='70' height="70" />
+        </div>
+        <div style="clear: both;"></div>-->
+        {{f.id}}
+      </div>
+
+      <div *ngIf="f.id == 'contract_images'||f.id == 'planImages'" class="upload-images">
+        <!--<div class="upload-img" ng-repeat="b in designUrls track by $index" style="width:70px;height:70px;position: relative;margin:8px;float:left;">
+          <img ngf-src="b" width="70" height="70" style="position: absolute;top:0;left:0;border-radius: 5px;" />
+          <i class="icon ion-ios-close" (click)="deleteDesignImg($index)" style="position: absolute;top: -11px;right: -8px;font-size: 20px;z-index: 9;color: gray;"></i>
+        </div>
+        <div [hidden]="innerBlobs.length > 4" ngf-select="getDesignBlobs(file)" [(ngModel)]="file" name="file" accept="image/*" ngf-pattern="'image/*'"
+          ngf-resize="{width: 700, height: 700, quality: 0.9}" style="display:inline;float:left;">
+          <img src="img/sprite/photo_icon.png" width='70' height="70" />
+        </div>
+        <div style="clear: both;"></div>-->
+        {{f.id}}
+      </div>
+
+    </div>
+  </div>
+
+  <div style="margin:30px 10vw;">
+    <button (click)="endTask()" ion-button block round>完成提交</button>
   </div>
 </ion-content>

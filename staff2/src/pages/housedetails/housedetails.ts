@@ -53,7 +53,7 @@ export class Housedetails {
             url = '/api/housing/houses/' + vm.house.id
         }
         if (vm.roleName == '租赁专员') {
-            url = '/housing/rents/' + vm.house.id
+            url = '/api/housing/rents/' + vm.house.id
         }
         axios
             .get(url)

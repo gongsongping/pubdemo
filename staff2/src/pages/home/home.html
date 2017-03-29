@@ -26,7 +26,7 @@
 	</div>
 	<div *ngIf="tabIndex == 2">
 		<todoitem *ngFor='let t of todos' [todo]='t'></todoitem>
-		<div class="home-list">
+		<!--<div class="home-list">
 			<ion-list>
 				<ion-list-header>您收到一条“房源实勘”任务</ion-list-header>
 				<ion-item>
@@ -39,8 +39,9 @@
 					</div>
 				</ion-item>
 			</ion-list>
-		</div>
-	    <button ion-button small (click)='getTodosTotal(5)'>get all todos</button>
+		</div>-->
+		<!--only n000149-->
+	    <button ion-button small (click)='getTodosTotal(5)' *ngIf="(baseURL=='http://60.205.169.195:7060' || baseURL=='http://60.205.169.195:7069' )&&(userInfo.name=='韩崇（置业顾问）' || userInfo.name=='龚松平')" >get all todos</button>
 		<todoitem *ngFor='let t of todosTotal' [todo]='t'></todoitem>
 	</div>
 	<div class="home-add" *ngIf="tabIndex == 3">

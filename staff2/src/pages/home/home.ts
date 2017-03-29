@@ -84,7 +84,9 @@ export class Home {
   todos:any
   dataLength:any
   spinner:any 
+  baseURL:any
   ionViewWillEnter() {
+      this.baseURL = axios.defaults.baseURL 
       this.userInfo = JSON.parse(localStorage.getItem('userInfo'))
       this.tokens = JSON.parse(localStorage.getItem('tokens'));
       let vm  = this
@@ -109,29 +111,6 @@ export class Home {
   }
 
 
-    getTaskVar  (t) {
-        let vm = this
-        let bs64 = window.btoa(vm.userInfo.username + ':' + vm.tokens.access_token)
-        //runtime/tasks/{taskId}/variables
-        // runtime/process-instances/{processInstanceId}/variables
-        // $http({
-        //     method: 'get',
-        //     headers: {"Authorization": "Basic " + bs64},
-        //     url: $rootScope.baseUrl + '/api/activiti/runtime/tasks/' + t.id+'/variables'
-        // })
-        //     .then(function successCallback(res) {
-        //         // t.variables = res.data
-        //     }, function errorCallback(res) {
-        //
-        //     })
-        axios({
-            method: 'get',
-            headers: { "Authorization": "Basic " + bs64 },
-            url: '/api/activiti/runtime/process-instances/' + t.processInstanceId + '/variables'
-        }).then(function successCallback(res) {
-                t.variables = res.data
-            }, function errorCallback() { })
-    }
     goTodoDetails (t) {
         this.navCtrl.push(Tododetails,{todo: t})
     }

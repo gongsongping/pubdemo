@@ -3,6 +3,8 @@ import { NavController, NavParams } from 'ionic-angular';
 import axios from 'axios'
 import entries from "lodash/entries";
 import assign from "lodash/assign";
+// import { Districtdetails } from '../districtdetails/districtdetails';
+import { Housedetails } from '../housedetails/housedetails';
 
 /*
   Generated class for the Tododetails page.
@@ -26,9 +28,11 @@ export class Tododetails {
       }).then(function successCallback(res) {
               des.details = res.data
           })
-          // .catch(function () {
-          //     des.details = null
-          // })
+  }
+  
+  housedetails = Housedetails
+  goHousedetails(param){
+    this.navCtrl.push(Housedetails, {house: param})
   }
 
   todo: any;
@@ -58,9 +62,8 @@ export class Tododetails {
             console.log(vm.formData, vm.formProperties);
         })
 
-    if (vm.descriptionMap.length) {
-        return
-    }
+    if (vm.descriptionMap.length) { return }
+
     axios({
         method: 'get',
         headers: { "Authorization": "Basic " + bs64 },
@@ -68,7 +71,7 @@ export class Tododetails {
     }).then(function successCallback(res) {
             vm.variables = res.data
 
-            if (!vm.todo.description){ return}
+            if (!vm.todo.description){ return }
             // from [{'buy_id','买家'}] to [{name:'buy_id',nameCn:'买家'}]
             let description = JSON.parse(vm.todo.description).map(function (d) {
                 let da =  entries(d)[0]
@@ -105,31 +108,184 @@ export class Tododetails {
               console.log(vm.descriptionMap);
             },2000)
         })
-        
-    
-    // getMoreInfo (d, url) {
-    //     // url: $rootScope.baseUrl + '/api/activiti/runtime/process-instances/' + $scope.todo.processInstanceId+'/variables/'+d[0]
-    //   this.variables.forEach(function (v) {
-    //         // if (v.name=="region_id"){
-    //         //     $scope.region_id = v.value
-    //         //     console.log($scope.region_id);
-    //         // }
-    //         if (v.name == d[0]) {
-    //             d[2] = v
-    //             if (!url) { return }
-    //             axios({
-    //                 method: 'get',
-    //                 url: url + d[2].value
-    //             }).then(function successCallback(res) {
-    //                     d[2].details = res.data
-    //                 }, function errorCallback() {
-    //                     d[2].details = null
-    //                 })
-    //         }
-    //     })
-    // }
 
   }
+
+  ionViewDidEnter() {
+
+  }  
+  
+    // var bs64 = window.btoa($rootScope.user_name + ':' + $window.localStorage.access_token)
+    submitTask (v) {
+        let vm = this
+        let userInfo = JSON.parse(localStorage.getItem('userInfo'))
+        let tokens = JSON.parse(localStorage.getItem('tokens'));
+        let bs64 = window.btoa(userInfo.username + ':' + tokens.access_token)
+
+        axios({
+            method: 'post',
+            headers: { "Authorization": "Basic " + bs64 },
+            data: {
+                action: 'complete',
+                variables: v
+            },
+            url:  '/api/activiti/runtime/tasks/' + vm.todo.id
+        }).then(function successCallback() {
+                // vm.$emit('alert', { t: '成功', b: '提交成功' })
+                // $ionicHistory.goBack()
+                alert('提交成功')
+                vm.navCtrl.pop()
+            }).catch(function errorCallback() {
+                // vm.$emit('alert', { t: '错误', b: '服务器错误' })
+                alert('服务器错误')                
+            })
+    }
+    //日期选择
+
+    designUrls = []
+    innerUrls = []
+    house  // = {room:'',hall:'',kitchen:'',bathroom:''} //room: 0, hall: 0, kitchen: 0, bathroom: 0
+    endTask () {
+        let vm = this
+        let variables = []
+        let ok = true
+        let floor, total_floor;
+        vm.formProperties.forEach(function (p) {
+            let variable:any
+            variable.name = p.id
+            if (p.type == 'date') {
+                // console.log(vm.house.pickedTime);
+                // variable.value = vm.house.pickedTime
+            } else if (p.id == 'contract_images') {  //id contract_images//name 合同图片
+                variable.value = JSON.stringify(vm.designUrls)
+            } else if (p.id == 'receipt_images') {  //receipt_images//收据图片
+                variable.value = JSON.stringify(vm.innerUrls)
+            } else if (p.id == 'planImages') {   //planImages//户型图
+                variable.value = JSON.stringify(vm.designUrls)
+            } else if (p.id == 'images') {  //images//房屋照片
+                variable.value = JSON.stringify(vm.innerUrls)
+            } else if (p.id == 'house_type') {
+                if (!vm.house.room) {
+                    vm.house.room = 0
+                }
+                if (!vm.house.hall) {
+                    vm.house.hall = 0
+                }
+                if (!vm.house.kitchen) {
+                    vm.house.kitchen = 0
+                }
+                if (!vm.house.bathroom) {
+                    vm.house.bathroom = 0
+                }
+                variable.value = vm.house.room + '-' + vm.house.hall + '-' + vm.house.kitchen + '-' + vm.house.bathroom
+            } else if (p.id == "house_detail_addr") {
+                if ((vm.house.building != undefined) && (vm.house.unit != undefined) && (vm.house.room1 != undefined)) {
+                    variable.value = vm.house.building + '-' + vm.house.unit + '-' + vm.house.room1
+                } else {
+                    if (ok) {
+                        // vm.$emit('alert', { t: '错误', b: '物业地址楼栋、单元、门牌号不能为空' })
+                        alert('物业地址楼栋、单元、门牌号不能为空')
+                    }
+                    ok = false
+                }
+            } else if (p.id == 'region_id') {
+                // // if (vm.choosedHouse){
+                // if (vm.choosedRegion) {
+                //     variable.value = vm.choosedRegion.regionId
+                // } else {
+                //     variable.value = Number(p.value)
+                // }
+            } else if (p.id == 'house_id') {
+                // if (vm.choosedHouse) {
+                //     variable.value = vm.choosedHouse.id
+                // } else {
+                //     variable.value = null
+                // }
+            } else {
+                variable.value = p.value
+            }
+            //enum 转换
+            if (p.type == 'enum') {
+                variable.type = 'string'
+            } else {
+                variable.type = p.type
+            }
+            //判断手机号码是否有效seller_mobile/buyer_mobile
+            if (variable.name == 'buyer_mobile') {
+                var ts = /^1(3|4|5|7|8)\d{9}$/.test(variable.value)
+                if (!ts) {
+                    if (ok) {
+                        // vm.$emit('alert', { t: '错误', b: '买家手机号码无效' })
+                        alert('买家手机号码无效')
+                    }
+                    ok = false
+                }
+            }
+            if (variable.name == 'seller_mobile') {
+                var ts = /^1(3|4|5|7|8)\d{9}$/.test(variable.value)
+                if (!ts) {
+                    if (ok) {
+                        // vm.$emit('alert', { t: '错误', b: '卖家手机号码无效' })
+                         alert('卖家手机号码无效')                                                                      
+                    }
+                    ok = false
+                }
+            }
+            //real_seller_mobile
+            if (variable.name == 'real_seller_mobile') {
+                var ts = /^1(3|4|5|7|8)\d{9}$/.test(variable.value)
+                if (!ts) {
+                    if (ok) {
+                        // vm.$emit('alert', { t: '错误', b: '真实房东电话号码无效' })
+                         alert('真实房东电话号码无效')                                              
+                    }
+                    ok = false
+                }
+            }
+            //非法词汇判断
+            if (variable.name == "house_title" || variable.name == "house_desc") {
+                // $rootScope.censorWords.forEach(function (w) {
+                //     if (variable.value.indexOf(w) > -1) {
+                //         if (ok) {
+                //             vm.$emit('alert', { t: '错误', b: p.name + ',' + w + ',' + '违反国家广告法规定，请使用其他词汇替代' })
+                //         }
+                //         ok = false
+                //     }
+                // })
+            }
+            //楼层不能大于总楼层 floor total_floor
+            if (variable.name == "floor") {
+                floor = variable.value
+            }
+            if (variable.name == "total_floor") {
+                total_floor = variable.value
+            }
+            if ((floor != undefined) && (total_floor != undefined)) {
+                if (floor > total_floor) {
+                    if (ok) {
+                         alert('楼层不能大于总楼层')                      
+                        // vm.$emit('alert', { t: '错误', b: '楼层不能大于总楼层' })
+                    }
+                    ok = false
+                }
+            }
+            //判断不能为空
+            if (p.required && (variable.value === null || variable.value === "" || variable.value === undefined)) {
+                // if (variable.value === null || variable.value === "") {
+                if (ok) {
+                    alert(p.name + '不能为空')
+                    // vm.$emit('alert', { t: '错误', b: p.name + '不能为空' })
+                }
+                ok = false
+            } else {
+                variables.push(variable)
+            }
+        })
+
+        if (ok) {
+            vm.submitTask(variables)
+        }
+    }
 
 
 }

@@ -245,24 +245,13 @@ export class Todoitem {
     let tokens = JSON.parse(localStorage.getItem('tokens'));
     let bs64 = window.btoa(userInfo.username + ':' + tokens.access_token)
 
-    // axios({
-    //     method: 'get',
-    //     headers: { "Authorization": "Basic " + bs64 },
-    //     url: '/api/activiti/form/form-data?taskId=' + vm.todo.id
-    // })
-    //     .then(function successCallback(res) {
-    //         // $scope.formData = res.data
-    //         // $scope.formProperties = res.data.formProperties
-    //         // console.log($scope.formData, $scope.formProperties);
-    //     })
-
     axios({
         method: 'get',
         headers: { "Authorization": "Basic " + bs64 },
         url: '/api/activiti/runtime/process-instances/' + vm.todo.processInstanceId + '/variables'
     }).then(function successCallback(res) {
             vm.variables = res.data
-            
+
             if (!vm.todo.description){ return}
             // from [{'buy_id','买家'}] to [{name:'buy_id',nameCn:'买家'}]
             let description = JSON.parse(vm.todo.description).map(function (d) {

@@ -115,7 +115,6 @@ export class Role {
       })
       .catch(function (error) {
         console.log(error);
-        // this.loginErr = error.data.errorMessage
       });
 
   }
