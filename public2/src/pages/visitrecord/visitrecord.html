@@ -1,18 +1,59 @@
-<!--
-  Generated template for the Visitrecord page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>visitrecord</ion-title>
-  </ion-navbar>
-
+    <ion-navbar>
+        <ion-title>看房记录</ion-title>
+    </ion-navbar>
+    <ion-toolbar>
+        <div class="record-select">
+            <p [ngClass]="selectTab==m.id ? 'tabP' : ''" *ngFor="let m of records" (click)="selectStatus(m)">{{m.name}}</p>
+        </div>
+    </ion-toolbar>
+    <ion-item class="statistics" *ngIf="visit == 1 && total !== 0">
+        共 {{total}} 条记录
+        <ion-icon ios="ios-close-circle-outline" item-right (click)="statisticsNone()"></ion-icon>
+    </ion-item>
 </ion-header>
-
-
-<ion-content padding>
-
+<ion-content [ngClass]="visit == 2 ? 'visit-top' : ''">
+    <div>
+        <div class='visit-record' *ngFor="let h of record">
+            <div class="item record-1">
+                <span class="number">订单编号：{{h.serialNumber}}</span>
+                <span class='status' *ngIf="h.status == -2">已终止</span>
+                <span class='status' *ngIf="h.status == -1">已取消</span>
+                <span class='status' *ngIf="h.status == 0">已完成</span>
+                <span class='status' *ngIf="h.status == 1">等待付款</span>
+                <span class='status' *ngIf="h.status == 2">验房中</span>
+                <span class='status' *ngIf="h.status == 3">看房中</span>
+                <span class='status' *ngIf="h.status == 4">签约中</span>
+                <span class='status' *ngIf="h.status == 5">过户中</span>
+                <span class='status' *ngIf="h.status == 6">联系被推荐中</span>
+                <span class='status' *ngIf="h.status == 7">处理中</span>
+                <span class='status' *ngIf="h.status == 8">贷款中</span>
+                <span class='status' *ngIf="h.status == 9">网签中</span>
+            </div>
+            <div class="item record-block" *ngIf="h.status == 0">
+                <p style="padding-left:10px;">{{houseNone}}</p>
+            </div>
+            <div class="record-block" *ngIf="h.status !== 0">
+                <house [hId]='h.houseId'></house>
+                <a href="tel:{{distributionRole?.mobile}}" class="item record-3" *ngIf="h.pcId !== 0">
+                    <span class='title'>置业顾问：</span>
+                    <distribution class="distribution" [r]='h.pcId'></distribution>
+                </a>
+                <div class="item record-3" *ngIf="h.pcId == 0">
+                    正在为您分配置业顾问，稍后与您联系！
+                </div>
+            </div>
+            <div class="item record-4">
+                <div class='group'>
+                    <button ion-button small round *ngIf="h.status == 1" style="padding:0 5px;">付款</button>
+                    <button ion-button small round outline>跟踪状态</button>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="total == 0" class="prompt">
+            <ion-icon ios="ios-create-outline"></ion-icon>
+            <p>您还没有相关的记录</p>
+        </div>
+    </div>
 </ion-content>
