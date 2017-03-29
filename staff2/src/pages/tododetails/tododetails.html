@@ -6,13 +6,159 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>tododetails</ion-title>
+  <ion-navbar mode='ios'>
+    <ion-title text-center>{{todo?.name}}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
+  <div *ngFor="let d of descriptionMap" style="margin:10px;">
+    <div *ngIf="d.name == 'seller_id'" style="border-bottom:1px solid lightgrey;"><span style="color:#265fdf;">{{d.nameCn}}:</span>&nbsp;&nbsp;{{d.details.name}}&nbsp;&nbsp;<a href="tel:{{d.details.mobile}}">{{d.details.mobile}} <ion-icon style="color:#265fdf;" name="call"></ion-icon> </a></div>
+    <div *ngIf="d.name == 'buyer_id'" style="border-bottom:1px solid lightgrey;"><span style="color:#265fdf;">{{d.nameCn}}:</span>&nbsp;&nbsp;{{d.details.name}}&nbsp;&nbsp;<a href="tel:{{d.details.mobile}}">{{d.details.mobile}} <ion-icon style="color:#265fdf;" name="call"></ion-icon> </a></div>
+    <div *ngIf="d.name == 'mission_id'" style="border-bottom:1px solid lightgrey;"><span style="color:#265fdf;">{{d.nameCn}}:</span>&nbsp;&nbsp;订单号：{{d.details.serialNumber}}&nbsp;&nbsp;</div>
 
+    <div *ngIf="(d.name == 'house_id')&&(!!d.value)" style="border-bottom:1px solid lightgrey;"><span style="color:#265fdf;">{{d.nameCn}}:</span>&nbsp;&nbsp;{{d.details.name}}&nbsp;&nbsp;价格：{{d.details.price}}万&nbsp;&nbsp;
+      描述: {{d.details.description}}
+    </div>
+    <div *ngIf="d.name == 'region_id'" style="border-bottom:1px solid lightgrey;"><span style="color:#265fdf;">{{d.nameCn}}:</span>&nbsp;&nbsp;{{d.details.name}}</div>
+  </div>
+
+  <div *ngFor="let d of descriptionMap" style="margin:10px;">
+    <!--上架-->
+    <div *ngIf="(d.name == 'seller')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：{{d.value}}</div>
+    <!--| houseDetailAddr-->
+    <div *ngIf="(d.name == 'house_number')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：{{d.value}}</div>
+    <div *ngIf="(d.name == 'area')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：{{d.value}}平米</div>
+    <div *ngIf="(d.name == 'expected_price')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：{{d.value}}万</div>
+
+    <div *ngIf="(d.name == 'inspect_date')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：{{d.value | date: 'yyyy-MM-dd HH:mm:ss'}}</div>
+    <div *ngIf="(d.name == 'confirm_sell')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：<span ng-show="d.value">是</span><span ng-show="!d.value">否</span></div>
+
+    <div *ngIf="(d.name == 'inspect_result')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：<span ng-show="d.value">是</span><span ng-show="!d.value">否</span></div>
+    <div *ngIf="(d.name == 'inspect_comment')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：{{d.value}}</div>
+
+    <div *ngIf="(d.name == 'real_seller_mobile')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：{{d.value}}</div>
+    <div *ngIf="(d.name == 'real_seller_name')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：{{d.value}}</div>
+    <div *ngIf="(d.name == 'decorate')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：{{d.value}}</div>
+    <div *ngIf="(d.name == 'house_building_area')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：{{d.value}}平米</div>
+    <div *ngIf="(d.name == 'house_title')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：{{d.value}}</div>
+    <div *ngIf="(d.name == 'house_desc')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：{{d.value}}</div>
+    <!--| houseDetailAddr       -->
+    <div *ngIf="(d.name == 'house_detail_addr')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：{{d.value}}</div>
+    <div *ngIf="(d.name == 'price')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：{{d.value}}万</div>
+    <div *ngIf="(d.name == 'house_type')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：{{d.value | HouseTypePipe}}</div>
+    <div *ngIf="(d.name == 'floor')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：{{d.value}}层</div>
+    <div *ngIf="(d.name == 'total_floor')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：{{d.value}}层</div>
+    <div *ngIf="(d.name == 'orientation')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：{{d.value}}</div>
+    <div *ngIf="(d.name == 'has_key')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：<span ng-show="d.value">是</span><span ng-show="!d.value">否</span></div>
+
+    <div *ngIf="(d.name == 'property_type')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：{{d.value}}</div>
+    <div *ngIf="(d.name == 'shelve_comment')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：{{d.value}}</div>
+    <div *ngIf="(d.name == 'images')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">
+      <div>房源实勘照片(点击看大图):</div>
+      <div *ngFor="let i of (d.value | ImgPipe)" style="display:inline-block;margin:5px;">
+        <img src="{{i}}" width="70" heigth="70">
+      </div>
+    </div>
+    <div *ngIf="(d.name == 'planImages')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">
+      <div>房型图(点击看大图):</div>
+      <div *ngFor="let i of (d.value | ImgPipe) " style="display:inline-block;margin:5px;">
+        <img src="{{i}}" width="70" heigth="70">
+      </div>
+    </div>
+    <div *ngIf="(d.name == 'house_images')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">
+      <div>卖家房源照片(点击看大图):</div>
+      <div *ngFor="let i of (d.value | ImgPipe) " style="display:inline-block;margin:5px;">
+        <img src="{{i}}" width="70" heigth="70">
+      </div>
+    </div>
+    <!--买房-->
+    <div *ngIf="(d.name == 'is_precise_buy')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：<span ng-show="d.value">是</span><span ng-show="!d.value">否</span></div>
+    <!--精准购房-->
+    <div *ngIf="(d.name == 'precise_house_info')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：{{d.value}}</div>
+    <div *ngIf="(d.name == 'precise_buyer_target_price')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：{{d.value}}</div>
+    <div *ngIf="(d.name == 'precise_communication_succeed')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：<span ng-show="d.value">是</span><span ng-show="!d.value">否</span></div>
+
+    <div *ngIf="(d.name == 'precise_buy_house_info')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：{{d.value}}</div>
+    <!--<div *ngIf="(d.name == 'house_id')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">系统已上架的房源id：{{d.value}}</div>-->
+    <div *ngIf="(d.name == 'precise_buy_house_found')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：<span ng-show="d.value">是</span><span ng-show="!d.value">否</span></div>
+
+    <div *ngIf="(d.name == 'need_watch_house')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：<span ng-show="d.value">是</span><span ng-show="!d.value">否</span></div>
+
+    <!--普通看房-->
+    <div *ngIf="(d.name == 'is_valid')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：<span ng-show="d.value">是</span><span ng-show="!d.value">否</span></div>
+    <div *ngIf="(d.name == 'watch_appointment_time')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：{{d.value | date: 'yyyy-MM-dd HH:mm:ss'}}</div>
+
+    <div *ngIf="(d.name == 'is_watch_succeed')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：<span ng-show="d.value">是</span><span ng-show="!d.value">否</span></div>
+    <div *ngIf="(d.name == 'watched_time')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：{{d.value | date: 'yyyy-MM-dd HH:mm:ss'}}</div>
+
+    <div *ngIf="(d.name == 'is_watch_satisfied')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：<span ng-show="d.value">是</span><span ng-show="!d.value">否</span></div>
+    <div *ngIf="(d.name == 'watch_comment')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：{{d.value}}</div>
+
+    <div *ngIf="(d.name == 'is_negotiate_succeed')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：<span ng-show="d.value">是</span><span ng-show="!d.value">否</span></div>
+    <div *ngIf="(d.name == 'negotiate_comment')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：{{d.value}}</div>
+    <div *ngIf="(d.name == 'seller_price')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：{{d.value}}万</div>
+    <div *ngIf="(d.name == 'buyer_price')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：{{d.value}}万</div>
+
+
+    <div *ngIf="(d.name == 'is_invitation_succeed')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：<span ng-show="d.value">是</span><span ng-show="!d.value">否</span></div>
+    <div *ngIf="(d.name == 'invite_comment')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：{{d.value}}</div>
+    <div *ngIf="(d.name == 'meeting_date')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：{{d.value | date: 'yyyy-MM-dd HH:mm:ss'}}</div>
+
+    <div *ngIf="(d.name == 'is_meeting_succeed')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：<span ng-show="d.value">是</span><span ng-show="!d.value">否</span></div>
+    <div *ngIf="(d.name == 'meet_comment')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：{{d.value}}</div>
+
+    <div *ngIf="(d.name == 'is_contract_deposit_finished')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：<span ng-show="d.value">是</span><span ng-show="!d.value">否</span></div>
+    <div *ngIf="(d.name == 'contract_sign_comment')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：{{d.value}}</div>
+    <div *ngIf="(d.name == 'contract_price')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：{{d.value}}万</div>
+    <div *ngIf="(d.name == 'earnest_money')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：{{d.value}}</div>
+
+    <div *ngIf="(d.name == 'intermediary_fee')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：{{d.value}}</div>
+    <div *ngIf="(d.name == 'intermediary_fee_comment')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：{{d.value}}</div>
+    <div *ngIf="(d.name == 'intermediary_fee_contract')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：{{d.value}}</div>
+
+    <!--置业顾问成交报告-->
+    <div *ngIf="(d.name == 'contract_num')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：{{d.value}}</div>
+    <div *ngIf="(d.name == 'buyer_name')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：{{d.value}}</div>
+    <div *ngIf="(d.name == 'buyer_idnum')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：{{d.value}}</div>
+    <div *ngIf="(d.name == 'buyer_id_addr')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：{{d.value}}</div>
+    <div *ngIf="(d.name == 'buyer_mobile')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：{{d.value}}</div>
+    <div *ngIf="(d.name == 'seller_name')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：{{d.value}}</div>
+    <div *ngIf="(d.name == 'seller_idnum')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：{{d.value}}</div>
+    <div *ngIf="(d.name == 'seller_id_addr')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：{{d.value}}</div>
+    <div *ngIf="(d.name == 'seller_mobile')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：{{d.value}}</div>
+    <div *ngIf="(d.name == 'house_addr')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：{{d.value}}</div>
+    <div *ngIf="(d.name == 'contract_images')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">
+      <div>合同照片(点击看大图):</div>
+      <div *ngFor="let i of (d.value | ImgPipe) " style="display:inline-block;margin:5px;">
+        <img src="{{i}}" width="70" heigth="70">
+      </div>
+    </div>
+    <div *ngIf="(d.name == 'receipt_images')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">
+      <div>收据照片(点击看大图):</div>
+      <div *ngFor="let i of (d.value | ImgPipe) " style="display:inline-block;margin:5px;">
+        <img src="{{i}}" width="70" heigth="70">
+      </div>
+    </div>
+    <div *ngIf="(d.name == 'need_loan')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：<span ng-show="d.value">是</span><span ng-show="!d.value">否</span></div>
+    <!--置业顾问经理审批-->
+    <div *ngIf="(d.name == 'is_deal_report_approved')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：<span ng-show="d.value">是</span><span ng-show="!d.value">否</span></div>
+    <div *ngIf="(d.name == 'deal_report_approval_comment')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：{{d.value}}</div>
+    <!--贷款专员-->
+    <div *ngIf="(d.name == 'is_loan_succeed')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：<span ng-show="d.value">是</span><span ng-show="!d.value">否</span></div>
+    <div *ngIf="(d.name == 'loan_comments')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：{{d.value}}</div>
+    <!--权证专员确定过户结果-->
+    <div *ngIf="(d.name == 'is_cert_trans_succeed')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：<span ng-show="d.value">是</span><span ng-show="!d.value">否</span></div>
+    <div *ngIf="(d.name == 'cert_trans_comment')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：{{d.value}}</div>
+    <!--客服专员收集满意的-->
+    <div *ngIf="(d.name == 'buyer_sati_all')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">买家总体满意度(1-5分)：{{d.value}}</div>
+    <div *ngIf="(d.name == 'seller_sati_all')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">卖家总体满意度(1-5分)：{{d.value}}</div>
+    <div *ngIf="(d.name == 'satisfaction_note')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">客服专员收集满意度备注：{{d.value}}</div>
+
+  </div>
+  <div style="margin:10px;">
+    <h4 style="text-align: center;color:#265fdf;">填写以下表格并提交,没有表格直接提交</h4>
+  </div>
 </ion-content>
