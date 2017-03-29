@@ -29,6 +29,7 @@ import { Customermine } from '../pages/customermine/customermine';
 import { Customerdetailsmine } from '../pages/customerdetailsmine/customerdetailsmine';
 import { Newrecord } from '../pages/newrecord/newrecord';
 import { Statistics } from '../pages/statistics/statistics';
+import { Orderarea } from '../pages/orderarea/orderarea';
 
 enableProdMode();
 
@@ -65,7 +66,8 @@ enableProdMode();
     Customermine,
     Customerdetailsmine,
     Newrecord,
-    Statistics
+    Statistics,
+    Orderarea
   ],
   imports: [
     IonicModule.forRoot(MyApp, {
@@ -101,7 +103,8 @@ enableProdMode();
     Customermine,
     Customerdetailsmine,
     Newrecord,
-    Statistics
+    Statistics,
+    Orderarea
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })

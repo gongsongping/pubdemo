@@ -31,7 +31,10 @@ export class Ordermine {
   noOrders: any
   houseIdArr: any = []
   orderdetailsmine: any = Orderdetailsmine
-  constructor(public navCtrl: NavController, public navParams: NavParams, public params: NavParams) {}
+  staff: any
+  constructor(public navCtrl: NavController, public navParams: NavParams, public params: NavParams) {
+   this.staff = params.get('staff')
+  }
 
   //封装房屋信息
   orderInfo(t) {
@@ -62,13 +65,12 @@ export class Ordermine {
       headers: {"Authorization": "Basic " + bs64},
       url: '/api/activiti/query/tasks',
       data: {
-        assignee: vm.userInfo.id,
+        assignee: vm.staff.id,
         start: vm.start,
         size: 10,
         order: 'desc',
       }
     }).then(function successCallback(res) {
-      // console.log(res.data.data);
       vm.tasks = vm.tasks.concat(res.data.data)
       vm.missionData = res.data.total
       vm.missionLength = res.data.data.length
@@ -112,7 +114,7 @@ export class Ordermine {
   loadMore1(infiniteScroll){
     let vm = this
     let params = {
-      pcId_OR_pcmId_OR_hkId_OR_hkmId_OR_wcId_OR_lsId_OR_nsId_OR_ctId_OR_csId: vm.userInfo.id,
+      pcId_OR_pcmId_OR_hkId_OR_hkmId_OR_wcId_OR_lsId_OR_nsId_OR_ctId_OR_csId: vm.staff.id,
       size: 10,
       start: vm.start1,
       // type: orderType

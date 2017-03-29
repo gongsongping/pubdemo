@@ -9,6 +9,7 @@ import { Houseclue } from '../houseclue/houseclue';
 import { Ordermine } from '../ordermine/ordermine';
 import { Customermine } from '../customermine/customermine';
 import { Statistics } from '../statistics/statistics';
+import { Orderarea } from '../orderarea/orderarea';
 
 /*
   Generated class for the Home page.
@@ -39,6 +40,7 @@ export class Home {
   tabIndex: any
   customermine: any = Customermine
   statistics: any = Statistics
+  orderarea: any = Orderarea
   constructor(public navCtrl: NavController, public navParams: NavParams) {}
 
   ionViewDidLoad() {
