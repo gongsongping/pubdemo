@@ -40,8 +40,9 @@
 				</ion-item>
 			</ion-list>
 		</div>
+	    <button ion-button small (click)='getTodosTotal(5)'>get all todos</button>
+		<todoitem *ngFor='let t of todosTotal' [todo]='t'></todoitem>
 	</div>
-	<button ion-button small (click)='getTotalTasks(20)'>get all tasks</button>
 	<div class="home-add" *ngIf="tabIndex == 3">
 		<ion-list>
 			<ion-item [navPush]='houseclue'>

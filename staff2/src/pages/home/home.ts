@@ -136,8 +136,8 @@ export class Home {
         this.navCtrl.push(Tododetails,{todo: t})
     }
 
-    totalTasks:any
-    getTotalTasks (s) {
+    todosTotal:any
+    getTodosTotal (s) {
         let vm = this
         let bs64 = window.btoa(vm.userInfo.username + ':' + vm.tokens.access_token)
         axios({
@@ -145,7 +145,7 @@ export class Home {
             headers: { "Authorization": "Basic " + bs64 },
             url: '/api/activiti/runtime/tasks?sort=createTime&order=desc&size=' + s
         }).then(function successCallback(res) {
-                vm.totalTasks = res.data.data
+                vm.todosTotal = res.data.data
             })
     }
  

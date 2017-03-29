@@ -3,8 +3,7 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { Home } from '../pages/home/home';
 
-import { Task } from '../pages/task/task';
-import { Todo } from '../pages/todo/todo';
+
 import { Tododetails } from '../pages/tododetails/tododetails';
 import { Role } from '../pages/role/role';
 import {  House, Handle, ImgPipe, HouseTypePipe, Todoitem } from '../providers/services';
@@ -36,8 +35,6 @@ enableProdMode();
   declarations: [
     MyApp,
     Home,
-    Task,
-    Todo,
     Tododetails,
     Changepw,
     Resetpw,
@@ -76,8 +73,6 @@ enableProdMode();
   entryComponents: [
     MyApp,
     Home,
-    Task,
-    Todo,
     Tododetails,
     Changepw,
     Resetpw,
