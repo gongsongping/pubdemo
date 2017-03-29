@@ -9,10 +9,10 @@
   <ion-navbar>
     <ion-title>订单管理</ion-title>
     <ion-buttons end>
-      <!--<button ion-button icon-only color="dark" style="right:10px;" (click)="changeType()">-->
-        <!--<ion-icon name="list-box" style="font-size: 1.3em;"></ion-icon>-->
-        <!--全部-->
-      <!--</button>-->
+      <button ion-button icon-only color="dark" style="right:10px;" (click)="changeType()">
+        <ion-icon name="list-box" style="font-size: 1.3em;"></ion-icon>
+        全部
+      </button>
     </ion-buttons>
   </ion-navbar>
 
@@ -78,8 +78,8 @@
       </ion-infinite-scroll-content>
     </ion-infinite-scroll>
   </div>
-  <h5 *ngIf="noUnfinishOrders && choosedidx == 0" style="text-align: center;margin-top: 48%;color: #999;">暂无订单！</h5>
-  <h5 *ngIf="noOrders && choosedidx==1" style="text-align: center;margin-top: 48%;color: #999;">暂无订单！</h5>
+  <!--<h5 *ngIf="noUnfinishOrders && choosedidx == 0" style="text-align: center;margin-top: 48%;color: #999;">暂无订单！</h5>-->
+  <!--<h5 *ngIf="noOrders && choosedidx==1" style="text-align: center;margin-top: 48%;color: #999;">暂无订单！</h5>-->
   <!--全部-->
   <div *ngIf="choosedidx == 1">
     <div class="item item-first" *ngFor="let t of items" (click)="goDetails(t)">

@@ -26,7 +26,7 @@ export class Customermine {
   start: any = 0
   userInfo: any = JSON.parse(localStorage.getItem('userInfo'))
   customerdetailsmine: any = Customerdetailsmine
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  constructor(public navCtrl: NavController, public navParams: NavParams, public params: NavParams) {}
 
 //   vm.searchData = {val: ''}
 //   vm.pcId = $stateParams.id;
