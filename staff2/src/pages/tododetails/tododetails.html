@@ -232,17 +232,14 @@
       <div *ngIf="f.id == 'receipt_images'||f.id == 'images'" class="upload-images">
         <div class="upload-img" *ngFor="let b of innerUrls; let i = index; " style="width:70px;height:70px;position: relative;margin:8px;float:left;">
           <img [src]="b" width="70" height="70" style="position: absolute;top:0;left:0;border-radius: 5px;" />
-          <!--<i class="icon ion-ios-close" (click)="deleteInnerImg(i)" style="position: absolute;top: -11px;right: -8px;font-size: 20px;z-index: 9;color: gray;"></i>-->
           <ion-icon name="close-circle" (click)="deleteInnerImg(i)" style="position: absolute;top: -11px;right: -8px;font-size: 20px;z-index: 9;color: gray;"></ion-icon>          
         </div>
-        <!--<div ngf-select="getInnerBlobs(file)" [(ngModel)]="file" name="file" accept="image/*" ngf-pattern="'image/*'" ngf-resize="{width: 700, height: 700, quality: 0.9}"
-          style="display:inline;float:left;">
-          <img src="assets/img/sprite/photo_icon.png" width='70' height="70" />
-        </div>-->
-        <input (change)='getInnerBlobs($event)' type="file">
+      
+         <label [hidden]="innerUrls.length > 4" style='float:left;'>
+          <input type="file" imageUpload (imageSelected)="getInnerBlobs($event)" [resizeOptions]="resizeOptions" style='width:0.1px;height:0.1px;opacity: 0;overflow: hidden;position: absolute;z-index: -1;'>
+          <img src="assets/img/sprite/photo_icon.png" width='70' height="70" /> 
+        </label>
         <div style="clear: both;"></div>
-        {{f.id}}
-
       </div>
 
       <div *ngIf="f.id == 'contract_images'||f.id == 'planImages'" class="upload-images">
@@ -250,14 +247,12 @@
           <img [src]="b" width="70" height="70" style="position: absolute;top:0;left:0;border-radius: 5px;" />
           <ion-icon name="close-circle" (click)="deleteDesignImg(i)" style="position: absolute;top: -11px;right: -8px;font-size: 20px;z-index: 9;color: gray;"></ion-icon>
         </div>
-        <!--<div [hidden]="innerBlobs.length > 4" ngf-select="getDesignBlobs(file)" [(ngModel)]="file" name="file" accept="image/*" ngf-pattern="'image/*'"
-          ngf-resize="{width: 700, height: 700, quality: 0.9}" style="display:inline;float:left;">
-          <img src="assets/img/sprite/photo_icon.png" width='70' height="70" />
-        </div>-->
-        <input (change)='getDesignBlobs($event)' type="file">        
+  
+        <label [hidden]="designUrls.length > 4" style='float:left;'>
+          <input type="file" imageUpload (imageSelected)="getDesignBlobs($event)" [resizeOptions]="resizeOptions" style='width:0.1px;height:0.1px;opacity: 0;overflow: hidden;position: absolute;z-index: -1;'>
+          <img src="assets/img/sprite/photo_icon.png" width='70' height="70" /> 
+        </label>
         <div style="clear: both;"></div>
-        {{f.id}}
-        <input type="file" imageUpload (imageSelected)="selectedDesignBlobs($event)" [resizeOptions]="resizeOptions">
       </div>
 
     </div>

@@ -118,28 +118,26 @@ export class Tododetails {
   
     // var bs64 = window.btoa($rootScope.user_name + ':' + $window.localStorage.access_token)
     submitTask (v) {
+      console.log(v);
         let vm = this
         let userInfo = JSON.parse(localStorage.getItem('userInfo'))
         let tokens = JSON.parse(localStorage.getItem('tokens'));
         let bs64 = window.btoa(userInfo.username + ':' + tokens.access_token)
 
-        axios({
-            method: 'post',
-            headers: { "Authorization": "Basic " + bs64 },
-            data: {
-                action: 'complete',
-                variables: v
-            },
-            url:  '/api/activiti/runtime/tasks/' + vm.todo.id
-        }).then(function successCallback() {
-                // vm.$emit('alert', { t: '成功', b: '提交成功' })
-                // $ionicHistory.goBack()
-                alert('提交成功')
-                vm.navCtrl.pop()
-            }).catch(function errorCallback() {
-                // vm.$emit('alert', { t: '错误', b: '服务器错误' })
-                alert('服务器错误')                
-            })
+        // axios({
+        //     method: 'post',
+        //     headers: { "Authorization": "Basic " + bs64 },
+        //     data: {
+        //         action: 'complete',
+        //         variables: v
+        //     },
+        //     url:  '/api/activiti/runtime/tasks/' + vm.todo.id
+        // }).then(function successCallback() {
+        //         alert('提交成功')
+        //         vm.navCtrl.pop()
+        //     }).catch(function errorCallback() {
+        //         alert('服务器错误')                
+        //     })
     }
     //日期选择
 
@@ -150,7 +148,7 @@ export class Tododetails {
         let ok = true
         let floor, total_floor;
         vm.formProperties.forEach(function (p) {
-            let variable:any
+            let variable:any = {}
             variable.name = p.id
             if (p.type == 'date') {
                 // console.log(vm.house.pickedTime);
@@ -208,6 +206,9 @@ export class Tododetails {
                 variable.type = 'string'
             } else {
                 variable.type = p.type
+            }
+            if (p.type == 'boolean') {
+                variable.value = JSON.parse(p.value)
             }
             //判断手机号码是否有效seller_mobile/buyer_mobile
             if (variable.name == 'buyer_mobile') {
@@ -293,13 +294,20 @@ export class Tododetails {
 
    designUrls = []
    innerUrls = []
- 
-   getDesignBlobs (e) {
+   //https://github.com/ribizli/ng2-imageupload 
+    // this.src = imageResult.resized
+    //     && imageResult.resized.dataURL
+    //     || imageResult.dataURL;
+   getDesignBlobs (imageResult: ImageResult) {
         let vm = this
-        console.log(e.target.files[0])
-        if (e) {
+        // console.log(imageResult);
+        if (imageResult) {
             let f = new FormData()
-            f.append('photo',e.target.files[0])
+            let imgBlob = vm.dataURItoBlob(imageResult.resized.dataURL)
+            let name = new Date().getTime()+'.jpeg';
+            let imgFile = new File([imgBlob], name);
+            // console.log(imgBlob,imgFile);
+            f.append('photo',imgFile)
             axios({
                 method:'post',
                 url: '/api/storage/photos',
@@ -318,12 +326,15 @@ export class Tododetails {
         // console.log(vm.designUrls)
     }
     //室内图
-    getInnerBlobs = function (e) {
+    getInnerBlobs (imageResult: ImageResult) {
          let vm = this
-        console.log(e.target.files[0])
-        if (e) {
+        if (imageResult) {
             let f = new FormData()
-            f.append('photo',e.target.files[0])
+            let imgBlob = vm.dataURItoBlob(imageResult.resized.dataURL)
+            let name = new Date().getTime()+'.jpeg';
+            let imgFile = new File([imgBlob], name);
+            // console.log(imgBlob,imgFile);
+            f.append('photo',imgFile)
             axios({
                 method:'post',
                 url: '/api/storage/photos',
@@ -355,29 +366,6 @@ export class Tododetails {
             ia[i] = byteString.charCodeAt(i);
         }
         return new Blob([ab], { type: 'image/jpeg' });
-    }
-
-    selectedDesignBlobs(imageResult: ImageResult) {
-        let vm =  this
-        // console.log(imageResult);
-        // this.src = imageResult.resized
-        //     && imageResult.resized.dataURL
-        //     || imageResult.dataURL;
-
-        console.log(this.src);    
-        let f = new FormData()
-        let imgBlob = vm.dataURItoBlob(imageResult.resized.dataURL)
-        let name = new Date().getTime()+'.jpeg';
-        let imgFile = new File([imgBlob], name);
-        // console.log(imgBlob,imgFile);
-        f.append('photo',imgFile)
-        axios({
-            method:'post',
-            url: '/api/storage/photos',
-            data: f
-        }).then(function (res) {
-            vm.designUrls.push(res.data.url)
-        })
     }
 
 }
