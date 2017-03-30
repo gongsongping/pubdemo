@@ -142,8 +142,6 @@ export class Tododetails {
     }
     //日期选择
 
-    designUrls = []
-    innerUrls = []
     house  // = {room:'',hall:'',kitchen:'',bathroom:''} //room: 0, hall: 0, kitchen: 0, bathroom: 0
     endTask () {
         let vm = this
@@ -287,5 +285,59 @@ export class Tododetails {
         }
     }
 
+
+   onFileChange(e){
+     console.log(e.target.files[0])
+   }
+
+   designUrls = []
+   innerUrls = []
+ 
+   getDesignBlobs (e) {
+        let vm = this
+        console.log(e.target.files[0])
+        if (e) {
+            let f = new FormData()
+            f.append('photo',e.target.files[0])
+            axios({
+                method:'post',
+                url: '/api/storage/photos',
+                data: f
+            }).then(function (res) {
+                // http://7xj5ck.com1.z0.glb.clouddn.com/2015-11-28T06%3A11%3A25.113Z// console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data.key + JSON.stringify(resp.data))
+                vm.designUrls.push(res.data.url)
+                // console.log(vm.designUrls);
+            })
+        }
+    }
+    deleteDesignImg = function (index) { //删除图片
+        let vm = this
+        // vm.designBlobs.splice(index, 1)
+        vm.designUrls.splice(index, 1)
+        // console.log(vm.designUrls)
+    }
+    //室内图
+    getInnerBlobs = function (e) {
+         let vm = this
+        console.log(e.target.files[0])
+        if (e) {
+            let f = new FormData()
+            f.append('photo',e.target.files[0])
+            axios({
+                method:'post',
+                url: '/api/storage/photos',
+                data: f
+            }).then(function (res) {
+                vm.innerUrls.push(res.data.url)
+                // console.log(vm.designUrls);
+            })
+        }
+    }
+    deleteInnerImg (index) { //删除图片
+        let vm = this
+        // vm.innerBlobs.splice(index, 1)
+        vm.innerUrls.splice(index, 1)
+        // console.log(vm.innerUrls)
+    }
 
 }

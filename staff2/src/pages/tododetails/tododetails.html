@@ -34,9 +34,9 @@
     <div *ngIf="(d.name == 'expected_price')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：{{d.value}}万</div>
 
     <div *ngIf="(d.name == 'inspect_date')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：{{d.value | date: 'yyyy-MM-dd HH:mm:ss'}}</div>
-    <div *ngIf="(d.name == 'confirm_sell')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：<span ng-show="d.value">是</span><span ng-show="!d.value">否</span></div>
+    <div *ngIf="(d.name == 'confirm_sell')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：<span *ngIf="d.value">是</span><span *ngIf="!d.value">否</span></div>
 
-    <div *ngIf="(d.name == 'inspect_result')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：<span ng-show="d.value">是</span><span ng-show="!d.value">否</span></div>
+    <div *ngIf="(d.name == 'inspect_result')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：<span *ngIf="d.value">是</span><span *ngIf="!d.value">否</span></div>
     <div *ngIf="(d.name == 'inspect_comment')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：{{d.value}}</div>
 
     <div *ngIf="(d.name == 'real_seller_mobile')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：{{d.value}}</div>
@@ -52,7 +52,7 @@
     <div *ngIf="(d.name == 'floor')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：{{d.value}}层</div>
     <div *ngIf="(d.name == 'total_floor')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：{{d.value}}层</div>
     <div *ngIf="(d.name == 'orientation')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：{{d.value}}</div>
-    <div *ngIf="(d.name == 'has_key')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：<span ng-show="d.value">是</span><span ng-show="!d.value">否</span></div>
+    <div *ngIf="(d.name == 'has_key')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：<span *ngIf="d.value">是</span><span *ngIf="!d.value">否</span></div>
 
     <div *ngIf="(d.name == 'property_type')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：{{d.value}}</div>
     <div *ngIf="(d.name == 'shelve_comment')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：{{d.value}}</div>
@@ -75,42 +75,42 @@
       </div>
     </div>
     <!--买房-->
-    <div *ngIf="(d.name == 'is_precise_buy')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：<span ng-show="d.value">是</span><span ng-show="!d.value">否</span></div>
+    <div *ngIf="(d.name == 'is_precise_buy')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：<span *ngIf="d.value">是</span><span *ngIf="!d.value">否</span></div>
     <!--精准购房-->
     <div *ngIf="(d.name == 'precise_house_info')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：{{d.value}}</div>
     <div *ngIf="(d.name == 'precise_buyer_target_price')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：{{d.value}}</div>
-    <div *ngIf="(d.name == 'precise_communication_succeed')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：<span ng-show="d.value">是</span><span ng-show="!d.value">否</span></div>
+    <div *ngIf="(d.name == 'precise_communication_succeed')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：<span *ngIf="d.value">是</span><span *ngIf="!d.value">否</span></div>
 
     <div *ngIf="(d.name == 'precise_buy_house_info')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：{{d.value}}</div>
     <!--<div *ngIf="(d.name == 'house_id')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">系统已上架的房源id：{{d.value}}</div>-->
-    <div *ngIf="(d.name == 'precise_buy_house_found')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：<span ng-show="d.value">是</span><span ng-show="!d.value">否</span></div>
+    <div *ngIf="(d.name == 'precise_buy_house_found')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：<span *ngIf="d.value">是</span><span *ngIf="!d.value">否</span></div>
 
-    <div *ngIf="(d.name == 'need_watch_house')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：<span ng-show="d.value">是</span><span ng-show="!d.value">否</span></div>
+    <div *ngIf="(d.name == 'need_watch_house')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：<span *ngIf="d.value">是</span><span *ngIf="!d.value">否</span></div>
 
     <!--普通看房-->
-    <div *ngIf="(d.name == 'is_valid')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：<span ng-show="d.value">是</span><span ng-show="!d.value">否</span></div>
+    <div *ngIf="(d.name == 'is_valid')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：<span *ngIf="d.value">是</span><span *ngIf="!d.value">否</span></div>
     <div *ngIf="(d.name == 'watch_appointment_time')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：{{d.value | date: 'yyyy-MM-dd HH:mm:ss'}}</div>
 
-    <div *ngIf="(d.name == 'is_watch_succeed')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：<span ng-show="d.value">是</span><span ng-show="!d.value">否</span></div>
+    <div *ngIf="(d.name == 'is_watch_succeed')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：<span *ngIf="d.value">是</span><span *ngIf="!d.value">否</span></div>
     <div *ngIf="(d.name == 'watched_time')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：{{d.value | date: 'yyyy-MM-dd HH:mm:ss'}}</div>
 
-    <div *ngIf="(d.name == 'is_watch_satisfied')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：<span ng-show="d.value">是</span><span ng-show="!d.value">否</span></div>
+    <div *ngIf="(d.name == 'is_watch_satisfied')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：<span *ngIf="d.value">是</span><span *ngIf="!d.value">否</span></div>
     <div *ngIf="(d.name == 'watch_comment')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：{{d.value}}</div>
 
-    <div *ngIf="(d.name == 'is_negotiate_succeed')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：<span ng-show="d.value">是</span><span ng-show="!d.value">否</span></div>
+    <div *ngIf="(d.name == 'is_negotiate_succeed')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：<span *ngIf="d.value">是</span><span *ngIf="!d.value">否</span></div>
     <div *ngIf="(d.name == 'negotiate_comment')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：{{d.value}}</div>
     <div *ngIf="(d.name == 'seller_price')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：{{d.value}}万</div>
     <div *ngIf="(d.name == 'buyer_price')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：{{d.value}}万</div>
 
 
-    <div *ngIf="(d.name == 'is_invitation_succeed')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：<span ng-show="d.value">是</span><span ng-show="!d.value">否</span></div>
+    <div *ngIf="(d.name == 'is_invitation_succeed')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：<span *ngIf="d.value">是</span><span *ngIf="!d.value">否</span></div>
     <div *ngIf="(d.name == 'invite_comment')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：{{d.value}}</div>
     <div *ngIf="(d.name == 'meeting_date')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：{{d.value | date: 'yyyy-MM-dd HH:mm:ss'}}</div>
 
-    <div *ngIf="(d.name == 'is_meeting_succeed')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：<span ng-show="d.value">是</span><span ng-show="!d.value">否</span></div>
+    <div *ngIf="(d.name == 'is_meeting_succeed')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：<span *ngIf="d.value">是</span><span *ngIf="!d.value">否</span></div>
     <div *ngIf="(d.name == 'meet_comment')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：{{d.value}}</div>
 
-    <div *ngIf="(d.name == 'is_contract_deposit_finished')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：<span ng-show="d.value">是</span><span ng-show="!d.value">否</span></div>
+    <div *ngIf="(d.name == 'is_contract_deposit_finished')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：<span *ngIf="d.value">是</span><span *ngIf="!d.value">否</span></div>
     <div *ngIf="(d.name == 'contract_sign_comment')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：{{d.value}}</div>
     <div *ngIf="(d.name == 'contract_price')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：{{d.value}}万</div>
     <div *ngIf="(d.name == 'earnest_money')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：{{d.value}}</div>
@@ -142,15 +142,15 @@
         <img src="{{i}}" width="70" heigth="70">
       </div>
     </div>
-    <div *ngIf="(d.name == 'need_loan')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：<span ng-show="d.value">是</span><span ng-show="!d.value">否</span></div>
+    <div *ngIf="(d.name == 'need_loan')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：<span *ngIf="d.value">是</span><span *ngIf="!d.value">否</span></div>
     <!--置业顾问经理审批-->
-    <div *ngIf="(d.name == 'is_deal_report_approved')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：<span ng-show="d.value">是</span><span ng-show="!d.value">否</span></div>
+    <div *ngIf="(d.name == 'is_deal_report_approved')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：<span *ngIf="d.value">是</span><span *ngIf="!d.value">否</span></div>
     <div *ngIf="(d.name == 'deal_report_approval_comment')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：{{d.value}}</div>
     <!--贷款专员-->
-    <div *ngIf="(d.name == 'is_loan_succeed')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：<span ng-show="d.value">是</span><span ng-show="!d.value">否</span></div>
+    <div *ngIf="(d.name == 'is_loan_succeed')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：<span *ngIf="d.value">是</span><span *ngIf="!d.value">否</span></div>
     <div *ngIf="(d.name == 'loan_comments')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：{{d.value}}</div>
     <!--权证专员确定过户结果-->
-    <div *ngIf="(d.name == 'is_cert_trans_succeed')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：<span ng-show="d.value">是</span><span ng-show="!d.value">否</span></div>
+    <div *ngIf="(d.name == 'is_cert_trans_succeed')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：<span *ngIf="d.value">是</span><span *ngIf="!d.value">否</span></div>
     <div *ngIf="(d.name == 'cert_trans_comment')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">{{d.nameCn}}：{{d.value}}</div>
     <!--客服专员收集满意的-->
     <div *ngIf="(d.name == 'buyer_sati_all')&&(!!d.value)" style="border-bottom:1px solid lightgrey;">买家总体满意度(1-5分)：{{d.value}}</div>
@@ -164,18 +164,24 @@
 
   <div *ngFor="let f of formProperties">
     <div *ngIf="f.type == 'date'" style="margin:10px;">
-      <!--<div><span style="color:#265fdf;">{{f.name}}:</span> {{house.pickedTime | date: "yyyy-MM-dd HH:mm:ss"}}</div>
-      <button class="button button-positive button-small pill" ion-datetime-picker [(ngModel)]="house.pickedTime">
-          选择时间
-      </button>-->
+      <div><span style="color:#265fdf;">{{f.name}}:</span> </div>
+      <!--{{house.pickedTime | date: "yyyy-MM-dd HH:mm:ss"}}-->
+      <ion-item>
+        <ion-label>选择时间</ion-label>
+        <!--monthShortNames="一月, 二月, 三月, 四月, 五月, 六月, 七月, 八月, 九月,十一月, 十二月"-->
+        <ion-datetime displayFormat="YYYY-MM-DD HH" pickerFormat="YYYY MM DD HH" cancelText='取消' doneText='确定' [(ngModel)]="f.value" ></ion-datetime>
+      </ion-item>
     </div>
     <div *ngIf="f.type == 'boolean'" style="margin:10px;width:90vw;">
       <span style="color:#265fdf;">{{f.name}}:</span>
-      <!--<ion-radio [(ngModel)]="f.value" ng-value="true" style="border-radius: 6px;">{{f.name}} &nbsp;&nbsp; <span style="color:#265fdf;">是</span></ion-radio>
-      <ion-radio [(ngModel)]="f.value" ng-value="false" style="border-radius: 6px;">{{f.name}} &nbsp;&nbsp; <span style="color:#265fdf;">否</span></ion-radio>-->
-      
+      <div>
+        <input [(ngModel)]="f.value" type="radio" value="true"> &nbsp;是
+      </div>
+      <div>
+        <input [(ngModel)]="f.value" type="radio" value="false"> &nbsp;否
+      </div>
     </div>
-
+   
     <div *ngIf="f.type == 'double' || f.type == 'long'|| f.type == 'integer'" style="margin:10px;">
       <!--<div *ngIf="f.id != 'region_id'">
         <div *ngIf="f.id!='house_id'">
@@ -193,15 +199,16 @@
           <div *ngIf="choosedHouse">{{choosedHouse.name}}</div>
         </div>
       </div>-->
-      {{f.id}}
+      <span style="color:#265fdf;">{{f.name}}:</span>
+      <input [(ngModel)]="f.value" type="number" style="width:90vw;border:1px solid lightgrey;border-radius: 6px;">
     </div>
     <div *ngIf="f.type == 'enum'" style="margin:10px;">
       <span style="color:#265fdf;">{{f.name}}:</span>
-      <!--<div>
+      <div>
         <select [(ngModel)]="f.value" style="width:40vw;border-radius: 5px;border:1px solid lightgray;">
-                        <option ng-repeat="e in f.enumValues">{{e.name}}</option>
-                    </select>
-      </div>-->
+            <option *ngFor="let e of f.enumValues">{{e.name}}</option>
+        </select>
+      </div>
 
     </div>
     <div *ngIf="f.type == 'string'" style="margin:10px;">
@@ -223,28 +230,32 @@
       </div>
 
       <div *ngIf="f.id == 'receipt_images'||f.id == 'images'" class="upload-images">
-        <!--<div class="upload-img" ng-repeat="b in innerUrls track by $index" style="width:70px;height:70px;position: relative;margin:8px;float:left;">
-          <img ngf-src="b" width="70" height="70" style="position: absolute;top:0;left:0;border-radius: 5px;" />
-          <i class="icon ion-ios-close" (click)="deleteInnerImg($index)" style="position: absolute;top: -11px;right: -8px;font-size: 20px;z-index: 9;color: gray;"></i>
+        <div class="upload-img" *ngFor="let b of innerUrls; let i = index; " style="width:70px;height:70px;position: relative;margin:8px;float:left;">
+          <img [src]="b" width="70" height="70" style="position: absolute;top:0;left:0;border-radius: 5px;" />
+          <!--<i class="icon ion-ios-close" (click)="deleteInnerImg(i)" style="position: absolute;top: -11px;right: -8px;font-size: 20px;z-index: 9;color: gray;"></i>-->
+          <ion-icon name="close-circle" (click)="deleteInnerImg(i)" style="position: absolute;top: -11px;right: -8px;font-size: 20px;z-index: 9;color: gray;"></ion-icon>          
         </div>
-        <div ngf-select="getInnerBlobs(file)" [(ngModel)]="file" name="file" accept="image/*" ngf-pattern="'image/*'" ngf-resize="{width: 700, height: 700, quality: 0.9}"
+        <!--<div ngf-select="getInnerBlobs(file)" [(ngModel)]="file" name="file" accept="image/*" ngf-pattern="'image/*'" ngf-resize="{width: 700, height: 700, quality: 0.9}"
           style="display:inline;float:left;">
-          <img src="img/sprite/photo_icon.png" width='70' height="70" />
-        </div>
-        <div style="clear: both;"></div>-->
+          <img src="assets/img/sprite/photo_icon.png" width='70' height="70" />
+        </div>-->
+        <input (change)='getInnerBlobs($event)' type="file">
+        <div style="clear: both;"></div>
         {{f.id}}
+
       </div>
 
       <div *ngIf="f.id == 'contract_images'||f.id == 'planImages'" class="upload-images">
-        <!--<div class="upload-img" ng-repeat="b in designUrls track by $index" style="width:70px;height:70px;position: relative;margin:8px;float:left;">
-          <img ngf-src="b" width="70" height="70" style="position: absolute;top:0;left:0;border-radius: 5px;" />
-          <i class="icon ion-ios-close" (click)="deleteDesignImg($index)" style="position: absolute;top: -11px;right: -8px;font-size: 20px;z-index: 9;color: gray;"></i>
+        <div class="upload-img" *ngFor="let b of designUrls; let i = index;" style="width:70px;height:70px;position: relative;margin:8px;float:left;">
+          <img [src]="b" width="70" height="70" style="position: absolute;top:0;left:0;border-radius: 5px;" />
+          <ion-icon name="close-circle" (click)="deleteDesignImg(i)" style="position: absolute;top: -11px;right: -8px;font-size: 20px;z-index: 9;color: gray;"></ion-icon>
         </div>
-        <div [hidden]="innerBlobs.length > 4" ngf-select="getDesignBlobs(file)" [(ngModel)]="file" name="file" accept="image/*" ngf-pattern="'image/*'"
+        <!--<div [hidden]="innerBlobs.length > 4" ngf-select="getDesignBlobs(file)" [(ngModel)]="file" name="file" accept="image/*" ngf-pattern="'image/*'"
           ngf-resize="{width: 700, height: 700, quality: 0.9}" style="display:inline;float:left;">
-          <img src="img/sprite/photo_icon.png" width='70' height="70" />
-        </div>
-        <div style="clear: both;"></div>-->
+          <img src="assets/img/sprite/photo_icon.png" width='70' height="70" />
+        </div>-->
+        <input (change)='getDesignBlobs($event)' type="file">        
+        <div style="clear: both;"></div>
         {{f.id}}
       </div>
 

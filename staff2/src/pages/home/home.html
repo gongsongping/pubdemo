@@ -25,6 +25,12 @@
 		</ion-list>
 	</div>
 	<div *ngIf="tabIndex == 2">
+		<div *ngIf='spinner' style="width:100%;margin:30px;text-align: center;">
+			<ion-spinner  name="circles"></ion-spinner>
+		</div>
+		<div *ngIf='dataLength==0' style="width:100%;margin:30px;text-align: center;">
+			没有待办事项!
+		</div>
 		<todoitem *ngFor='let t of todos' [todo]='t'></todoitem>
 		<!--<div class="home-list">
 			<ion-list>
