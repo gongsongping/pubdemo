@@ -78,15 +78,11 @@ export class Home {
   }
 
   pushTo(h) {
-    this.navCtrl.push(h);
+    this.navCtrl.push(h, { staff: this.userInfo});
   }
 
   ngOnInit() {
     console.log('----home---- Page oninit');
-  }
-
-  goPerson(h){
-    this.navCtrl.push(h, { staff: this.userInfo})
   }
 
   goDepartment(h) {
