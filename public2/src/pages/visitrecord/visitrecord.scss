@@ -1,8 +1,4 @@
 page-visitrecord {
-    ion-toolbar.toolbar-ios{
-        padding:0;
-        border-bottom:1px solid #f0f2f6
-    }
     .visit-top{
         .fixed-content,.scroll-content{
             margin-top: 89px !important;
@@ -10,6 +6,7 @@ page-visitrecord {
     }
    .record-select{
        padding:0;
+       border-bottom:1px solid #f0f2f6
    }
    .house-list{
        padding: 0 10px !important;

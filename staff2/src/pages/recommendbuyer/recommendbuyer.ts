@@ -21,6 +21,7 @@ export class Recommendbuyer {
   name = '';
   mobile = '';
   searchName = '';
+  selections = false;
   myRecommendbuyer: any = MyRecommendbuyer;
   constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController) { }
 
@@ -70,6 +71,8 @@ export class Recommendbuyer {
     this.navCtrl.push(h);
   }
   presentModal() {
+     this.selections = !this.selections;
+
     // let modal = this.modalCtrl.create(Modaldistrict,{id:999});
     // modal.present();
   }

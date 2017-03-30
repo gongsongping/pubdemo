@@ -71,8 +71,8 @@
             </div>
             <div class='flex-col'>
                 挂盘时间：
-                <!--<span>{{houses.modifiedTime | date: 'yyyy-MM-dd'}}</span>
-                <span *ngIf="!houses.modifiedTime">暂未上架</span>-->
+                <span>{{houses.modifiedTime | date: 'yyyy-MM-dd'}}</span>
+                <span *ngIf="!houses.modifiedTime">暂未上架</span>
             </div>
             <div class='flex-col'>
                 房号：
@@ -81,7 +81,7 @@
             <div class='flex-col'>
 
             </div>
-            <a class='flex-row' *ngIf="houses.subdistrict !== null" (click)="districtDs(houses)">
+            <a class='flex-row' *ngIf="houses.subdistrict !== null" (click)="districtDs()">
                 <div>
                     小区：
                     <span>{{houses.subdistrict?.name}}</span>
