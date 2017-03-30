@@ -18,7 +18,7 @@ import { Visitrecord } from '../pages/visitrecord/visitrecord';
 import { Districtdetails } from '../pages/districtdetails/districtdetails';
 import { Message } from '../pages/message/message';
 
-import { NestedCom, House, TestService, ImgPipe, HouseTypePipe } from '../providers/services';
+import { NestedCom, House, TestService, ImgPipe, HouseTypePipe, Distribution } from '../providers/services';
 
 // let prodMode: boolean = window.hasOwnProperty('cordova');//!!window.cordova;
 // ionicBootstrap(MyApp, [], {prodMode: prodMode});
@@ -39,6 +39,7 @@ enableProdMode();
     ImgPipe,
     NestedCom,
     House,
+    Distribution,
     Sellrecord,
     Sellcommission,
     About,

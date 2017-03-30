@@ -8,8 +8,14 @@ import { Recommendbuyer } from '../recommendbuyer/recommendbuyer';
 import { Houseclue } from '../houseclue/houseclue';
 import { Ordermine } from '../ordermine/ordermine';
 import { Customermine } from '../customermine/customermine';
+
 import axios from 'axios';
 import { Tododetails } from '../tododetails/tododetails';
+
+
+import { Statistics } from '../statistics/statistics';
+import { Orderarea } from '../orderarea/orderarea';
+import { Customerarea } from '../customerarea/customerarea';
 
 
 /*
@@ -40,7 +46,15 @@ export class Home {
   roleName:any
   tabIndex: any
   customermine: any = Customermine
+
   constructor(public navCtrl: NavController, public navParams: NavParams) { }
+
+  statistics: any = Statistics
+  orderarea: any = Orderarea
+  customerarea: any = Customerarea
+
+
+
 
   ionViewDidLoad() {
     this.roleName = this.navParams.get('roleName')
@@ -111,6 +125,7 @@ export class Home {
   }
 
 
+
     goTodoDetails (t) {
         this.navCtrl.push(Tododetails,{todo: t})
     }
@@ -128,4 +143,13 @@ export class Home {
             })
     }
  
+
+  goPerson(h){
+    this.navCtrl.push(h, { staff: this.userInfo})
+  }
+
+  goDepartment(h) {
+    this.navCtrl.push(h, {department: this.userInfo.department});
+  }
+
 }

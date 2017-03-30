@@ -12,46 +12,19 @@ import axios from 'axios';
   templateUrl: 'orderdetailsmine.html'
 })
 export class Orderdetailsmine {
+  userInfo: any = JSON.parse(localStorage.getItem('userInfo'))
   orderDetails: any
   orderNote: any
   buyerInfo: any
   sallerInfo: any
   houseInfo: any
+  staff: any
+  taskId: any
+  todoOrder: any
   constructor(public navCtrl: NavController, public params: NavParams) {
-    let vm = this
-    vm.orderDetails = params.get('mission');
+    this.orderDetails = params.get('mission');
+    this.staff = params.get('staff');
   }
-
-//   $scope.orderDetails = JSON.parse($stateParams.orderList);
-//   var bs64 = window.btoa($rootScope.user_name + ':' + $window.localStorage.access_token);
-//   $scope.todoOrderInfo = function () {
-//   $http({
-//     method: 'POST',
-//     headers: {"Authorization": "Basic " + bs64},
-//     url: $rootScope.baseUrl + '/api/activiti/query/tasks',
-//     data: {
-//       assignee: $stateParams.id,
-//       processInstanceVariables: [
-//         {
-//           "name": "mission_id",
-//           "value": $scope.orderDetails.id,
-//           "operation": "equals",
-//           "type": "long"
-//         }
-//       ]
-//     }
-//   }).then(function successCallback(res) {
-//     if (res.data.data.length) {
-//       $scope.taskId = res.data.data[0].id;      //taskId
-//       if (res.data.data[0].assignee == $rootScope.user_id) {
-//         $scope.todoOrder = res.data.data.length;
-//       }
-//     }
-//
-//   }, function errorCallback() {
-//   })
-// }
-//   $scope.todoOrderInfo();
 
   ionViewDidLoad() {
     let vm = this
@@ -60,7 +33,6 @@ export class Orderdetailsmine {
       url: '/api/mission/missions/' + vm.orderDetails.id,
     }).then(function successCallback(res) {
       vm.orderNote = res.data.records[0].note;
-
     })
     //买家信息
     if (vm.orderDetails.demanderId != 0) {
@@ -69,7 +41,6 @@ export class Orderdetailsmine {
         url: '/api/account/users/' + vm.orderDetails.demanderId,
       }).then(function successCallback(res) {
         vm.buyerInfo = res.data
-        console.log(vm.buyerInfo);
       })
     }
     //卖家信息
@@ -90,7 +61,32 @@ export class Orderdetailsmine {
         vm.houseInfo = res.data
       })
     }
-
+    //判断是否为待处理订单
+    let userToken = JSON.parse(localStorage.getItem('tokens'))
+    let bs64 = window.btoa(vm.userInfo.username + ':' + userToken.access_token)
+    axios({
+      method: 'POST',
+      headers: {"Authorization": "Basic " + bs64},
+      url: '/api/activiti/query/tasks',
+      data: {
+        assignee: vm.staff.id,
+        processInstanceVariables: [
+          {
+            "name": "mission_id",
+            "value": vm.orderDetails.id,
+            "operation": "equals",
+            "type": "long"
+          }
+        ]
+      }
+    }).then(function successCallback(res) {
+      if (res.data.data.length) {
+        vm.taskId = res.data.data[0].id;
+        if (res.data.data[0].assignee == vm.userInfo.id ) {
+          vm.todoOrder = res.data.data.length;
+        }
+      }
+    })
   }
 
 }

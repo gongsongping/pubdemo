@@ -1,4 +1,4 @@
-<ion-item style="padding-left:0px;position: relative;">
+<ion-item class="house-list" style="padding-left:0px;position: relative;" no-lines>
     <ion-thumbnail item-left>
         <!--<img *ngIf="h?.images !== '[]'" [src]="(h.images | ImgPipe)[0]">-->
         <!--<img *ngIf="h?.images == '[]'" src="assets/img/img_null.png" />-->
@@ -7,8 +7,7 @@
     </ion-thumbnail>
     <p style="width:100%;font-weight:600;font-size:.9em;color:black;white-space:pre-line;">{{h?.name}}</p>
     <!--m<sup>2</sup>-->
-    <p style="width:100%;font-size:.8em;margin-top:2px;">{{h?.houseType | HouseTypePipe}}&nbsp;/&nbsp;{{h?.buildingArea}}平&nbsp;/
-        <span *ngIf="h?.orientation == 1">西</span>
+    <p style="width:100%;font-size:.8em;margin-top:2px;">{{h?.houseType | HouseTypePipe}} / {{h?.buildingArea}}平 / <span *ngIf="h?.orientation == 1">西</span>
         <span *ngIf="h?.orientation == 2">东</span>
         <span *ngIf="h?.orientation == 3">北</span>
         <span *ngIf="h?.orientation == 4">南</span>
@@ -18,7 +17,7 @@
     <p style="width:80%;font-size:.8em;overflow:hidden;margin-top:2px;"><span class="positive">{{h?.watchedCount}}</span>人看过此房</p>
 
     <div style="position: absolute;bottom: 8px;right:3px;text-align:right;">
-        <p style="color: tomato;font-size: 1em; margin:0px;">{{h?.price}}万</p>
+        <p style="color: tomato;font-size: 1em; margin:0px;" class="price">{{h?.price}}万</p>
         <p style="font-size: 0.7em;margin:0px;">{{h?.price*10000/h?.buildingArea | number : '1.0-0'}}元/平</p>
     </div>
 </ion-item>

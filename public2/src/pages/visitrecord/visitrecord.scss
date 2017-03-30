@@ -1,3 +1,41 @@
 page-visitrecord {
-
+    ion-toolbar.toolbar-ios{
+        padding:0;
+        border-bottom:1px solid #f0f2f6
+    }
+    .visit-top{
+        .fixed-content,.scroll-content{
+            margin-top: 89px !important;
+        }
+    }
+   .record-select{
+       padding:0;
+   }
+   .house-list{
+       padding: 0 10px !important;
+       overflow: hidden;
+       .price{
+           color:black !important;
+           font-weight: 700;
+       }
+   }
+   .statistics{
+       border-bottom: 1px solid #f0f2f6;
+       min-height: 3rem;
+       padding:0;
+       color: #666;
+       font-size: 1em;
+       .item-inner{
+           border-bottom: 0 !important;
+       }
+       .label{
+           margin: 5px 10px;
+       }
+       .icon{
+            margin: 2px 0 0 0;
+            font-size: 2.3rem;
+            display: inline-block;
+            min-height: 2rem;
+       }
+   }
 }

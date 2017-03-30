@@ -16,6 +16,9 @@
     font-size:0.9em;
     color:grey;
 }
+a{
+    text-decoration:none;
+}
 .flex-column {
     display: -webkit-flex;
     /* Safari */
@@ -219,6 +222,75 @@
             z-index: 7;                         
         }
     }
+// 卖房看房记录    
+.visit-record {
+        box-shadow: 0px 6px 6px #e4ebf8;
+        margin-top: 10px;
+        .record-1 {
+            border-color: #f0f2f6;
+            padding: 10px;
+            .number {
+                float:left;
+                font-size: 0.8em;
+                color: lightgray;
+            }
+            .status {
+                float: right;
+                color:#265fdf;
+                font-size:0.9em;
+            }
+        }
+        .record-block{
+            border-top: 1px solid #f0f2f6;
+            border-bottom: 1px solid #f0f2f6;
+        }
+        .record-3 {
+            padding:10px;
+            border-top: 1px solid #f0f2f6;
+            display:flex;
+            .title {
+                color: lightgray;
+                font-size:1em;
+                display:block;
+                width:90px;
+                line-height: 30px;
+            }
+            .distribution {
+                width:100%;
+                font-size:1em;
+                color:black;
+                line-height: 30px;
+                display: flex;
+                justify-content: space-between;
+            }
+            .telnumber {
+                font-size:0.9em;
+            }
+            .phone {
+                .icon {
+                    color: #265fdf;
+                    font-size: 2em;
+                }
+            }
+            .pay{
+                font-size:0.8em;
+                float:right;
+                .charge{
+                    color:tomato;
+                }
+            }
+        }
+        .record-4 {
+            padding:5px;
+            border-color: #f0f2f6;
+            .group {
+                float: right;
+            }
+        }
+    }
+    .visit-record:first-of-type{
+        margin-top:0;
+    }    
 // 房源小区详情
 .housedetails {
         background-color: #F4F5F9;

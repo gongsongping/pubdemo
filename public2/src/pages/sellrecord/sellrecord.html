@@ -23,45 +23,25 @@
                 <span class='status' *ngIf="h.status == 8">贷款中</span>
                 <span class='status' *ngIf="h.status == 9">网签中</span>
             </div>
-            <div class="item record-3" *ngIf="h.status == 2">
-                <p>{{houseNone}}</p>
+            <div class="item record-block" *ngIf="h.status == 2">
+                <p style="padding-left:10px;">{{houseNone}}</p>
             </div>
-            <house [hId]='h.houseId'></house>
-            <!--<a class='item item-thumbnail-left house-item' *ngIf="h.status == 0">
-                <img *ngIf="h.houses.images !== '[]'" src="{{(h.houses.images | ImgPipe)[0]}}" />
-                <img *ngIf="h.houses.images == '[]'" src="assets/img/img_null.png" />
-                <h2>{{h.houses.name}}</h2>
-                <p>{{h.houses.houseType | HouseTypePipe}}
-                    <span *ngIf="h.houses.orientation == 1">西</span>
-                    <span *ngIf="h.houses.orientation == 2">东</span>
-                    <span *ngIf="h.houses.orientation == 3">北</span>
-                    <span *ngIf="h.houses.orientation == 4">南</span>
-                    <span *ngIf="h.houses.orientation == 5">南北</span>
-                </p>
-                <p style="width:70%;overflow:hidden;font-size:.8em;">{{h.houses.subdistrict.name}}</p>
-                <p style="font-size:.8em;overflow:hidden;width:70%;"><span class="positive">{{h.houses.watchedCount}}</span>人看过此房</p>
-                <div class='price' style="bottom: 10px;width:30%;">
-                    <p class='price-total' style="color:black;">{{h.houses.price}}<span style="font-weight:100;color:#333;">万</span></p>
-                    <p class='price-p-square'>{{h.houses.price*10000/h.houses.buildingArea | number : 0}}元/平</p>
-                </div>
-            </a>-->
-            <!--<div class="item record-3" *ngIf="h.hkId == 0">
-                <p>正在分配房管家，稍后与您联系！</p>
+            <div class="record-block" *ngIf="h.status == 0">
+                <house [hId]='h.houseId'></house>
+                <a href="tel:{{distributionRole?.mobile}}" class="item record-3">
+                    <span class='title'>房管家：</span>
+                    <distribution class="distribution" [r]='h.hkId'></distribution>
+                </a>
             </div>
-            <div class="item record-3" ng-hide="h.hkId == 0">
-                <span class='title'>房管家：</span>
-                <span class='telnumber'>{{h.pcDepartments.name}}&nbsp;{{h.pcDepartments.mobile}}&nbsp;&nbsp;</span>
-                <a href="tel:{{h.pcDepartments.mobile}}" class='phone'><i class='icon ion-ios-telephone phone-icon'></i></a>
-            </div>-->
             <div class="item record-4">
                 <div class='group'>
-                    <a class="button button-positive button-small button-outline pill">跟踪状态</a>
+                    <button ion-button small clear>跟踪状态</button>
                 </div>
             </div>
         </div>
-        <div *ngIf="total === 0" class="prompt">
-            <div class="icon ion-document-text"></div>
-            您还没有相关的记录
+        <div *ngIf="total == 0" class="prompt">
+            <ion-icon ios="ios-create-outline"></ion-icon>
+            <p>您还没有相关的记录</p>
         </div>
     </div>
 </ion-content>
