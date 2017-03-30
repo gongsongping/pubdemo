@@ -210,9 +210,13 @@ export class Handle {
 		<ion-list>
 			<ion-list-header>您收到一条“{{todo?.name}}”任务</ion-list-header>
 			<ion-item>
-				<p><span>订单编号：</span>2018025236999</p>
-				<p><span>业主姓名：</span>黄忠</p>
-				<p><span>房源地址：</span>成都市一环路西八段80号</p>
+        <div *ngFor="let d of descriptionMap" style="margin:10px;">
+          <p *ngIf="d.name == 'mission_id'"><span>订单编号：</span>{{d.details?.serialNumber}}</p>
+          <p *ngIf="d.name == 'seller_id'"><span>{{d.nameCn}}：</span>{{d.details?.name}}&nbsp;{{d.details?.mobile}}</p>
+          <p *ngIf="d.name == 'buyer_id'"><span>{{d.nameCn}}：</span>{{d.details?.name}}&nbsp;{{d.details?.mobile}}</p>
+          <p *ngIf="d.name == 'house_addr'"><span>房源地址：</span>{{d.value}}</p>
+         
+        </div>
 				<div class="see" (click)='goDetail()'>
 					<img src="assets/img/icon/_0013_seeright.png" width="16">
 					<span>查看详情 </span>

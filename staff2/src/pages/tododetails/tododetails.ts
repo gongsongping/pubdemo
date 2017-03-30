@@ -41,7 +41,9 @@ export class Tododetails {
   descriptionMap = [];
   formData:any;
   formProperties:any;
-
+  userInfo
+  tokens
+  deptMembers:any
   ionViewWillEnter() {
     let vm = this
     vm.todo = vm.navParams.get('todo')
@@ -49,9 +51,9 @@ export class Tododetails {
     vm.descriptionMap = vm.navParams.get('descriptionMap')
     console.log(vm.descriptionMap);    
 
-    let userInfo = JSON.parse(localStorage.getItem('userInfo'))
-    let tokens = JSON.parse(localStorage.getItem('tokens'));
-    let bs64 = window.btoa(userInfo.username + ':' + tokens.access_token)
+    this.userInfo = JSON.parse(localStorage.getItem('userInfo'))
+    this.tokens = JSON.parse(localStorage.getItem('tokens'));
+    let bs64 = window.btoa(this.userInfo.username + ':' + this.tokens.access_token)
 
     axios({
         method: 'get',
@@ -62,6 +64,13 @@ export class Tododetails {
             vm.formProperties = res.data.formProperties
             console.log(vm.formData, vm.formProperties);
         })
+
+    axios({
+        method: 'get',
+        url: '/api/account/employees?departmentId=' + vm.userInfo.department.id
+    }).then(function successCallback(res) {
+            vm.deptMembers = res.data.data
+        })    
 
     if (vm.descriptionMap.length) { return }
 
@@ -112,36 +121,54 @@ export class Tododetails {
 
   }
 
-  ionViewDidEnter() {
 
-  }  
-  
-    // var bs64 = window.btoa($rootScope.user_name + ':' + $window.localStorage.access_token)
-    submitTask (v) {
-      console.log(v);
-        let vm = this
-        let userInfo = JSON.parse(localStorage.getItem('userInfo'))
-        let tokens = JSON.parse(localStorage.getItem('tokens'));
-        let bs64 = window.btoa(userInfo.username + ':' + tokens.access_token)
+  ionViewDidEnter() {}  
+   //转派任务
 
-        // axios({
-        //     method: 'post',
-        //     headers: { "Authorization": "Basic " + bs64 },
-        //     data: {
-        //         action: 'complete',
-        //         variables: v
-        //     },
-        //     url:  '/api/activiti/runtime/tasks/' + vm.todo.id
-        // }).then(function successCallback() {
-        //         alert('提交成功')
-        //         vm.navCtrl.pop()
-        //     }).catch(function errorCallback() {
-        //         alert('服务器错误')                
-        //     })
-    }
+  reassign () {
+      let vm  = this
+      let bs64 = window.btoa(this.userInfo.username + ':' + this.tokens.access_token)
+      axios({
+          method: 'put',
+          headers: { "Authorization": "Basic " + bs64 },
+          data: {
+              assignee: vm.house.assignee
+          },
+          url: '/api/activiti/runtime/tasks/' + vm.todo.id
+      }).then(function () {
+              alert('提交成功')
+              vm.navCtrl.pop()
+          }).catch(function () {
+              alert('服务器错误')              
+          })
+  }
+
+  // var bs64 = window.btoa($rootScope.user_name + ':' + $window.localStorage.access_token)
+  submitTask (v) {
+    console.log(v);
+      let vm = this
+      let userInfo = JSON.parse(localStorage.getItem('userInfo'))
+      let tokens = JSON.parse(localStorage.getItem('tokens'));
+      let bs64 = window.btoa(userInfo.username + ':' + tokens.access_token)
+
+      axios({
+          method: 'post',
+          headers: { "Authorization": "Basic " + bs64 },
+          data: {
+              action: 'complete',
+              variables: v
+          },
+          url:  '/api/activiti/runtime/tasks/' + vm.todo.id
+      }).then(function successCallback() {
+              alert('提交成功')
+              vm.navCtrl.pop()
+          }).catch(function errorCallback() {
+              alert('服务器错误')                
+          })
+  }
     //日期选择
 
-    house  // = {room:'',hall:'',kitchen:'',bathroom:''} //room: 0, hall: 0, kitchen: 0, bathroom: 0
+    house:any = {} // = {room:'',hall:'',kitchen:'',bathroom:''} //room: 0, hall: 0, kitchen: 0, bathroom: 0
     endTask () {
         let vm = this
         let variables = []
