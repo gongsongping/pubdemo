@@ -1,5 +1,5 @@
 <!--
-  Generated template for the Tododetails page.
+  Generated template for the Tododetails? page.
 
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
@@ -15,14 +15,14 @@
 
 <ion-content>
   <div *ngFor="let d of descriptionMap" style="margin:10px;">
-    <div *ngIf="d.name == 'seller_id'" style="border-bottom:1px solid lightgrey;"><span style="color:#265fdf;">{{d.nameCn}}:</span>&nbsp;&nbsp;{{d.details.name}}&nbsp;&nbsp;<a href="tel:{{d.details.mobile}}">{{d.details.mobile}} <ion-icon style="color:#265fdf;" name="call"></ion-icon> </a></div>
-    <div *ngIf="d.name == 'buyer_id'" style="border-bottom:1px solid lightgrey;"><span style="color:#265fdf;">{{d.nameCn}}:</span>&nbsp;&nbsp;{{d.details.name}}&nbsp;&nbsp;<a href="tel:{{d.details.mobile}}">{{d.details.mobile}} <ion-icon style="color:#265fdf;" name="call"></ion-icon> </a></div>
-    <div *ngIf="d.name == 'mission_id'" style="border-bottom:1px solid lightgrey;"><span style="color:#265fdf;">{{d.nameCn}}:</span>&nbsp;&nbsp;订单号：{{d.details.serialNumber}}&nbsp;&nbsp;</div>
-    <!--(click)='goHousedetails(d.details.id)'-->
-    <div *ngIf="(d.name == 'house_id')&&(!!d.value)" style="border-bottom:1px solid lightgrey;"><span style="color:#265fdf;">{{d.nameCn}}:</span>&nbsp;&nbsp;{{d.details.name}}&nbsp;&nbsp;价格：{{d.details.price}}万&nbsp;&nbsp;
-      描述: {{d.details.description}}
+    <div *ngIf="d.name == 'seller_id'" style="border-bottom:1px solid lightgrey;"><span style="color:#265fdf;">{{d.nameCn}}:</span>&nbsp;&nbsp;{{d.details?.name}}&nbsp;&nbsp;<a href="tel:{{d.details?.mobile}}">{{d.details?.mobile}} <ion-icon style="color:#265fdf;" name="call"></ion-icon> </a></div>
+    <div *ngIf="d.name == 'buyer_id'" style="border-bottom:1px solid lightgrey;"><span style="color:#265fdf;">{{d.nameCn}}:</span>&nbsp;&nbsp;{{d.details?.name}}&nbsp;&nbsp;<a href="tel:{{d.details?.mobile}}">{{d.details?.mobile}} <ion-icon style="color:#265fdf;" name="call"></ion-icon> </a></div>
+    <div *ngIf="d.name == 'mission_id'" style="border-bottom:1px solid lightgrey;"><span style="color:#265fdf;">{{d.nameCn}}:</span>&nbsp;&nbsp;订单号：{{d.details?.serialNumber}}&nbsp;&nbsp;</div>
+    <!--(click)='goHousedetails?(d.details?.id)'-->
+    <div *ngIf="(d.name == 'house_id')&&(!!d.value)" style="border-bottom:1px solid lightgrey;"><span style="color:#265fdf;">{{d.nameCn}}:</span>&nbsp;&nbsp;{{d.details?.name}}&nbsp;&nbsp;价格：{{d.details?.price}}万&nbsp;&nbsp;
+      描述: {{d.details?.description}}
     </div>
-    <div *ngIf="d.name == 'region_id'" style="border-bottom:1px solid lightgrey;"><span style="color:#265fdf;">{{d.nameCn}}:</span>&nbsp;&nbsp;{{d.details.name}}</div>
+    <div *ngIf="d.name == 'region_id'" style="border-bottom:1px solid lightgrey;"><span style="color:#265fdf;">{{d.nameCn}}:</span>&nbsp;&nbsp;{{d.details?.name}}</div>
   </div>
 
   <div *ngFor="let d of descriptionMap" style="margin:10px;">
@@ -257,6 +257,7 @@
         <input (change)='getDesignBlobs($event)' type="file">        
         <div style="clear: both;"></div>
         {{f.id}}
+        <input type="file" imageUpload (imageSelected)="selectedDesignBlobs($event)" [resizeOptions]="resizeOptions">
       </div>
 
     </div>

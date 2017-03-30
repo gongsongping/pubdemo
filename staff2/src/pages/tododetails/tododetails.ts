@@ -5,6 +5,7 @@ import entries from "lodash/entries";
 import assign from "lodash/assign";
 // import { Districtdetails } from '../districtdetails/districtdetails';
 import { Housedetails } from '../housedetails/housedetails';
+import { ImageResult, ResizeOptions } from 'ng2-imageupload';
 
 /*
   Generated class for the Tododetails page.
@@ -338,6 +339,45 @@ export class Tododetails {
         // vm.innerBlobs.splice(index, 1)
         vm.innerUrls.splice(index, 1)
         // console.log(vm.innerUrls)
+    }
+
+    src: string = "";
+    resizeOptions: ResizeOptions = {
+        resizeMaxHeight: 800,
+        resizeMaxWidth: 800
+    };
+
+    dataURItoBlob(dataURI) {
+        var byteString = atob(dataURI.split(',')[1]);
+        var ab = new ArrayBuffer(byteString.length);
+        var ia = new Uint8Array(ab);
+        for (var i = 0; i < byteString.length; i++) {
+            ia[i] = byteString.charCodeAt(i);
+        }
+        return new Blob([ab], { type: 'image/jpeg' });
+    }
+
+    selectedDesignBlobs(imageResult: ImageResult) {
+        let vm =  this
+        // console.log(imageResult);
+        // this.src = imageResult.resized
+        //     && imageResult.resized.dataURL
+        //     || imageResult.dataURL;
+
+        console.log(this.src);    
+        let f = new FormData()
+        let imgBlob = vm.dataURItoBlob(imageResult.resized.dataURL)
+        let name = new Date().getTime()+'.jpeg';
+        let imgFile = new File([imgBlob], name);
+        // console.log(imgBlob,imgFile);
+        f.append('photo',imgFile)
+        axios({
+            method:'post',
+            url: '/api/storage/photos',
+            data: f
+        }).then(function (res) {
+            vm.designUrls.push(res.data.url)
+        })
     }
 
 }

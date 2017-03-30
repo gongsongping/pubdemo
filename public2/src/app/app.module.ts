@@ -20,6 +20,8 @@ import { Message } from '../pages/message/message';
 
 import { NestedCom, House, TestService, ImgPipe, HouseTypePipe, Distribution } from '../providers/services';
 
+import { ImageUploadModule } from 'ng2-imageupload';
+
 // let prodMode: boolean = window.hasOwnProperty('cordova');//!!window.cordova;
 // ionicBootstrap(MyApp, [], {prodMode: prodMode});
 // import {enableProdMode} from '@angular/core';
@@ -54,7 +56,8 @@ enableProdMode();
     IonicModule.forRoot(MyApp, {
       tabsHideOnSubPages: true,
       backButtonText: ''
-    })
+    }),
+    ImageUploadModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
