@@ -1,12 +1,12 @@
 page-message {
-    ion-toolbar.toolbar-ios{
-        padding:0;
-        border-bottom:1px solid #f0f2f6
-    }
     ion-content{
         background-color: #f6f7fb;
     }
-    .item-ios ion-thumbnail{
+    .record-select{
+        padding:0;
+        border-bottom:1px solid #f0f2f6;
+    }
+    .item-md ion-thumbnail, .item-md ion-thumbnail,.item-ios ion-thumbnail, .item-ios ion-thumbnail{
         min-width: 50px;
         min-height: 50px;
         img{

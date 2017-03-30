@@ -6,13 +6,23 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>servicecall</ion-title>
+  <ion-navbar mode='ios'>
+    <ion-title text-center>客户电话</ion-title>
   </ion-navbar>
 
 </ion-header>
 
-
-<ion-content padding>
-
+<!--<ion-content padding>-->
+<ion-content padding class='flex-column'>
+  <div class="flex-1 servicecall-1">
+    <div class='top'>
+      <h4>如您有任何疑问，请直接拨打服务电话：</h4>
+    </div>
+    <div class='bottom'>
+      <h1>400-600-1669</h1>
+    </div>
+  </div>
+  <div class='flex-2 servicecall-2'>
+    <a href="tel:4006001669" ion-button full round><ion-icon name='ios-call-outline' style="font-size:3rem;"></ion-icon></a>
+  </div>
 </ion-content>

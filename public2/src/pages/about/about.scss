@@ -1,3 +1,16 @@
 page-about {
-
+    .about {
+        line-height: 24px;
+        padding: 25px 15px;
+        p{
+            letter-spacing: 1px;
+            text-indent: 2em;
+        }
+        .p1 {
+            margin-top: 8px;
+            span {
+                color: #265fdf;
+            }
+        }
+    }
 }

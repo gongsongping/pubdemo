@@ -9,7 +9,7 @@
 				<!--<ion-icon name="person-add"></ion-icon>-->
 				<img src="assets/img/icon/_0023_message.png" width="26">
 			</button>
-		    <ion-badge *ngIf='messagesTotal>0' item-right color="danger">{{messagesTotal}}</ion-badge>
+			<ion-badge *ngIf='messagesTotal>0' item-right color="danger">{{messagesTotal}}</ion-badge>
 		</ion-buttons>
 		<!--<button ion-button side="right">
       <img src="assets/img/icon/_0023_message.png" width="26">
@@ -19,10 +19,36 @@
 <ion-content>
 	<div class="home-list" *ngIf="tabIndex == 1">
 		<ion-list>
+			<button ion-item>
+               合作商家
+            </button>
+			<button ion-item>
+               合作商家
+            </button>
+			<button ion-item>
+               合作商家
+            </button>
+			<button ion-item>
+               合作商家
+            </button>
+			<button ion-item>
+               合作商家
+            </button>
+			<button ion-item>
+               合作商家
+            </button>
+			<button ion-item>
+               合作商家
+            </button>
+			<button ion-item>
+               合作商家
+            </button>
+		</ion-list>
+		<!--<ion-list>
 			<ion-item>
 				合作商家
 			</ion-item>
-		</ion-list>
+		</ion-list>-->
 	</div>
 	<div class="home-list" *ngIf="tabIndex == 2">
 		<ion-list>
@@ -72,7 +98,7 @@
 					<h5>部门客户</h5>
 				</div>
 			</div>
-      <div class="col-50" (click)="pushTo(customermine)" *ngIf="roleName == '置业顾问' || roleName =='房管家'">
+			<div class="col-50" (click)="pushTo(customermine)" *ngIf="roleName == '置业顾问' || roleName =='房管家'">
 				<div>
 					<img src="assets/img/icon/_0009_heads.png" width="65" />
 					<h5>客户管理</h5>
@@ -88,15 +114,15 @@
 	</div>
 	<div class="home-info" *ngIf="tabIndex == 5">
 		<div class="row">
-			<div class="col-50" (click)="pushTo(housemine)"  *ngIf="(roleName == '房管家') || (roleName == '租赁专员')">
+			<div class="col-50" (click)="pushTo(housemine)" *ngIf="(roleName == '房管家') || (roleName == '租赁专员')">
 				<div>
-					<img src="assets/img/icon/_0007_myhome.png" width="65"/>
+					<img src="assets/img/icon/_0007_myhome.png" width="65" />
 					<h5>我的房源</h5>
 				</div>
 			</div>
-			<div class="col-50"  *ngIf="roleName == '经理' || roleName == '副总经理' || roleName == '总经理'">
+			<div class="col-50" *ngIf="roleName == '经理' || roleName == '副总经理' || roleName == '总经理'">
 				<div>
-					<img src="assets/img/icon/_0007_myhome.png" width="65"/>
+					<img src="assets/img/icon/_0007_myhome.png" width="65" />
 					<h5>房源管理</h5>
 				</div>
 			</div>

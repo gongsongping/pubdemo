@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { Districtdetails } from '../districtdetails/districtdetails';
 
+import axios from 'axios';
 declare var BMap: any;
 
 /*
@@ -19,8 +20,9 @@ export class Housedetails {
     userInfo: any;
     house: any;
     isAction = false;
+    subdistricts:any;
     constructor(public navCtrl: NavController, public Params: NavParams) {
-        this.house = Params.get('house')
+        this.house = this.Params.get('house');
     }
 
     ionViewDidEnter() {
@@ -40,16 +42,20 @@ export class Housedetails {
         }
         map.enableScrollWheelZoom(true);
     }
-
-    ionViewWillEnter() {
-
+    ionViewWillEnter(){
+        let vm = this;
+        let url = 'api/housing/subdistricts/' + vm.house.subdistrict.id
+        axios.get(url)
+            .then(function (res) {
+                vm.subdistricts = res.data;
+            })
     }
     ionViewDidLoad() {
         console.log('----housedetails----- Page did load');
     }
 
-    goDistrict(d){
-        this.navCtrl.push(Districtdetails, { house: d })
+    goDistrict(){
+        this.navCtrl.push(Districtdetails, { subdistricts: this.subdistricts })
     }
     action () {
         this.isAction = !this.isAction

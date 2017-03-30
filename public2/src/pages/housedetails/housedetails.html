@@ -72,7 +72,7 @@
             <div class='flex-col'>
 
             </div>
-            <a class='flex-row' *ngIf="house.subdistrict !== null" (click)="goDistrict(house)">
+            <a class='flex-row' *ngIf="house.subdistrict !== null" (click)="goDistrict()">
                 <div>
                     小区：
                     <span>{{house.subdistrict.name}}</span>
