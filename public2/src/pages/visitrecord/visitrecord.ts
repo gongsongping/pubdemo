@@ -48,6 +48,7 @@ export class Visitrecord {
     selectStatus(m){
         let vm = this;
         vm.selectTab = m.id;
+        vm.visit = 1;
         vm.statusParams = '&statusIn=' + m.status;
         vm.initial();
     }

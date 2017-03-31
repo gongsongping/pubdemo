@@ -1,3 +1,20 @@
 page-servicecall {
-
+    .flex-column {
+        display: -webkit-flex;
+        /* Safari */
+        display: flex;
+        -webkit-flex-direction: column;
+        flex-direction: column;
+        .top{
+            font-size: 1em;
+            text-align: left;
+        }
+        .bottom{
+            text-align: center;
+            color:#265fdf;
+            h1{
+                font-weight:700;
+            }
+        }
+    }
 }

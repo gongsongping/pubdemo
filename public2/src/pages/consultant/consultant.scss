@@ -10,7 +10,7 @@ page-consultant {
             margin-top: 16px;
         }
     }
-    .item-ios ion-thumbnail{
+    .item-md ion-thumbnail, .item-md ion-thumbnail,.item-ios ion-thumbnail, .item-ios ion-thumbnail{
         min-width: 45px;
         min-height:45px;
         img{
@@ -18,7 +18,7 @@ page-consultant {
             height:45px;
         }
     }
-    .item-ios .item-button{
+    .item-ios .item-button,.item-md .item-button{
         height:30px;
     }
 }

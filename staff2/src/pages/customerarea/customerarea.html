@@ -21,7 +21,7 @@
         {{pop?.name}}<span style="color: red;font-size: 12px;margin-left: 2px" *ngIf="pop.position">[ {{pop.position?.name}} ]</span>
       </div>
       <span style="color: #666;margin-right: 12px;">
-          客户人数(<span style="color: #265fdf;">{{  0 }}</span>)
+          客户人数(<span style="color: #265fdf;">{{ pop?.total || 0 }}</span>)
       </span>
       <ion-icon class="ion-icon" name="arrow-forward"></ion-icon>
     </div>
@@ -33,7 +33,7 @@
         {{pop?.name}}
       </div>
       <span style="color: #666;margin-right:12px;">
-          客户人数(<span style="color: #265fdf;">{{  0 }}</span>)
+          客户人数(<span style="color: #265fdf;">{{ pop?.total || 0 }}</span>)
       </span>
       <ion-icon class="ion-icon" name="arrow-forward"></ion-icon>
     </div>

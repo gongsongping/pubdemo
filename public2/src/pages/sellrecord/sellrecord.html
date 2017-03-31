@@ -1,7 +1,7 @@
 <ion-header>
 
-    <ion-navbar>
-        <ion-title>卖房记录</ion-title>
+    <ion-navbar mode='ios'>
+        <ion-title text-center>卖房记录</ion-title>
     </ion-navbar>
 
 </ion-header>
@@ -35,12 +35,12 @@
             </div>
             <div class="item record-4">
                 <div class='group'>
-                    <button ion-button small clear>跟踪状态</button>
+                    <button ion-button small round outline style="padding:0 5px;">跟踪状态</button>
                 </div>
             </div>
         </div>
         <div *ngIf="total == 0" class="prompt">
-            <ion-icon ios="ios-create-outline"></ion-icon>
+            <ion-icon name="ios-create-outline"></ion-icon>
             <p>您还没有相关的记录</p>
         </div>
     </div>

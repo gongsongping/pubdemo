@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams,Content } from 'ionic-angular';
+import { NavController, NavParams, Content } from 'ionic-angular';
 import { Districtdetails } from '../districtdetails/districtdetails';
 import { Housedetailsedit } from '../housedetailsedit/housedetailsedit';
 import axios from 'axios';
@@ -30,16 +30,15 @@ export class Housedetails {
     messagesDetailName = [];
     referrerName = {};
     hkName = [];
+    subdistricts: any;
     constructor(public navCtrl: NavController, public navParams: NavParams) {
-        // console.log(Params.get('house'))
-        // this.house = Params.get('house')
         let vm = this;
         vm.house = navParams.get('house')
         vm.enterTyle = navParams.get('enter');
     }
-  scrollToTop() {
-    this.content.scrollToTop();
-  }
+    scrollToTop() {
+        this.content.scrollToTop();
+    }
     ionViewDidLoad() {
         // this.doInfinite(false);
         console.log('ionViewDidLoad HousesearchPage');
@@ -96,6 +95,11 @@ export class Housedetails {
                         })
                 }
             })
+        let url1 = 'api/housing/subdistricts/' + vm.house.subdistrict.id
+        axios.get(url1)
+            .then(function (res) {
+                vm.subdistricts = res.data;
+            })
     }
     ionViewDidEnter() {
         let map = new BMap.Map("housedetails-map");
@@ -118,8 +122,8 @@ export class Housedetails {
             vm.userInfo = ''
         }
     }
-    districtDs(d) {
-        this.navCtrl.push(Districtdetails, { house: d })
+    districtDs() {
+        this.navCtrl.push(Districtdetails, { subdistricts: this.subdistricts })
     }
     pushEdit(e) {
         this.navCtrl.push(Housedetailsedit, { house: e })

@@ -85,7 +85,7 @@ export class Home {
   }
 
   pushTo(h) {
-    this.navCtrl.push(h);
+    this.navCtrl.push(h, { staff: this.userInfo});
   }
 
   ngOnInit() {
@@ -143,10 +143,6 @@ export class Home {
             })
     }
  
-
-  goPerson(h){
-    this.navCtrl.push(h, { staff: this.userInfo})
-  }
 
   goDepartment(h) {
     this.navCtrl.push(h, {department: this.userInfo.department});
