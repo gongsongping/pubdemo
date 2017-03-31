@@ -11,11 +11,10 @@
   </ion-navbar>
 
   <div *ngIf='districtShow' style='width:100vw;height:100vh; background: white;'>
-    <ion-toolbar color='lightprimary'>
+    <ion-toolbar mode='ios' color='lightprimary'>
+      <ion-title text-center>选择小区</ion-title>
       <ion-buttons right>
-        <button (click)="districtToggle()" ion-button icon-only>
-        取消
-      </button>
+        <button (click)="districtToggle()" ion-button icon-only> 取消 </button>
       </ion-buttons>
     </ion-toolbar>
     <ion-searchbar mode='ios' [(ngModel)]='searchData.input' placeholder='请输入小区或商圈名称' (ionInput)="searchDisOnInpuChange($event)"
