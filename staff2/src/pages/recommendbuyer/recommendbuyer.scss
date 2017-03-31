@@ -6,6 +6,7 @@ page-recommendbuyer {
             padding: 0;
             color: #b2bac7;
             margin-top:20px;
+            overflow: hidden;
             .item-inner{
                 padding:0;
                 border-bottom:0;
@@ -34,8 +35,9 @@ page-recommendbuyer {
         .item-ios ion-icon[item-right]{
             position: absolute;
             right: 10px;
-            top: 13px;
+            top:50%;
             margin: 0;
+            margin-top: -14px;
         }
     }
     .recommendation{
