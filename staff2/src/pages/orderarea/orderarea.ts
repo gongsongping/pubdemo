@@ -24,45 +24,62 @@ export class Orderarea {
     this.department = params.get('department');
   }
 
-  //子级部门员工
+  //部门及下级部门员工,待处理订单
+  nextStaffTasks(t){
+    for(let i of t){
+      let vm = this
+      let bs64 = window.btoa(vm.userInfo.username + ':' + vm.userToken.access_token);
+      axios({
+        method: 'POST',
+        headers: {"Authorization": "Basic " + bs64},
+        url: '/api/activiti/query/tasks',
+        data: {
+          assignee: t.id,
+          size: 0,
+          order: 'desc',
+        }
+      }).then(function successCallback(res) {
+        // console.log(res.data);
+
+      })
+    }
+  }
+
+  //部门及下级部门员工
   nextDepartment(t){
     let vm = this
     let nextDepartmentId = []
-    let staffDepartment = []
     let employer = []
     axios({
       method: 'get',
       url: '/api/account/departments/' + t.id,
     }).then(function successCallback(res) {
       nextDepartmentId = res.data.childrenIds;
+      nextDepartmentId.push(t.id)
       axios({
         method: 'get',
         url: '/api/account/employees',
         params: {departmentIdIn: JSON.stringify(nextDepartmentId), size: 999, type: 1}
       }).then(function successCallback(res2) {
         // vm.nextStaffTasks(res2.data.data)
+
         for(let i of res2.data.data){
           employer.push(i.id)
-          let bs64 = window.btoa(vm.userInfo.username + ':' + vm.userToken.access_token);
-          axios({
-            method: 'POST',
-            headers: {"Authorization": "Basic " + bs64},
-            url: '/api/activiti/query/tasks',
-            data: {
-              assignee: t.id,
-              size: 0,
-              order: 'desc',
-            }
-          }).then(function successCallback(res) {
-
-            while (i.department){
-              staffDepartment.push(i.department)
-              i.department = i.department.superior
-            }
-          })
         }
+        //部门，下级部门全部订单数
         if(employer.length){
-          // vm.staffAllTasks(employer)
+          axios({
+            method: 'get',
+            url: '/api/mission/missions',
+            params: {
+              status: 7,
+              size: 0,
+              pcId_OR_pcmId_OR_hkId_OR_hkmId_OR_wcId_OR_lsId_OR_nsId_OR_ctId_OR_csId_IN: JSON.stringify(employer)
+            },
+          }).then(function successCallback(res) {
+            t.orderLength = res.data.total;
+          })
+
           axios({
             method: 'get',
             url: '/api/mission/missions',
@@ -71,53 +88,22 @@ export class Orderarea {
               pcId_OR_pcmId_OR_hkId_OR_hkmId_OR_wcId_OR_lsId_OR_nsId_OR_ctId_OR_csId_IN: JSON.stringify(employer)
             },
           }).then(function successCallback(res) {
-            // t.pcOrderLength = res.data.total;
+            t.pcOrderLength = res.data.total;
           })
         }
+
       })
     })
   }
 
-  //子级部门员工待处理订单
-  // nextStaffTasks(t){
-  //   for(let i of t){
-  //     let vm = this
-  //     let bs64 = window.btoa(vm.userInfo.username + ':' + vm.userToken.access_token);
-  //     axios({
-  //       method: 'POST',
-  //       headers: {"Authorization": "Basic " + bs64},
-  //       url: '/api/activiti/query/tasks',
-  //       data: {
-  //         assignee: t.id,
-  //         size: 0,
-  //         order: 'desc',
-  //       }
-  //     }).then(function successCallback(res) {
-  //       // console.log(res.data);
-  //         if(true){
-  //
-  //       }
-  //     })
-  //   }
-  // }
-
-  //子级部门全体员工全部订单
-  staffAllTasks(t){
-    axios({
-      method: 'get',
-      url: '/api/mission/missions',
-      params: {
-        size: 0,
-        pcId_OR_pcmId_OR_hkId_OR_hkmId_OR_wcId_OR_lsId_OR_nsId_OR_ctId_OR_csId_IN: JSON.stringify(t)
-      },
-    }).then(function successCallback(res) {
-      t.pcOrderLength = res.data.total;
-    })
-  }
-
-  //部门每个员工全部订单
+  //部门每个员工订单数
   orderNum(t) {
-    var params = {
+    let params = {
+      pcId_OR_pcmId_OR_hkId_OR_hkmId_OR_wcId_OR_lsId_OR_nsId_OR_ctId_OR_csId: t.id,
+      status:7,
+      size: 0
+    };
+    let allParams = {
       pcId_OR_pcmId_OR_hkId_OR_hkmId_OR_wcId_OR_lsId_OR_nsId_OR_ctId_OR_csId: t.id,
       size: 0
     };
@@ -125,6 +111,13 @@ export class Orderarea {
       method: 'get',
       url: '/api/mission/missions',
       params: params,
+    }).then(function successCallback(res) {
+      t.Order = res.data.total;
+    })
+    axios({
+      method: 'get',
+      url: '/api/mission/missions',
+      params: allParams,
     }).then(function successCallback(res) {
       t.allOrder = res.data.total;
     })
@@ -135,7 +128,6 @@ export class Orderarea {
     let datePipe = new DatePipe('en-US');
     let endDate = datePipe.transform(new Date(), 'yyyy-MM-dd');
     let departmentId = vm.department.id
-    //下级部门
     axios({
       method: 'get',
       url: '/api/account/departments',
@@ -156,7 +148,6 @@ export class Orderarea {
             vm.orderNum(t)
           }
         })
-
       }
     })
   }

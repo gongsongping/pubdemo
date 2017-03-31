@@ -8,9 +8,15 @@ import { Recommendbuyer } from '../recommendbuyer/recommendbuyer';
 import { Houseclue } from '../houseclue/houseclue';
 import { Ordermine } from '../ordermine/ordermine';
 import { Customermine } from '../customermine/customermine';
+
+import axios from 'axios';
+import { Tododetails } from '../tododetails/tododetails';
+
+
 import { Statistics } from '../statistics/statistics';
 import { Orderarea } from '../orderarea/orderarea';
 import { Customerarea } from '../customerarea/customerarea';
+
 
 /*
   Generated class for the Home page.
@@ -40,29 +46,30 @@ export class Home {
   roleName:any
   tabIndex: any
   customermine: any = Customermine
+
+  constructor(public navCtrl: NavController, public navParams: NavParams) { }
+
   statistics: any = Statistics
   orderarea: any = Orderarea
   customerarea: any = Customerarea
-  userInfo: any = JSON.parse(localStorage.getItem('userInfo'))
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    let vm = this
-    vm.roleName = localStorage.getItem('role')
-    if (vm.roleName == '开发专员'){
-      vm.tabIndex = 1;
-    } else if(vm.roleName == '看房顾问' || vm.roleName == '看房顾问总经理'){
-      vm.tabIndex = 3;
-    } else {
-      vm.tabIndex = 2;
-    }
-  }
+
+
+
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad HomePage');
+    this.roleName = this.navParams.get('roleName')
+   
+    console.log('---ionViewDidLoad HomePage----',this.roleName);
+    // this.roleName = localStorage.getItem('role')
+     if (this.roleName == '开发专员'){
+        this.tabIndex = 1;
+      } else if(this.roleName == '看房顾问' || this.roleName == '看房顾问总经理'){
+        this.tabIndex = 3;
+      } else {
+        this.tabIndex = 2;
+      }
   }
-  ionViewWillEnter() {
-    let vm = this;
-    vm.roleName = localStorage.getItem('role')
-  }
+ 
   ionViewDidEnter() {
     // console.log(this.navParams.get('id'))
     // console.log('---- role Page will enter-----', this.navCtrl.parent);
@@ -78,18 +85,67 @@ export class Home {
   }
 
   pushTo(h) {
-    this.navCtrl.push(h);
+    this.navCtrl.push(h, { staff: this.userInfo});
   }
 
   ngOnInit() {
     console.log('----home---- Page oninit');
   }
-
-  goPerson(h){
-    this.navCtrl.push(h, { staff: this.userInfo})
+  
+  //todos
+  tokens:any
+  userInfo:any
+  todos:any
+  dataLength:any
+  spinner:any 
+  baseURL:any
+  ionViewWillEnter() {
+      this.baseURL = axios.defaults.baseURL 
+      this.userInfo = JSON.parse(localStorage.getItem('userInfo'))
+      this.tokens = JSON.parse(localStorage.getItem('tokens'));
+      let vm  = this
+      vm.todos = []
+      vm.dataLength = 20
+      vm.spinner = true
+      //api/activiti/runtime/tasks?assingee=43
+      let bs64 = window.btoa(vm.userInfo.username + ':' + vm.tokens.access_token)
+      axios({
+          method: 'get',
+          headers: { "Authorization": "Basic " + bs64 },
+          url: '/api/activiti/runtime/tasks?size=500&sort=createTime&order=desc&assignee=' + vm.userInfo.id
+      }).then(function successCallback(res) {
+              // console.log(res.data.data);
+             setTimeout(() => {
+                  vm.spinner = false
+                  vm.dataLength = res.data.data.length
+              }, 1000)
+             vm.todos = res.data.data
+          })
+     
   }
+
+
+
+    goTodoDetails (t) {
+        this.navCtrl.push(Tododetails,{todo: t})
+    }
+
+    todosTotal:any
+    getTodosTotal (s) {
+        let vm = this
+        let bs64 = window.btoa(vm.userInfo.username + ':' + vm.tokens.access_token)
+        axios({
+            method: 'get',
+            headers: { "Authorization": "Basic " + bs64 },
+            url: '/api/activiti/runtime/tasks?sort=createTime&order=desc&size=' + s
+        }).then(function successCallback(res) {
+                vm.todosTotal = res.data.data
+            })
+    }
+ 
 
   goDepartment(h) {
     this.navCtrl.push(h, {department: this.userInfo.department});
   }
+
 }

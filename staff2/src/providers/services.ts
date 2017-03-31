@@ -2,6 +2,11 @@ import { Component, Input, Output, EventEmitter, Pipe, PipeTransform } from '@an
 import { NavController} from 'ionic-angular';
 import axios from 'axios';
 import { Housedetails } from '../pages/housedetails/housedetails';
+import { Tododetails } from '../pages/tododetails/tododetails';
+// import _ from "lodash";
+// import * as _ from "lodash";
+import entries from "lodash/entries";
+import assign from "lodash/assign";
 
 /*
   Generated class for the NestedCom provider.
@@ -197,3 +202,102 @@ export class Handle {
 }
 
 
+@Component({
+  selector: 'todoitem',
+  // templateUrl:'_todoitem.html'
+  template: ` 
+	<div class="todoitem" >
+		<ion-list>
+			<ion-list-header>您收到一条“{{todo?.name}}”任务</ion-list-header>
+			<ion-item>
+        <div *ngFor="let d of descriptionMap" style="margin:10px;">
+          <p *ngIf="d.name == 'mission_id'"><span>订单编号：</span>{{d.details?.serialNumber}}</p>
+          <p *ngIf="d.name == 'seller_id'"><span>{{d.nameCn}}：</span>{{d.details?.name}}&nbsp;{{d.details?.mobile}}</p>
+          <p *ngIf="d.name == 'buyer_id'"><span>{{d.nameCn}}：</span>{{d.details?.name}}&nbsp;{{d.details?.mobile}}</p>
+          <p *ngIf="d.name == 'house_addr'"><span>房源地址：</span>{{d.value}}</p>
+         
+        </div>
+				<div class="see" (click)='goDetail()'>
+					<img src="assets/img/icon/_0013_seeright.png" width="16">
+					<span>查看详情 </span>
+				</div>
+			</ion-item>
+		</ion-list>
+	</div>`
+})
+export class Todoitem {
+  @Input() todo: any;
+  variables:any;
+  descriptionMap = [];
+
+  constructor(public navCtrl: NavController) {}
+  
+  getDetails (des,url){
+    axios({
+          method: 'get',
+          url: url + des.value
+      }).then(function successCallback(res) {
+              des.details = res.data
+          })
+          // .catch(function () {
+          //     des.details = null
+          // })
+  }
+  ngOnInit() {
+    let vm = this
+    let userInfo = JSON.parse(localStorage.getItem('userInfo'))
+    let tokens = JSON.parse(localStorage.getItem('tokens'));
+    let bs64 = window.btoa(userInfo.username + ':' + tokens.access_token)
+
+    axios({
+        method: 'get',
+        headers: { "Authorization": "Basic " + bs64 },
+        url: '/api/activiti/runtime/process-instances/' + vm.todo.processInstanceId + '/variables'
+    }).then(function successCallback(res) {
+            vm.variables = res.data
+
+            if (!vm.todo.description){ return}
+            // from [{'buy_id','买家'}] to [{name:'buy_id',nameCn:'买家'}]
+            let description = JSON.parse(vm.todo.description).map(function (d) {
+                let da =  entries(d)[0]
+                return {name:da[0],nameCn:da[1]}                
+            })
+            // from [{name:'buy_id',nameCn:'买家'}] to [{name:'buy_id',nameCn:'买家',value:12}]
+            description.forEach(function (d) {
+                 vm.variables.forEach(function (v) {
+                    if (d.name == v.name){
+                      vm.descriptionMap.push(assign(d,v))
+                    }
+                 })
+            })
+            // seller_id? {"mission_id":"订单"},{"buyer_id":"买家"},{"house_id": "房源"},{"region_id":"区域"},
+            // // // // '/api/account/employees/''/api/account/users/''/api/mission/missions/''/api/housing/houses/''/api/housing/regions/'
+            vm.descriptionMap.forEach(function (d) {
+                if (d.name == 'mission_id'){
+                   vm.getDetails(d,'/api/mission/missions/')
+                }
+                if (d.name == 'buyer_id'){
+                   vm.getDetails(d,'/api/account/users/')
+                }
+                if (d.name == 'seller_id'){
+                   vm.getDetails(d,'/api/account/users/')
+                }
+                if (d.name == 'house_id'){
+                   vm.getDetails(d,'/api/housing/houses/')
+                }
+                if (d.name == 'region_id'){
+                   vm.getDetails(d,'/api/housing/regions/')
+                }
+            })
+            // setTimeout(()=>{
+            //   console.log(vm.descriptionMap);
+            // },2000)
+        })
+        
+  }
+  
+  goDetail() {
+     this.navCtrl.push(Tododetails, { todo: this.todo, variables: this.variables, descriptionMap: this.descriptionMap })
+  }
+  
+}

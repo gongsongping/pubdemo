@@ -10,7 +10,7 @@
     <ion-title text-center>为您找房</ion-title>
   </ion-navbar>
 
-  <div *ngIf='districtShow' style='width:100vw;height:100vh;background: white;'>
+  <div *ngIf='districtShow' style='width:100vw;height:100vh; background: white;'>
     <ion-toolbar color='lightprimary'>
       <ion-buttons right>
         <button (click)="districtToggle()" ion-button icon-only>
@@ -21,31 +21,33 @@
     <ion-searchbar mode='ios' [(ngModel)]='searchData.input' placeholder='请输入小区或商圈名称' (ionInput)="searchDisOnInpuChange($event)"
       (ionClear)="clearInput($event)">
     </ion-searchbar>
-    <button *ngIf="!districts.length" ion-button full  color='light' style='margin:0;border-bottom: 1px solid lightgray;'>没有匹配</button>
-    <button *ngFor="let d of districts" (click)="chooseDis(d)" ion-button full color='light' style='margin:0;border-bottom: .2px solid lightgray;'>{{d.name}}</button>
+
+      <button *ngIf="!districts.length" ion-button full  color='light' style='margin:0;border-bottom: 1px solid lightgray;'>没有匹配</button>
+      <button *ngFor="let d of districts" (click)="chooseDis(d)" ion-button full color='light' style='margin:0;border-bottom: .2px solid lightgray;'>{{d.name}}</button>
+
   </div>
 </ion-header>
 
 
 <ion-content>
 
-  <ion-item (click)="districtToggle()" mode='ios' detail-push>
+  <ion-item  detail-push>
     <ion-label color="dark" style='width:26%;'>选择小区</ion-label>
-    <ion-input *ngIf='!choosedDis' type='text' placeholder="小区名称" ></ion-input>
-    <ion-input *ngIf='choosedDis' type='text' placeholder="{{choosedDis.name}}"></ion-input>
-    <!--<ion-label *ngIf='!choosedDis' color="grey" >小区名称</ion-label>-->
-    <!--<ion-label *ngIf='choosedDis' color="grey" >{{choosedDis.name}}</ion-label>-->
+    <ion-input (focus)="districtToggle()" *ngIf='!choosedDis' type='text' placeholder="小区名称" ></ion-input>
+    <ion-input (focus)="districtToggle()" *ngIf='choosedDis' type='text' placeholder="{{choosedDis.name}}"></ion-input>
+    <!--<div item-right *ngIf='!choosedDis' color="grey" >小区名称</div>-->
+    <!--<div item-right *ngIf='choosedDis' color="grey" >{{choosedDis.name}}</div>-->
   </ion-item>
-  <ion-item mode='ios'>
+  <ion-item>
     <ion-label color="dark" style='width:26%;'>姓名</ion-label>
     <!--<ion-label color="dark" style='width:13%;text-align: left;'>姓</ion-label>-->
     <!--<ion-label color="dark" style='width:13%;text-align: right;'>名</ion-label>-->
-    <ion-input [(ngModel)]='house.user_name' type='text' mode='ios' placeholder="姓名"></ion-input>
+    <ion-input [(ngModel)]='house.user_name' type='text'  placeholder="姓名"></ion-input>
   </ion-item>
-  <ion-item mode='ios'>
+  <ion-item>
     <ion-label color="dark" style='width:26%;'>联系电话</ion-label>
     <!--<ion-label color="grey">{{userInfo?.mobile}}</ion-label>-->
-    <ion-input disabled='true' type='text' mode='ios' placeholder="{{userInfo?.mobile}}"></ion-input>
+    <ion-input disabled='true' type='text'  placeholder="{{userInfo?.mobile}}"></ion-input>
   </ion-item>
   <div style='margin:40px 10vw;width:80vw;'>
     <button (click)="startBuyRecommend()" ion-button full round mode='ios'>提交</button>

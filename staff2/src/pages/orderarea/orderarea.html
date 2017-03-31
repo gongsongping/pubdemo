@@ -22,7 +22,7 @@
       </div>
       <span style="color: #666;margin-right: 12px">
           <!--待处理(<span style="color: #265fdf">{{pop?.unfinish || 0}}</span>)/全部(<span style="color: #265fdf">{{pop?.allOrder || 0 }}</span>)-->
-          待处理(<span style="color: #265fdf">{{ 0}}</span>)/全部(<span style="color: #265fdf">{{pop?.allOrder || 0 }}</span>)
+          待处理(<span style="color: #265fdf">{{pop?.Order || 0}}</span>)/全部(<span style="color: #265fdf">{{pop?.allOrder || 0 }}</span>)
       </span>
       <ion-icon class="ion-icon" name="arrow-forward"></ion-icon>
     </div>
@@ -35,7 +35,7 @@
       </div>
       <span style="color: #666;margin-right: 12px;">
           <!--待处理(<span style="color: #265fdf">{{pop.unfinish}}</span>)/全部(<span style="color: #265fdf">{{pop.pcOrderLength}}</span>)-->
-          待处理(<span style="color: #265fdf">{{0}}</span>)/全部(<span style="color: #265fdf">{{pop.pcOrderLength || 0}}</span>)
+          待处理(<span style="color: #265fdf">{{ pop?.orderLength || 0}}</span>)/全部(<span style="color: #265fdf">{{pop.pcOrderLength || 0}}</span>)
       </span>
       <ion-icon class="ion-icon" name="arrow-forward"></ion-icon>
     </div>

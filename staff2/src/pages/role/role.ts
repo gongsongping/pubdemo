@@ -115,7 +115,6 @@ export class Role {
       })
       .catch(function (error) {
         console.log(error);
-        // this.loginErr = error.data.errorMessage
       });
 
   }
@@ -123,7 +122,7 @@ export class Role {
   pushHome(i,r){
     localStorage.setItem('role',r)
     this.navCtrl.push(i,{
-        id:r
+        roleName:r
     });
     console.log(r)
   }

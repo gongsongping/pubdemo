@@ -50,19 +50,31 @@
 			</ion-item>
 		</ion-list>-->
 	</div>
-	<div class="home-list" *ngIf="tabIndex == 2">
-		<ion-list>
-			<ion-list-header>您收到一条“房源实勘”任务</ion-list-header>
-			<ion-item>
-				<p><span>订单编号：</span>2018025236999</p>
-				<p><span>业主姓名：</span>黄忠</p>
-				<p><span>房源地址：</span>成都市一环路西八段80号</p>
-				<div class="see">
-					<img src="assets/img/icon/_0013_seeright.png" width="16">
-					<span>查看详情 </span>
-				</div>
-			</ion-item>
-		</ion-list>
+	<div *ngIf="tabIndex == 2">
+		<div *ngIf='spinner' style="width:100%;margin:30px;text-align: center;">
+			<ion-spinner  name="circles"></ion-spinner>
+		</div>
+		<div *ngIf='dataLength==0' style="width:100%;margin:30px;text-align: center;">
+			没有待办事项!
+		</div>
+		<todoitem *ngFor='let t of todos' [todo]='t'></todoitem>
+		<!--<div class="home-list">
+			<ion-list>
+				<ion-list-header>您收到一条“房源实勘”任务</ion-list-header>
+				<ion-item>
+					<p><span>订单编号：</span>2018025236999</p>
+					<p><span>业主姓名：</span>黄忠</p>
+					<p><span>房源地址：</span>成都市一环路西八段80号</p>
+					<div class="see">
+						<img src="assets/img/icon/_0013_seeright.png" width="16">
+						<span>查看详情 </span>
+					</div>
+				</ion-item>
+			</ion-list>
+		</div>-->
+		<!--only n000149-->
+	    <button ion-button small (click)='getTodosTotal(5)' *ngIf="(baseURL=='http://60.205.169.195:7060' || baseURL=='http://60.205.169.195:7069' )&&(userInfo.name=='韩崇（置业顾问）' || userInfo.name=='龚松平')" >get all todos</button>
+		<todoitem *ngFor='let t of todosTotal' [todo]='t'></todoitem>
 	</div>
 	<div class="home-add" *ngIf="tabIndex == 3">
 		<ion-list>
@@ -86,13 +98,13 @@
 					<h5>部门订单</h5>
 				</div>
 			</div>
-			<div class="col-50" (click)='goPerson(ordermine)' *ngIf="roleName == '置业顾问' || roleName =='房管家' || roleName =='看房顾问' || roleName =='金融专员' || roleName =='权证专员' || roleName =='网签专员' || roleName =='客服专员'">
+      <div class="col-50" (click)='pushTo(ordermine)' *ngIf="roleName == '置业顾问' || roleName =='房管家' || roleName =='看房顾问' || roleName =='金融专员' || roleName =='权证专员' || roleName =='网签专员' || roleName =='客服专员'">
 				<div>
 					<img src="assets/img/icon/_0008_list.png" width="65" />
 					<h5>订单管理</h5>
 				</div>
 			</div>
-			<div class="col-50" (click)="goDepartment(customerarea)" *ngIf="roleName == '总经理' || roleName == '副总经理' || roleName == '置业顾问经理' || roleName == '销售总监' || roleName == '房管家经理' || roleName == '房源总监'">
+			<div class="col-50" (click)='goDepartment(customerarea)' *ngIf="roleName == '总经理' || roleName == '副总经理' || roleName == '置业顾问经理' || roleName == '销售总监' || roleName == '房管家经理' || roleName == '房源总监'">
 				<div>
 					<img src="assets/img/icon/_0009_heads.png" width="65" />
 					<h5>部门客户</h5>

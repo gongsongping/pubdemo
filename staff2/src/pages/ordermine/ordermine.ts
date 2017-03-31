@@ -16,7 +16,6 @@ import axios from 'axios';
 export class Ordermine {
   sub = []
   choosedidx: any
-  userInfo: any = JSON.parse(localStorage.getItem('userInfo'))
   mission: any = []
   items: any = []
   missionIds: any = []
@@ -58,52 +57,24 @@ export class Ordermine {
   loadMore(infiniteScroll){
     let vm = this
     let orderType =''
-    let userToken = JSON.parse(localStorage.getItem('tokens'))
-    let bs64 = window.btoa(vm.userInfo.username + ':' + userToken.access_token);
     axios({
-      method: 'POST',
-      headers: {"Authorization": "Basic " + bs64},
-      url: '/api/activiti/query/tasks',
-      data: {
-        assignee: vm.staff.id,
-        start: vm.start,
-        size: 10,
+      method: 'get',
+      url: '/api/mission/missions',
+      params: {
+        start:  vm.start,
+        status: 7,
         order: 'desc',
-      }
+        pcId_OR_pcmId_OR_hkId_OR_hkmId_OR_wcId_OR_lsId_OR_nsId_OR_ctId_OR_csId: vm.staff.id
+      },
     }).then(function successCallback(res) {
-      vm.tasks = vm.tasks.concat(res.data.data)
+      vm.mission = vm.mission.concat(res.data.data)
+      console.log(vm.mission);
       vm.missionData = res.data.total
       vm.missionLength = res.data.data.length
-      vm.noUnfinishOrders = !vm.tasks.length
+      vm.noUnfinishOrders = !vm.mission.length
       vm.start = vm.start + 1
-      if (vm.tasks.length) {
-        for (let t of res.data.data) {
-          axios({
-            method: 'GET',
-            headers: {"Authorization": "Basic " + bs64},
-            url: '/api/activiti/runtime/process-instances/' + t.processInstanceId + '/variables/mission_id?sort=creatDate',
-          }).then(function successCallback(res2) {
-            vm.missionIds.push(res2.data.value);
-            if (vm.missionIds.length == res.data.data.length) {
-              axios({
-                method: 'get',
-                url: '/api/mission/missions',
-                params: {
-                  idIn: JSON.stringify(vm.missionIds),
-                  // type: orderType,
-                  sort: 'modifiedDate',
-                  size: 10
-                }
-              }).then(function successCallback(res3) {
-                vm.mission = res3.data.data;
-                vm.noUnfinishOrders = !vm.mission.length;
-                for (let j of res3.data.data) {
-                  vm.orderInfo(j);
-                }
-              })
-            }
-          })
-        }
+      for (let j of res.data.data) {
+        vm.orderInfo(j);
       }
       if (infiniteScroll) {
         infiniteScroll.complete();

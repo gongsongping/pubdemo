@@ -21,10 +21,63 @@ export class Customerarea {
     this.department = params.get('department')
   }
 
+  //部门以及下级部门客户数
+  nextDepartment(t){
+    let nextDepartmentId = []
+    let employer = []
+    axios({
+      method: 'get',
+      url: '/api/account/departments/' + t.id,
+    }).then(function successCallback(res) {
+      nextDepartmentId = res.data.childrenIds;
+      nextDepartmentId.push(t.id)
+      axios({
+        method: 'get',
+        url: '/api/account/employees',
+        params: {departmentIdIn: JSON.stringify(nextDepartmentId), size: 999, type: 1}
+      }).then(function successCallback(res2) {
+        for(let i of res2.data.data){
+          employer.push(i.id)
+        }
+        // console.log(employer);
+        axios({
+          method: 'get',
+          url:'/api/account/user_service_maps',
+          params: {serverIdIn: JSON.stringify(employer)}
+        }).then(function successCallback(res) {
+          let departmentLenght = res.data.total;
+          axios({
+            method: 'get',
+            url: '/api/account/users?refereeIdIn=' + JSON.stringify(employer) + '&size=999',
+          }).then(function successCallback(res) {
+            t.total = departmentLenght + res.data.total
+          })
+        })
+      })
+    })
+  }
+
+  //员工客户数
+  orderNum(t){
+    axios({
+      method: 'get',
+      url: '/api/account/user_service_maps',
+      params: {serverId: t.id, size: 999}
+    }).then(function successCallback(res) {
+      let missionLenght = res.data.total
+      axios({
+        method: 'get',
+        url: '/api/account/users?refereeId=' + t.id + '&size=999',
+      }).then(function successCallback(res) {
+        t.total = missionLenght + res.data.total
+      })
+    }, function errorCallback() {
+    })
+  }
+
   ionViewDidLoad() {
     let vm = this
     let departmentId = vm.department.id
-    //下级部门
     axios({
       method: 'get',
       url: '/api/account/departments',
@@ -33,7 +86,7 @@ export class Customerarea {
       if (res.data.data.length && res.data.data[0].type != 12) {
         vm.departmentList = res.data.data;
         for(let i of vm.departmentList){
-          // vm.nextDepartment(i)
+          vm.nextDepartment(i)
         }
       } else {
         axios({
@@ -42,10 +95,9 @@ export class Customerarea {
         }).then(function successCallback(res) {
           vm.personList = res.data.data;
           for(let t of vm.personList ){
-            // vm.orderNum(t)
+            vm.orderNum(t)
           }
         })
-
       }
     })
   }

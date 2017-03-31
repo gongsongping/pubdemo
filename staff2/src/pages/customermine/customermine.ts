@@ -24,9 +24,12 @@ export class Customermine {
   recommendLenght: any
   noRecommendCustomer: any
   start: any = 0
+  staff: any
   userInfo: any = JSON.parse(localStorage.getItem('userInfo'))
   customerdetailsmine: any = Customerdetailsmine
-  constructor(public navCtrl: NavController, public navParams: NavParams, public params: NavParams) {}
+  constructor(public navCtrl: NavController, public navParams: NavParams, public params: NavParams) {
+    this.staff = params.get('staff')
+  }
 
 //   vm.searchData = {val: ''}
 //   vm.pcId = $stateParams.id;
@@ -307,7 +310,7 @@ export class Customermine {
       method: 'get',
       url: '/api/account/user_service_maps',
       params: {
-        serverId: vm.userInfo.id,
+        serverId: vm.staff.id,
         start: vm.start
       }
     }).then(function successCallback(res) {
@@ -321,6 +324,7 @@ export class Customermine {
       }
     })
   }
+
   ionViewDidLoad() {
     this.loadMore(false)
     let vm = this
@@ -329,7 +333,7 @@ export class Customermine {
     //推荐客户
     axios({
       method: 'get',
-      url: '/api/account/users?refereeId=' + vm.userInfo.id + '&size=999',
+      url: '/api/account/users?refereeId=' + vm.staff.id + '&size=999',
     }).then(function successCallback(res) {
       vm.recommendLenght = res.data.total;
       vm.recomend = res.data.data;
