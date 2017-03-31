@@ -31,6 +31,7 @@ import { Statistics } from '../pages/statistics/statistics';
 import { Orderarea } from '../pages/orderarea/orderarea';
 import { Customerarea } from '../pages/customerarea/customerarea';
 import { ImageUploadModule } from 'ng2-imageupload';
+import { Application } from '../pages/application/application';
 
 enableProdMode();
 
@@ -68,7 +69,8 @@ enableProdMode();
     Todoitem,
     Statistics,
     Orderarea,
-    Customerarea
+    Customerarea,
+    Application
   ],
   imports: [
     IonicModule.forRoot(MyApp, {
@@ -105,7 +107,8 @@ enableProdMode();
     Newrecord,
     Statistics,
     Orderarea,
-    Customerarea
+    Customerarea,
+    Application
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })

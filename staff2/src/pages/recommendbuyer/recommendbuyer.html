@@ -8,40 +8,21 @@
 			</button>
         </ion-buttons>
     </ion-navbar>
-    <div class="recommendation" *ngIf="selections == true">
+    <div class="recommendation" [ngClass]="selections ? 'animation-enter' : 'animation-leave'">
         <ion-navbar>
             <ion-title>选择小区</ion-title>
             <ion-buttons end>
-                <button ion-button icon-only color="dark" style="right:10px;" (click)="presentModal()">
+                <button ion-button icon-only color="dark" style="right:10px;" (click)="presentCancel()">
 				取消
 			</button>
             </ion-buttons>
         </ion-navbar>
+        <ion-searchbar (ionInput)="getItems($event)" [(ngModel)]="searchInput" placeholder="请输入小区名字"></ion-searchbar>
         <ion-scroll scrollX="true" scrollY="true">
-            <ion-item>
-                <ion-label>小区</ion-label>
-                <ion-input placeholder="请输入" clearInput></ion-input>
-            </ion-item>
             <ion-list>
-                <ion-item>金石花园</ion-item>
-                <ion-item>金石花园</ion-item>
-                <ion-item>金石花园</ion-item>
-                <ion-item>金石花园</ion-item>
-                <ion-item>金石花园</ion-item>
-                <ion-item>金石花园</ion-item>
-                <ion-item>金石花园</ion-item>
-                <ion-item>金石花园</ion-item>
-                <ion-item>金石花园</ion-item>
-                <ion-item>金石花园</ion-item>
-                <ion-item>金石花园</ion-item>
-                <ion-item>金石花园</ion-item>
-                <ion-item>金石花园</ion-item>
-                <ion-item>金石花园</ion-item>
-                <ion-item>金石花园</ion-item>
-                <ion-item>金石花园</ion-item>
-                <ion-item>金石花园</ion-item>
-                <ion-item>金石花园</ion-item>
-                <ion-item>金石花园</ion-item>
+                <ion-item *ngFor="let item of items" (click)="chooseItem(item)">
+                    {{ item.name }}
+                </ion-item>
             </ion-list>
         </ion-scroll>
     </div>
@@ -59,7 +40,7 @@
         <ion-item>
             <ion-label color="dark">推荐小区<span color="danger">*</span></ion-label>
             <ion-input [disabled]='true' placeholder="请选择您推荐的小区" [(ngModel)]="districtInput" (click)="presentModal()"></ion-input>
-            <ion-icon name="arrow-dropright" item-right (click)="presentModal()"></ion-icon>
+            <ion-icon name="ios-arrow-dropdown-outline" item-right (click)="presentModal()"></ion-icon>
         </ion-item>
         <ion-item>
             <ion-label color="dark">备注信息</ion-label>

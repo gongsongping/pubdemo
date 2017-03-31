@@ -44,35 +44,27 @@ page-recommendbuyer {
         width:100vw;
         height:100vh;
         position: absolute;
-        top:0;
+        top:-100vh;
         left:0;
-        z-index: 11;
+        z-index: -1;
         background-color: #fff;
-        .flex-row{
-            width: 100%;
-            // padding-top: calc(20px + 4px);
-            // min-height: calc(44px + 20px);
-            border-bottom: 1px solid #e7eaef;
-            h2{
-                width:100%;
-                line-height: 39px;
-                font-size: 1.7rem;
-                text-align: center;
-                margin: 0;
-            }
-            button{
-                position: absolute;
-                top:0;
-                right:0;
-                width:80px;
-                height:39px;
-                margin: 0;
-            }
-        }
+        overflow: hidden;
         ion-scroll{
             width:100vw;
             height:100vh;
             padding-top:40px;
         }
+    }
+    .animation-enter{
+        -webkit-transition: top cubic-bezier(0.1, 0.7, 0.1, 1) 400ms;
+        transition: top cubic-bezier(0.1, 0.7, 0.1, 1) 400ms;
+        top: 0;
+        z-index: 11;
+    }
+    .animation-leave{
+        -webkit-transition: top cubic-bezier(0.1, 0.7, 0.1, 1) 400ms;
+        transition: top cubic-bezier(0.1, 0.7, 0.1, 1) 400ms;
+        top: -100vh;
+        z-index: -1;
     }
 }

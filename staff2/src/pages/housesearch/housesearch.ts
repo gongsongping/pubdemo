@@ -49,7 +49,7 @@ export class Housesearch {
     start = 0;
     dataLength = 10;
     searchData = { input: '', district: '' }
-    subtabs = {  activeArea: '区域',activePrice: '价格', activeHouse: '户型', activeMore: '更多' }
+    subtabs = { activeArea: '区域', activePrice: '价格', activeHouse: '户型', activeMore: '更多' }
     constructor(public navCtrl: NavController, public navParams: NavParams) {
 
     }
@@ -214,9 +214,10 @@ export class Housesearch {
         let url = ''
         if (vm.roleName == '房管家') {
             url = '/api/housing/houses?size=10';
-        }
-        if (vm.roleName == '租赁专员') {
+        } else if (vm.roleName == '租赁专员') {
             url = '/api/housing/rents?size=10';
+        } else {
+          // url = 
         }
         axios
             .get(url + vm.nameLike + vm.priceParams + vm.houseTypeParams + vm.buildingAreaParams + vm.buildYearParams + vm.orientationParams + vm.buildStatusParams + vm.regionParams)
@@ -234,6 +235,11 @@ export class Housesearch {
                 alert('服务器错误');
                 console.log(error);
             });
+    }
+    //如果不是房管家和租赁专员
+    selectUrl = [{ name: '二手房', housesUrl: '/api/housing/houses/' }, { name: '租房', rentsUrl: '/api/housing/rents/' }]
+    selectType() {
+
     }
     //区域
     areatabs = ['区域']//, '地铁', '附近'
@@ -317,11 +323,11 @@ export class Housesearch {
         vm.chooseduildYear = p
         vm.buildYearParams = p.params
     }
-    
+
     //状态
     chooseStatus = [{ name: '全部', params: '&statusIn=[0,2]' }, { name: '初始状态', params: '&statusIn=[0]' }, { name: '已上架', params: '&statusIn=[2]' }]
     chooseBuildStatus = function (p) {
-        let vm =this;
+        let vm = this;
         vm.chooseduildStatus = p
         vm.buildStatusParams = p.params
     }
@@ -342,6 +348,6 @@ export class Housesearch {
         vm.chooseduildStatus = undefined
         vm.buildStatusParams = ''
     }
-    
+
 }
 
