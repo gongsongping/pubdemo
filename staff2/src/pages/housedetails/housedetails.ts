@@ -30,6 +30,7 @@ export class Housedetails {
     messagesDetailName = [];
     referrerName = {};
     hkName = [];
+    url;
     subdistricts: any;
     constructor(public navCtrl: NavController, public navParams: NavParams) {
         let vm = this;
@@ -43,19 +44,18 @@ export class Housedetails {
         // this.doInfinite(false);
         console.log('ionViewDidLoad HousesearchPage');
     }
-    ionViewWillEnter() {
+    ionViewWillEnter() { 
         this.scrollToTop();
         let vm = this;
         vm.roleName = localStorage.getItem('role');
-        let url;
         if (vm.roleName == '房管家') {
-            url = '/api/housing/houses/' + vm.house.id
+            vm.url = '/api/housing/houses/' + vm.house.id
         }
         if (vm.roleName == '租赁专员') {
-            url = '/api/housing/rents/' + vm.house.id
+            vm.url = '/api/housing/rents/' + vm.house.id
         }
         axios
-            .get(url)
+            .get(vm.url)
             .then(function (res) {
                 vm.houses = res.data;
                 axios

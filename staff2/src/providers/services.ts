@@ -137,7 +137,7 @@ export class House {
   
   goDetail(h) {
         this.navCtrl.push(Housedetails, { house: h , enter: '1' })
-    }
+  }
   onClick() {
     this.notify.emit('Click from nested content');
   }

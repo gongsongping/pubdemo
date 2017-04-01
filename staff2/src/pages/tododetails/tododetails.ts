@@ -5,9 +5,8 @@ import entries from "lodash/entries";
 import assign from "lodash/assign";
 // import { Districtdetails } from '../districtdetails/districtdetails';
 import { Housedetails } from '../housedetails/housedetails';
-import { ImageResult, ResizeOptions } from 'ng2-imageupload';
-import { Ng2ImgToolsService } from 'ng2-img-tools';
-import { Transfer, ImagePicker, Camera, CameraOptions } from 'ionic-native';
+
+import { Camera, CameraOptions } from 'ionic-native';
 
 // , File as FileSystem
 // interface Window {
@@ -30,7 +29,7 @@ import { Transfer, ImagePicker, Camera, CameraOptions } from 'ionic-native';
 export class Tododetails {
   
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,private ng2ImgToolsService: Ng2ImgToolsService) {}
+  constructor(public navCtrl: NavController, public navParams: NavParams) {}
   
   getDetails (des,url){
     axios({

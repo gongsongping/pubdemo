@@ -26,17 +26,21 @@
             <div style="margin:10px 10vw;width:80vw;position:relative;border-radius: 6px;">
                 <p *ngIf='loginErr' style="text-align: center;color:tomato;">{{loginErr}}</p>
             </div>
-            <div ion-item style="margin:10px 10vw;padding-left:3px;width:80vw;border-radius: 6px;border:none;">
+            <div ion-item style="margin:10px 10vw;padding-left:3px;width:80vw;border-radius: 6px;border:none;" no-lines>
                 <h2 item-left style="color:black;margin-left:3px;">工号</h2>
                 <input type="text" placeholder="输入工号" [(ngModel)]="mobile" style="width:100%;border:none;border-radius: 5px;">
             </div>
-            <ion-item style="margin:10px 10vw;padding-left:3px;width:80vw;border-radius: 6px;border:none;">
+            <ion-item style="margin:10px 10vw;padding-left:3px;width:80vw;border-radius: 6px;border:none;" no-lines>
                 <h2 item-left style="color:black;margin-left:3px;">密码</h2>
                 <input type="password" placeholder="输入密码" [(ngModel)]="validateCode" style="width:100%;border:none;border-radius: 5px;">
             </ion-item>
             <div [navPush]="resetpw" style="margin:10px 10vw;color:#265fdf;">忘记密码</div>
             <div style="margin:30px 10vw;width:80vw;">
                 <button (click)="login()" ion-button full round color="primary">登录</button>
+            </div>
+            <div style="text-align: center;" [navPush]="application">
+                <a>申请成为小区顾问</a>
+                <i class="icon" style="overflow: hidden;"><img src="assets/img/staff/jiant.gif" style="width:25px;height:10px;"/></i>
             </div>
         </div>
     </div>
@@ -48,21 +52,6 @@
                         {{role.role}}
                     </div>
                 </div>
-               <!-- <div class="col-50" (click)="goTo(home)">
-                    <div>
-                        看房顾问总经理
-                    </div>
-                </div>
-                <div class="col-50" (click)="goTo(home)">
-                    <div>
-                        租赁专员
-                    </div>
-                </div>
-                <div class="col-50" (click)="goTo(home)">
-                    <div>
-                        小区开发
-                    </div>
-                </div>-->
             </div>
         </div>
     </div>

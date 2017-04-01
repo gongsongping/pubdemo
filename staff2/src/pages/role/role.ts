@@ -5,6 +5,7 @@ import { JwtHelper } from 'angular2-jwt';
 import { Resetpw } from '../resetpw/resetpw';
 import { Home } from '../home/home';
 import { Message } from '../message/message';
+import { Application } from '../application/application';
 
 /*
   Generated class for the Role page.
@@ -23,6 +24,7 @@ export class Role {
   resetpw:any = Resetpw;
   message: any = Message;
   home: any = Home;
+  application: any=Application
   tasksTotal:any;
   constructor(public navCtrl : NavController, public navParams : NavParams, public events: Events) {
    
