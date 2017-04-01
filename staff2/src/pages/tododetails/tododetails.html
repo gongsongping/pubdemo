@@ -22,6 +22,7 @@
   <div style="margin:10px;border-bottom:1px solid lightgrey;padding:5px 0;">
     <span style="color:#265fdf;">转派任务给：</span>
     <select [(ngModel)]="house.assignee" style="width:40vw;border-radius: 5px;border:1px solid lightgray;">
+        <option selected disabled>选择转派对象</option>       
         <option *ngFor="let m of deptMembers" value="{{m.id}}" [hidden]="!m.enabled || !m.workable || (m.username==user_name)">{{m.name}}</option>
     </select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <button (click)="reassign()" ion-button small style="position: relative;bottom: 6px;">提交</button>
@@ -248,10 +249,13 @@
           <ion-icon name="close-circle" (click)="deleteInnerImg(i)" style="position: absolute;top: -11px;right: -8px;font-size: 20px;z-index: 9;color: gray;"></ion-icon>
         </div>
 
-        <label [hidden]="innerUrls.length > 4" style='float:left;'>
-          <input type="file" imageUpload (imageSelected)="getInnerBlobs($event)" [resizeOptions]="resizeOptions" style='width:0.1px;height:0.1px;opacity: 0;overflow: hidden;position: absolute;z-index: -1;'>
+        <label (click)='innerCapture()' [hidden]="innerUrls.length > 4" style='float:left;'>
+          <!--<input type="file" imageUpload (imageSelected)="getInnerBlobs($event)" [resizeOptions]="resizeOptions" style='width:0.1px;height:0.1px;opacity: 0;overflow: hidden;position: absolute;z-index: -1;'>-->
+          <!--<input type="file" (change)="getInnerBlobsF($event)" style='width:0.1px;height:0.1px;opacity: 0;overflow: hidden;position: absolute;z-index: -1;'>-->
           <img src="assets/img/sprite/photo_icon.png" width='70' height="70" /> 
         </label>
+        <!--<button ion-button (click)='innerCapture()'>getInnerImgPicker</button>-->
+        
         <div style="clear: both;"></div>
       </div>
 
@@ -261,10 +265,12 @@
           <ion-icon name="close-circle" (click)="deleteDesignImg(i)" style="position: absolute;top: -11px;right: -8px;font-size: 20px;z-index: 9;color: gray;"></ion-icon>
         </div>
 
-        <label [hidden]="designUrls.length > 4" style='float:left;'>
-          <input type="file" imageUpload (imageSelected)="getDesignBlobs($event)" [resizeOptions]="resizeOptions" style='width:0.1px;height:0.1px;opacity: 0;overflow: hidden;position: absolute;z-index: -1;'>
+        <label (click)='designCapture()' [hidden]="designUrls.length > 4" style='float:left;'>
+          <!--<input type="file" imageUpload (imageSelected)="getDesignBlobs($event)" [resizeOptions]="resizeOptions" style='width:0.1px;height:0.1px;opacity: 0;overflow: hidden;position: absolute;z-index: -1;'>-->
+          <!--<input type="file" (change)="getDesignBlobsF($event)" style='width:0.1px;height:0.1px;opacity: 0;overflow: hidden;position: absolute;z-index: -1;'>         -->
           <img src="assets/img/sprite/photo_icon.png" width='70' height="70" /> 
         </label>
+        <!--<button ion-button (click)='designCapture()'>getDesignImgPicker</button>-->
         <div style="clear: both;"></div>
       </div>
 

@@ -5,7 +5,16 @@ import entries from "lodash/entries";
 import assign from "lodash/assign";
 // import { Districtdetails } from '../districtdetails/districtdetails';
 import { Housedetails } from '../housedetails/housedetails';
-import { ImageResult, ResizeOptions } from 'ng2-imageupload';
+
+import { Camera, CameraOptions } from 'ionic-native';
+
+// , File as FileSystem
+// interface Window {
+//   imagePicker: any;
+// }
+// declare var window: Window;
+
+// import { ImagePicker } from '@ionic-native/image-picker';
 
 /*
   Generated class for the Tododetails page.
@@ -127,6 +136,11 @@ export class Tododetails {
 
   reassign () {
       let vm  = this
+      console.log('---',vm.house.assignee,'----');
+      if (!vm.house.assignee){
+        alert('请选择转派对象')
+        return
+      }
       let bs64 = window.btoa(this.userInfo.username + ':' + this.tokens.access_token)
       axios({
           method: 'put',
@@ -321,57 +335,14 @@ export class Tododetails {
 
    designUrls = []
    innerUrls = []
-   //https://github.com/ribizli/ng2-imageupload 
-    // this.src = imageResult.resized
-    //     && imageResult.resized.dataURL
-    //     || imageResult.dataURL;
-   getDesignBlobs (imageResult: ImageResult) {
-        let vm = this
-        // console.log(imageResult);
-        if (imageResult) {
-            let f = new FormData()
-            let imgBlob = vm.dataURItoBlob(imageResult.resized.dataURL)
-            let name = new Date().getTime()+'.jpeg';
-            let imgFile = new File([imgBlob], name);
-            // console.log(imgBlob,imgFile);
-            f.append('photo',imgFile)
-            axios({
-                method:'post',
-                url: '/api/storage/photos',
-                data: f
-            }).then(function (res) {
-                // http://7xj5ck.com1.z0.glb.clouddn.com/2015-11-28T06%3A11%3A25.113Z// console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data.key + JSON.stringify(resp.data))
-                vm.designUrls.push(res.data.url)
-                // console.log(vm.designUrls);
-            })
-        }
-    }
+  
     deleteDesignImg = function (index) { //删除图片
         let vm = this
         // vm.designBlobs.splice(index, 1)
         vm.designUrls.splice(index, 1)
         // console.log(vm.designUrls)
     }
-    //室内图
-    getInnerBlobs (imageResult: ImageResult) {
-         let vm = this
-        if (imageResult) {
-            let f = new FormData()
-            let imgBlob = vm.dataURItoBlob(imageResult.resized.dataURL)
-            let name = new Date().getTime()+'.jpeg';
-            let imgFile = new File([imgBlob], name);
-            // console.log(imgBlob,imgFile);
-            f.append('photo',imgFile)
-            axios({
-                method:'post',
-                url: '/api/storage/photos',
-                data: f
-            }).then(function (res) {
-                vm.innerUrls.push(res.data.url)
-                // console.log(vm.designUrls);
-            })
-        }
-    }
+    
     deleteInnerImg (index) { //删除图片
         let vm = this
         // vm.innerBlobs.splice(index, 1)
@@ -379,20 +350,285 @@ export class Tododetails {
         // console.log(vm.innerUrls)
     }
 
-    src: string = "";
-    resizeOptions: ResizeOptions = {
-        resizeMaxHeight: 800,
-        resizeMaxWidth: 800
-    };
+      options: CameraOptions = {
+        quality: 50,
+        targetWidth: 700,
+        targetHeight: 700,
+        destinationType: Camera.DestinationType.DATA_URL,
+        encodingType: Camera.EncodingType.JPEG,
+        sourceType:Camera.PictureSourceType.PHOTOLIBRARY
+        // mediaType: Camera.MediaType.PHOTOLIBRARY
+      }
+
+     innerCapture(){
+       let vm = this
+        Camera.getPicture(vm.options).then((imageData) => {
+           let base64Image = 'data:image/jpeg;base64,' + imageData;
+           let file = vm.dataURItoBlob(base64Image)
+          //  console.log(base64Image);
+            let form = new FormData()
+            form.append('photo', file)
+            axios({
+                method:'post',
+                url: '/api/storage/photos',
+                data: form
+            }).then(function (res) {
+                vm.innerUrls.push(res.data.url)
+                console.log(vm.innerUrls);
+            }).catch(function (err) {
+                console.log(JSON.stringify(err));
+            })
+        }, (err) => {
+           // Handle error
+        });
+     }
+
+     designCapture(){
+       let vm = this
+        Camera.getPicture(vm.options).then((imageData) => {
+           let base64Image = 'data:image/jpeg;base64,' + imageData;
+           let file = vm.dataURItoBlob(base64Image)
+            // console.log(base64Image);
+            // let fblob = new File([file], new Date().getTime()+'.jpeg');           
+            let form = new FormData()
+            form.append('photo', file)
+            axios({
+                method:'post',
+                url: '/api/storage/photos',
+                data: form
+            }).then(function (res) {
+                vm.designUrls.push(res.data.url)
+                console.log(vm.designUrls);
+            }).catch(function (err) {
+                console.log(JSON.stringify(err));
+            })
+        }, (err) => {
+           // Handle error
+        });
+     }
+
 
     dataURItoBlob(dataURI) {
-        var byteString = atob(dataURI.split(',')[1]);
-        var ab = new ArrayBuffer(byteString.length);
-        var ia = new Uint8Array(ab);
-        for (var i = 0; i < byteString.length; i++) {
+        let byteString = atob(dataURI.split(',')[1]);
+        // console.log(byteString);
+        let ab = new ArrayBuffer(byteString.length);
+        let ia = new Uint8Array(ab);
+        for (let i = 0; i < byteString.length; i++) {
             ia[i] = byteString.charCodeAt(i);
         }
+        // let blob = new Blob([ab], { type: 'image/jpeg' });
+        // console.log(typeof blob,JSON.stringify(blob));
+        // let fblob = new File([blob], String(new Date().getTime())+'.jpeg');       
+        // console.log(typeof fblob, JSON.stringify(fblob)); 
         return new Blob([ab], { type: 'image/jpeg' });
     }
 
 }
+
+
+
+
+
+// //室内图
+//     getInnerBlobs (imageResult: ImageResult) {
+//          let vm = this
+//         if (imageResult) {
+//             let f = new FormData()
+//             let imgBlob = vm.dataURItoBlob(imageResult.resized.dataURL)
+//             let name = new Date().getTime()+'.jpeg';
+//             let imgFile = new File([imgBlob], name);
+//             // console.log(imgBlob,imgFile);
+//             f.append('photo',imgFile)
+//             axios({
+//                 method:'post',
+//                 url: '/api/storage/photos',
+//                 data: f
+//             }).then(function (res) {
+//                 vm.innerUrls.push(res.data.url)
+//                 // console.log(vm.designUrls);
+//             })
+//         }
+//     }
+//     getInnerBlobsF (e) {
+//          let vm = this
+//         if (e) {
+//             console.log(e.target.files[0]);
+//             this.ng2ImgToolsService.resize([e.target.files[0]], 800, 800).subscribe(result => {
+//                 //all good, result is a file
+//                 console.log(result);
+//                 let f = new FormData()
+//                 f.append('photo', result)
+//                 axios({
+//                     method:'post',
+//                     url: '/api/storage/photos',
+//                     data: f
+//                 }).then(function (res) {
+//                     vm.innerUrls.push(res.data.url)
+//                     // console.log(vm.designUrls);
+//                 })
+//             }, error => {
+//                 //something went wrong //use result.compressedFile or handle specific error cases individually
+//             });
+//         }
+//     }
+
+// upload (targetPath){
+//        console.info('upload');
+//       let vm = this
+//       //  axios.defaults.headers.common['Authorization'] = "Bearer " + this.tokens.access_token
+//        let name = String(new Date().getTime())
+//        let opt = {
+//           fileKey: "photo",
+//           fileName: name,
+//           chunkedMode: false,
+//           mimeType: "multipart/form-data",
+//           params : {'photo': name},
+//           headers: {
+//             'Authorization': "Bearer " + vm.tokens.access_token
+//           }
+//         };
+//         let url = axios.defaults.baseURL+'/api/storage/photos'
+//         const fileTransfer = new Transfer();
+//         // Use the FileTransfer to upload the image
+//         fileTransfer.upload(targetPath, url, opt).then(data => {
+//            console.log('transfer return data',JSON.stringify(data));
+//         }, err => {
+           
+//         });
+//      }
+
+// options = {
+//       maximumImagesCount: 1,
+//       width: 800,
+//       height: 800,
+//       outputType: 1, //0 fileuri 1 base64_string
+//       quality: 90
+//     };
+
+//      getDesignImgPicker (){
+//        let vm = this
+//        console.log('---design---imagePicker');
+//         ImagePicker.getPictures(this.options).then((results) => {
+//               console.log('Image URI: ' + results[0]);
+//               window['resolveLocalFileSystemURL'](results[0], function(fileEntry) {
+//                    console.log('file entry: ' + JSON.stringify(fileEntry));
+//                    fileEntry.file(function (file) {
+//                         console.log(JSON.stringify(file));                        
+//                         let reader = new FileReader();
+//                         reader.onloadend = function() {
+//                             console.log("Successful file write: " + this.result);
+//                             let blob = new Blob([new Uint8Array(this.result)], { type: "image/jpeg" });
+//                             console.log(typeof blob,JSON.stringify(blob));
+//                             let fblob = new File([blob], String(new Date().getTime())+'.jpeg');
+//                             console.log(typeof fblob, JSON.stringify(fblob));
+                           
+//                             let form = new FormData()
+//                             form.append('photo', fblob)
+//                             axios({
+//                                 method:'post',
+//                                 url: '/api/storage/photos',
+//                                 data: form
+//                             }).then(function (res) {
+//                                 vm.designUrls.push(res.data.url)
+//                                 // console.log(vm.designUrls);
+//                             }).catch(function (err) {
+//                                 console.log(JSON.stringify(err));
+//                             })
+//                         };
+//                         reader.readAsArrayBuffer(file);
+//                     });
+//               })
+//         }, (err) => { });
+
+//      }
+    
+
+//       getInnerImgPicker (){
+//          let vm = this
+//           console.log('---Inner---window.imagePicker');
+//           window['imagePicker'].getPictures(function(results) {
+//               console.log('Image URI: ' + results[0]);
+//               vm.upload(results[0])
+
+//               window['resolveLocalFileSystemURL'](results[0], function(fileEntry) {
+//                    console.log('file entry: ' + fileEntry);
+//                    console.log('file entry: ' + JSON.stringify(fileEntry));                   
+//                    fileEntry.file(function (file) {
+//                         console.log(JSON.stringify(file));                                                
+//                         let reader = new FileReader();
+//                         reader.onloadend = function() {
+//                             console.log("Successful file write: " + this.result);
+//                             let blob = new Blob([new Uint8Array(this.result)], { type: "image/jpeg" });
+
+//                             console.log(typeof blob,JSON.stringify(blob));
+//                             let fblob = new File([blob], String(new Date().getTime())+'.jpeg');
+//                             console.log(typeof fblob, JSON.stringify(fblob));
+//                             let form = new FormData()
+//                             form.append('photo', this.result)
+//                             axios({
+//                                 method:'post',
+//                                 url: '/api/storage/photos',
+//                                 data: form
+//                             }).then(function (res) {
+//                                 vm.innerUrls.push(res.data.url)
+//                                 // console.log(vm.designUrls);
+//                             }).catch(function (err) {
+//                                 console.log(JSON.stringify(err));
+//                             })
+//                         };
+//                         reader.readAsArrayBuffer(file);
+//                     });
+//               })
+//           }, function (error) {
+//             console.log('Error: ' + error);
+//           });
+
+//      } 
+
+//       //https://github.com/ribizli/ng2-imageupload 
+//     // this.src = imageResult.resized
+//     //     && imageResult.resized.dataURL
+//     //     || imageResult.dataURL;
+//    getDesignBlobs (imageResult: ImageResult) {
+//         let vm = this
+//         // console.log(imageResult);
+//         if (imageResult) {
+//             let f = new FormData()
+//             let imgBlob = vm.dataURItoBlob(imageResult.resized.dataURL)
+//             let name = new Date().getTime()+'.jpeg';
+//             let imgFile = new File([imgBlob], name);
+//             // console.log(imgBlob,imgFile);
+//             f.append('photo',imgFile)
+//             axios({
+//                 method:'post',
+//                 url: '/api/storage/photos',
+//                 data: f
+//             }).then(function (res) {
+//                 // http://7xj5ck.com1.z0.glb.clouddn.com/2015-11-28T06%3A11%3A25.113Z// console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data.key + JSON.stringify(resp.data))
+//                 vm.designUrls.push(res.data.url)
+//                 // console.log(vm.designUrls);
+//             })
+//         }
+//     }
+//     getDesignBlobsF (e) {
+//         let vm = this
+//         if (e) {
+//             console.log(e.target.files[0]);
+//             this.ng2ImgToolsService.resize([e.target.files[0]], 800, 800).subscribe(result => {
+//                 //all good, result is a file
+//                 console.log(result);
+//                 let f = new FormData()
+//                 f.append('photo', result)
+//                 axios({
+//                     method:'post',
+//                     url: '/api/storage/photos',
+//                     data: f
+//                 }).then(function (res) {
+//                     vm.designUrls.push(res.data.url)
+//                     // console.log(vm.designUrls);
+//                 })
+//             }, error => {
+//                 //something went wrong //use result.compressedFile or handle specific error cases individually
+//             });
+//         }
+//     }

@@ -30,8 +30,9 @@ import { Newrecord } from '../pages/newrecord/newrecord';
 import { Statistics } from '../pages/statistics/statistics';
 import { Orderarea } from '../pages/orderarea/orderarea';
 import { Customerarea } from '../pages/customerarea/customerarea';
-import { ImageUploadModule } from 'ng2-imageupload';
+
 import { Application } from '../pages/application/application';
+
 
 enableProdMode();
 
@@ -76,8 +77,7 @@ enableProdMode();
     IonicModule.forRoot(MyApp, {
       backButtonText: '',
       mode:'ios'
-    }),
-    ImageUploadModule
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [

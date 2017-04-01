@@ -51,10 +51,10 @@
 		</ion-list>-->
 	</div>
 	<div *ngIf="tabIndex == 2">
-		<div *ngIf='spinner' style="width:100%;margin:30px;text-align: center;">
+		<div *ngIf='spinner' style="width:100vw;margin:30px 0px;text-align: center;">
 			<ion-spinner  name="circles"></ion-spinner>
 		</div>
-		<div *ngIf='dataLength==0' style="width:100%;margin:30px;text-align: center;">
+		<div *ngIf='dataLength==0' style="width:100vw;margin:30px 0px;text-align: center;">
 			没有待办事项!
 		</div>
 		<todoitem *ngFor='let t of todos' [todo]='t'></todoitem>
@@ -73,7 +73,7 @@
 			</ion-list>
 		</div>-->
 		<!--only n000149-->
-	    <button ion-button small (click)='getTodosTotal(5)' *ngIf="(baseURL=='http://60.205.169.195:7060' || baseURL=='http://60.205.169.195:7069' )&&(userInfo.name=='韩崇（置业顾问）' || userInfo.name=='龚松平')" >get all todos</button>
+	    <button ion-button small (click)='getTodosTotal(5)' *ngIf="(baseURL=='http://60.205.169.195:7060' || baseURL=='http://60.205.169.195:7069' )&&(userInfo.name=='韩崇（置业顾问）' || userInfo.name=='龚松平')" >ge all todos</button>
 		<todoitem *ngFor='let t of todosTotal' [todo]='t'></todoitem>
 	</div>
 	<div class="home-add" *ngIf="tabIndex == 3">

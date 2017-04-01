@@ -92,7 +92,6 @@ export class MyApp {
   }
   
   prepareInfo () {
-        let vm = this
         if (localStorage.getItem('tokens')) {
             // let tokens = JSON.parse(localStorage.getItem('tokens'))
             let userInfo = JSON.parse(localStorage.getItem('userInfo'))
