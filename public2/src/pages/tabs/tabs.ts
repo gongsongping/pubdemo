@@ -4,7 +4,7 @@ import { Home } from '../home/home';
 import { Buy } from '../buy/buy';
 import { Sell } from '../sell/sell';
 import { Mine } from '../mine/mine';
-import axios from 'axios';
+
  
 
  
