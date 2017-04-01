@@ -1,19 +1,35 @@
 <ion-header>
-
     <ion-navbar>
         <ion-title>申请成为小区顾问</ion-title>
     </ion-navbar>
-
+    <div class="recommendation" [ngClass]="selections ? 'animation-enter' : 'animation-leave'">
+        <ion-navbar>
+            <ion-title>选择小区</ion-title>
+            <ion-buttons end>
+                <button ion-button icon-only color="dark" style="right:10px;" (click)="presentCancel()">
+				取消
+			</button>
+            </ion-buttons>
+        </ion-navbar>
+        <ion-searchbar (ionInput)="getItems($event)" [(ngModel)]="searchInput" placeholder="请输入小区名字"></ion-searchbar>
+        <ion-scroll scrollX="true" scrollY="true">
+            <ion-list>
+                <ion-item *ngFor="let item of items" (click)="chooseItem(item)">
+                    {{ item.name }}
+                </ion-item>
+            </ion-list>
+        </ion-scroll>
+    </div>
 </ion-header>
-
+  
 <ion-content>
-    <ion-list no-lines inset>
+    <ion-list no-lines inset class="application">
         <ion-item>
             <ion-icon item-left>
                 <img src="assets/img/staff/homes.png" width="28" />
             </ion-icon>
-            <ion-input type="text" placeholder="请输入并选择小区"></ion-input>
-            <ion-icon item-right><img src="assets/img/staff/more_btn.png" width="20"/></ion-icon>
+            <ion-input [disabled]='true' type="text" placeholder="请输入并选择小区" (click)="presentModal()"></ion-input>
+            <ion-icon item-right (click)="presentModal()"><img src="assets/img/staff/more_btn.png" width="20"/></ion-icon>
         </ion-item>
 
         <ion-item>

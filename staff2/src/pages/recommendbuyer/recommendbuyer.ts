@@ -24,9 +24,7 @@ export class Recommendbuyer {
   selections = false;
   searchInput = '';
   myRecommendbuyer: any = MyRecommendbuyer;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController) {
-    this.initializeItems();
-  }
+  constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController) { }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad RecommendbuyerPage');
@@ -74,6 +72,7 @@ export class Recommendbuyer {
     this.navCtrl.push(h);
   }
   presentModal() {
+    this.initializeItems();
     this.selections = true;
   }
   presentCancel() {
@@ -81,7 +80,6 @@ export class Recommendbuyer {
   }
   searchQuery: string = '';
   items: any;
-
 
   initializeItems() {
     let vm = this;
