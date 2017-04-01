@@ -59,5 +59,6 @@ export class Application {
   }
   chooseItem(i) {
     this.searchInput = i.name;
+    this.selections = false;
   }
 }

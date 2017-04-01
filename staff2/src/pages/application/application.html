@@ -24,11 +24,11 @@
   
 <ion-content>
     <ion-list no-lines inset class="application">
-        <ion-item>
+        <ion-item class="input-color">
             <ion-icon item-left>
                 <img src="assets/img/staff/homes.png" width="28" />
             </ion-icon>
-            <ion-input [disabled]='true' type="text" placeholder="请输入并选择小区" (click)="presentModal()"></ion-input>
+            <ion-input [disabled]='true' type="text" [(ngModel)]="searchInput" placeholder="请输入并选择小区" (click)="presentModal()"></ion-input>
             <ion-icon item-right (click)="presentModal()"><img src="assets/img/staff/more_btn.png" width="20"/></ion-icon>
         </ion-item>
 

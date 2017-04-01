@@ -4,6 +4,17 @@ page-application {
             margin-top: 20px;
             border:1px solid #f6f7fb !important;
             border-radius: 8px;
+            input{
+                color:#666;
+            }
+        }
+        .input-color{
+            [placeholder]{
+                color:#666;
+            }
+            .text-input[disabled]{
+                opacity: 1;
+            }
         }
     }
 }

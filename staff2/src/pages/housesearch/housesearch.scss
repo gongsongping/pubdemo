@@ -1,5 +1,5 @@
 page-housesearch {
-        ion-toolbar{
+    ion-toolbar{
             padding:0 !important;
             border-top:1px solid #f0f2f6;
             border-bottom:1px solid #f0f2f6;
@@ -20,6 +20,30 @@ page-housesearch {
             input{
                 background-color: #fff !important;
             }
+        }
+    }
+    ion-fab[bottom][edge]{
+        bottom:20px;
+    }
+    ion-fab[right]{
+        right:5px;
+    }
+    .fab[mini]{
+        width: 50px;
+        height: 50px;
+        line-height: 50px;
+        .fab-close-icon{
+            line-height: 50px;
+        }
+    }
+    ion-fab-list{
+        min-width: 66px;
+        min-height: 66px;
+        .fab-in-list{
+            width: 50px;
+            height: 50px;
+            background-color:#5b8ee6;
+            color:#fff;
         }
     }
     ion-content{

@@ -107,6 +107,7 @@ export class Recommendbuyer {
   }
   chooseItem(i){
     this.searchInput = i.name;
+    this.selections = false;
   }
 }
 

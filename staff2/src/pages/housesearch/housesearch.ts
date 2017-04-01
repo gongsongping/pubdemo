@@ -48,27 +48,41 @@ export class Housesearch {
     roleName: any;
     start = 0;
     dataLength = 10;
+    selectName = '二手房';
+    url: any;
     searchData = { input: '', district: '' }
     subtabs = { activeArea: '区域', activePrice: '价格', activeHouse: '户型', activeMore: '更多' }
     constructor(public navCtrl: NavController, public navParams: NavParams) {
 
     }
-
+    //如果不是房管家和租赁专员
+    selectUrl = [{ name: '二手房', myUrl: '/api/housing/houses?size=10' }, { name: '租房', myUrl: '/api/housing/rents?size=10' }]
+    selectType(s) {
+        let vm = this;
+        vm.selectName = s.name;
+        vm.url = s.myUrl;
+        vm.houses = [];
+        vm.start = 0;
+        vm.doInfinite(false);
+    }
     ionViewDidLoad() {
-        this.doInfinite(false);
-        console.log('ionViewDidLoad HousesearchPage');
+
     }
 
     ionViewWillEnter() {
-        this.roleName = localStorage.getItem('role')
+        this.roleName = localStorage.getItem('role');
     }
     ionViewDidEnter() {
         let vm = this;
         if (localStorage.getItem('userInfo')) {
             vm.userInfo = JSON.parse(localStorage.getItem('userInfo'));
-            console.log('-----', vm.userInfo);
-            vm.doInfinite(false);
-            vm.areaList();
+            if (this.roleName == '租赁专员') {
+                this.url = '/api/housing/rents?size=10';
+            } else {
+                this.url = '/api/housing/houses?size=10';
+            }
+            this.doInfinite(false);
+            this.areaList();
         } else {
             vm.userInfo = ''
         }
@@ -110,20 +124,13 @@ export class Housesearch {
     doInfinite(infiniteScroll) {
         let vm = this
         vm.addMore = true;
-        let url = '/api/housing/houses?size=10';
-        // if (vm.roleName == '房管家') {
-        //   url = '/api/housing/houses?size=10';
-        // }
-        // if (vm.roleName == '租赁专员') {
-        //   url = '/api/housing/rents?size=10';
-        // }
         let params = {
             params: {
                 start: vm.start
             }
         }
         axios
-            .get(url + vm.nameLike + vm.priceParams + vm.houseTypeParams + vm.buildingAreaParams + vm.buildYearParams + vm.orientationParams + vm.buildStatusParams + vm.regionParams, params)
+            .get(vm.url + vm.nameLike + vm.priceParams + vm.houseTypeParams + vm.buildingAreaParams + vm.buildYearParams + vm.orientationParams + vm.buildStatusParams + vm.regionParams, params)
             .then(function (res) {
                 setTimeout(() => {
                     vm.houses = vm.houses.concat(res.data.data);
@@ -143,19 +150,12 @@ export class Housesearch {
     searchDis(e) {
         let vm = this;
         vm.inputStart = true;
-        let url;
-        if (vm.roleName == '房管家') {
-            url = '/api/housing/houses?size=10';
-        }
-        if (vm.roleName == '租赁专员') {
-            url = '/api/housing/rents?size=10';
-        }
         if (e == '') {
             vm.districtsTotal = '0';
         }
         let params = { params: { kwLike: vm.searchData.input } }
         axios
-            .get(url + vm.nameLike + vm.priceParams + vm.houseTypeParams + vm.buildingAreaParams + vm.buildYearParams + vm.orientationParams + vm.buildStatusParams + vm.regionParams, params)
+            .get(vm.url + vm.nameLike + vm.priceParams + vm.houseTypeParams + vm.buildingAreaParams + vm.buildYearParams + vm.orientationParams + vm.buildStatusParams + vm.regionParams, params)
             .then(function (res) {
                 vm.districts = res.data.data;
                 vm.districtsTotal = res.data.total;
@@ -182,16 +182,9 @@ export class Housesearch {
             vm.housesTotal = 0;
         }
         vm.houses = [];
-        let url = ''
-        if (vm.roleName == '房管家') {
-            url = '/api/housing/houses?size=10';
-        }
-        if (vm.roleName == '租赁专员') {
-            url = '/api/housing/rents?size=10';
-        }
         let params = { params: { kwLike: vm.searchData.input } }
         axios
-            .get(url + vm.nameLike + vm.priceParams + vm.houseTypeParams + vm.buildingAreaParams + vm.buildYearParams + vm.orientationParams + vm.buildStatusParams + vm.regionParams, params)
+            .get(vm.url + vm.nameLike + vm.priceParams + vm.houseTypeParams + vm.buildingAreaParams + vm.buildYearParams + vm.orientationParams + vm.buildStatusParams + vm.regionParams, params)
             .then(function (res) {
                 setTimeout(() => {
                     vm.houses = res.data.data;
@@ -211,16 +204,8 @@ export class Housesearch {
     search() {
         let vm = this;
         vm.houses = [];
-        let url = ''
-        if (vm.roleName == '房管家') {
-            url = '/api/housing/houses?size=10';
-        } else if (vm.roleName == '租赁专员') {
-            url = '/api/housing/rents?size=10';
-        } else {
-          // url = 
-        }
         axios
-            .get(url + vm.nameLike + vm.priceParams + vm.houseTypeParams + vm.buildingAreaParams + vm.buildYearParams + vm.orientationParams + vm.buildStatusParams + vm.regionParams)
+            .get(vm.url + vm.nameLike + vm.priceParams + vm.houseTypeParams + vm.buildingAreaParams + vm.buildYearParams + vm.orientationParams + vm.buildStatusParams + vm.regionParams)
             .then(function (res) {
                 vm.houses = res.data.data;
                 vm.dataLength = res.data.data.length
@@ -236,11 +221,6 @@ export class Housesearch {
                 console.log(error);
             });
     }
-    //如果不是房管家和租赁专员
-    selectUrl = [{ name: '二手房', housesUrl: '/api/housing/houses/' }, { name: '租房', rentsUrl: '/api/housing/rents/' }]
-    selectType() {
-
-    }
     //区域
     areatabs = ['区域']//, '地铁', '附近'
     choosedAreatab = '区域'
@@ -252,9 +232,9 @@ export class Housesearch {
     // vm.districts = ['武侯区', '青羊区', '金牛区', '锦江区', '高新区']
     areaList() {
         let vm = this;
-        let url = '/api/housing/regions?order=asc&sort=menu&size=100&type=2'
+        let url1 = '/api/housing/regions?order=asc&sort=menu&size=100&type=2'
         axios
-            .get(url)
+            .get(url1)
             .then(function (res) {
                 console.log(res.data.data)
                 var unlimit = { name: '不限' }

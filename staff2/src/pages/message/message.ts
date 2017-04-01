@@ -103,8 +103,6 @@ export class Message {
             .put(url, data, config)
             .then(function (res) {
                 m.isRead = true;
-                vm.messages = [];
-                vm.messageFalse();
                 vm.totalMessages();
                 // vm.events.publish('user:created', 'user', 'time');
             })
@@ -128,11 +126,7 @@ export class Message {
         axios
             .delete(url, config)
             .then(function (res) {
-                for (var i = 0; i < vm.messages.length; i++) {
-                    if (vm.messages[i] == m) {
-                        vm.messages.splice(m, 1);
-                    }
-                }
+                vm.messages.splice(m.id, 1);
                 vm.messageFalse();
                 vm.totalMessages();
             })

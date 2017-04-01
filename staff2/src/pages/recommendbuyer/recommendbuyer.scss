@@ -25,11 +25,20 @@ page-recommendbuyer {
                 input {
                     margin-left:10px;
                     z-index:1;
+                    color:#666;
                 }
                 textarea{
                     margin:10px;
                     height:150px;
                 }
+            }
+        }
+        .input-color{
+            [placeholder]{
+                color:#666;
+            }
+            .text-input[disabled]{
+                opacity: 1;
             }
         }
         .item-ios ion-icon[item-right]{

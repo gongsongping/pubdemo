@@ -2,25 +2,7 @@
     <ion-navbar>
         <ion-title>房源搜索</ion-title>
     </ion-navbar>
-
     <ion-toolbar>
-        <!--<div class="searchs">-->
-        <!--<ion-searchbar
-  [(ngModel)]="myInput"
-  [showCancelButton]="shouldShowCancel"
-  (ionInput)="onInput($event)"
-  (ionCancel)="onCancel($event)">
-</ion-searchbar>-->
-        <!--<div class="item-input-wrapper">
-                <i class="icon placeholder-icon"><img src="assets/img/staff/search.png"></i>
-                <input (ngModelChange)="searchDis($event)" [(ngModel)]="searchData.input" type="search" style="padding-top:0;"
-                    placeholder="请输入区域、商圈或小区名搜索" />
-                <button ion-botton (click)='clearInput()' *ngIf="searchData.input !==''">
-					<img src="assets/img/sprite/close_btn_home.png" width="18"/>
-				</button>
-            </div>
-            <button ion-button class="inputsub" (click)='inputSearch()'>搜索</button>
-        </div>-->
         <div class="searchs">
             <div class="item-input-wrapper">
                 <i class="icon placeholder-icon"><img src="assets/img/staff/search.png"></i>
@@ -149,3 +131,11 @@
         <ion-infinite-scroll-content loadingText="正在加载中..."></ion-infinite-scroll-content>
     </ion-infinite-scroll>
 </ion-content>
+<div *ngIf="(roleName !== '房管家') && (roleName !== '租赁专员')">
+    <ion-fab bottom right edge>
+        <button ion-fab mini>{{selectName}}</button>
+        <ion-fab-list side="top">
+            <button ion-fab *ngFor="let s of selectUrl" (click)="selectType(s)">{{s.name}}</button>
+        </ion-fab-list>
+    </ion-fab>
+</div>

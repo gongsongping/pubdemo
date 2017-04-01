@@ -8,12 +8,10 @@
     <ion-navbar mode='ios'>
         <ion-title text-center>我的顾问</ion-title>
     </ion-navbar>
-    <ion-toolbar>
-        <div class="record-select">
-            <p *ngFor="let t of subtabs" (click)="chooseTab(t)" [ngClass]="serviceType==t.type ? 'tabP' : ''" >{{t.title}}</p>
-            <span class="spacing"></span>
-        </div>
-    </ion-toolbar>
+    <div class="record-select">
+        <p *ngFor="let t of subtabs" (click)="chooseTab(t)" [ngClass]="serviceType==t.type ? 'tabP' : ''">{{t.title}}</p>
+        <span class="spacing"></span>
+    </div>
 </ion-header>
 <ion-content style="background-color: #f6f7fb;">
     <ion-list inset no-lines>
