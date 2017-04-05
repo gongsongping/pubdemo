@@ -51,7 +51,9 @@
     <!--{{testService.message}}-->
 
     <div style="padding:0px 8px;">
-        <house *ngFor="let h of houses ; let i = index" (click)="goDetail(h)" [h]='h'></house>
+        <div *ngFor="let h of houses ; let i = index" style="border-bottom:1px solid #ededed;">
+            <house (click)="goDetail(h)" [h]='h'></house>
+        </div>
     </div>
     <div *ngIf='!dataLength' style='padding:30px;text-align: center;'>没有了!</div>
     <ion-fab bottom right #fab>

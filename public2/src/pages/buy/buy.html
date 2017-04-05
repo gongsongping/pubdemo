@@ -6,125 +6,132 @@
 -->
 
 <ion-header>
-  <ion-toolbar color='lightprimary'>
-    <ion-buttons left>
-      <button ion-button color='dark'>
+    <ion-toolbar color='lightprimary'>
+        <ion-buttons left>
+            <button ion-button color='dark'>
         <img src="assets/img/sprite/location_icon_buy.png" style="width:10px;height:15px;margin-right:3px;position: relative;bottom:2px;" alt="">
         北京
       </button>
-    </ion-buttons>
-   
-    <ion-searchbar mode='ios' [(ngModel)]='searchData.input' placeholder='请输入小区或商圈名称' (ionInput)="searchDisOnInpuChange($event)" (ionClear)="clearInput($event)">
-    </ion-searchbar>
-    <ion-buttons right>
-      <button (click)="inputSearch()" ion-button icon-only>
+        </ion-buttons>
+
+        <ion-searchbar mode='ios' [(ngModel)]='searchData.input' placeholder='请输入小区或商圈名称' (ionInput)="searchDisOnInpuChange($event)"
+            (ionClear)="clearInput($event)">
+        </ion-searchbar>
+        <ion-buttons right>
+            <button (click)="inputSearch()" ion-button icon-only>
         搜索
       </button>
-    </ion-buttons>
-  </ion-toolbar>
-  <div *ngIf='inputStart' style='position: absolute;z-index:900;width:100vw;'>
-    <button *ngIf="!districts.length" ion-button full  color='light' style='margin:0;border-bottom: 1px solid lightgray;'>没有匹配</button>
-    <button *ngFor="let d of districts" (click)="chooseDis(d)" ion-button full  color='light' style='margin:0;border-bottom: .2px solid lightgray;'>{{d.name}}</button>
-  </div>
-  <div style='width:100vw;'>
-    <div style='float:left;width:25%;'>
-      <button (click)='chooseAreaTab()' [ngClass]='activeAreaTab ? "select-buy-tab":""' style='margin:0px;' mode='ios' color="white" ion-button full> 
+        </ion-buttons>
+    </ion-toolbar>
+    <div *ngIf='inputStart' style='position: absolute;z-index:900;width:100vw;'>
+        <button *ngIf="!districts.length" ion-button full color='light' style='margin:0;border-bottom: 1px solid lightgray;'>没有匹配</button>
+        <button *ngFor="let d of districts" (click)="chooseDis(d)" ion-button full color='light' style='margin:0;border-bottom: .2px solid lightgray;'>{{d.name}}</button>
+    </div>
+    <div style='width:100vw;'>
+        <div style='float:left;width:25%;'>
+            <button (click)='chooseAreaTab()' [ngClass]='activeAreaTab ? "select-buy-tab":""' style='margin:0px;' mode='ios' color="white"
+                ion-button full> 
          <span *ngIf='areaTabTitle' style='color:#265fdf;'>{{areaTabTitle}}</span><span *ngIf='!areaTabTitle'>区域</span> &nbsp;<ion-icon name="md-arrow-dropdown"></ion-icon>
       </button>
-    </div>
-    <div style='float:left;width:25%;'>
-      <button (click)='choosePriceTab()' [ngClass]='activePriceTab ? "select-buy-tab":""' style='margin:0px;' mode='ios' color="white" ion-button full>
+        </div>
+        <div style='float:left;width:25%;'>
+            <button (click)='choosePriceTab()' [ngClass]='activePriceTab ? "select-buy-tab":""' style='margin:0px;' mode='ios' color="white"
+                ion-button full>
         <span *ngIf='priceTabTitle' style='color:#265fdf;'>{{priceTabTitle}}</span><span *ngIf='!priceTabTitle'>价格</span> &nbsp;<ion-icon name="md-arrow-dropdown"></ion-icon>
       </button>
-    </div>
-    <div style='float:left;width:25%;'>
-      <button (click)='chooseHouseTypeTab()' [ngClass]='activeHouseTypeTab ? "select-buy-tab":""' style='margin:0px;' mode='ios' color="white" ion-button  full>
+        </div>
+        <div style='float:left;width:25%;'>
+            <button (click)='chooseHouseTypeTab()' [ngClass]='activeHouseTypeTab ? "select-buy-tab":""' style='margin:0px;' mode='ios'
+                color="white" ion-button full>
         <span *ngIf='houseTypeTabTitle' style='color:#265fdf;'>{{houseTypeTabTitle}}</span><span *ngIf='!houseTypeTabTitle'>房型</span> &nbsp;<ion-icon name="md-arrow-dropdown"></ion-icon>
       </button>
-    </div>
-    <div style='float:left;width:25%;'>
-      <button (click)='chooseMoreTab()' [ngClass]='activeMoreTab ? "select-buy-tab":""' style='margin:0px;' mode='ios' color="white" ion-button full>
+        </div>
+        <div style='float:left;width:25%;'>
+            <button (click)='chooseMoreTab()' [ngClass]='activeMoreTab ? "select-buy-tab":""' style='margin:0px;' mode='ios' color="white"
+                ion-button full>
         <span *ngIf='moreTabTitle' style='color:#265fdf;'>{{moreTabTitle}}</span><span *ngIf='!moreTabTitle'>更多</span> &nbsp;<ion-icon name="md-arrow-dropdown"></ion-icon>
       </button>
+        </div>
     </div>
-  </div>
-  <div  *ngIf='activeAreaTab||activePriceTab||activeHouseTypeTab||activeMoreTab' style="width:100vw;height: 100vh;background: #F6F7FB;">
-    <div [@heightInOut] *ngIf='activeAreaTab'  style='clear:both;width: 100vw;background: white;padding-bottom: 15px;'>
-      <!--区域-->
-      <ion-row>
-        <ion-col width-33 style='height:70vh;overflow: scroll;'>
-          <button *ngFor='let p of areatabs' (click)='chooseAreatab(p)' ion-button  full clear [color]='choosedAreatab == p ? "primary":"dark"'
-            style='margin: 0;border-bottom: 0.5px solid lightgrey;border-bottom: 0.5px solid lightgrey;'>
+    <div *ngIf='activeAreaTab||activePriceTab||activeHouseTypeTab||activeMoreTab' style="width:100vw;height: 100vh;background: #F6F7FB;">
+        <div [@heightInOut] *ngIf='activeAreaTab' style='clear:both;width: 100vw;background: white;padding-bottom: 15px;'>
+            <!--区域-->
+            <ion-row>
+                <ion-col width-33 style='height:70vh;overflow: scroll;'>
+                    <button *ngFor='let p of areatabs' (click)='chooseAreatab(p)' ion-button full clear [color]='choosedAreatab == p ? "primary":"dark"'
+                        style='margin: 0;border-bottom: 0.5px solid lightgrey;border-bottom: 0.5px solid lightgrey;'>
             {{p}}
-          </button>   
-        </ion-col>
-        <ion-col width-33 style='height:70vh;overflow: scroll;'>
-          <div *ngIf='choosedAreatab == "区域"'>
-            <button *ngFor='let p of regions' (click)='chooseRegion(p)' ion-button  full clear [color]='choosedRegion == p ? "primary":"dark"'
-              style='margin: 0;border-bottom: 0.5px solid lightgrey;'>{{p.name}}</button>
-          </div>
-          <!--<div *ngIf='choosedAreatab == "地铁"'>-->
-          <!--<button ng-repeat='s in subways' (click)='chooseSubway(s)' class="button button-block button-clear" ng-class='choosedSubway == s ? "button-positive":"button-stable"'>{{s}}</button>-->
-          <!--</div>-->
-          <!--<div *ngIf='choosedAreatab == "附近"'>-->
-          <!--<button ng-repeat='n in nearbys' (click)='chooseNearby(n)' class="button button-block button-clear" ng-class='choosedNearby == n ? "button-positive":"button-stable"'>{{n}}km</button>-->
-          <!--</div>-->
-        </ion-col>
-        <ion-col width-33 style='height:70vh;overflow: scroll;'>
-        </ion-col>
-      </ion-row>
-    </div>
-    <div [@heightInOut] *ngIf='activePriceTab'  style='clear:both;width: 100vw;background: white;padding-bottom: 15px;'>
-      <!--prices价格-->
-      <button *ngFor='let p of prices' (click)='choosePrice(p)' ion-button  full clear [color]='choosedPrice == p ? "primary":"dark"'
-        style='margin: 0;border-bottom: 0.5px solid lightgrey;'>{{p.name}}</button>
-    </div>
-    <div [@heightInOut] *ngIf='activeHouseTypeTab' style='clear:both;width: 100vw;background: white;padding-bottom: 15px;'>
-      <!--housetype房型-->
-      <button *ngFor='let p of houseTypes' (click)='chooseHouseType(p)' ion-button  full clear [color]='choosedHouseType == p ? "primary":"dark"'
-        style='margin: 0;border-bottom: 0.5px solid lightgrey;'>{{p.name}}</button>
-    </div>
+          </button>
+                </ion-col>
+                <ion-col width-33 style='height:70vh;overflow: scroll;'>
+                    <div *ngIf='choosedAreatab == "区域"'>
+                        <button *ngFor='let p of regions' (click)='chooseRegion(p)' ion-button full clear [color]='choosedRegion == p ? "primary":"dark"'
+                            style='margin: 0;border-bottom: 0.5px solid lightgrey;'>{{p.name}}</button>
+                    </div>
+                    <!--<div *ngIf='choosedAreatab == "地铁"'>-->
+                    <!--<button ng-repeat='s in subways' (click)='chooseSubway(s)' class="button button-block button-clear" ng-class='choosedSubway == s ? "button-positive":"button-stable"'>{{s}}</button>-->
+                    <!--</div>-->
+                    <!--<div *ngIf='choosedAreatab == "附近"'>-->
+                    <!--<button ng-repeat='n in nearbys' (click)='chooseNearby(n)' class="button button-block button-clear" ng-class='choosedNearby == n ? "button-positive":"button-stable"'>{{n}}km</button>-->
+                    <!--</div>-->
+                </ion-col>
+                <ion-col width-33 style='height:70vh;overflow: scroll;'>
+                </ion-col>
+            </ion-row>
+        </div>
+        <div [@heightInOut] *ngIf='activePriceTab' style='clear:both;width: 100vw;background: white;padding-bottom: 15px;'>
+            <!--prices价格-->
+            <button *ngFor='let p of prices' (click)='choosePrice(p)' ion-button full clear [color]='choosedPrice == p ? "primary":"dark"'
+                style='margin: 0;border-bottom: 0.5px solid lightgrey;'>{{p.name}}</button>
+        </div>
+        <div [@heightInOut] *ngIf='activeHouseTypeTab' style='clear:both;width: 100vw;background: white;padding-bottom: 15px;'>
+            <!--housetype房型-->
+            <button *ngFor='let p of houseTypes' (click)='chooseHouseType(p)' ion-button full clear [color]='choosedHouseType == p ? "primary":"dark"'
+                style='margin: 0;border-bottom: 0.5px solid lightgrey;'>{{p.name}}</button>
+        </div>
 
-    <div [@heightInOut] *ngIf='activeMoreTab' style='clear:both;width: 100vw;height:55vh;overflow: scroll;background: white;padding-bottom: 15px;'>
-      <!--更多-->
-      <div style='padding:5px;font-size: 1em;'>朝向</div>
-      <div *ngFor='let p of orientations' style='padding:0 5px 5px;width: 33.3vw;float: left;'>
-        <button (click)='chooseOrientation(p)' ion-button small round  block outline [color]='choosedOrientation == p ? "primary":"lightgrey"'>{{p.name}}</button>
-      </div>
+        <div [@heightInOut] *ngIf='activeMoreTab' style='clear:both;width: 100vw;height:55vh;overflow: scroll;background: white;padding-bottom: 15px;'>
+            <!--更多-->
+            <div style='padding:5px;font-size: 1em;'>朝向</div>
+            <div *ngFor='let p of orientations' style='padding:0 5px 5px;width: 33.3vw;float: left;'>
+                <button (click)='chooseOrientation(p)' ion-button small round block outline [color]='choosedOrientation == p ? "primary":"lightgrey"'>{{p.name}}</button>
+            </div>
 
-      <div style='clear:both;padding:5px;font-size: 1em;'>面积</div>
-      <div *ngFor='let p of buildingAreas' style='padding:0 5px 5px;width: 33.3vw;float: left;'>
-        <button (click)='chooseBuildingArea(p)' ion-button small round  block outline [color]='choosedBuildingArea == p ? "primary":"lightgrey"'>{{p.name}}</button>
-      </div>
+            <div style='clear:both;padding:5px;font-size: 1em;'>面积</div>
+            <div *ngFor='let p of buildingAreas' style='padding:0 5px 5px;width: 33.3vw;float: left;'>
+                <button (click)='chooseBuildingArea(p)' ion-button small round block outline [color]='choosedBuildingArea == p ? "primary":"lightgrey"'>{{p.name}}</button>
+            </div>
 
-      <div style='clear:both;padding:5px;font-size: 1em;'>楼龄</div>
-      <div *ngFor='let p of buildYears' style='padding:0 5px 5px;width: 33.3vw;float: left;'>
-        <button (click)='chooseBuildYear(p)' ion-button  small round block outline [color]='choosedBuildYear == p ? "primary":"lightgrey"'>{{p.name}}</button>
-      </div>
+            <div style='clear:both;padding:5px;font-size: 1em;'>楼龄</div>
+            <div *ngFor='let p of buildYears' style='padding:0 5px 5px;width: 33.3vw;float: left;'>
+                <button (click)='chooseBuildYear(p)' ion-button small round block outline [color]='choosedBuildYear == p ? "primary":"lightgrey"'>{{p.name}}</button>
+            </div>
 
+        </div>
+        <div *ngIf='activeMoreTab' style='clear:both;width: 80vw;margin:5px 10vw;'>
+            <button (click)='clearMore()' ion-button outline round block color='lightgrey'>清空条件</button>
+        </div>
+        <div *ngIf='activeMoreTab' style='width: 80vw;margin:5px 10vw;'>
+            <button (click)='endMore()' ion-button round block>确定</button>
+        </div>
     </div>
-      <div *ngIf='activeMoreTab' style='clear:both;width: 80vw;margin:5px 10vw;'>
-        <button (click)='clearMore()' ion-button outline round block  color='lightgrey'>清空条件</button>
-      </div>
-      <div *ngIf='activeMoreTab' style='width: 80vw;margin:5px 10vw;'>
-        <button (click)='endMore()' ion-button round block >确定</button>
-      </div>
-  </div>
 
 </ion-header>
 <!--[style.background]='activeAreaTab||activePriceTab||activeHouseTypeTab||activeMoreTab ? "grey":""'-->
 <ion-content>
 
-  <div style="padding:5px 8px;">
-    <house *ngFor="let h of houses ; let i = index; trackBy:h?.id" (click)='goDetail(h)' [h]='h'></house>
-  </div>
-  <div *ngIf='!dataLength' style='padding:30px;text-align: center;'>没有了!</div>
-  <!--<ion-fab bottom right #fab>
+    <div style="padding:5px 8px;">
+        <div *ngFor="let h of houses ; let i = index; trackBy:h?.id" style="border-bottom:1px solid #ededed;">
+            <house (click)="goDetail(h)" [h]='h'></house>
+        </div>
+    </div>
+    <div *ngIf='!dataLength' style='padding:30px;text-align: center;'>没有了!</div>
+    <!--<ion-fab bottom right #fab>
     <button ion-fab (click)="goPrecise()" style='font-size: 0.8em;'>为您找房</button>
   </ion-fab>-->
 
-  <ion-infinite-scroll (ionInfinite)="loadMore($event)" [enabled]='!!dataLength' threshold='30%'>
-    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="正在努力加载中...">
-    </ion-infinite-scroll-content>
-  </ion-infinite-scroll>
+    <ion-infinite-scroll (ionInfinite)="loadMore($event)" [enabled]='!!dataLength' threshold='30%'>
+        <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="正在努力加载中...">
+        </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
 </ion-content>

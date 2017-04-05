@@ -132,7 +132,7 @@
 					<h5>我的房源</h5>
 				</div>
 			</div>
-			<div class="col-50" *ngIf="roleName == '经理' || roleName == '副总经理' || roleName == '总经理'">
+			<div class="col-50" *ngIf="roleName == '经理' || roleName == '副总经理' || roleName == '总经理'" (click)="pushManagement(housemanagement)">
 				<div>
 					<img src="assets/img/icon/_0007_myhome.png" width="65" />
 					<h5>房源管理</h5>

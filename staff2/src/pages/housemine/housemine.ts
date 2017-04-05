@@ -51,10 +51,15 @@ export class Housemine {
     activePriceTab = false
     activeMoreTab = false
     dataLength = 10;
+    staff:any;
+    hkId:any;
+    url:any;
     searchData = { input: '', district: '' }
     subtabs = {activePrice: '价格' , activeHouse: '户型' , activeKey: '钥匙', activeMore: '更多' }
     constructor(public navCtrl: NavController, public navParams: NavParams) {
-
+        this.staff = navParams.get('staff')
+        this.hkId = this.staff.id;
+        console.log(this.staff)
     }
 
     ionViewDidLoad() {
@@ -63,51 +68,32 @@ export class Housemine {
     }
     ionViewWillEnter() {
         this.roleName = localStorage.getItem('role')
+        console.log(this.roleName)
     }
     ionViewDidEnter() {
         let vm = this;
-        if (localStorage.getItem('userInfo')) {
-            vm.userInfo = JSON.parse(localStorage.getItem('userInfo'));
-            console.log('-----', vm.userInfo);
-            vm.totalMessages();
-            vm.doInfinite(false);
-        } else {
-            vm.userInfo = ''
-        }
-    }
-
-    presentPopover(e) {
-        console.log(e);
-    }
-
-    totalMessages() {
-        let vm = this;
-        let url = ''
         if (vm.roleName == '房管家') {
-            url = '/api/housing/houses?size=10&hkId=' + vm.userInfo.id;
+            vm.url = '/api/housing/houses?size=10&hkId=' + vm.hkId;
         }
         if (vm.roleName == '租赁专员') {
-            url = '/api/housing/rents?size=10&hkId=' + vm.userInfo.id;
+            vm.url = '/api/housing/rents?size=10&hkId=' + vm.hkId;
         }
+        vm.totalMessages();
+        vm.doInfinite(false);
+    }
+    totalMessages() {
+        let vm = this;
         axios
-            .get(url + '&statusIn=[2]')
+            .get(vm.url + '&statusIn=[2]')
             .then(function (res) {
                 vm.totalShelves = res.data.total;
                 axios
-                    .get(url)
+                    .get(vm.url)
                     .then(function (res) {
                         vm.totalAll = res.data.total;
                         vm.houseTitle = [{ id: 0, name: '在售房源', total: vm.totalShelves, status: '[2]' }, { id: 1, name: '所有房源', total: vm.totalAll, status: '[0,1,2,3,4,5]' }];
                     })
-                    .catch(function (error) {
-                        alert('服务器错误');
-                        console.log(error);
-                    });
             })
-            .catch(function (error) {
-                alert('服务器错误');
-                console.log(error);
-            });
     }
     selectStatus(m, n) {
         let vm = this;
@@ -122,20 +108,13 @@ export class Housemine {
         vm.nameLike = '';
         vm.start = 0;
         vm.statusIn = '&statusIn=' + n;
-        let url = ''
-        if (vm.roleName == '房管家') {
-            url = '/api/housing/houses?size=10&hkId=';
-        }
-        if (vm.roleName == '租赁专员') {
-            url = '/api/housing/rents?size=10&hkId=';
-        }
         let params = {
             params: {
                 start: vm.start
             }
         }
         axios
-            .get(url + vm.userInfo.id + vm.nameLike + vm.statusIn + vm.priceParams + vm.houseTypeParams + vm.hasKeyParams + vm.buildingAreaParams + vm.buildYearParams + vm.orientationParams + vm.regionParams, params)
+            .get(vm.url + vm.nameLike + vm.statusIn + vm.priceParams + vm.houseTypeParams + vm.hasKeyParams + vm.buildingAreaParams + vm.buildYearParams + vm.orientationParams + vm.regionParams, params)
             .then(function (res) {
                 setTimeout(() => {
                     vm.houses = res.data.data;
@@ -153,20 +132,13 @@ export class Housemine {
     doInfinite(infiniteScroll) {
         let vm = this
         vm.addMore = true;
-        let url = ''
-        if (vm.roleName == '房管家') {
-            url = '/api/housing/houses?size=10&hkId=';
-        }
-        if (vm.roleName == '租赁专员') {
-            url = '/api/housing/rents?size=10&hkId=';
-        }
         let params = {
             params: {
                 start: vm.start
             }
         }
         axios
-            .get(url + vm.userInfo.id + vm.nameLike + vm.statusIn + vm.priceParams + vm.houseTypeParams + vm.hasKeyParams + vm.buildingAreaParams + vm.buildYearParams + vm.orientationParams + vm.regionParams, params)
+            .get(vm.url + vm.nameLike + vm.statusIn + vm.priceParams + vm.houseTypeParams + vm.hasKeyParams + vm.buildingAreaParams + vm.buildYearParams + vm.orientationParams + vm.regionParams, params)
             .then(function (res) {
                 setTimeout(() => {
                     vm.houses = vm.houses.concat(res.data.data);
@@ -221,19 +193,12 @@ export class Housemine {
         let vm = this;
         vm.inputStart = true;
         let statusIn = '&statusIn=' + status;
-        let url = ''
-        if (vm.roleName == '房管家') {
-            url = '/api/housing/houses?size=10&hkId=';
-        }
-        if (vm.roleName == '租赁专员') {
-            url = '/api/housing/rents?size=10&hkId=';
-        }
         if (e == '') {
             vm.districtsTotal = '0';
         }
         let params = { params: { kwLike: vm.searchData.input } }
         axios
-            .get(url + vm.userInfo.id + vm.nameLike + vm.statusIn + vm.priceParams + vm.houseTypeParams + vm.hasKeyParams + vm.buildingAreaParams + vm.buildYearParams + vm.orientationParams + vm.regionParams, params)
+            .get(vm.url + vm.nameLike + vm.statusIn + vm.priceParams + vm.houseTypeParams + vm.hasKeyParams + vm.buildingAreaParams + vm.buildYearParams + vm.orientationParams + vm.regionParams, params)
             .then(function (res) {
                 vm.districts = res.data.data;
                 vm.districtsTotal = res.data.total;
@@ -260,16 +225,9 @@ export class Housemine {
             vm.housesTotal = 0;
         }
         vm.houses = [];
-        let url = ''
-        if (vm.roleName == '房管家') {
-            url = '/api/housing/houses?size=10&hkId=';
-        }
-        if (vm.roleName == '租赁专员') {
-            url = '/api/housing/rents?size=10&hkId=';
-        }
         let params = { params: { kwLike: vm.searchData.input } }
         axios
-            .get(url + vm.userInfo.id + vm.nameLike + vm.statusIn + vm.priceParams + vm.houseTypeParams + vm.hasKeyParams + vm.buildingAreaParams + vm.buildYearParams + vm.orientationParams + vm.regionParams, params)
+            .get(vm.url + vm.nameLike + vm.statusIn + vm.priceParams + vm.houseTypeParams + vm.hasKeyParams + vm.buildingAreaParams + vm.buildYearParams + vm.orientationParams + vm.regionParams, params)
             .then(function (res) {
                 setTimeout(() => {
                     vm.houses = res.data.data;
@@ -289,15 +247,8 @@ export class Housemine {
     search() {
         let vm = this;
         vm.houses = [];
-        let url = ''
-        if (vm.roleName == '房管家') {
-            url = '/api/housing/houses?size=10&hkId=' + vm.userInfo.id;
-        }
-        if (vm.roleName == '租赁专员') {
-            url = '/api/housing/rents?size=10&hkId=' + vm.userInfo.id;
-        }
         axios
-            .get(url + vm.statusIn + vm.nameLike + vm.priceParams + vm.houseTypeParams + vm.hasKeyParams + vm.buildingAreaParams + vm.buildYearParams + vm.orientationParams + vm.regionParams)
+            .get(vm.url + vm.statusIn + vm.nameLike + vm.priceParams + vm.houseTypeParams + vm.hasKeyParams + vm.buildingAreaParams + vm.buildYearParams + vm.orientationParams + vm.regionParams)
             .then(function (res) {
                 vm.houses = res.data.data;
                 vm.dataLength = res.data.data.length

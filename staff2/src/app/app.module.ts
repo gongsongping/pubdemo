@@ -32,6 +32,7 @@ import { Orderarea } from '../pages/orderarea/orderarea';
 import { Customerarea } from '../pages/customerarea/customerarea';
 
 import { Application } from '../pages/application/application';
+import { Housemanagement } from '../pages/housemanagement/housemanagement';
 
 
 enableProdMode();
@@ -71,7 +72,8 @@ enableProdMode();
     Statistics,
     Orderarea,
     Customerarea,
-    Application
+    Application,
+    Housemanagement
   ],
   imports: [
     IonicModule.forRoot(MyApp, {
@@ -108,7 +110,8 @@ enableProdMode();
     Statistics,
     Orderarea,
     Customerarea,
-    Application
+    Application,
+    Housemanagement
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })

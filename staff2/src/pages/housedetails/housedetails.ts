@@ -31,10 +31,13 @@ export class Housedetails {
     referrerName = {};
     hkName = [];
     url;
+    tradeType:any;
     subdistricts: any;
     constructor(public navCtrl: NavController, public navParams: NavParams) {
         let vm = this;
         vm.house = navParams.get('house')
+        vm.tradeType = vm.house.tradeType;
+        console.log(vm.tradeType)
         vm.enterTyle = navParams.get('enter');
     }
     scrollToTop() {
@@ -48,16 +51,17 @@ export class Housedetails {
         this.scrollToTop();
         let vm = this;
         vm.roleName = localStorage.getItem('role');
-        if (vm.roleName == '房管家') {
+        if (vm.tradeType == '1') {
             vm.url = '/api/housing/houses/' + vm.house.id
         }
-        if (vm.roleName == '租赁专员') {
-            vm.url = '/api/housing/rents/' + vm.house.id
+        if (vm.tradeType == '2') {
+            vm.url = '/api/housing/rent/' + vm.house.id
         }
         axios
             .get(vm.url)
             .then(function (res) {
                 vm.houses = res.data;
+                console.log(vm.houses)
                 axios
                     .get('/api/account/users/' + res.data.supplierId)
                     .then(function (res) {

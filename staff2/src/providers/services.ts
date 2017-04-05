@@ -106,7 +106,6 @@ export class House {
       .get(url)
       .then(function (res) {
         vm.he = res.data;
-        console.log(vm.he)
       })
  
     let url1 = '/api/account/employees/' + vm.h.hkId
@@ -114,6 +113,7 @@ export class House {
       .get(url1)
       .then(function (res) {
         vm.hk = res.data;
+        console.log(vm.hk)
       })
   
     if (vm.h.referrerId < 5000000) {
@@ -136,6 +136,7 @@ export class House {
   }
   
   goDetail(h) {
+        console.log(h)
         this.navCtrl.push(Housedetails, { house: h , enter: '1' })
   }
   onClick() {

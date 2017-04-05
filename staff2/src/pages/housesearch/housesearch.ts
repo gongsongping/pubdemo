@@ -71,18 +71,18 @@ export class Housesearch {
 
     ionViewWillEnter() {
         this.roleName = localStorage.getItem('role');
+        if (this.roleName == '租赁专员') {
+            this.url = '/api/housing/rents?size=10';
+        } else {
+            this.url = '/api/housing/houses?size=10';
+        }
+        this.doInfinite(false);
+        this.areaList();
     }
     ionViewDidEnter() {
         let vm = this;
         if (localStorage.getItem('userInfo')) {
             vm.userInfo = JSON.parse(localStorage.getItem('userInfo'));
-            if (this.roleName == '租赁专员') {
-                this.url = '/api/housing/rents?size=10';
-            } else {
-                this.url = '/api/housing/houses?size=10';
-            }
-            this.doInfinite(false);
-            this.areaList();
         } else {
             vm.userInfo = ''
         }
@@ -132,6 +132,7 @@ export class Housesearch {
         axios
             .get(vm.url + vm.nameLike + vm.priceParams + vm.houseTypeParams + vm.buildingAreaParams + vm.buildYearParams + vm.orientationParams + vm.buildStatusParams + vm.regionParams, params)
             .then(function (res) {
+                console.log(res.data.data)
                 setTimeout(() => {
                     vm.houses = vm.houses.concat(res.data.data);
                     vm.dataLength = res.data.data.length;
@@ -142,10 +143,6 @@ export class Housesearch {
                     }
                 }, 500);
             })
-            .catch(function (error) {
-                alert('服务器错误');
-                console.log(error);
-            });
     }
     searchDis(e) {
         let vm = this;

@@ -2,11 +2,6 @@
 
     <ion-navbar>
         <ion-title>我的房源</ion-title>
-        <!--<ion-buttons end>
-            <button ion-button icon-only (click)="presentPopover($event)">
-                切换
-            </button>
-        </ion-buttons>-->
     </ion-navbar>
     <ion-toolbar>
         <div class="searchs">
@@ -120,7 +115,7 @@
             <a style="width:75%;">
                 <div class="flex-row">
                     <p>
-                        <span style="font-weight:700;">{{h.subdistrict.name}}</span>
+                        <span style="font-weight:700;">{{h.subdistrict?.name}}</span>
                     </p>
                     <p>
                         {{h.detailAddr}} {{h.floor}}/{{h.totalFloor}}
@@ -134,7 +129,8 @@
                 <div>
                     <span class="text">{{h.buildingArea}}m<sup>2</sup></span>
                     <span class="interval"></span>
-                    <span class="text">{{h.price}}万元</span>
+                    <span class="text" *ngIf="h.tradeType == 1">{{h.price}}万元</span>
+                    <span class="text" *ngIf="h.tradeType == 2">{{h.rentPrice}}元/月</span>
                     <span class="interval"></span>
                     <span class="text" *ngIf="h.decorate == 1">毛坯</span>
                     <span class="text" *ngIf="h.decorate == 2">简装</span>
