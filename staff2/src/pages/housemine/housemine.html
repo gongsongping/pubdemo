@@ -115,10 +115,10 @@
             <a style="width:75%;">
                 <div class="flex-row">
                     <p>
-                        <span style="font-weight:700;">{{h.subdistrict?.name}}</span>
+                        <span style="font-weight:700;">{{h.subdistrict.name}}</span>
                     </p>
                     <p>
-                        {{h.detailAddr}} {{h.floor}}/{{h.totalFloor}}
+                        {{h.detailAddr | DetailAddrPipe}} {{h.floor}}/{{h.totalFloor}}
                         <span *ngIf="h.orientation == 1">西</span>
                         <span *ngIf="h.orientation == 2">东</span>
                         <span *ngIf="h.orientation == 3">北</span>

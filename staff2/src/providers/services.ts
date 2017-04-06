@@ -55,6 +55,18 @@ export class HouseTypePipe implements PipeTransform {
   }
 }
 
+@Pipe({name: 'DetailAddrPipe'})
+export class DetailAddrPipe implements PipeTransform {
+  transform(items: any): any {
+        let arr;
+        let Building = '';
+        if (items) {
+            arr = items.split('-')
+            Building = arr[0] + '号楼'
+        }
+        return Building
+  }
+}
 // @Component({
 //   selector: 'modal-resetpw',
 //   template: `

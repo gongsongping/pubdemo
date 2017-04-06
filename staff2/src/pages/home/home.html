@@ -17,42 +17,23 @@
 	</ion-navbar>
 </ion-header>
 <ion-content>
-	<div class="home-list" *ngIf="tabIndex == 1">
-		<ion-list>
-			<button ion-item>
-               合作商家
-            </button>
-			<button ion-item>
-               合作商家
-            </button>
-			<button ion-item>
-               合作商家
-            </button>
-			<button ion-item>
-               合作商家
-            </button>
-			<button ion-item>
-               合作商家
-            </button>
-			<button ion-item>
-               合作商家
-            </button>
-			<button ion-item>
-               合作商家
-            </button>
-			<button ion-item>
-               合作商家
-            </button>
-		</ion-list>
-		<!--<ion-list>
-			<ion-item>
-				合作商家
-			</ion-item>
-		</ion-list>-->
+	<div class="home-coopertion" *ngIf="tabIndex == 1">
+		<div class="coopertion-list">
+			<div>
+				<img src="assets/img/icon/coopertion_icon.png" width="60" height="60"/>
+				<h5 class="text">合作小区管理</h5>
+			</div>
+		</div>
+		<div class="coopertion-add">
+			<div>
+				<img src="assets/img/icon/coopertionadd_icon.png" width="60" height="60"/>
+				<h5 class="text">创建合作关系</h5>
+			</div>
+		</div>
 	</div>
 	<div *ngIf="tabIndex == 2">
 		<div *ngIf='spinner' style="width:100vw;margin:30px 0px;text-align: center;">
-			<ion-spinner  name="circles"></ion-spinner>
+			<ion-spinner name="circles"></ion-spinner>
 		</div>
 		<div *ngIf='dataLength==0' style="width:100vw;margin:30px 0px;text-align: center;">
 			没有待办事项!
@@ -73,7 +54,7 @@
 			</ion-list>
 		</div>-->
 		<!--only n000149-->
-	    <button ion-button small (click)='getTodosTotal(5)' *ngIf="(baseURL=='http://60.205.169.195:7060' || baseURL=='http://60.205.169.195:7069' )&&(userInfo.name=='韩崇（置业顾问）' || userInfo.name=='龚松平')" >ge all todos</button>
+		<button ion-button small (click)='getTodosTotal(5)' *ngIf="(baseURL=='http://60.205.169.195:7060' || baseURL=='http://60.205.169.195:7069' )&&(userInfo.name=='韩崇（置业顾问）' || userInfo.name=='龚松平')">ge all todos</button>
 		<todoitem *ngFor='let t of todosTotal' [todo]='t'></todoitem>
 	</div>
 	<div class="home-add" *ngIf="tabIndex == 3">
@@ -98,7 +79,7 @@
 					<h5>部门订单</h5>
 				</div>
 			</div>
-      <div class="col-50" (click)='pushTo(ordermine)' *ngIf="roleName == '置业顾问' || roleName =='房管家' || roleName =='看房顾问' || roleName =='金融专员' || roleName =='权证专员' || roleName =='网签专员' || roleName =='客服专员'">
+			<div class="col-50" (click)='pushTo(ordermine)' *ngIf="roleName == '置业顾问' || roleName =='房管家' || roleName =='看房顾问' || roleName =='金融专员' || roleName =='权证专员' || roleName =='网签专员' || roleName =='客服专员'">
 				<div>
 					<img src="assets/img/icon/_0008_list.png" width="65" />
 					<h5>订单管理</h5>

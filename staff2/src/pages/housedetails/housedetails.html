@@ -20,9 +20,13 @@
     <div class="details-1">
         <div class='name'>{{houses.name}}</div>
         <div class='simple flex-row'>
-            <div class='flex-1'>
+            <div class='flex-1' *ngIf="house.tradeType == 1">
                 <p>售价</p>
                 <h4><span>{{houses.price}}</span>万</h4>
+            </div>
+            <div class='flex-1' *ngIf="house.tradeType == 2">
+                <p>租金</p>
+                <h4><span>{{houses.rentPrice}}</span>元/月</h4>
             </div>
             <div class='flex-1 bor'>
                 <p>房型</p>
@@ -33,53 +37,70 @@
                 <h4><span>{{houses.buildingArea}}</span>平米</h4>
             </div>
         </div>
-        <div class='calculate'>
+        <div class='calculate' *ngIf="house.tradeType == 1">
             单价：
             <span>{{houses.price*10000/houses.buildingArea | number : '1.0-0'}}元/平米</span>
         </div>
     </div>
-    <div class="details-1">
+    <div class="details-1" style="margin-top:10px;">
         <div class="row">
             <div class='flex-col'>
-                楼层：
-                <span>{{houses.floor}}/{{houses.totalFloor}}</span>
+                <div>
+                    楼层：
+                    <span>{{houses.floor}}/{{houses.totalFloor}}</span>
+                </div>
+                <div>
+                    朝向：
+                    <span *ngIf="houses.orientation == 1">西</span>
+                    <span *ngIf="houses.orientation == 2">东</span>
+                    <span *ngIf="houses.orientation == 3">北</span>
+                    <span *ngIf="houses.orientation == 4">南</span>
+                    <span *ngIf="houses.orientation == 5">南北</span>
+                </div>
             </div>
             <div class='flex-col'>
-                朝向：
-                <span *ngIf="houses.orientation == 1">西</span>
-                <span *ngIf="houses.orientation == 2">东</span>
-                <span *ngIf="houses.orientation == 3">北</span>
-                <span *ngIf="houses.orientation == 4">南</span>
-                <span *ngIf="houses.orientation == 5">南北</span>
+                <div>
+                    装修：
+                    <span *ngIf="houses.decorate == 1">毛坯</span>
+                    <span *ngIf="houses.decorate == 2">简装</span>
+                    <span *ngIf="houses.decorate == 3">精装</span>
+                </div>
+                <div>
+                    楼型：
+                    <span *ngIf="houses.subdistrict?.buildingType == 1">塔式</span>
+                    <span *ngIf="houses.subdistrict?.buildingType == 2">板式</span>
+                    <span *ngIf="houses.subdistrict?.buildingType == 3">塔板结合</span>
+                    <span *ngIf="houses.subdistrict?.buildingType == 4">未知类型</span>
+                </div>
             </div>
             <div class='flex-col'>
-                装修：
-                <span *ngIf="houses.decorate == 1">毛坯</span>
-                <span *ngIf="houses.decorate == 2">简装</span>
-                <span *ngIf="houses.decorate == 3">精装</span>
+                <div>
+                    年代：
+                    <span>{{houses.subdistrict?.buildYear}}年</span>
+                </div>
+                <div>
+                    挂盘时间：
+                    <span>{{houses.modifiedTime | date: 'yyyy-MM-dd'}}</span>
+                    <span *ngIf="!houses.modifiedTime">暂未上架</span>
+                </div>
             </div>
-            <div class='flex-col'>
-                楼型：
-                <span *ngIf="houses.subdistrict?.buildingType == 1">塔式</span>
-                <span *ngIf="houses.subdistrict?.buildingType == 2">板式</span>
-                <span *ngIf="houses.subdistrict?.buildingType == 3">塔板结合</span>
-                <span *ngIf="houses.subdistrict?.buildingType == 4">未知类型</span>
+            <div class='flex-col' *ngIf="(roleName =='房管家' || roleName =='经理') && enterTyle == 2 && house.tradeType == 1">
+                <div>
+                    租赁方式：
+                    <span *ngIf="houses.rentType == 1">合租</span>
+                    <span *ngIf="houses.rentType == 2">整租</span>
+                </div>
+                <div>
+                    付款方式：
+                    <span *ngIf="houses.payType == 1">季付</span>
+                    <span *ngIf="houses.payType == 2">年付</span>
+                </div>
             </div>
-            <div class='flex-col'>
-                年代：
-                <span>{{houses.subdistrict?.buildYear}}年</span>
-            </div>
-            <div class='flex-col'>
-                挂盘时间：
-                <span>{{houses.modifiedTime | date: 'yyyy-MM-dd'}}</span>
-                <span *ngIf="!houses.modifiedTime">暂未上架</span>
-            </div>
-            <div class='flex-col'>
-                房号：
-                <span>{{houses.detailAddr}}</span>
-            </div>
-            <div class='flex-col'>
-
+            <div class='flex-col' *ngIf="(roleName =='房管家' || roleName =='经理') && enterTyle == 2">
+                <div>
+                    房号：
+                    <span>{{houses.detailAddr}}</span>
+                </div>
             </div>
             <a class='flex-row' *ngIf="houses.subdistrict !== null" (click)="districtDs()">
                 <div>
@@ -94,7 +115,50 @@
         <p>房源描述(点击内容可查看)：</p>
         <div [ngClass]="isAction ? 'description' : 'descriptionAn'" (click)="action()">{{houses.description}}</div>
     </div>
-    <div class='map'>
+    <div class="supporting" *ngIf="house.tradeType == 2">
+        <p>配套设施</p>
+        <div>
+            <img src="assets/img/icon/right_none.png" *ngIf="houses.bed == 0"/>
+            <img src="assets/img/icon/right.png" *ngIf="houses.bed == 1"/>
+            <span>床</span>
+        </div>
+        <div>
+            <img src="assets/img/icon/right_none.png" *ngIf="houses.network == 0"/>
+            <img src="assets/img/icon/right.png" *ngIf="houses.network == 1"/>
+            <span>宽带</span>
+        </div>
+        <div>
+            <img src="assets/img/icon/right_none.png" *ngIf="houses.television == 0"/>
+            <img src="assets/img/icon/right.png" *ngIf="houses.television == 1"/>
+            <span>电视</span>
+        </div>
+        <div>
+            <img src="assets/img/icon/right_none.png" *ngIf="houses.washingMachine == 0"/>
+            <img src="assets/img/icon/right.png" *ngIf="houses.washingMachine == 1"/>
+            <span>洗衣机</span>
+        </div>
+        <div>
+            <img src="assets/img/icon/right_none.png" *ngIf="houses.heating == 0"/>
+            <img src="assets/img/icon/right.png" *ngIf="houses.heating == 1"/>
+            <span>暖气</span>
+        </div>
+        <div>
+            <img src="assets/img/icon/right_none.png" *ngIf="houses.airCondition == 0"/>
+            <img src="assets/img/icon/right.png" *ngIf="houses.airCondition == 1"/>
+            <span>空调</span>
+        </div>
+        <div>
+            <img src="assets/img/icon/right_none.png" *ngIf="houses.icebox == 0"/>
+            <img src="assets/img/icon/right.png" *ngIf="houses.icebox == 1"/>
+            <span>冰箱</span>
+        </div>
+        <div>
+            <img src="assets/img/icon/right_none.png" *ngIf="houses.waterHeater == 0"/>
+            <img src="assets/img/icon/right.png" *ngIf="houses.waterHeater == 1"/>
+            <span>热水器</span>
+        </div>
+    </div>
+    <div class='map' style="margin-top:0;">
         <div id='housedetails-map'></div>
     </div>
     <div class="role-person">
@@ -166,7 +230,7 @@
 </ion-content>
 <ion-footer>
     <div class="footer-flex">
-        <a ion-bu class="create" *ngIf="(roleName =='房管家' || roleName =='经理') && enterTyle == 2"  (click)="pushEdit(houses)">
+        <a ion-bu class="create" *ngIf="(roleName =='房管家' || roleName =='经理') && enterTyle == 2" (click)="pushEdit(houses)">
             <div class="create-content">
                 <div><img src="assets/img/staff/compile_btn_grayness.png" width="18"></div>
                 <h5>编辑</h5>
