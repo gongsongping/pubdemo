@@ -1,4 +1,6 @@
 import { NgModule, ErrorHandler, enableProdMode } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { Home } from '../pages/home/home';
@@ -52,6 +54,7 @@ enableProdMode();
     Message
   ],
   imports: [
+    BrowserModule,
     IonicModule.forRoot(MyApp, {
       tabsHideOnSubPages: true,
       backButtonText: ''

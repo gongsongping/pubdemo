@@ -57,13 +57,13 @@
         <div [@heightInOut] *ngIf='activeAreaTab' style='clear:both;width: 100vw;background: white;padding-bottom: 15px;'>
             <!--区域-->
             <ion-row>
-                <ion-col width-33 style='height:70vh;overflow: scroll;'>
+                <ion-col col-4 style='height:70vh;overflow: scroll;'>
                     <button *ngFor='let p of areatabs' (click)='chooseAreatab(p)' ion-button full clear [color]='choosedAreatab == p ? "primary":"dark"'
                         style='margin: 0;border-bottom: 0.5px solid lightgrey;border-bottom: 0.5px solid lightgrey;'>
             {{p}}
           </button>
                 </ion-col>
-                <ion-col width-33 style='height:70vh;overflow: scroll;'>
+                <ion-col col-4 style='height:70vh;overflow: scroll;'>
                     <div *ngIf='choosedAreatab == "区域"'>
                         <button *ngFor='let p of regions' (click)='chooseRegion(p)' ion-button full clear [color]='choosedRegion == p ? "primary":"dark"'
                             style='margin: 0;border-bottom: 0.5px solid lightgrey;'>{{p.name}}</button>
@@ -75,7 +75,7 @@
                     <!--<button ng-repeat='n in nearbys' (click)='chooseNearby(n)' class="button button-block button-clear" ng-class='choosedNearby == n ? "button-positive":"button-stable"'>{{n}}km</button>-->
                     <!--</div>-->
                 </ion-col>
-                <ion-col width-33 style='height:70vh;overflow: scroll;'>
+                <ion-col col-4 style='height:70vh;overflow: scroll;'>
                 </ion-col>
             </ion-row>
         </div>
