@@ -115,7 +115,7 @@ export class Precise {
                     "value": vm.choosedDis.regionId//$scope.choosedRegion.id
                 }, {
                     "name": "customer_name",
-                    "value": vm.house.user_name //$window.localStorage.user_id
+                    "value": vm.userInfo.username //vm.house.user_name //$window.localStorage.user_id
                 }, {
                     "name": "customer_mobile",
                     "value": vm.userInfo.mobile

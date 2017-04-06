@@ -80,4 +80,8 @@ export class Home {
     rentingClick(index){
         this.textTitle = index.textTitle;
     }
+
+    goBuy(){
+      this.navCtrl.parent.select(1);
+    }
 }

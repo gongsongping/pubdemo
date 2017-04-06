@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { Events } from  'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { Events, Tabs as myTabs } from  'ionic-angular';
 import { Home } from '../home/home';
 import { Buy } from '../buy/buy';
 import { Sell } from '../sell/sell';
@@ -10,14 +10,6 @@ import { Mine } from '../mine/mine';
  
 @Component({
     templateUrl: 'tabs.html'
-//     template: `
-//     <ion-tabs>
-//       <ion-tab [root]="home" tabTitle="首页" tabIcon="homebhhf"></ion-tab>
-//       <ion-tab [root]="buy" tabTitle="买房" tabIcon="buybhhf"></ion-tab>
-//       <ion-tab [root]="sell" tabTitle="卖房" tabIcon="sellbhhf"></ion-tab>
-//       <ion-tab [root]="mine" tabTitle="我的" tabIcon="minebhhf"></ion-tab>
-//     </ion-tabs>
-// `
 })
 export class Tabs {
     // this tells the tabs component which Pages // should be each tab's root Page
@@ -26,6 +18,7 @@ export class Tabs {
     sell: any = Sell;
     mine: any = Mine;
     messagesTotal:any = 0
+    @ViewChild('myTabs') tabRef: myTabs;
     constructor(public events:Events) { }
     //not working
     ionViewWillEnter() {
