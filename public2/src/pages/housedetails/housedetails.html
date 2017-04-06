@@ -90,13 +90,5 @@
     </div>
 </ion-content>
 <ion-footer>
-    <button mode='ios' ion-button full style="margin: 0;">预约看房</button>
-    <!--<div *ngIf="currentUser">
-            <div ng-hide="activeTab=='mine'|| activeTab=='sell'" class="details-6" (click)="knowmodal.show()">
-                <a class='button button-positive'>预约看房</a>
-            </div>
-        </div>
-        <div *ngIf="!currentUser" class="details-6" (click)="loginmodal.show()">
-            <a class='button button-positive'>预约看房</a>
-        </div>-->
+    <button (click)='loginOrStartBuyRecommend()' mode='ios' ion-button full style="margin: 0;">预约看房</button>
 </ion-footer>
