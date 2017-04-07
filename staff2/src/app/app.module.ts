@@ -6,7 +6,7 @@ import { Home } from '../pages/home/home';
 
 import { Tododetails } from '../pages/tododetails/tododetails';
 import { Role } from '../pages/role/role';
-import {  House, Handle, ImgPipe, HouseTypePipe, Todoitem } from '../providers/services';
+import {  House, Handle, ImgPipe, HouseTypePipe, Todoitem, DetailAddrPipe} from '../providers/services';
 import { Changepw } from '../pages/changepw/changepw';
 import { Resetpw } from '../pages/resetpw/resetpw';
 import { About } from '../pages/about/about';
@@ -69,6 +69,7 @@ enableProdMode();
     Customerdetailsmine,
     Newrecord,
     Todoitem,
+    DetailAddrPipe,
     Statistics,
     Orderarea,
     Customerarea,

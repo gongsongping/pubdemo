@@ -5,10 +5,10 @@
         <div class="flex-row">
             <p>
                 <i *ngIf="he.hkId !== 0">合</i>
-                <span style="font-weight:700;">{{h.subdistrict?.name}}</span>
+                <span style="font-weight:700;">{{h.subdistrict.name}}</span>
             </p>
             <p>
-                {{h.detailAddr}}
+                {{h.detailAddr | DetailAddrPipe}}
             </p>
         </div>
         <div>

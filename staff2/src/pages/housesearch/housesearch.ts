@@ -50,17 +50,25 @@ export class Housesearch {
     dataLength = 10;
     selectName = '二手房';
     url: any;
+    prices: any;
     searchData = { input: '', district: '' }
     subtabs = { activeArea: '区域', activePrice: '价格', activeHouse: '户型', activeMore: '更多' }
+    rentPrice = [{ name: '不限', params: '' }, { name: '500元以下', params: '&rentPriceLessThan=500' }, { name: '500-1000元', params: '&rentPriceGreaterThanOrEquals=500&rentPriceLessThanOrEquals=1000' }, { name: '1000-2000元', params: '&rentPriceGreaterThanOrEquals=1000&rentPriceLessThanOrEquals=2000' }, { name: '2000-3000元', params: '&rentPriceGreaterThanOrEquals=2000&rentPriceLessThanOrEquals=3000' }, { name: '3000-5000元', params: '&rentPriceGreaterThanOrEquals=3000&rentPriceLessThanOrEquals=5000' }, { name: '5000-8000元', params: '&rentPriceGreaterThanOrEquals=5000&rentPriceLessThanOrEquals=8000' }, { name: '8000元以上', params: '&rentPriceGreaterThan=8000' }]
+    housePrice = [{ name: '不限', params: '' }, { name: '200万以下', params: '&priceLessThan=200' }, { name: '200-250万', params: '&priceGreaterThanOrEquals=200&priceLessThanOrEquals=250' }, { name: '250-300万', params: '&priceGreaterThanOrEquals=250&priceLessThanOrEquals=300' }, { name: '300-400万', params: '&priceGreaterThanOrEquals=300&priceLessThanOrEquals=400' }, { name: '400-500万', params: '&priceGreaterThanOrEquals=400&priceLessThanOrEquals=500' }, { name: '500-800万', params: '&priceGreaterThanOrEquals=500&priceLessThanOrEquals=800' }, { name: '800万以上', params: '&priceGreaterThan=800' }]
     constructor(public navCtrl: NavController, public navParams: NavParams) {
 
     }
     //如果不是房管家和租赁专员
-    selectUrl = [{ name: '二手房', myUrl: '/api/housing/houses?size=10' }, { name: '租房', myUrl: '/api/housing/rents?size=10' }]
+    selectUrl = [{ name: '二手房', myUrl: '/api/housing/houses?size=10', price: this.housePrice }, { name: '租房', myUrl: '/api/housing/rents?size=10', price: this.rentPrice }]
     selectType(s) {
         let vm = this;
         vm.selectName = s.name;
+        vm.prices = s.price;
         vm.url = s.myUrl;
+        vm.activeAreaTab = false
+        vm.activeHouseTypeTab = false
+        vm.activePriceTab = false
+        vm.activeMoreTab = false
         vm.houses = [];
         vm.start = 0;
         vm.doInfinite(false);
@@ -73,8 +81,12 @@ export class Housesearch {
         this.roleName = localStorage.getItem('role');
         if (this.roleName == '租赁专员') {
             this.url = '/api/housing/rents?size=10';
+            //价格
+            this.prices = this.rentPrice;
         } else {
             this.url = '/api/housing/houses?size=10';
+            //价格
+            this.prices = this.housePrice;
         }
         this.doInfinite(false);
         this.areaList();
@@ -255,8 +267,6 @@ export class Housesearch {
         vm.activeAreaTab = !vm.activeAreaTab;
         vm.search()
     }
-    //价格
-    prices = [{ name: '不限', params: '' }, { name: '200万以下', params: '&priceLessThan=200' }, { name: '200-250万', params: '&priceGreaterThanOrEquals=200&priceLessThanOrEquals=250' }, { name: '250-300万', params: '&priceGreaterThanOrEquals=250&priceLessThanOrEquals=300' }, { name: '300-400万', params: '&priceGreaterThanOrEquals=300&priceLessThanOrEquals=400' }, { name: '400-500万', params: '&priceGreaterThanOrEquals=400&priceLessThanOrEquals=500' }, { name: '500-800万', params: '&priceGreaterThanOrEquals=500&priceLessThanOrEquals=800' }, { name: '800万以上', params: '&priceGreaterThan=800' }]
     choosePrice(p) {
         let vm = this;
         vm.choosedPrice = p
@@ -264,7 +274,7 @@ export class Housesearch {
         vm.subtabs.activePrice = p.name
         vm.activePriceTab = !vm.activePriceTab
         vm.search()
-        // console.log(vm.priceParams);
+        console.log(vm.priceParams);
     }
     //房型
     houseTypes = [{ name: '不限', params: '' }, { name: '1室', params: '&houseType=1' }, { name: '2室', params: '&houseType=2' }, { name: '3室', params: '&houseType=3' }, { name: '3室以上', params: '&houseTypeGreaterThan=3' }]

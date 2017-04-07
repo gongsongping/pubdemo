@@ -55,7 +55,7 @@ export class Housedetails {
             vm.url = '/api/housing/houses/' + vm.house.id
         }
         if (vm.tradeType == '2') {
-            vm.url = '/api/housing/rent/' + vm.house.id
+            vm.url = '/api/housing/rents/' + vm.house.id
         }
         axios
             .get(vm.url)
@@ -78,7 +78,7 @@ export class Housedetails {
                         mobile: "",
                         department:
                         {
-                            name: "无"
+                            name: "无部门"
                         }
                     }
                 }

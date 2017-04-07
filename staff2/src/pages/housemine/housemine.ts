@@ -54,6 +54,7 @@ export class Housemine {
     staff:any;
     hkId:any;
     url:any;
+    prices:any;
     searchData = { input: '', district: '' }
     subtabs = {activePrice: '价格' , activeHouse: '户型' , activeKey: '钥匙', activeMore: '更多' }
     constructor(public navCtrl: NavController, public navParams: NavParams) {
@@ -67,19 +68,21 @@ export class Housemine {
         console.log('ionViewDidLoad HouseminePage');
     }
     ionViewWillEnter() {
-        this.roleName = localStorage.getItem('role')
-        console.log(this.roleName)
+        this.roleName = localStorage.getItem('role');
+        if (this.roleName == '租赁专员') {
+            this.url = '/api/housing/rents?size=10&hkId=' + this.hkId;
+            //价格
+            this.prices = [{ name: '不限', params: '' }, { name: '500元以下', params: '&rentPriceLessThan=500' }, { name: '500-1000元', params: '&rentPriceGreaterThanOrEquals=500&rentPriceLessThanOrEquals=1000' }, { name: '1000-2000元', params: '&rentPriceGreaterThanOrEquals=1000&rentPriceLessThanOrEquals=2000' }, { name: '2000-3000元', params: '&rentPriceGreaterThanOrEquals=2000&rentPriceLessThanOrEquals=3000' }, { name: '3000-5000元', params: '&rentPriceGreaterThanOrEquals=3000&rentPriceLessThanOrEquals=5000' }, { name: '5000-8000元', params: '&rentPriceGreaterThanOrEquals=5000&rentPriceLessThanOrEquals=8000' }, { name: '8000元以上', params: '&rentPriceGreaterThan=8000' }]
+        } else {
+            this.url = '/api/housing/houses?size=10&hkId=' + this.hkId;
+            //价格
+            this.prices = [{ name: '不限', params: '' }, { name: '200万以下', params: '&priceLessThan=200' }, { name: '200-250万', params: '&priceGreaterThanOrEquals=200&priceLessThanOrEquals=250' }, { name: '250-300万', params: '&priceGreaterThanOrEquals=250&priceLessThanOrEquals=300' }, { name: '300-400万', params: '&priceGreaterThanOrEquals=300&priceLessThanOrEquals=400' }, { name: '400-500万', params: '&priceGreaterThanOrEquals=400&priceLessThanOrEquals=500' }, { name: '500-800万', params: '&priceGreaterThanOrEquals=500&priceLessThanOrEquals=800' }, { name: '800万以上', params: '&priceGreaterThan=800' }]
+        }
+        this.totalMessages();
+        this.doInfinite(false);
     }
     ionViewDidEnter() {
-        let vm = this;
-        if (vm.roleName == '房管家') {
-            vm.url = '/api/housing/houses?size=10&hkId=' + vm.hkId;
-        }
-        if (vm.roleName == '租赁专员') {
-            vm.url = '/api/housing/rents?size=10&hkId=' + vm.hkId;
-        }
-        vm.totalMessages();
-        vm.doInfinite(false);
+
     }
     totalMessages() {
         let vm = this;
@@ -277,8 +280,6 @@ export class Housemine {
         vm.search()
         // console.log(vm.hasKeyParams);
     }
-    //价格
-    prices = [{ name: '不限', params: '' }, { name: '200万以下', params: '&priceLessThan=200' }, { name: '200-250万', params: '&priceGreaterThanOrEquals=200&priceLessThanOrEquals=250' }, { name: '250-300万', params: '&priceGreaterThanOrEquals=250&priceLessThanOrEquals=300' }, { name: '300-400万', params: '&priceGreaterThanOrEquals=300&priceLessThanOrEquals=400' }, { name: '400-500万', params: '&priceGreaterThanOrEquals=400&priceLessThanOrEquals=500' }, { name: '500-800万', params: '&priceGreaterThanOrEquals=500&priceLessThanOrEquals=800' }, { name: '800万以上', params: '&priceGreaterThan=800' }]
     choosePrice(p) {
         let vm = this;
         vm.choosedPrice = p
