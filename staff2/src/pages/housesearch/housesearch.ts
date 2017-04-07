@@ -74,10 +74,6 @@ export class Housesearch {
         vm.doInfinite(false);
     }
     ionViewDidLoad() {
-
-    }
-
-    ionViewWillEnter() {
         this.roleName = localStorage.getItem('role');
         if (this.roleName == '租赁专员') {
             this.url = '/api/housing/rents?size=10';
@@ -90,6 +86,10 @@ export class Housesearch {
         }
         this.doInfinite(false);
         this.areaList();
+    }
+
+    ionViewWillEnter() {
+        
     }
     ionViewDidEnter() {
         let vm = this;
