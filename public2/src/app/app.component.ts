@@ -1,7 +1,8 @@
 import {Component} from '@angular/core';
 import {Platform, Events} from 'ionic-angular';
-import {StatusBar, Splashscreen} from 'ionic-native';
-
+// import {StatusBar, Splashscreen} from 'ionic-native';
+import { SplashScreen }  from  "@ionic-native/splash-screen"
+import { StatusBar }  from  "@ionic-native/status-bar"
 import {Tabs} from '../pages/tabs/tabs';
 import axios from 'axios';
 import { JwtHelper } from 'angular2-jwt';
@@ -16,12 +17,12 @@ export class MyApp {
   jwtHelper: JwtHelper = new JwtHelper();
   tokens:any
   userInfo:any
-  constructor(platform : Platform,  public events: Events) {
+  constructor(platform : Platform,  public events: Events, splashScreen: SplashScreen, statusBar :StatusBar) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available. Here you can do
       // any higher level native things you might need.
-      StatusBar.styleDefault();
-      Splashscreen.hide();
+      statusBar.styleDefault();
+      splashScreen.hide();
     });
   }
   //not working

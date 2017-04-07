@@ -1,5 +1,4 @@
 import { NgModule, ErrorHandler, enableProdMode } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
@@ -21,6 +20,12 @@ import { Districtdetails } from '../pages/districtdetails/districtdetails';
 import { Message } from '../pages/message/message';
 
 import { NestedCom, House, TestService, ImgPipe, HouseTypePipe, Distribution } from '../providers/services';
+
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpModule } from '@angular/http';
+import { SplashScreen }  from  "@ionic-native/splash-screen"
+import { StatusBar }  from  "@ionic-native/status-bar"
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
 
 // let prodMode: boolean = window.hasOwnProperty('cordova');//!!window.cordova;
@@ -54,6 +59,8 @@ enableProdMode();
     Message
   ],
   imports: [
+    HttpModule,
+    BrowserAnimationsModule,
     BrowserModule,
     IonicModule.forRoot(MyApp, {
       tabsHideOnSubPages: true,
@@ -80,6 +87,11 @@ enableProdMode();
     Districtdetails,
     Message
   ],
-  providers: [{ provide: ErrorHandler, useClass: IonicErrorHandler }, TestService]
+  providers: [
+    SplashScreen,
+    StatusBar,
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    TestService
+  ]
 })
 export class AppModule { }
