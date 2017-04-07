@@ -6,7 +6,9 @@ import assign from "lodash/assign";
 // import { Districtdetails } from '../districtdetails/districtdetails';
 import { Housedetails } from '../housedetails/housedetails';
 
-import { Camera, CameraOptions } from 'ionic-native';
+// import { Camera, CameraOptions } from 'ionic-native';
+import { Camera, CameraOptions }  from  "@ionic-native/camera"
+
 
 // , File as FileSystem
 // interface Window {
@@ -29,7 +31,7 @@ import { Camera, CameraOptions } from 'ionic-native';
 export class Tododetails {
   
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  constructor(public navCtrl: NavController, public navParams: NavParams, private camera: Camera) {}
   
   getDetails (des,url){
     axios({
@@ -354,15 +356,15 @@ export class Tododetails {
         quality: 50,
         targetWidth: 700,
         targetHeight: 700,
-        destinationType: Camera.DestinationType.DATA_URL,
-        encodingType: Camera.EncodingType.JPEG,
-        sourceType:Camera.PictureSourceType.PHOTOLIBRARY
+        destinationType: this.camera.DestinationType.DATA_URL,
+        encodingType: this.camera.EncodingType.JPEG,
+        sourceType: this.camera.PictureSourceType.PHOTOLIBRARY
         // mediaType: Camera.MediaType.PHOTOLIBRARY
       }
 
      innerCapture(){
        let vm = this
-        Camera.getPicture(vm.options).then((imageData) => {
+        vm.camera.getPicture(vm.options).then((imageData) => {
            let base64Image = 'data:image/jpeg;base64,' + imageData;
            let file = vm.dataURItoBlob(base64Image)
           //  console.log(base64Image);
@@ -385,7 +387,7 @@ export class Tododetails {
 
      designCapture(){
        let vm = this
-        Camera.getPicture(vm.options).then((imageData) => {
+        vm.camera.getPicture(vm.options).then((imageData) => {
            let base64Image = 'data:image/jpeg;base64,' + imageData;
            let file = vm.dataURItoBlob(base64Image)
             // console.log(base64Image);

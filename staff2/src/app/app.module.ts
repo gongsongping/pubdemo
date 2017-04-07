@@ -34,6 +34,13 @@ import { Customerarea } from '../pages/customerarea/customerarea';
 import { Application } from '../pages/application/application';
 import { Housemanagement } from '../pages/housemanagement/housemanagement';
 
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpModule } from '@angular/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { SplashScreen }  from  "@ionic-native/splash-screen"
+import { StatusBar }  from  "@ionic-native/status-bar"
+import { Camera }  from  "@ionic-native/camera"
+
 
 enableProdMode();
 
@@ -77,6 +84,9 @@ enableProdMode();
     Housemanagement
   ],
   imports: [
+    BrowserModule,
+    HttpModule,
+    BrowserAnimationsModule,
     IonicModule.forRoot(MyApp, {
       backButtonText: '',
       mode:'ios'
@@ -114,6 +124,11 @@ enableProdMode();
     Application,
     Housemanagement
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
+  providers: [
+    SplashScreen,
+    StatusBar,
+    Camera,
+    {provide: ErrorHandler, useClass: IonicErrorHandler}
+  ]
 })
 export class AppModule {}

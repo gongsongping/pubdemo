@@ -1,6 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform, ModalController, Events } from 'ionic-angular';
-import { StatusBar, Splashscreen } from 'ionic-native';
+// import { StatusBar, Splashscreen } from 'ionic-native';
+import { SplashScreen }  from  "@ionic-native/splash-screen"
+import { StatusBar }  from  "@ionic-native/status-bar"
 
 import { Home } from '../pages/home/home';
 
@@ -34,13 +36,13 @@ export class MyApp {
   jwtHelper: JwtHelper = new JwtHelper();
   roleName:any
   baseURL:any
-  constructor(public platform: Platform, public modalCtrl: ModalController, public events: Events) {
+  constructor(public platform: Platform, public modalCtrl: ModalController, public events: Events,splashScreen :SplashScreen, statusBar :StatusBar) {
         // this.initializeApp();
         platform.ready().then(() => {
             // Okay, so the platform is ready and our plugins are available.
             // Here you can do any higher level native things you might need.
-            StatusBar.styleDefault();
-            Splashscreen.hide();
+            statusBar.styleDefault();
+            splashScreen.hide();
             console.log('---ready---');
         });
 
