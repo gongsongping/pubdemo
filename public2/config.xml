@@ -99,5 +99,4 @@
     <plugin name="cordova-plugin-app-version" spec="https://github.com/whiteoctober/cordova-plugin-app-version.git" />
     <access launch-external="yes" origin="tel:*" />
     <access launch-external="yes" origin="mailto:*" />
-    <plugin name="cordova-plugin-inappbrowser" spec="~1.7.0" />
 </widget>

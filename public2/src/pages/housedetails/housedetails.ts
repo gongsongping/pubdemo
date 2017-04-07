@@ -112,9 +112,9 @@ export class Housedetails {
                         }]
                     }
                 }).then(function successCallback(res) {
-                        // alert('提交成功')
-                        // vm.navCtrl.pop()
+                        alert('预约成功')
                         vm.navCtrl.push(Visitrecord)                       
+                        // vm.navCtrl.pop()
                         // vm.mission_id = res.data.value
                         // axios({
                         //     method: 'get',
