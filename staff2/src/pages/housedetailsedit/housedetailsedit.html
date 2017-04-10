@@ -73,14 +73,19 @@
                     <ion-option *ngFor="let o of orientations" value="{{o.id}}">{{o.name}}</ion-option>
                 </ion-select>
             </ion-item>
-            <ion-item>
+            <ion-item *ngIf="house.tradeType == 1">
                 <ion-label>价　 　格</ion-label>
                 <ion-input class="num" type="number" [(ngModel)]="house.price"></ion-input>
                 <ion-icon item-right>万元</ion-icon>
             </ion-item>
+            <ion-item *ngIf="house.tradeType == 2">
+                <ion-label>租　 　金</ion-label>
+                <ion-input class="num" type="number" [(ngModel)]="house.rentPrice"></ion-input>
+                <ion-icon item-right>元/月</ion-icon>
+            </ion-item>
             <ion-item>
                 <ion-label>描　 　述</ion-label>
-                <ion-textarea [(ngModel)]="house.description" placeholder="Enter a description"></ion-textarea>
+                <ion-textarea [(ngModel)]="house.description" placeholder="请在这里输入房源的描述……"></ion-textarea>
             </ion-item>
         </ion-list>
         <div class="upload">

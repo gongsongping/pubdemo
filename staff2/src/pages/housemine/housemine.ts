@@ -64,10 +64,6 @@ export class Housemine {
     }
 
     ionViewDidLoad() {
-        // this.doInfinite(false);
-        console.log('ionViewDidLoad HouseminePage');
-    }
-    ionViewWillEnter() {
         this.roleName = localStorage.getItem('role');
         if (this.roleName == '租赁专员') {
             this.url = '/api/housing/rents?size=10&hkId=' + this.hkId;
@@ -80,6 +76,9 @@ export class Housemine {
         }
         this.totalMessages();
         this.doInfinite(false);
+    }
+    ionViewWillEnter() {
+
     }
     ionViewDidEnter() {
 
